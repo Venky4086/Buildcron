@@ -1,0 +1,580 @@
+<div class="container-fluid px-0">
+  <div class="card">
+      <div class="content-header">
+          <div class="row">
+              <div class="col-sm-6 pl-25">
+                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Licenses Details</h3>
+              </div><!-- /.col -->
+
+              <div class="col-sm-6">
+                  <div class="alig_btns">
+                      <!-- <div class="add_btn">
+                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                              + Add License</button>
+                      </div> -->
+
+
+
+
+                      <!-- <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div> -->
+                  </div>
+              </div>
+          </div><!-- /.row -->
+
+
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="table-responsive">
+                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                      </ngx-table> -->
+
+                      <div class="card-body pt-0">
+                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="filter-sect">
+                                      <span class="mr-2">Show</span>
+                                      <div class="sele-drp">
+                                          <select class="form-control">
+                                              <option>5</option>
+                                              <option>10</option>
+                                              <option>15</option>
+                                              <option>20</option>
+                                          </select>
+                                      </div>
+                                      <span class="ml-2">Entries</span>
+                                  </div>
+                                  </div>
+
+
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="showhide pt-4 text-right floatright">
+                                      <span class='text-right'>Show/Hide:</span>
+                                      <span><i class="fa fa-table"></i></span>
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="table-responsive">
+                                    <table id="example1"
+                                        class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                        role="grid" aria-describedby="example1_info">
+                                        <thead class="cls-cream">
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Rendering engine: activate to sort column ascending">
+                                                    S.No</th>
+                                                <th class="sorting sorting_desc" tabindex="0"
+                                                    aria-controls="example1" rowspan="1" colspan="1"
+                                                    aria-label="Browser: activate to sort column ascending"
+                                                    aria-sort="descending">License ID</th>
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending">
+                                                    Client ID</th> -->
+
+
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">Username
+                                                </th> -->
+                                                <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Start Date
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1"
+                                                rowspan="1" colspan="1"
+                                                aria-label="CSS grade: activate to sort column ascending">
+                                                End Date
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1"
+                                                rowspan="1" colspan="1"
+                                                aria-label="CSS grade: activate to sort column ascending">
+                                                License Details
+                                                </th>
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Engine version: activate to sort column ascending">
+                                                    Mobile</th> -->
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Email</th> -->
+<!-- 
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Device ID</th> -->
+
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Device Name</th> -->
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Status</th>
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">
+                                                    Designation</th> -->
+
+                                                <!-- <th>Action
+                                                </th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr class="odd" *ngFor="let alllicense of alllicenses;let i=index">
+                                                <td class="dtr-control">{{i+1}}</td>
+                                                <td>{{alllicense.license_id}}</td>
+                                                <td>{{alllicense.created_at}}</td>
+                                                <td>{{alllicense.end_at}}</td>
+                                                <td>{{alllicense.user.first_name}}</td>
+                                                <td>{{alllicense.status}}</td>
+                                                <!-- <td>23652l</td>
+                                                <td>{{alllicense.user_name}}</td>
+                                                <td>{{alllicense.created_at}}</td>
+                                                <td>{{alllicense.end_at}}</td>
+                                                <td>{{alllicense.user_phone}}</td>
+                                                <td>{{alllicense.user_email}}</td> -->
+                                                <!-- <td>{{alllicense.device_id}}</td>
+                                                <td>{{alllicense.device_name}}</td> -->
+                                                <!-- <td>{{alllicense.status}}</td> -->
+
+                                                <!-- <td class="d-none">{{alllicense.users_designation}}</td> -->
+                                                <!-- <td>Client</td> -->
+                                                <!-- <td>
+                                                    <a data-toggle="modal" data-target="#ViewLicense" class="cursor_pointer" (click)="Details(alllicense.id,alllicense.user_name,alllicense.start_date,alllicense.user_phone,alllicense.user_email,alllicense.status,alllicense.device_id,alllicense.device_name,alllicense.users_designation)" class="cursor_pointer">
+                                                    <i class='fa fa-eye mr-1'></i>
+                                                    </a>
+                                                    <a data-toggle="modal" data-target="#UpdateLicense" class="cursor_pointer" (click)="Edit(alllicense.id,alllicense.user_name,alllicense.start_date,alllicense.user_phone,alllicense.user_email,alllicense.status,alllicense.device_id,alllicense.device_name,alllicense.users_designation)">
+                                                        <i class="fa fa-edit mr-1"></i>
+                                                    </a>
+                                                    <a data-toggle="modal" data-target="#DeleteLicense" class="cursor_pointer" (click)="delete(alllicense.id)">
+                                                        <i class="fa fa-trash mr-1"></i>
+                                                    </a>
+                                                </td> -->
+                                            </tr>
+                                        
+                                        </tbody>
+
+                                    </table>
+                                    <div class="patch-cls-cream">
+
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 col-md-offset-6">
+
+                              </div>
+                              <div class="col-sm-12 col-md-6">
+                                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                      <ul class="pagination float-rt">
+                                          <li class="paginate_button page-item previous disabled"
+                                              id="example1_previous"><a href="#" aria-controls="example1"
+                                                  data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                          <li class="paginate_button page-item active-cream active"><a href="#"
+                                                  aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                  class="page-link">1</a></li>
+                                          <li class="paginate_button page-item "><a href="#"
+                                                  aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                  class="page-link">2</a></li>
+                                          <li class="paginate_button page-item next" id="example1_next"><a
+                                                  href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                  class="page-link">Next</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                 <ngx-spinner
+                                 bdColor="rgba(51,51,51,0.8)"
+                                 size="medium"
+                                 color="#fff"
+                                 type="ball-scale-multiple"
+                               >
+                                 <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                               </ngx-spinner>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- view -->
+
+<div class="modal fade" id="ViewLicense" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">User Name:</label>
+                      <p class="font-weight-bold">{{user_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Start Date:</label>
+                    <p class="font-weight-bold">{{start_date}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Mobile</label>
+                    <p class="font-weight-bold">{{user_phone}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email</label>
+                    <p class="font-weight-bold">{{user_email}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Stauts</label>
+                    <p class="font-weight-bold">{{status}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Device ID</label>
+                    <p class="font-weight-bold">{{device_id}}</p>
+                </div>
+                 <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Device Name:</label>
+                    <p class="font-weight-bold">{{device_name}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Designation:</label>
+                    <p class="font-weight-bold">{{users_designation}}</p>
+                </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+  
+      </div>
+</div>
+
+<!-- add -->
+
+<ng-template #content let-modal>
+  <div class="modal-header bg-blu">
+      <h4 class="modal-title mb-0" id="modal-basic-title">Add License</h4>
+
+      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">&times;</span>
+
+  </div>
+  <div class="modal-body">
+
+      <form [formGroup]="AddLicense">
+          <div class="row">
+              <!-- <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">ID:</label>
+                  <input type="text" class="form-control" formControlName="id" [ngClass]="{ 'is-invalid': submitted && f.id.errors }"/>
+                  <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                    <div *ngIf="f.id.errors.required" class="fs-15 fw-700">Id is required</div>
+                  </div>
+              </div> -->
+
+              <!-- <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Client ID:</label>
+                  <input type="text" class="form-control" formControlName="client_id" [ngClass]="{ 'is-invalid': submitted && f.client_id.errors }"/>
+                  <div *ngIf="submitted && f.client_id.errors" class="invalid-feedback">
+                    <div *ngIf="f.client_id.errors.required" class="fs-15 fw-700">Client ID is required</div>
+                  </div>
+              </div> -->
+
+              <!-- <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">User Name:</label>
+                  <input type="text" class="form-control" formControlName="user_name" [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }"/>
+                  <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.user_name.errors.required" class="fs-15 fw-700">User Name is required</div>
+                  </div>
+              </div> -->
+
+              <!-- <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">ID:</label>
+                  <input type="text" class="form-control" />
+              </div> -->
+               
+
+               <div class="form-group col-md-6 mb-3">
+                   <label for="">User Info</label>
+                   <select class="form-select" formControlName="user_info" aria-label="Default select example" [ngClass]="{ 'is-invalid': submitted && f.user_info.errors }">
+                    <option value="" selected>-- select user info --</option>
+                    <option value="{{user.id}}" *ngFor="let user of users">{{user.name}}</option>
+                   </select>
+                   <div *ngIf="submitted && f.user_info.errors" class="invalid-feedback">
+                    <div *ngIf="f.user_info.errors.required" class="fs-15 fw-700">User Info is required</div>
+                  </div>
+               </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Start date:</label>
+                    <input type="date" class="form-control" formControlName="start_date" [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" (change)="startdate(s.value)" #s/>
+                    <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
+                        <div *ngIf="f.start_date.errors.required" class="fs-15 fw-700">Start Date is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">End date:</label>
+                    <input type="date" class="form-control" formControlName="end_date" [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" (change)="enddate(e.value)"  #e/>
+                    <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
+                        <div *ngIf="f.end_date.errors.required" class="fs-15 fw-700">End Date is required</div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Tenure:</label>
+                    <input type="text" [(ngModel)]="Days" class="form-control" formControlName="tenure" [ngClass]="{ 'is-invalid': submitted && f.tenure.errors }">
+                    <div *ngIf="submitted && f.tenure.errors" class="invalid-feedback">
+                        <div *ngIf="f.tenure.errors.required" class="fs-15 fw-700">Tenure is required</div>
+                    </div>
+                </div>                 -->
+
+              <!-- <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Mobile No:</label>
+                <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"/>
+                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobile.errors.required" class="fs-15 fw-700">Mobile is required</div>
+                    <div *ngIf="f.mobile.errors.pattern" class="fs-15 fw-700">Mobile Number must be at 10 digits required</div>
+                </div>
+              </div> -->
+
+            <!-- <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Email:</label>
+              <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required" class="fs-15 fw-700">Email is required</div>
+                <div *ngIf="f.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+              </div>
+            </div> -->
+
+
+          <!-- <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Status:</label>
+            <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
+            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                <div *ngIf="f.status.errors.required" class="fs-15 fw-700">Status is required</div>
+            </div>
+          </div> -->
+
+        <!-- <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Device ID:</label>
+          <input type="text" class="form-control" formControlName="device_id" [ngClass]="{ 'is-invalid': submitted && f.device_id.errors }"/>
+          <div *ngIf="submitted && f.device_id.errors" class="invalid-feedback">
+            <div *ngIf="f.device_id.errors.required" class="fs-15 fw-700">Device Id is required</div>
+          </div>
+        </div> -->
+
+            <!-- <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Device Name:</label>
+                <select class="form-select" formControlName="device_name" [ngClass]="{ 'is-invalid': submitted && f.device_name.errors }">
+                    <option value="" selected>-- select --</option>
+                    <option value="{{devicelist.id}}" *ngFor="let devicelist of devicelists">{{devicelist.name}}</option>
+                   </select>
+                   <div *ngIf="submitted && f.device_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.device_name.errors.required" class="fs-15 fw-700">Device Name is required</div>
+                   </div>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Designation:</label>
+            <input type="text" class="form-control" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"/>
+            <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                <div *ngIf="f.designation.errors.required" class="fs-15 fw-700">Designation is required</div>
+            </div>
+            </div> -->
+
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary bg2" (click)="Add()">License</button>
+  </div>
+</ng-template>
+
+<!-- update -->
+
+<div class="modal fade" id="UpdateLicense" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update License</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+      
+            <form [formGroup]="UpdateLicense">
+                <div class="row">
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{ 'is-invalid': submitted && f.id.errors }"/>
+                        <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                          <div *ngIf="f.id.errors.required" class="fs-15 fw-700">Id is required</div>
+                        </div>
+                    </div> -->
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Client ID:</label>
+                        <input type="text" class="form-control" formControlName="client_id" [ngClass]="{ 'is-invalid': updatesubmitted && f.client_id.errors }"/>
+                        <div *ngIf="updatesubmitted && u.client_id.errors" class="invalid-feedback">
+                          <div *ngIf="u.client_id.errors.required" class="fs-15 fw-700">Client ID is required</div>
+                        </div>
+                    </div> -->
+<!--       
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">User Name:</label>
+                        <input type="text" class="form-control" formControlName="user_name" [ngClass]="{ 'is-invalid': updatesubmitted && u.user_name.errors }" [(ngModel)]="user_name"/>
+                        <div *ngIf="updatesubmitted && u.user_name.errors" class="invalid-feedback">
+                          <div *ngIf="u.user_name.errors.required" class="fs-15 fw-700">User Name is required</div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="">User Info</label>
+                        <select class="form-select" formControlName="user_info" aria-label="Default select example" [ngClass]="{ 'is-invalid': updatesubmitted && f.user_info.errors }">
+                         <option value="" selected>-- select user info --</option>
+                         <option value="{{user.id}}" *ngFor="let user of users">{{user.name}}</option>
+                        </select>
+                        <div *ngIf="updatesubmitted && u.user_info.errors" class="invalid-feedback">
+                            <div *ngIf="u.user_info.errors.required" class="fs-15 fw-700">User filed is required</div>
+                        </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" />
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Start date:</label>
+                        <input type="date" class="form-control" formControlName="start_date" [ngClass]="{ 'is-invalid': updatesubmitted && u.start_date.errors }" [(ngModel)]="start_date"/>
+                        <div *ngIf="updatesubmitted && u.start_date.errors" class="invalid-feedback">
+                          <div *ngIf="u.start_date.errors.required" class="fs-15 fw-700">Start Date is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">End date:</label>
+                        <input type="date" class="form-control" formControlName="end_date" [ngClass]="{ 'is-invalid': updatesubmitted && u.end_date.errors }" [(ngModel)]="end_date"/>
+                        <div *ngIf="updatesubmitted && u.end_date.errors" class="invalid-feedback">
+                          <div *ngIf="u.end_date.errors.required" class="fs-15 fw-700">End Date is required</div>
+                        </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Mobile No:</label>
+                      <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': updatesubmitted && u.mobile.errors }" [(ngModel)]="user_phone"/>
+                      <div *ngIf="updatesubmitted && u.mobile.errors" class="invalid-feedback">
+                          <div *ngIf="u.mobile.errors.required" class="fs-15 fw-700">Mobile is required</div>
+                          <div *ngIf="u.mobile.errors.pattern" class="fs-15 fw-700">Mobile Number must be at 10 digits required</div>
+                      </div>
+                   </div>
+      
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email:</label>
+                    <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" [(ngModel)]="user_email"/>
+                    <div *ngIf="updatesubmitted && u.email.errors" class="invalid-feedback">
+                      <div *ngIf="u.email.errors.required" class="fs-15 fw-700">Email is required</div>
+                      <div *ngIf="u.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                    </div>
+                  </div> -->
+      
+      
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Status:</label>
+                  <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }" [(ngModel)]="status"/>
+                  <div *ngIf="updatesubmitted && u.status.errors" class="invalid-feedback">
+                      <div *ngIf="u.status.errors.required" class="fs-15 fw-700">Status is required</div>
+                  </div>
+                </div>
+      
+              <!-- <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Device ID:</label>
+                <input type="text" class="form-control" formControlName="device_id" [ngClass]="{ 'is-invalid': updatesubmitted && u.device_id.errors }" [(ngModel)]="device_id"/>
+                <div *ngIf="updatesubmitted && u.device_id.errors" class="invalid-feedback">
+                  <div *ngIf="u.device_id.errors.required" class="fs-15 fw-700">Device Id is required</div>
+                </div>
+              </div> -->
+      
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Device Name:</label>
+              <input type="text" class="form-control" formControlName="device_name" [ngClass]="{ 'is-invalid': updatesubmitted && u.device_name.errors }" [(ngModel)]="device_name"/>
+              <div *ngIf="updatesubmitted && u.device_name.errors" class="invalid-feedback">
+                  <div *ngIf="u.device_name.errors.required" class="fs-15 fw-700">Device Name is required</div>
+              </div>
+            </div>
+      
+          <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Designation:</label>
+            <input type="text" class="form-control" formControlName="designation" [ngClass]="{ 'is-invalid': updatesubmitted && u.designation.errors }" [(ngModel)]="users_designation"/>
+            <div *ngIf="updatesubmitted && u.designation.errors" class="invalid-feedback">
+              <div *ngIf="u.designation.errors.required" class="fs-15 fw-700">Designation is required</div>
+            </div>
+          </div>
+      
+      
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" (click)="Update()">Update</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- delete  -->
+
+<div class="modal fade" id="DeleteLicense" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content pd-20 delete-bg">
+         <h1 class="text-white fs-20">Are you sure, you want to delete the License</h1>
+         <div class="d-flex justify-content-end">
+            <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+            <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
+         </div>
+      </div>
+    </div>
+</div>

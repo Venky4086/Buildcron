@@ -1,0 +1,371 @@
+<header id="header" class="header fixed-top">
+  <div
+    class="
+      container-fluid container-xl
+      d-flex
+      align-items-center
+      justify-content-between
+    "
+  >
+    <a href="index.html" class="logo d-flex align-items-center">
+      <img src="assets/img/logo.png" alt="" />
+    </a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#services">Services</a></li>
+        <li><a class="nav-link scrollto" href="#about">About</a></li>
+        <li><a class="nav-link scrollto" href="#team">Team</a></li>
+        <li><a class="nav-link scrollto" href="#plans">Plans</a></li>
+        <li>
+          <a class="nav-link scrollto" href="#testimonies">Testimonies</a>
+        </li>
+
+        <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+        <ul>
+          <li><a href="#">Drop Down 1</a></li>
+          <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+            <ul>
+              <li><a href="#">Deep Drop Down 1</a></li>
+              <li><a href="#">Deep Drop Down 2</a></li>
+              <li><a href="#">Deep Drop Down 3</a></li>
+              <li><a href="#">Deep Drop Down 4</a></li>
+              <li><a href="#">Deep Drop Down 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Drop Down 2</a></li>
+          <li><a href="#">Drop Down 3</a></li>
+          <li><a href="#">Drop Down 4</a></li>
+        </ul>
+      </li> -->
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+<!-- End Header -->
+
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Subscription Order Form</li>
+      </ol>
+    </div>
+  </section>
+  <!-- End Breadcrumbs -->
+
+  <section class="inner-page">
+    <div class="container">
+      <h1 class="display-6 mb-4 mt-1 display-center">
+        Subscription <span class="orange_cls">Order</span> Form
+      </h1>
+      <form [formGroup]="Subscription"> 
+      <div class="subscription-form">
+        <div class="card-group">
+          <div class="card bg-transparent">
+            <div class="card-header fill-dark bg_004add cardheader">
+              Software
+            </div>
+            <div class="card-body">
+              <span class="align-middle">Buildcron</span>
+            </div>
+          </div>
+          <!-- <form [formGroup]="Subscription"> -->
+            <div class="card bg-transparent">
+              <div class="card-header fill-dark bg_004add cardheader">
+                Plan
+              </div>
+              <div class="card-body">
+                <select
+                  class="form-select"
+                  id="plan"
+                  aria-label="Plan"
+                  name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }">
+                  <option  value="{{planename}}" selected>{{planename}}</option>
+                  <option value="{{Allplane.name}}" *ngFor="let Allplane of Allplanes">{{Allplane.name}}</option>
+                  <!-- <option value="annual">Annual</option>
+                  <option value="perpetual">Perpetual</option> -->
+                </select>
+                <div *ngIf="submitted && f.planename.errors" class="invalid-feedback">
+                  <div *ngIf="f.planename.errors.required" class="fs-15 fw-700">Plane Name is required</div>
+                 </div>
+                <div class="progress-bar" style="display: none">
+                  <span class="bar">
+                    <span class="progress"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-transparent">
+              <div class="card-header bg_004add fill-dark cardheader">
+                Number
+              </div>
+              <div class="card-body">
+                <select
+                  class="form-select"
+                  id="numbers"
+                  aria-label="Numbers"
+                  name="numbers" formControlName="planenumber"
+                   [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }">
+                    <option value="" selected>--select the one option --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <div *ngIf="submitted && f.planenumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.planenumber.errors.required" class="fs-15 fw-700">Plane Count is required</div>
+                 </div>
+              </div>
+            </div>
+            <!-- <div class="card bg-transparent">
+              <div class="card-header bg_004add fill-dark cardheader">
+                Rate, ₹
+              </div>
+              <div class="card-body">
+                <input
+                  type="text"
+                  class="form-control text-end"
+                  id="rate"
+                  name="rate"
+                  placeholder="0.00"
+                  readonly=""
+                  aria-label="Rate of each Subcription"
+                />
+              </div>
+            </div> -->
+            <!-- <div class="card bg-transparent">
+              <div class="card-header bg_004add fill-dark cardheader">
+                + 18% GST, ₹
+              </div>
+              <div class="card-body">
+                <input
+                  type="text"
+                  class="form-control text-end"
+                  id="gst"
+                  name="gst"
+                  placeholder="0.00"
+                  readonly=""
+                  aria-label="GST Amount"
+                />
+              </div>
+            </div> -->
+            <div class="card bg-transparent">
+              <div class="card-header bg_004add fill-dark cardheader">
+                Amount, ₹
+              </div>
+              <div class="card-body">
+                <input
+                  type="hidden"
+                  name="subtotal"
+                  id="subtotal"
+                  value="40,000.00"
+                />
+                <input
+                  type="text"
+                  class="form-control text-end"
+                  id="amount"
+                  name="amount"
+                  [(ngModel)]="planeamount"
+                  
+                  readonly=""
+                  aria-label="Total Amount in INR"
+                  formControlName="planeamount"
+                  [ngClass]="{ 'is-invalid': submitted && f.planeamount.errors }" />
+
+                <div *ngIf="submitted && f.planeamount.errors" class="invalid-feedback">
+                  <div *ngIf="f.planeamount.errors.required" class="fs-15 fw-700">Plane Amount is required</div>
+                 </div>
+
+              </div>
+            </div>
+          <!-- </form> -->
+        </div>
+      </div>
+     </form>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary1" type="button" (click)="checkout()">
+          <a class="cls_a">
+            <i class="fa fa-shopping-cart"></i> Proceed to Checkout</a>
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="footer-newsletter">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <h4>Our Newsletter</h4>
+          <p>
+            Tamen quem nulla quae legam multos aute sint culpa legam noster
+            magna
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <form action="" method="post">
+            <input type="email" name="email" /><input
+              type="submit"
+              value="Subscribe"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="" />
+          </a>
+          <p>
+            Cras fermentum odio eu feugiat lide par naso tierra. Justo eget
+            nada terra videa magna derita valies darta donna mare fermentum
+            iaculis eu non diam phasellus.
+          </p>
+          <div class="social-links mt-3">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"
+              ><i class="bi bi-instagram bx bxl-instagram"></i
+            ></a>
+            <a href="#" class="linkedin"
+              ><i class="bi bi-linkedin bx bxl-linkedin"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li>
+              <i class="bi bi-chevron-right"></i> <a href="#">Home</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i> <a href="#">About us</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i> <a href="#">Services</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">Terms of service</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">Privacy policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li>
+              <i class="bi bi-chevron-right"></i> <a href="#">Web Design</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">Web Development</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">Product Management</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i> <a href="#">Marketing</a>
+            </li>
+            <li>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">Graphic Design</a>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="
+            col-lg-3 col-md-12
+            footer-contact
+            text-center text-md-start
+          "
+        >
+          <h4>Contact Us</h4>
+          <p>
+            A108 Adam Street <br />
+            New York, NY 535022<br />
+            United States <br /><br />
+            <strong>Phone:</strong> +1 5589 55488 55<br />
+            <strong>Email:</strong> info@example.com<br />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Buildcron</span></strong
+      >. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="https://analogit.in/">Analog IT Solutions</a>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+<a
+  href="#"
+  class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<style>
+  .orange_cls {
+    color: #ff6600;
+  }
+  .bg_004add {
+    background-color: #004add !important;
+    color: #fff !important;
+  }
+  .btn-primary1 {
+    background-color: #ff6600 !important;
+    color: #fff !important;
+    margin: 2rem 0;
+  }
+  .cls_a {
+    color: #fff !important;
+  }
+</style>

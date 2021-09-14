@@ -1,0 +1,851 @@
+<div class="container-fluid px-0">
+    <div class="card">
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-6 pl-25">
+                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Client Registrations</h3>
+                </div><!-- /.col -->
+  
+                <div class="col-sm-6">
+                    <div class="alig_btns">
+                        <div class="add_btn">
+                            <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                                + Add Client</button>
+                        </div>
+  
+  
+  
+  
+                        <div class="bulk_btn">
+                            <span class="btn btn-default btn-file bg1 mtop">
+                                Bulk Upload <input type="file" (change)="onFileSelect($event)" accept="application/pdf, application/vnd.ms-excel">
+                            </span>
+                            <div class="small06">*In CSV File or Excel Format</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="container">
+                  <div class="float-right">{{filename}}</div>
+                  </div>
+                </div>
+            </div><!-- /.row -->
+  
+  
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="table-responsive">
+                        <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                        </ngx-table> -->
+  
+                        <div class="card-body pt-0">
+                            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                      <div class="filter-sect">
+                                        <span class="mr-2">Show</span>
+                                        <div class="sele-drp">
+                                            <select class="form-control">
+                                                <option>5</option>
+                                                <option>10</option>
+                                                <option>15</option>
+                                                <option>20</option>
+                                            </select>
+                                        </div>
+                                        <span class="ml-2">Entries</span>
+                                    </div>
+                                    </div>
+  
+  
+                                    <div class="col-sm-12 col-md-7">
+                                      <div class="showhide pt-4 text-right floatright">
+                                        <span class='text-right'>Show/Hide:</span>
+                                        <span><i class="fa fa-table"></i></span>
+                                    </div>
+                                    </div>
+  
+  
+                                </div>
+  
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="table-responsive">
+                                        <table id="example1" style="overflow: auto !important; width:1400px !important;"
+                                            class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                            role="grid" aria-describedby="example1_info">
+                                            <thead class="cls-light">
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Rendering engine: activate to sort column ascending">
+                                                        S.No</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Client ID</th>
+                                                    <th class="sorting sorting_desc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
+                                                        aria-sort="descending">Company Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Phone</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Engine version: activate to sort column ascending">
+                                                        Email</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">GSTN
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Address</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">City
+                                                    </th>
+  
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">State
+                                                    </th>
+  
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">Pincode
+                                                    </th>
+                                                      <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Start Date
+                                                      </th>
+                                                       <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">End Date
+                                                      </th> -->
+  
+                                                      <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">No of License
+                                                      </th>
+  
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">Contact Person
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="CSS grade: activate to sort column ascending">Status
+                                                    </th>
+
+  
+                                                    <th rowspan="1" colspan="1">Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+  
+                                                <tr class="odd" *ngFor="let crd of companyregistrationdatas ; let i=index">
+                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td>{{crd.user.client_id}}</td>
+                                                    <td>{{crd.name}}</td>
+                                                    <td>{{crd.user.phone_number}}</td>
+                                                    <td>{{crd.user.email}}</td>
+                                                    <td>{{crd.gstin}}</td>
+                                                    <td>{{crd.addres}}</td>
+                                                    <td>{{crd.city}}</td>
+                                                    <td>{{crd.state}}</td>
+                                                    <td>{{crd.pincode}}</td>
+                                                    <td>{{crd.license_purchased}}</td>
+                                                    <!-- <td>{{crd.end_at}}</td> -->
+                                                    <!-- <td>{{crd.no_licenses}}</td> -->
+                                                    <td>{{crd.contact_person}}</td>
+                                                    <td *ngIf="crd.status == true">
+                                                      Approved 
+                                                    </td>
+                                                    <td *ngIf="crd.status == false">
+                                                      Pending
+                                                    </td>
+                                                    <td>
+                                                      <a data-toggle="modal" data-target="#Viewcompany" (click)="Details(crd.id,crd.name,crd.user.phone,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.published_date,crd.end_at,crd.no_licenses,crd.username)" class="cursor_pointer">
+                                                        <i class="fa fa-eye mr-1"></i>
+                                                      </a>
+                                                        <a data-toggle="modal" data-target="#Updatecompany" (click)="edit(crd.id,crd.name,crd.user.id,crd.user.username,crd.user.phone,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.published_date,crd.end_at,crd.no_licenses,crd.username)" class="cursor_pointer">
+                                                            <i class="fa fa-edit mr-1"></i>
+                                                        </a>
+                                                        <a data-toggle="modal" data-target="#Deletecompany" class="cursor_pointer" (click)="delete(crd.id)">
+                                                            <i class="fa fa-trash mr-1"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+  
+                                        </table>
+  
+  
+                                      </div>
+  
+                                    </div>
+  
+                                </div>
+                                <div class="patch-cls">
+  
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+  
+  
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                            <ul class="pagination float-rt">
+                                                <li class="paginate_button page-item previous disabled"
+                                                    id="example1_previous"><a href="#" aria-controls="example1"
+                                                        data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                                <li class="paginate_button page-item bg-blue active"><a href="#"
+                                                        aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                        class="page-link">1</a></li>
+                                                <li class="paginate_button page-item "><a href="#"
+                                                        aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                        class="page-link">2</a></li>
+                                                <li class="paginate_button page-item next" id="example1_next"><a
+                                                        href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                        class="page-link">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-md-12">
+                                      <ngx-spinner
+                                      bdColor="rgba(51,51,51,0.8)"
+                                      size="medium"
+                                      color="#fff"
+                                      type="ball-scale-multiple"
+                                    >
+                                      <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                                    </ngx-spinner>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<!-- view modal -->
+
+<ng-template #view let-modal>
+  <div class="modal-header bg-blu">
+      <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+
+      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">&times;</span>
+
+  </div>
+  <div class="modal-body">
+
+      <form>
+          <div class="row">
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Name:</label>
+                  <p class="font-weight-bold">Sairebba</p>
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Phone:</label>
+                  <p class="font-weight-bold">91-9963509329</p>
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Email:</label>
+                  <p class="font-weight-bold">sairebba@gmail.com</p>
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">GSTN:</label>
+                  <p class="font-weight-bold">ABDKJS1254</p>
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Address:</label>
+                  <p class="font-weight-bold">Hyderabad</p>
+              </div>
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">City:</label>
+                <p class="font-weight-bold">Secunderbad</p>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">State:</label>
+              <p class="font-weight-bold">Telangana</p>
+          </div>
+
+          <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Pincode:</label>
+            <p class="font-weight-bold">500072</p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Status:</label>
+          <p class="font-weight-bold">Active</p>
+      </div>
+
+      <div class="form-group col-md-6 mb-3">
+        <label for="dateOfBirth">End date:</label>
+        <p class="font-weight-bold">08/05/2021</p>
+    </div>
+
+    <div class="form-group col-md-6 mb-3">
+      <label for="dateOfBirth">No of License:</label>
+      <p class="font-weight-bold">2</p>
+  </div>
+
+  <div class="form-group col-md-6 mb-3">
+    <label for="dateOfBirth">Contact Person:</label>
+    <p class="font-weight-bold">John</p>
+</div>
+
+
+
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">OK</button>
+  </div>
+</ng-template>
+
+<div class="modal fade" id="Viewcompany" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+          <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+    
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+    
+      </div>
+      <div class="modal-body">
+
+        <form>
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Name:</label>
+                    <p class="font-weight-bold">{{company_name}}</p>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Phone:</label>
+                    <p class="font-weight-bold">{{phone}}</p>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email:</label>
+                    <p class="font-weight-bold">{{email}}</p>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">GSTN:</label>
+                    <p class="font-weight-bold">{{gstn}}</p>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Address:</label>
+                    <p class="font-weight-bold">{{address}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">City:</label>
+                  <p class="font-weight-bold">{{city}}</p>
+              </div>
+  
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">State:</label>
+                <p class="font-weight-bold">{{state}}</p>
+            </div>
+  
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Pincode:</label>
+              <p class="font-weight-bold">{{pincode}}</p>
+          </div>
+  
+          <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Status:</label>
+            <p class="font-weight-bold">{{status}}</p>
+        </div>
+  
+        <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">End date:</label>
+          <p class="font-weight-bold">{{end_date}}</p>
+      </div>
+  
+      <div class="form-group col-md-6 mb-3">
+        <label for="dateOfBirth">No of License:</label>
+        <p class="font-weight-bold">{{no_of_license}}</p>
+    </div>
+  
+    <div class="form-group col-md-6 mb-3">
+      <label for="dateOfBirth">Contact Person:</label>
+      <p class="font-weight-bold">{{contact_person}}</p>
+  </div>
+  
+  
+  
+            </div>
+        </form>
+  
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+      </div>
+    </div>
+
+    </div>
+</div>
+
+<!-- add company modal -->
+
+<ng-template #content let-modal>
+    <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Add Client</h4>
+  
+        <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">&times;</span>
+  
+    </div>
+    <div class="modal-body">
+  
+        <form [formGroup]="CompanyRegistration">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Company Name:</label>
+                    <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Company Name is required</div>                  </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Phone:</label>
+                    <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                      <div *ngIf="f.phone.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
+                      <div *ngIf="f.phone.errors.pattern" class="fs-15 fw-700">Mobil Number must be at 10 digits required</div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email:</label>
+                    <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required" class="fs-15 fw-700">Email is required</div>
+                      <div *ngIf="f.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group col-md-6 mb-3">
+                     <label for="">User Name:</label>
+                     <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <div *ngIf="f.username.errors.required" class="fs-15 fw-700">User Name is required</div>
+                    </div>
+                </div> -->
+<!--   
+                <div class="form-group col-md-6 mb-3">
+                  <label for="">Password:</label>
+                  <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required" class="fs-15 fw-700">Password is required</div>
+                  </div>
+                </div> -->
+
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">GSTN:</label>
+                    <input type="text" class="form-control" formControlName="gstno" [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }" />
+                    <div *ngIf="submitted && f.gstno.errors" class="invalid-feedback">
+                      <div *ngIf="f.gstno.errors.required" class="fs-15 fw-700">GST No is required</div>
+                      <div *ngIf="f.gstno.errors.pattern" class="fs-15 fw-700">Please provide a valid GST No</div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Address:</label>
+                    <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                      <div *ngIf="f.address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">City:</label>
+                  <input type="text" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"/>
+                  <div *ngIf="submitted &&f.city.errors" class="invalid-feedback">
+                      <div *ngIf="f.city.errors.required" class="fs-15 fw-700">City is required</div>
+                  </div>
+                </div>
+  
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">State:</label>
+                <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"/>
+                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                  <div *ngIf="f.state.errors.required" class="fs-15 fw-700">State is required</div>
+                </div>
+            </div>
+  
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Pincode:</label>
+              <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
+              <div *ngIf="submitted && f.pincode.errors" class="invalid-feeddack">
+                  <div *ngIf="f.pincode.errors.required" class="fs-15 fw-700 text-danger">Pincode is required</div>
+                  <div *ngIf="f.pincode.errors.pattern" class="fs-15 fw-700 text-danger">pincode must be at 6 digits required</div>
+              </div>
+            </div>
+<!--   
+          <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Status:</label>
+            <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
+            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+              <div *ngIf="f.status.errors.required" class="fs-15 fw-700">Status is required</div>
+            </div>
+          </div> -->
+  
+        <!-- <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Start date:</label>
+          <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }"/>
+          <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
+              <div *ngIf="f.startdate.errors.required" class="fs-15 fw-700">Start Date is required</div>
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">End date:</label>
+          <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': submitted && f.enddate.errors }" (change)="enddate(date.value)" #date/>
+          <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
+              <div *ngIf="f.enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
+          </div>
+        </div> -->
+  
+      <!-- <div class="form-group col-md-6 mb-3">
+        <label for="dateOfBirth">No of License:</label>
+        <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': submitted && f.nooflicense.errors }"/>
+        <div *ngIf="submitted && f.nooflicense.errors" class="invalid-feedback">
+          <div *ngIf="f.nooflicense.errors.required" class="fs-15 fw-700">No OF License is required</div>
+        </div>
+      </div> -->
+  
+        <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Contact Person:</label>
+           <input class="form-control" name="" id="" formControlName="contactperson" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }">
+          <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
+              <div *ngIf="f.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required</div>
+          </div>
+        </div>
+        </div>
+        </form>
+  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary bg2" (click)="Submit()">Register</button>
+    </div>
+</ng-template>
+
+<!-- Update company modal -->
+
+<ng-template #updatecontent let-modal>
+    <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Edit Project</h4>
+  
+        <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">&times;</span>
+  
+    </div>
+    <div class="modal-body">
+  
+        <form [formGroup]="UpdateCompanyRegistration">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Company Name:</label>
+                    <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': updatesubmitted && u.name.errors }" />
+                    <div *ngIf="updatesubmitted && u.name.errors" class="invalid-feedback">
+                      <div *ngIf="u.name.errors.required" class="fs-15 fw-700">Company Name is required</div>                  </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Phone:</label>
+                    <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': updatesubmitted && u.phone.errors }" />
+                    <div *ngIf="updatesubmitted && u.phone.errors" class="invalid-feedback">
+                      <div *ngIf="u.phone.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
+                      <div *ngIf="u.phone.errors.pattern" class="fs-15 fw-700">Mobile Number must be at 10 digits required</div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email:</label>
+                    <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" />
+                    <div *ngIf="updatesubmitted && u.email.errors" class="invalid-feedback">
+                      <div *ngIf="u.email.errors.required" class="fs-15 fw-700">Email is required</div>
+                      <div *ngIf="u.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">GSTN:</label>
+                    <input type="text" class="form-control" formControlName="gstno" [ngClass]="{ 'is-invalid': updatesubmitted && u.gstno.errors }" />
+                    <div *ngIf="updatesubmitted && u.gstno.errors" class="invalid-feedback">
+                      <div *ngIf="u.gstno.errors.required" class="fs-15 fw-700">GST No is required</div>
+                      <div *ngIf="u.gstno.errors.pattern" class="fs-15 fw-700">Please provide a valid GST No</div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Address:</label>
+                    <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': updatesubmitted && u.address.errors }"/>
+                    <div *ngIf="updatesubmitted && u.address.errors" class="invalid-feedback">
+                      <div *ngIf="u.address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">City:</label>
+                  <input type="text" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': updatesubmitted && u.city.errors }"/>
+                  <div *ngIf="updatesubmitted &&u.city.errors" class="invalid-feedback">
+                      <div *ngIf="u.city.errors.required" class="fs-15 fw-700">City is required</div>
+                  </div>
+              </div>
+  
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">State:</label>
+                <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': updatesubmitted && u.state.errors }"/>
+                <div *ngIf="updatesubmitted && u.state.errors" class="invalid-feedback">
+                  <div *ngIf="u.state.errors.required" class="fs-15 fw-700">State is required</div>
+                </div>
+            </div>
+  
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Pincode:</label>
+              <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': updatesubmitted && u.pincode.errors }"/>
+              <div *ngIf="updatesubmitted && u.pincode.errors" class="invalid-feeddack">
+                  <div *ngIf="u.pincode.errors.required" class="fs-15 fw-700 text-danger">Pincode is required</div>
+                  <div *ngIf="u.pincode.errors.pattern" class="fs-15 fw-700 text-danger">pincode must be at 6 digits required</div>
+              </div>
+          </div>
+  
+          <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">Status:</label>
+            <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }"/>
+            <div *ngIf="updatesubmitted && u.status.errors" class="invalid-feedback">
+              <div *ngIf="u.status.errors.required" class="fs-15 fw-700">Status is required</div>
+            </div>
+          </div>
+  
+        <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">End date:</label>
+          <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': updatesubmitted && u.enddate.errors }"/>
+          <div *ngIf="updatesubmitted && u.enddate.errors" class="invalid-feedback">
+              <div *ngIf="u.enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
+          </div>
+          </div>
+  
+      <!-- <div class="form-group col-md-6 mb-3">
+        <label for="dateOfBirth">No of License:</label>
+        <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': updatesubmitted && u.nooflicense.errors }"/>
+        <div *ngIf="updatesubmitted && u.nooflicense.errors" class="invalid-feedback">
+          <div *ngIf="u.nooflicense.errors.required" class="fs-15 fw-700">No OF License is required</div>
+        </div>
+      </div> -->
+  
+    <div class="form-group col-md-6 mb-3">
+      <label for="dateOfBirth">Contact Person:</label>
+      <input type="text" class="form-control" formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }"/>
+      <div *ngIf="updatesubmitted && u.contactperson.errors" class="invalid-feedback">
+          <div *ngIf="u.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required</div>
+        </div>
+    </div>
+  
+  
+  
+            </div>
+        </form>
+  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
+    </div>
+</ng-template>
+
+<div class="modal fade" id="Updatecompany" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update Client</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+      
+            <form [formGroup]="UpdateCompanyRegistration">
+                <div class="row">
+
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">User Info:</label>
+                    <input type="text" class="form-control" value="{{user_name}}" readonly>
+                     <!-- <select class="form-select" name="" id=""  formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }">
+                         <option value="" selected>-- select person --</option>
+                         <option value="{{userlist.id}}" *ngFor="let userlist of userlists">{{userlist.username}}</option>
+                     </select>
+                     <div *ngIf="updatesubmitted && u.contactperson.errors" class="invalid-feedback">
+                      <div *ngIf="u.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required</div>
+                      </div> -->
+                  </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Company Name:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': updatesubmitted && u.name.errors }" [(ngModel)]="company_name" />
+                        <div *ngIf="updatesubmitted && u.name.errors" class="invalid-feedback">
+                          <div *ngIf="u.name.errors.required" class="fs-15 fw-700">Company Name is required</div>                  </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Phone:</label>
+                        <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': updatesubmitted && u.phone.errors }" [(ngModel)]="phone"/>
+                        <div *ngIf="updatesubmitted && u.phone.errors" class="invalid-feedback">
+                          <div *ngIf="u.phone.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
+                          <div *ngIf="u.phone.errors.pattern" class="fs-15 fw-700">Mobil Number must be at 10 digits required</div>
+                        </div>
+                    </div> -->
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Email:</label>
+                        <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" [(ngModel)]="email"/>
+                        <div *ngIf="updatesubmitted && u.email.errors" class="invalid-feedback">
+                          <div *ngIf="u.email.errors.required" class="fs-15 fw-700">Email is required</div>
+                          <div *ngIf="u.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                        </div>
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">GSTN:</label>
+                        <input type="text" class="form-control" formControlName="gstno" [ngClass]="{ 'is-invalid': updatesubmitted && u.gstno.errors }" [(ngModel)]="gstn"/>
+                        <div *ngIf="updatesubmitted && u.gstno.errors" class="invalid-feedback">
+                          <div *ngIf="u.gstno.errors.required" class="fs-15 fw-700">GST No is required</div>
+                          <div *ngIf="u.gstno.errors.pattern" class="fs-15 fw-700">Please provide a valid GST No</div>
+                        </div>
+                    </div>
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Address:</label>
+                        <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': updatesubmitted && u.address.errors }" [(ngModel)]="address"/>
+                        <div *ngIf="updatesubmitted && u.address.errors" class="invalid-feedback">
+                          <div *ngIf="u.address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">City:</label>
+                      <input type="text" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': updatesubmitted && u.city.errors }" [(ngModel)]="city"/>
+                      <div *ngIf="updatesubmitted &&u.city.errors" class="invalid-feedback">
+                          <div *ngIf="u.city.errors.required" class="fs-15 fw-700">City is required</div>
+                      </div>
+                  </div>
+      
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">State:</label>
+                    <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': updatesubmitted && u.state.errors }" [(ngModel)]="state"/>
+                    <div *ngIf="updatesubmitted && u.state.errors" class="invalid-feedback">
+                      <div *ngIf="u.state.errors.required" class="fs-15 fw-700">State is required</div>
+                    </div>
+                </div>
+      
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Pincode:</label>
+                  <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': updatesubmitted && u.pincode.errors } " [(ngModel)]="pincode"/>
+                  <div *ngIf="updatesubmitted && u.pincode.errors" class="invalid-feeddack">
+                      <div *ngIf="u.pincode.errors.required" class="fs-15 fw-700 text-danger">Pincode is required</div>
+                      <div *ngIf="u.pincode.errors.pattern" class="fs-15 fw-700 text-danger">pincode must be at 6 digits required</div>
+                  </div>
+              </div>
+      
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Status:</label>
+                <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }" [(ngModel)]="status"/>
+                <div *ngIf="updatesubmitted && u.status.errors" class="invalid-feedback">
+                  <div *ngIf="u.status.errors.required" class="fs-15 fw-700">Status is required</div>
+                </div>
+              </div>
+      
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Start date:</label>
+                <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': updatesubmitted && u.startdate.errors }" [(ngModel)]="start_date"/>
+                <div *ngIf="updatesubmitted && u.startdate.errors" class="invalid-feedback">
+                    <div *ngIf="u.startdate.errors.required" class="fs-15 fw-700">Start date is required</div>
+                </div>
+              </div>
+
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">End date:</label>
+              <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': updatesubmitted && u.enddate.errors }" [(ngModel)]="end_date"/>
+              <div *ngIf="updatesubmitted && u.enddate.errors" class="invalid-feedback">
+                  <div *ngIf="u.enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
+              </div>
+            </div>
+      
+          <!-- <div class="form-group col-md-6 mb-3">
+            <label for="dateOfBirth">No of License:</label>
+            <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': updatesubmitted && u.nooflicense.errors }" [(ngModel)]="no_of_license"/>
+            <div *ngIf="updatesubmitted && u.nooflicense.errors" class="invalid-feedback">
+              <div *ngIf="u.nooflicense.errors.required" class="fs-15 fw-700">No OF License is required</div>
+            </div>
+          </div> -->
+      
+        <!-- <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Contact Person:</label>
+          <input type="text" class="form-control" formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }" [(ngModel)]="contact_person"/>
+          <div *ngIf="updatesubmitted && u.contactperson.errors" class="invalid-feedback">
+              <div *ngIf="u.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required</div>
+          </div>
+        </div> -->
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="dateOfBirth">Contact Person:</label>
+           <select class="form-select" name="" id=""  formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }">
+               <option value="" selected>-- select person --</option>
+               <option value="{{userlist.id}}" *ngFor="let userlist of userlists">{{userlist.username}}</option>
+           </select>
+           <div *ngIf="updatesubmitted && u.contactperson.errors" class="invalid-feedback">
+            <div *ngIf="u.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required</div>
+            </div>
+        </div>
+
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" (click)="Update()">Update</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Delete company modal -->
+
+<div class="modal fade" id="Deletecompany" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content pd-20 delete-bg">
+       <h1 class="text-white fs-20">Are you sure, you want to delete the Register Data</h1>
+       <div class="d-flex justify-content-end">
+          <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+          <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
+       </div>
+    </div>
+  </div>
+</div>

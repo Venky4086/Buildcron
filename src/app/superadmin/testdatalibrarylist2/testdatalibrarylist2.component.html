@@ -1,0 +1,474 @@
+
+<div class="container-fluid px-0">
+  <div class="card">
+      <div class="content-header">
+          <div class="row">
+              <div class="col-sm-6 pl-25">
+                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Test Data Library Details</h3>
+              </div><!-- /.col -->
+
+              <div class="col-sm-6">
+                  <div class="alig_btns">
+                      <div class="add_btn">
+                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                              + Add List</button>
+                      </div>
+
+
+
+
+                      <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- /.row -->
+
+
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="table-responsive">
+                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                      </ngx-table> -->
+
+                      <div class="card-body pt-0">
+                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="filter-sect">
+                                      <span class="mr-2">Show</span>
+                                      <div class="sele-drp">
+                                          <select class="form-control">
+                                              <option>5</option>
+                                              <option>10</option>
+                                              <option>15</option>
+                                              <option>20</option>
+                                          </select>
+                                      </div>
+                                      <span class="ml-2">Entries</span>
+                                  </div>
+                                  </div>
+
+
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="showhide pt-4 text-right floatright">
+                                      <span class='text-right'>Show/Hide:</span>
+                                      <span><i class="fa fa-table"></i></span>
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                      <table id="example1"
+                                          class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                          role="grid" aria-describedby="example1_info">
+                                          <thead class="cls-light">
+                                              <tr role="row">
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Rendering engine: activate to sort column ascending">
+                                                      S.No</th>
+                                                  <th class="sorting sorting_desc" tabindex="0"
+                                                      aria-controls="example1" rowspan="1" colspan="1"
+                                                      aria-label="Browser: activate to sort column ascending"
+                                                      aria-sort="descending">Date</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Platform(s): activate to sort column ascending">
+                                                      ID</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Engine version: activate to sort column ascending">
+                                                      Name</th>
+                                                      <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Type
+                                                  </th>
+
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Status</th>
+                                                  <th rowspan="1" colspan="1">Action
+                                                  </th>
+
+                                                  <th rowspan="1" colspan="1">Checklist
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+
+                                              <tr class="odd">
+                                                  <td class="dtr-control">1</td>
+                                                  <td class="sorting_1">10-05-2021</td>
+                                                  <td>254152</td>
+                                                  <td>One</td>
+                                                  <td>normal</td>
+                                                  <td>Active</td>
+                                                  <td>
+                                                    <a class="cursor_pointer">
+                                                    <i class='fa fa-eye mr-1'></i>
+                                                    </a>
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateTestdata">
+                                                    <i class="fa fa-edit mr-1"></i>
+                                                    </a>
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteTestdata">
+                                                    <i class="fa fa-trash mr-1"></i>
+                                                    </a>
+                                                </td>
+                                                  <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                              </tr>
+                                              <tr class="odd">
+                                                <td class="dtr-control">1</td>
+                                                <td class="sorting_1">10-05-2021</td>
+                                                <td>254152</td>
+                                                <td>One</td>
+                                                <td>normal</td>
+                                                <td>Active</td>
+                                                <td>
+                                                    <i class='fa fa-eye mr-1'></i>
+                                                    <i class="fa fa-edit mr-1"></i>
+                                                    <i class="fa fa-trash mr-1"></i>
+                                                </td>
+                                                <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                            </tr>
+                                            <tr class="odd">
+                                              <td class="dtr-control">1</td>
+                                              <td class="sorting_1">10-05-2021</td>
+                                              <td>254152</td>
+                                              <td>One</td>
+                                              <td>normal</td>
+                                              <td>Active</td>
+                                              <td>
+                                                  <i class='fa fa-eye mr-1'></i>
+                                                  <i class="fa fa-edit mr-1"></i>
+                                                  <i class="fa fa-trash mr-1"></i>
+                                              </td>
+                                              <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                          </tr>
+                                          <tr class="odd">
+                                            <td class="dtr-control">1</td>
+                                            <td class="sorting_1">10-05-2021</td>
+                                            <td>254152</td>
+                                            <td>One</td>
+                                            <td>normal</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <i class='fa fa-eye mr-1'></i>
+                                                <i class="fa fa-edit mr-1"></i>
+                                                <i class="fa fa-trash mr-1"></i>
+                                            </td>
+                                            <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                        </tr>
+                                        <tr class="odd">
+                                          <td class="dtr-control">1</td>
+                                          <td class="sorting_1">10-05-2021</td>
+                                          <td>254152</td>
+                                          <td>One</td>
+                                          <td>normal</td>
+                                          <td>Active</td>
+                                          <td>
+                                              <i class='fa fa-eye mr-1'></i>
+                                              <i class="fa fa-edit mr-1"></i>
+                                              <i class="fa fa-trash mr-1"></i>
+                                          </td>
+                                          <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                      </tr>
+                                      <tr class="odd">
+                                        <td class="dtr-control">1</td>
+                                        <td class="sorting_1">10-05-2021</td>
+                                        <td>254152</td>
+                                        <td>One</td>
+                                        <td>normal</td>
+                                        <td>Active</td>
+                                        <td>
+                                            <i class='fa fa-eye mr-1'></i>
+                                            <i class="fa fa-edit mr-1"></i>
+                                            <i class="fa fa-trash mr-1"></i>
+                                        </td>
+                                        <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                    </tr>
+                                    <tr class="odd">
+                                      <td class="dtr-control">1</td>
+                                      <td class="sorting_1">10-05-2021</td>
+                                      <td>254152</td>
+                                      <td>One</td>
+                                      <td>normal</td>
+                                      <td>Active</td>
+                                      <td>
+                                          <i class='fa fa-eye mr-1'></i>
+                                          <i class="fa fa-edit mr-1"></i>
+                                          <i class="fa fa-trash mr-1"></i>
+                                      </td>
+                                      <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                  </tr>
+                                  <tr class="odd">
+                                    <td class="dtr-control">1</td>
+                                    <td class="sorting_1">10-05-2021</td>
+                                    <td>254152</td>
+                                    <td>One</td>
+                                    <td>normal</td>
+                                    <td>Active</td>
+                                    <td>
+                                        <i class='fa fa-eye mr-1'></i>
+                                        <i class="fa fa-edit mr-1"></i>
+                                        <i class="fa fa-trash mr-1"></i>
+                                    </td>
+                                    <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                                </tr>
+                                <tr class="odd">
+                                  <td class="dtr-control">1</td>
+                                  <td class="sorting_1">10-05-2021</td>
+                                  <td>254152</td>
+                                  <td>One</td>
+                                  <td>normal</td>
+                                  <td>Active</td>
+                                  <td>
+                                      <i class='fa fa-eye mr-1'></i>
+                                      <i class="fa fa-edit mr-1"></i>
+                                      <i class="fa fa-trash mr-1"></i>
+                                  </td>
+                                  <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                              </tr>
+                              <tr class="odd">
+                                <td class="dtr-control">1</td>
+                                <td class="sorting_1">10-05-2021</td>
+                                <td>254152</td>
+                                <td>One</td>
+                                <td>normal</td>
+                                <td>Active</td>
+                                <td>
+                                    <i class='fa fa-eye mr-1'></i>
+                                    <i class="fa fa-edit mr-1"></i>
+                                    <i class="fa fa-trash mr-1"></i>
+                                </td>
+                                <td><a routerLink="/Questions" routerLinkActive="active">view</a></td>
+                            </tr>
+                                          </tbody>
+
+                                      </table>
+                                    </div>
+                                      <div class="patch-cls">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 col-md-offset-6">
+
+
+                                  </div>
+                                  <div class="col-sm-12 col-md-6">
+                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                          <ul class="pagination float-rt">
+                                              <li class="paginate_button page-item previous disabled"
+                                                  id="example1_previous"><a href="#" aria-controls="example1"
+                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                              <li class="paginate_button page-item bg-blue active"><a href="#"
+                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                      class="page-link">1</a></li>
+                                              <li class="paginate_button page-item "><a href="#"
+                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                      class="page-link">2</a></li>
+                                              <li class="paginate_button page-item next" id="example1_next"><a
+                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                      class="page-link">Next</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                 <ngx-spinner
+                 bdColor="rgba(51,51,51,0.8)"
+                 size="medium"
+                 color="#fff"
+                 type="ball-scale-multiple"
+               >
+                 <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+               </ngx-spinner>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Add Project</h4>
+  
+        <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">&times;</span>
+  
+    </div>
+    <div class="modal-body">
+  
+        <form [formGroup]="AddTestdata">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Date:</label>
+                    <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
+                        <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                            Date is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">ID:</label>
+                  <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.id.errors.required">
+                          Id is required
+                      </div>
+                  </div>
+              </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Name:</label>
+                    <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Type:</label>
+                    <input type="text" class="form-control" formControlName="type" [ngClass]="{'is-invalid':submitted && f.type.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && f.type.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.type.errors.required">
+                        Type is required
+                      </div>
+                    </div>
+                </div>
+  
+  
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Status:</label>
+                    <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && f.status.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.status.errors.required">
+                          Status is required
+                      </div>
+                    </div>
+                </div>
+  
+            </div>
+        </form>
+  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="Add()">Add Checklist</button>
+    </div>
+  </ng-template>
+  
+  <!-- Update -->
+  
+  <div class="modal fade" id="UpdateTestdata" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-blu">
+              <h4 class="modal-title mb-0" id="modal-basic-title">Update Material</h4>
+        
+             
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+        
+          </div>
+          <div class="modal-body">
+  
+              <form [formGroup]="UpdateTestdata">
+                  <div class="row">
+                      <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Date:</label>
+                          <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted  && f.date.errors}"/>
+                          <div class="invalid-feedback" *ngIf="updatesubmitted  && u.date.errors">
+                              <div class="fs-15 fw-700" *ngIf="u.date.errors.required">
+                                  Date is required
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted  && u.id.errors}"/>
+                        <div class="invalid-feedback" *ngIf="updatesubmitted  && u.id.errors">
+                            <div class="fs-15 fw-700" *ngIf="u.id.errors.required">
+                                Id is required
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Name:</label>
+                          <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted  && u.name.errors}"/>
+                          <div class="invalid-feedback" *ngIf="updatesubmitted  && u.name.errors">
+                            <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
+                              Name is required
+                            </div>
+                          </div>
+                      </div>
+        
+                      <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Type:</label>
+                          <input type="text" class="form-control" formControlName="type" [ngClass]="{'is-invalid':updatesubmitted  && u.type.errors}"/>
+                          <div class="invalid-feedback" *ngIf="updatesubmitted  && u.type.errors">
+                            <div class="fs-15 fw-700" *ngIf="u.type.errors.required">
+                              Type is required
+                            </div>
+                          </div>
+                      </div>
+        
+        
+                      <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Status:</label>
+                          <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/>
+                          <div class="invalid-feedback" *ngIf="updatesubmitted  && u.status.errors">
+                            <div class="fs-15 fw-700" *ngIf="u.status.errors.required">
+                                Status is required
+                            </div>
+                          </div>
+                      </div>
+        
+                  </div>
+              </form>
+        
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <!-- delete  -->
+  
+  <div class="modal fade" id="DeleteTestdata" data-backdrop="static">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content pd-20 delete-bg">
+           <h1 class="text-white fs-20">Are you sure, you want to delete the Material</h1>
+           <div class="d-flex justify-content-end">
+              <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+              <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
+           </div>
+        </div>
+      </div>
+  </div>
+
+

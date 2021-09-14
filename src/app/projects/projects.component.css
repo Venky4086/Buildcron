@@ -1,0 +1,17 @@
+
+:host ::ng-deep #table {
+    font-family: 'Roboto', sans-serif;
+  }
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #004ADD !important;
+    color: #fefefe;
+    cursor: default;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #004ADD !important;
+  border-color: #004ADD !important;
+}
+

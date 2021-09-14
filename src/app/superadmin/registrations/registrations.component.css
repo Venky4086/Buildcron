@@ -1,0 +1,10 @@
+thead, th, tr, td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width:200px;
+}
+th
+{
+  width:200px !important;
+}

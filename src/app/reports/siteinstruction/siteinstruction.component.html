@@ -1,0 +1,377 @@
+<div class="container-fluid px-0">
+  <div class="card">
+      <div class="content-header">
+          <div class="row">
+              <div class="col-sm-4 pl-25">
+                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Site Instruction Report Details</h3>
+              </div><!-- /.col -->
+
+              <div class="col-sm-2 my-3">
+                <div class="form-group">
+
+                  <select class="form-control" id="sel1">
+                    <option>Project1</option>
+                    <option>Project2</option>
+                    <option>Project3</option>
+                    <option>Project4</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- <div class="col-sm-6">
+                  <div class="alig_btns">
+                      <div class="add_btn">
+                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                              + Add Project</button>
+                      </div>
+
+
+
+
+                      <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div>
+                  </div>
+              </div> -->
+          </div><!-- /.row -->
+
+
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="table-responsive">
+                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                      </ngx-table> -->
+
+                      <div class="card-body pt-0">
+                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="filter-sect">
+                                      <span class="mr-2">Show</span>
+                                      <div class="sele-drp">
+                                          <select class="form-control">
+                                              <option>5</option>
+                                              <option>10</option>
+                                              <option>15</option>
+                                              <option>20</option>
+                                          </select>
+                                      </div>
+                                      <span class="ml-2">Entries</span>
+                                  </div>
+                                  </div>
+
+
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="showhide pt-4 text-right floatright">
+                                      <span class='text-right'>Show/Hide:</span>
+                                      <span><i class="fa fa-table"></i></span>
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      <table id="example1"
+                                          class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                          role="grid" aria-describedby="example1_info">
+                                          <thead class="cls-light">
+                                              <tr role="row">
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Rendering engine: activate to sort column ascending">
+                                                      S.No</th>
+                                                  <th class="sorting sorting_desc" tabindex="0"
+                                                      aria-controls="example1" rowspan="1" colspan="1"
+                                                      aria-label="Browser: activate to sort column ascending"
+                                                      aria-sort="descending">Area being Inspected</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Platform(s): activate to sort column ascending">
+                                                      Inspection Materail Quality</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Engine version: activate to sort column ascending">
+                                                      Contract Responsible</th>
+
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Category</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">severty
+                                                  </th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Add Instructions
+                                                  </th>
+
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Add Site Images
+                                                  </th>
+
+
+
+
+
+
+
+
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+
+                                              <tr class="odd">
+                                                  <td class="dtr-control">1</td>
+                                                  <td class="sorting_1">dummy1</td>
+                                                  <td>sdfd</td>
+                                                  <td>sdfsd</td>
+                                                  <td>sdf</td>
+                                                  <td>sdfsdf</td>
+                                                  <td>sdfdsf</td>
+
+
+                                                  <td>
+                                                    <i class='fa fa-eye mr-1'></i>
+                                                    <i class='fa fa-download mr-1'></i>
+                                                  </td>
+
+                                              </tr>
+                                              <tr class="odd">
+                                                <td class="dtr-control">1</td>
+                                                <td class="sorting_1">dummy1</td>
+                                                <td>sdfd</td>
+                                                <td>sdfsd</td>
+                                                <td>sdf</td>
+                                                <td>sdfsdf</td>
+                                                <td>sdfdsf</td>
+
+
+                                                <td>
+                                                  <i class='fa fa-eye mr-1'></i>
+                                                  <i class='fa fa-download mr-1'></i>
+                                                </td>
+
+                                            </tr>
+                                            <tr class="odd">
+                                              <td class="dtr-control">1</td>
+                                              <td class="sorting_1">dummy1</td>
+                                              <td>sdfd</td>
+                                              <td>sdfsd</td>
+                                              <td>sdf</td>
+                                              <td>sdfsdf</td>
+                                              <td>sdfdsf</td>
+
+
+                                              <td>
+                                                <i class='fa fa-eye mr-1'></i>
+                                                <i class='fa fa-download mr-1'></i>
+                                              </td>
+
+                                          </tr>
+                                          <tr class="odd">
+                                            <td class="dtr-control">1</td>
+                                            <td class="sorting_1">dummy1</td>
+                                            <td>sdfd</td>
+                                            <td>sdfsd</td>
+                                            <td>sdf</td>
+                                            <td>sdfsdf</td>
+                                            <td>sdfdsf</td>
+
+
+                                            <td>
+                                              <i class='fa fa-eye mr-1'></i>
+                                              <i class='fa fa-download mr-1'></i>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="odd">
+                                          <td class="dtr-control">1</td>
+                                          <td class="sorting_1">dummy1</td>
+                                          <td>sdfd</td>
+                                          <td>sdfsd</td>
+                                          <td>sdf</td>
+                                          <td>sdfsdf</td>
+                                          <td>sdfdsf</td>
+
+
+                                          <td>
+                                            <i class='fa fa-eye mr-1'></i>
+                                            <i class='fa fa-download mr-1'></i>
+                                          </td>
+
+                                      </tr>
+                                      <tr class="odd">
+                                        <td class="dtr-control">1</td>
+                                        <td class="sorting_1">dummy1</td>
+                                        <td>sdfd</td>
+                                        <td>sdfsd</td>
+                                        <td>sdf</td>
+                                        <td>sdfsdf</td>
+                                        <td>sdfdsf</td>
+
+
+                                        <td>
+                                          <i class='fa fa-eye mr-1'></i>
+                                          <i class='fa fa-download mr-1'></i>
+                                        </td>
+
+                                    </tr>
+                                    <tr class="odd">
+                                      <td class="dtr-control">1</td>
+                                      <td class="sorting_1">dummy1</td>
+                                      <td>sdfd</td>
+                                      <td>sdfsd</td>
+                                      <td>sdf</td>
+                                      <td>sdfsdf</td>
+                                      <td>sdfdsf</td>
+
+
+                                      <td>
+                                        <i class='fa fa-eye mr-1'></i>
+                                        <i class='fa fa-download mr-1'></i>
+                                      </td>
+
+                                  </tr>
+                                  <tr class="odd">
+                                    <td class="dtr-control">1</td>
+                                    <td class="sorting_1">dummy1</td>
+                                    <td>sdfd</td>
+                                    <td>sdfsd</td>
+                                    <td>sdf</td>
+                                    <td>sdfsdf</td>
+                                    <td>sdfdsf</td>
+
+
+                                    <td>
+                                      <i class='fa fa-eye mr-1'></i>
+                                      <i class='fa fa-download mr-1'></i>
+                                    </td>
+
+                                </tr>
+                                        <tr class="odd">
+                                          <tr class="odd">
+                                            <td class="dtr-control">1</td>
+                                            <td class="sorting_1">dummy1</td>
+                                            <td>sdfd</td>
+                                            <td>sdfsd</td>
+                                            <td>sdf</td>
+                                            <td>sdfsdf</td>
+                                            <td>sdfdsf</td>
+
+
+                                            <td>
+                                              <i class='fa fa-eye mr-1'></i>
+                                              <i class='fa fa-download mr-1'></i>
+                                            </td>
+
+                                        </tr>
+                                          </tbody>
+
+                                      </table>
+                                      <div class="patch-cls">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 col-md-offset-6">
+
+
+                                  </div>
+                                  <div class="col-sm-12 col-md-6">
+                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                          <ul class="pagination float-rt">
+                                              <li class="paginate_button page-item previous disabled"
+                                                  id="example1_previous"><a href="#" aria-controls="example1"
+                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                              <li class="paginate_button page-item bg-blue active"><a href="#"
+                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                      class="page-link">1</a></li>
+                                              <li class="paginate_button page-item "><a href="#"
+                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                      class="page-link">2</a></li>
+                                              <li class="paginate_button page-item next" id="example1_next"><a
+                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                      class="page-link">Next</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header bg-blu">
+      <h4 class="modal-title mb-0" id="modal-basic-title">Add Project</h4>
+
+      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">&times;</span>
+
+  </div>
+  <div class="modal-body">
+
+      <form>
+          <div class="row">
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Date:</label>
+                  <input type="date" class="form-control" />
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Name:</label>
+                  <input type="text" class="form-control" />
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Phase:</label>
+                  <input type="text" class="form-control" />
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">ID:</label>
+                  <input type="text" class="form-control" />
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Location:</label>
+                  <input type="text" class="form-control" />
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Type:</label>
+                  <select class="form-control">
+                      <option>Yes</option>
+                      <option>Nos</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Approver:</label>
+                  <input type="text" class="form-control" />
+              </div>
+
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Add Project</button>
+  </div>
+</ng-template>
+

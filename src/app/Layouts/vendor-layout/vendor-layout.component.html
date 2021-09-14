@@ -1,0 +1,100 @@
+<mat-toolbar class="toolbar fixed-top">
+  <div class="left_sec">
+    <span><img src="assets/images/buildcron-white.png" class="logo_img"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="opened=!opened">menu</mat-icon>
+    </button>
+
+  </div>
+  <div class="right_sec">
+    <input type="text" class="form-control input-search" placeholder="Search.." id="demo" name="email">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>mail <span class="mail_badge">3</span></mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon matBadge="10" matBadgeOverlap=false>notifications <span class="not_badge">3</span></mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <span class="material-icons-outlined">
+        <i class='fa fa-cog fx-31'></i>
+      </span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="mt-4g">
+
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <div class="sidenav_inner">
+      <div class="user_profile">
+        <div class="image-prof">
+          <a href="#"><img src="assets/images/user-profile.png" class="img-fluid"></a>
+        </div>
+
+        <div class="user_name">
+          <a href="#" class="text-white text-decoration-none">ABC Building</a>
+        </div>
+      </div>
+
+      <!-- <div class="search_section my-3">
+
+        <input type="text" class="form-control input-search" placeholder="Search.." id="demo" name="email">
+
+      </div> -->
+    </div>
+
+
+    <ul class="side-menu">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+          class="text-white text-decoration-none">Dashboard</a>
+      </li>
+      <li><a routerLink="/Projects" routerLinkActive="active" class=" text-white text-decoration-none">Projects</a></li>
+      <li><a routerLink="/Employees" routerLinkActive="active" class=" text-white text-decoration-none">Employees</a>
+      </li>
+      <li><a routerLink="/Vendors" routerLinkActive="active" class=" text-white text-decoration-none">Vendors</a></li>
+      <li><a routerLink="/Materials" routerLinkActive="active" class=" text-white text-decoration-none">Materials</a>
+      </li>
+      <li><a class=" text-white text-decoration-none" (click)="collapse.toggle()">Quality
+          Checklists <i class="fa fa-chevron-down text-right left2"></i></a>
+
+        <ul class="sub_menu_cls" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed1">
+          <li><a routerLink="/QualityInspection" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Quality Inspection</a></li>
+          <li><a routerLink="/QualityTestingData" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Quality Testing Data</a></li>
+        </ul>
+      </li>
+      <li><a class="text-white text-decoration-none" (click)="collapse2.toggle()">Safety Checklists
+        <i class="fa fa-chevron-down text-right left3"></i></a>
+        <ul class="sub_menu_cls" #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+          <li><a routerLink="/SafetyInspection" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Safety Inspection</a></li>
+          <li><a routerLink="/SafetyPermits" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Safety Permits</a></li>
+        </ul>
+      </li>
+      <li><a class="text-white text-decoration-none" (click)="collapse3.toggle()">Reports
+        <i class="fa fa-chevron-down text-right left3"></i></a>
+        <ul class="sub_menu_cls" #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+          <li><a routerLink="/DailyReport"
+              class="pl-3 text-white text-decoration-none pl3rem">Daily Report</a></li>
+          <li><a routerLink="/SiteInstruction"
+              class="pl-3 text-white text-decoration-none pl3rem">Site Instruction Report</a></li>
+              <li><a routerLink="/SiteNCReport"
+                class="pl-3 text-white text-decoration-none pl3rem">Site NC Report</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/Contactus" class="text-white text-decoration-none">Contact us</a></li>
+    </ul>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="bg-EAE6E6">
+    <div class="container px-4 py-4">
+      <div class="row">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

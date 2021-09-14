@@ -1,0 +1,150 @@
+<mat-toolbar  class="toolbar fixed-top">
+  <div class="left_sec">
+    <span><img src="assets/images/buildcron-white.png" class="logo_img"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="opened=!opened">menu</mat-icon>
+    </button>
+
+  </div>
+  <div class="right_sec">
+    <input type="text" class="form-control input-search" placeholder="Search.." id="demo" name="email">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>mail <span class="mail_badge">3</span></mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon matBadge="10" matBadgeOverlap=false>notifications <span class="not_badge">3</span></mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <span class="material-icons-outlined">
+        <!-- <i class='fa fa-cog fx-31'></i> -->
+      </span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="mt-4g">
+
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <div class="sidenav_inner">
+      <div class="user_profile">
+        <div class="image-prof">
+          <a href="#"><img src="assets/images/user-profile.png" class="img-fluid"></a>
+        </div>
+
+        <div class="user_name">
+          <a href="#" class="text-white text-decoration-none">ABC Building</a>
+        </div>
+      </div>
+
+      <!-- <div class="search_section my-3">
+
+        <input type="text" class="form-control input-search" placeholder="Search.." id="demo" name="email">
+
+      </div> -->
+    </div>
+
+
+    <ul class="side-menu">
+      <li><a routerLink="/SuperAdmin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+          class="text-white text-decoration-none">Dashboard</a>
+      </li>
+      <li><a routerLink="/Registrations" routerLinkActive="active" class=" text-white text-decoration-none">Client Details</a></li>
+      <li><a routerLink="/License" routerLinkActive="active" class=" text-white text-decoration-none">Licences</a>
+      </li>
+
+
+      <li><a class="text-white text-decoration-none" (click)="collapse1.toggle()">Quality Checklists<i class="fa fa-chevron-down text-right floatright"></i></a>
+        <ul class="sub_menu_cls" #collapse1="ngbCollapse" [(ngbCollapse)]="isCollapsed1">
+          <li><a routerLink="/QualityLibraryList" routerLinkActive="active" class="text-white text-decoration-none pl4rem">Library List</a> </li>
+            <!-- <ul class="sub_menu_cls" #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+              <li><a class="text-white text-decoration-none pl3rem" (click)="collapse3.toggle()">Master List <i class="fa fa-chevron-down text-right floatright"></i></a>
+
+                <ul class="sub_menu_cls" #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+                  <li><a routerLink="/QualityLibraryList" routerLinkActive="active" class="text-white text-decoration-none pl4rem">Library List</a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li> -->
+
+
+          <!-- <li><a class="text-white text-decoration-none" (click)="collapse4.toggle()">Test Data <i class="fa fa-chevron-down text-right floatright"></i></a>
+            <ul class="sub_menu_cls" #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
+              <li><a class="text-white text-decoration-none pl2rem" (click)="collapse5.toggle()">Masterlist <i class="fa fa-chevron-down text-right floatright"></i></a>
+
+                <ul class="sub_menu_cls" #collapse5="ngbCollapse" [(ngbCollapse)]="isCollapsed5">
+                  <li><a routerLink="/TestdataLibrarylist" routerLinkActive="active" class="text-white text-decoration-none pl3rem">Library List</a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li> -->
+        </ul>
+
+      </li>
+
+      <li><a class="text-white text-decoration-none" (click)="collapse6.toggle()">Safety Checklist<i class="fa fa-chevron-down text-right floatright"></i></a>
+        <ul class="sub_menu_cls" #collapse6="ngbCollapse" [(ngbCollapse)]="isCollapsed6">
+          <li><a routerLink="/SafetyLibraryList" routerLinkActive="active" class="text-white text-decoration-none pl4rem">Library List</a> </li>
+            <!-- <ul class="sub_menu_cls" #collapse7="ngbCollapse" [(ngbCollapse)]="isCollapsed7">
+              <li><a class="text-white text-decoration-none pl3rem" (click)="collapse8.toggle()">Master List <i class="fa fa-chevron-down text-right floatright"></i></a>
+
+                <ul class="sub_menu_cls" #collapse8="ngbCollapse" [(ngbCollapse)]="isCollapsed8">
+                  <li><a routerLink="/SafetyLibraryList" routerLinkActive="active" class="text-white text-decoration-none pl4rem">Library List</a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li> -->
+
+
+          <!-- <li><a class="text-white text-decoration-none" (click)="collapse9.toggle()">Test Data <i class="fa fa-chevron-down text-right floatright"></i></a>
+            <ul class="sub_menu_cls" #collapse9="ngbCollapse" [(ngbCollapse)]="isCollapsed9">
+              <li><a class="text-white text-decoration-none pl2rem" (click)="collapse10.toggle()">Masterlist <i class="fa fa-chevron-down text-right floatright"></i></a>
+
+                <ul class="sub_menu_cls" #collapse10="ngbCollapse" [(ngbCollapse)]="isCollapsed10">
+                  <li><a routerLink="/TestdataLibrarylist2" routerLinkActive="active" class="text-white text-decoration-none pl3rem">Library List</a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li> -->
+        </ul>
+
+      </li>
+      <li><a routerLink="/SuperMaterials" routerLinkActive="active" class=" text-white text-decoration-none">Materials</a></li>
+      <li><a routerLink="/SuperReports" routerLinkActive="active" class=" text-white text-decoration-none">Reports</a>
+
+        <!-- <ul class="sub_menu_cls text-right" #collapse9="ngbCollapse" [(ngbCollapse)]="isCollapsed9">
+          <li class="text-center"><a class="text-white text-decoration-none">Site Instructions</a></li>
+          <li class="text-center"><a class="text-white text-decoration-none">Daily Reports</a></li>
+          <li class="text-center"><a class="text-white text-decoration-none">NC Reports</a></li>
+        </ul> -->
+      </li>
+      <li><a routerLink="/Queries" routerLinkActive="active" class="text-white text-decoration-none">Queries</a></li>
+      <li><a routerLink="/Feedback" routerLinkActive="active" class="text-white text-decoration-none">Feedback</a></li>
+      <li><a routerLink="/Banners" routerLinkActive="active" class="text-white text-decoration-none">Banner</a></li>
+      <li><a routerLink="/Faqs" routerLinkActive="active" class="text-white text-decoration-none">FAQ's</a></li>
+      <li><a class="text-white text-decoration-none" data-toggle="modal" data-target="#Logout" routerLink="/webregister">Logout</a></li>
+    </ul>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="bg-EAE6E6">
+    <div class="container px-4 py-4">
+      <div class="row">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<div class="modal fade" id="Logout" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content pd-20 delete-bg">
+       <h1 class="text-white fs-18">Are you sure, you want to Logout</h1>
+       <div class="d-flex justify-content-end">
+          <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+          <button class="btn btn-primary bg2" type="button" (click)="logout()">Yes</button>
+       </div>
+    </div>
+  </div>
+</div>
+

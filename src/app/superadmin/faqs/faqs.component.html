@@ -1,0 +1,374 @@
+
+<div class="container-fluid px-0">
+  <div class="card">
+      <div class="content-header">
+          <div class="row">
+              <div class="col-sm-6 pl-25">
+                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">FAQ's</h3>
+              </div><!-- /.col -->
+
+              <div class="col-sm-6">
+                  <div class="alig_btns">
+                      <div class="add_btn">
+                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                              + Add Query</button>
+                      </div>
+
+
+
+
+                      <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- /.row -->
+
+
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="table-responsive" style="overflow: auto !important">
+                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                      </ngx-table> -->
+
+                      <div class="card-body pt-0">
+                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="filter-sect">
+                                      <span class="mr-2">Show</span>
+                                      <div class="sele-drp">
+                                          <select class="form-control">
+                                              <option>5</option>
+                                              <option>10</option>
+                                              <option>15</option>
+                                              <option>20</option>
+                                          </select>
+                                      </div>
+                                      <span class="ml-2">Entries</span>
+                                  </div>
+                                  </div>
+
+
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="showhide pt-4 text-right floatright">
+                                      <span class='text-right'>Show/Hide:</span>
+                                      <span><i class="fa fa-table"></i></span>
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                      <table id="example1"
+                                          class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                          role="grid" aria-describedby="example1_info">
+                                          <thead class="cls-light">
+                                              <tr role="row">
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Rendering engine: activate to sort column ascending">
+                                                      S.No</th>
+                                                  <th class="sorting sorting_desc" tabindex="0"
+                                                      aria-controls="example1" rowspan="1" colspan="1"
+                                                      aria-label="Browser: activate to sort column ascending"
+                                                      aria-sort="descending">ID</th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Platform(s): activate to sort column ascending">
+                                                      Questions</th>
+                                                      <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Platform(s): activate to sort column ascending" style="width: 400px;">
+                                                      Answers</th>
+
+
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Status</th>
+
+                                                  <th rowspan="1" colspan="1">Action
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+
+                                              <tr class="odd" *ngFor="let faq of faqs;let i=index">
+                                                  <td>{{i+1}}</td>
+                                                  <td>{{faq.faq_id}}</td>
+                                                  <td>{{faq.question}}</td>
+                                                  <td>{{faq.answer}}</td>
+                                                  <td>{{faq.status}}</td>
+                                                  <!-- <td>N/A</td> -->
+                                                  <td>
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(faq.id,faq.faq_id,faq.question,faq.answer,faq.status)">
+                                                      <i class='fa fa-eye mr-1'></i>
+                                                      </a>
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateFaqs" (click)="edit(faq.id,faq.faq_id,faq.question,faq.answer,faq.status)">
+                                                      <i class="fa fa-edit mr-1"></i>
+                                                      </a>
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteFaqs" (click)="delete(faq.id)">
+                                                      <i class="fa fa-trash mr-1"></i>
+                                                      </a>
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+
+                                      </table>
+                                      <div class="patch-cls">
+
+                                      </div>
+                                    </div>
+
+                                  </div>
+
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 col-md-offset-6">
+
+
+                                  </div>
+                                  <div class="col-sm-12 col-md-6">
+                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                          <ul class="pagination float-rt">
+                                              <li class="paginate_button page-item previous disabled"
+                                                  id="example1_previous"><a href="#" aria-controls="example1"
+                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                              <li class="paginate_button page-item bg-blue active"><a href="#"
+                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                      class="page-link">1</a></li>
+                                              <li class="paginate_button page-item "><a href="#"
+                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                      class="page-link">2</a></li>
+                                              <li class="paginate_button page-item next" id="example1_next"><a
+                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                      class="page-link">Next</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                 <ngx-spinner
+                                 bdColor="rgba(51,51,51,0.8)"
+                                 size="medium"
+                                 color="#fff"
+                                 type="ball-scale-multiple"
+                               >
+                                 <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                               </ngx-spinner>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="View" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Date</label>
+                    <p class="font-weight-bold">Date</p>
+                </div> -->
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">faq_id</label>
+                      <p class="font-weight-bold">{{faqs_id}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Question</label>
+                    <p class="font-weight-bold">{{question}}</p>
+                 </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Answer:</label>
+                    <p class="font-weight-bold">{{answer}}</p>
+                 </div>
+                 <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Status:</label>
+                    <p class="font-weight-bold">{{status}}</p>
+                 </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+  
+      </div>
+</div>
+
+<!-- Add FAQ -->
+
+<ng-template #content let-modal>
+  <div class="modal-header bg-blu">
+      <h4 class="modal-title mb-0" id="modal-basic-title">Add FAQs</h4>
+
+      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">&times;</span>
+
+  </div>
+  <div class="modal-body">
+
+      <form [formGroup]="AddFaqs">
+          <div class="row">
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Question:</label>
+                  <input type="text" class="form-control" formControlName="question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && f.question.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.question.errors.required">
+                          Question is required
+                      </div>
+                  </div>
+              </div>
+     
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Answer:</label>
+                  <input type="text" class="form-control" formControlName="answer" [ngClass]="{'is-invalid':submitted && f.answer.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && f.answer.errors">
+                    <div class="fs-15 fw-700" *ngIf="f.answer.errors.required">
+                        Answer is required
+                    </div>
+                  </div>
+              </div>
+<!-- 
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">ID:</label>
+                  <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}">
+                  <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                    <div class="fs-15 fw-700" *ngIf="f.id.errors">
+                        Id is required
+                    </div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Status:</label>
+                  <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && f.status.errors">
+                    <div class="fs-15 fw-700" *ngIf="f.status.errors">
+                        Status is required
+                    </div>
+                  </div>
+              </div> -->
+
+          </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="Add()">Add FAQs</button>
+  </div>
+</ng-template>
+
+<!-- Update FAQ -->
+
+<div class="modal fade" id="UpdateFaqs" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update FAQs</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="UpdateFaqs">
+                <div class="row">
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Question:</label>
+                        <input type="text" class="form-control" [(ngModel)]="question" formControlName="question" [ngClass]="{'is-invalid':updatesubmitted && u.question.errors}"/>
+                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.question.errors">
+                            <div class="fs-15 fw-700" *ngIf="u.question.errors.required">
+                                Question is required
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Answer:</label>
+                        <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':updatesubmitted && u.answer.errors}">
+                         </textarea>   
+                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.answer.errors">
+                          <div class="fs-15 fw-700" *ngIf="u.answer.errors.required">
+                              Answer is required
+                          </div>
+                        </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}">
+                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
+                          <div class="fs-15 fw-700" *ngIf="u.id.errors">
+                              Id is required
+                          </div>
+                        </div>
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Status:</label>
+                        <input type="text" class="form-control" [(ngModel)]="status" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted && u.status.errors}"/>
+                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.status.errors">
+                          <div class="fs-15 fw-700" *ngIf="u.status.errors.required">
+                              Status is required
+                          </div>
+                        </div>
+                    </div>
+      
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Update()">Update FAQs</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- delete  -->
+
+<div class="modal fade" id="DeleteFaqs" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content pd-20 delete-bg">
+         <h1 class="text-white fs-18">Are you sure, you want to delete the Faqs</h1>
+         <div class="d-flex justify-content-end">
+            <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+            <button class="btn btn-primary bg2" (click)="Delete()" type="button">Yes</button>
+         </div>
+      </div>
+    </div>
+</div>

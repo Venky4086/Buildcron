@@ -1,0 +1,312 @@
+<div class="container-fluid px-0">
+  <div class="card">
+      <div class="content-header">
+          <div class="row">
+              <div class="col-sm-6 pl-25">
+                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Quality Library List Details</h3>
+              </div><!-- /.col -->
+
+              <div class="col-sm-6">
+                  <div class="alig_btns">
+                      <div class="add_btn">
+                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                              + Add List</button>
+                      </div>
+
+
+
+
+                      <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- /.row -->
+
+
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="table-responsive">
+                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                      </ngx-table> -->
+
+                      <div class="card-body pt-0">
+                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                  <div class="col-sm-12 col-md-5">
+                                    <div class="filter-sect">
+                                      <span class="mr-2">Show</span>
+                                      <div class="sele-drp">
+                                          <select class="form-control">
+                                              <option>5</option>
+                                              <option>10</option>
+                                              <option>15</option>
+                                              <option>20</option>
+                                          </select>
+                                      </div>
+                                      <span class="ml-2">Entries</span>
+                                  </div>
+                                  </div>
+
+
+                                  <div class="col-sm-12 col-md-7">
+                                    <div class="showhide pt-4 text-right floatright">
+                                      <span class='text-right'>Show/Hide:</span>
+                                      <span><i class="fa fa-table"></i></span>
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                      <table id="example1"
+                                          class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                          role="grid" aria-describedby="example1_info">
+                                          <thead class="cls-light">
+                                              <tr role="row">
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Rendering engine: activate to sort column ascending">
+                                                      S.No</th>
+                                               
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Engine version: activate to sort column ascending">
+                                                      Banner Name</th>
+
+                                                      <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Banner Image
+                                                  </th>
+
+                                                  <th rowspan="1" colspan="1">Action
+                                                  </th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>                                     
+                                            <tr class="odd" *ngFor="let BannerList of BannerLists;let i=index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{BannerList.name}}</td>
+                                                <td>
+                                                    <div class="banner_image">
+                                                     <img src="{{BannerList.image}}" alt="Banner_image" class="img-fluid image">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(BannerList.id,BannerList.name,BannerList.image)">
+                                                    <i class='fa fa-eye mr-1'></i>
+                                                    </a>
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#Updatebanner" (click)="edit(BannerList.id,BannerList.name,BannerList.image)">
+                                                    <i class="fa fa-edit mr-1"></i>
+                                                    </a>
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#Deletebanner" (click)="delete(BannerList.id)">
+                                                    <i class="fa fa-trash mr-1"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                          </tbody>
+
+                                      </table>
+                                    </div>
+                                      <div class="patch-cls">
+
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 col-md-offset-6">
+
+
+                                  </div>
+                                  <div class="col-sm-12 col-md-6">
+                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                          <ul class="pagination float-rt">
+                                              <li class="paginate_button page-item previous disabled"
+                                                  id="example1_previous"><a href="#" aria-controls="example1"
+                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                              <li class="paginate_button page-item bg-blue active"><a href="#"
+                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                      class="page-link">1</a></li>
+                                              <li class="paginate_button page-item "><a href="#"
+                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                      class="page-link">2</a></li>
+                                              <li class="paginate_button page-item next" id="example1_next"><a
+                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                      class="page-link">Next</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                 <ngx-spinner
+                                 bdColor="rgba(51,51,51,0.8)"
+                                 size="medium"
+                                 color="#fff"
+                                 type="ball-scale-multiple"
+                               >
+                                 <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                               </ngx-spinner>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- view -->
+
+<div class="modal fade" id="View" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Date</label>
+                    <p class="font-weight-bold">Date</p>
+                </div> -->
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Name:</label>
+                      <p class="font-weight-bold">{{banner_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Banner_IMage</label>
+                    <div class="banner_image">
+                        <img src="{{banner_image}}" alt="" class="img-fluid image">
+                    </div> 
+                 </div>
+                  <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Status:</label>
+                    <p class="font-weight-bold">Status</p>
+                 </div> -->
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+  
+      </div>
+</div>
+
+
+<!-- add library list  -->
+
+<ng-template #content let-modal>
+  <div class="modal-header bg-blu">
+      <h4 class="modal-title mb-0" id="modal-basic-title">Add Banner</h4>
+
+      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
+          (click)="modal.dismiss('Cross click')">&times;</span>
+
+  </div>
+  <div class="modal-body">
+      <form [formGroup]="AddBanner">
+            <div class="form-group">
+                <label for="">Banner Name</label>
+                <input type="name" class="form-control" formControlName="banner_name" [ngClass]="{'is-invalid':submitted && f.banner_name.errors}">  
+                <div class="invalid-feedback" *ngIf="submitted && f.banner_name.errors">
+                    <div class="fs-15 fw-700" *ngIf="f.banner_name.errors.required">
+                        Banner Name is required
+                    </div>
+                </div>
+            </div>
+          <div class="form-group">
+              <label for="">Banner Image</label>
+              <input type="file" class="form-control" formControlName="banner_image" [ngClass]="{'is-invalid':submitted && f.banner_image.errors}" (change)="OnFileSelect($event)">  
+              <div class="invalid-feedback" *ngIf="submitted && f.banner_image.errors">
+                <div class="fs-15 fw-700" *ngIf="f.banner_image.errors.required">
+                    Banner Image is required
+                </div>
+            </div>
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="Add()">Add Banner</button>
+  </div>
+</ng-template>
+
+<!-- update -->
+
+<div class="modal fade" id="Updatebanner" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update Material</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="UpdateBanner">
+                <div class="form-group">
+                    <label for="">Banner Name</label>
+                    <input type="name" class="form-control" [(ngModel)]="banner_name" formControlName="banner_name" [ngClass]="{'is-invalid':submitted && u.banner_name.errors}">  
+                    <div class="invalid-feedback" *ngIf="updatesubmitted && u.banner_name.errors">
+                        <div class="fs-15 fw-700" *ngIf="u.banner_name.errors.required">
+                            Banner Name is required
+                        </div>
+                    </div>
+                </div>
+              <div class="form-group">
+                  <label for="">Banner Image</label>
+                  <input type="file" class="form-control" [(ngModel)]="banner_image" formControlName="banner_image" [ngClass]="{'is-invalid':updatesubmitted && u.banner_image.errors}" (change)="OnFileSelect($event)">  
+                  <div class="invalid-feedback" *ngIf="updatesubmitted && u.banner_image.errors">
+                    <div class="fs-15 fw-700" *ngIf="u.banner_image.errors.required">
+                        Banner Image is required
+                    </div>
+                </div>
+              </div>
+          </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- delete  -->
+
+<div class="modal fade" id="Deletebanner" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content pd-20 delete-bg">
+         <h1 class="text-white fs-20">Are you sure, you want to delete the Banner</h1>
+         <div class="d-flex justify-content-end">
+            <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+            <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
+         </div>
+      </div>
+    </div>
+</div>

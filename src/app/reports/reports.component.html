@@ -1,0 +1,336 @@
+<div class="container-fluid px-0">
+    <div class="card">
+        <div class="content-header">
+            <div class="row">
+              <div class="col-sm-6 pl-25">
+                <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Reports Details</h3>
+            </div><!-- /.col -->
+
+
+            </div><!-- /.row -->
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="table-responsive">
+                        <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                        </ngx-table> -->
+
+                        <div class="card-body pt-0">
+                            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-5">
+                                  <div class="filter-sect">
+                                    <span class="mr-2">Show</span>
+                                    <div class="sele-drp">
+                                        <select class="form-control">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                        </select>
+                                    </div>
+                                    <span class="ml-2">Entries</span>
+                                </div>
+                                </div>
+
+
+                                <div class="col-sm-12 col-md-7">
+                                  <div class="showhide pt-4 text-right floatright">
+                                    <span class='text-right'>Show/Hide:</span>
+                                    <span><i class="fa fa-table"></i></span>
+                                </div>
+                                </div>
+
+
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1"
+                                            class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                            role="grid" aria-describedby="example1_info">
+                                            <thead class="cls-light">
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Rendering engine: activate to sort column ascending">
+                                                        S.No</th>
+                                                    <th class="sorting sorting_desc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
+                                                        aria-sort="descending">Date</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Engine version: activate to sort column ascending">
+                                                        ID</th>
+
+                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Type <i class="fa fa-chevron-down" id="dropdownBasic1"
+                                                            ngbDropdownToggle></i>
+                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                            <li> <button class="fs-12" ngbDropdownItem>Action -
+                                                                    1</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Another
+                                                                    Action</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Something else is
+                                                                    here</button>
+                                                            </li>
+                                                        </ul>
+
+                                                    </th>
+
+                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Project Assigned <i class="fa fa-chevron-down"
+                                                            id="dropdownBasic1" ngbDropdownToggle></i>
+                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                            <li> <button class="fs-12" ngbDropdownItem>Action -
+                                                                    1</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Another
+                                                                    Action</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Something else is
+                                                                    here</button>
+                                                            </li>
+                                                        </ul>
+
+                                                    </th>
+
+                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Submitted By <i class="fa fa-chevron-down" id="dropdownBasic1"
+                                                            ngbDropdownToggle></i>
+                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                            <li> <button class="fs-12" ngbDropdownItem>Action -
+                                                                    1</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Another
+                                                                    Action</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Something else is
+                                                                    here</button>
+                                                            </li>
+                                                        </ul>
+
+                                                    </th>
+                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Status <i class="fa fa-chevron-down" id="dropdownBasic1"
+                                                            ngbDropdownToggle></i>
+                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                            <li> <button class="fs-12" ngbDropdownItem>Action -
+                                                                    1</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Another
+                                                                    Action</button></li>
+                                                            <li><button class="fs-12" ngbDropdownItem>Something else is
+                                                                    here</button>
+                                                            </li>
+                                                        </ul>
+
+                                                    </th>
+                                                    <th>
+                                                        Download
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td class="dtr-control">1</td>
+                                                    <td class="sorting_1">10-05-2021</td>
+                                                    <td>Dell</td>
+                                                    <td>1254</td>
+                                                    <td>Normal</td>
+                                                    <td>User</td>
+                                                    <td>Employee</td>
+                                                    <td>Yes</td>
+
+                                                    <td class='text-center'>
+                                                        <i class='fa fa-file-pdf text-center'></i>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <div class="patch-cls">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6 col-md-offset-6">
+
+
+                                  </div>
+                                  <div class="col-sm-12 col-md-6">
+                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                          <ul class="pagination float-rt">
+                                              <li class="paginate_button page-item previous disabled"
+                                                  id="example1_previous"><a href="#" aria-controls="example1"
+                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                              <li class="paginate_button page-item active-cream active"><a href="#"
+                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                      class="page-link">1</a></li>
+                                              <li class="paginate_button page-item "><a href="#"
+                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                      class="page-link">2</a></li>
+                                              <li class="paginate_button page-item next" id="example1_next"><a
+                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                      class="page-link">Next</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
