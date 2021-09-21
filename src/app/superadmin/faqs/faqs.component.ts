@@ -5,7 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SuperadminService } from 'src/app/services/superadmin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+declare var $:any;
 @Component({
   selector: 'app-faqs',
   templateUrl: './faqs.component.html',
@@ -90,19 +90,30 @@ export class FaqsComponent  {
       return
     }
     else{
-      console.log(this.AddFaqs.value);
-      const formData = new FormData
-      formData.append('question',this.AddFaqs.value.question);
-      formData.append('answer',this.AddFaqs.value.answer);
+      // console.log(this.AddFaqs.value);
+      const data = {
+        "question": this.AddFaqs.value.question,
+        "answer": this.AddFaqs.value.answer,
+        "status": true
+      }
+      // const formData = new FormData
+      // formData.append('question',this.AddFaqs.value.question);
+      // formData.append('answer',this.AddFaqs.value.answer);
       // formData.append('id',this.AddFaqs.value.id);
       // formData.append('stauts',this.AddFaqs.value.status);
-      this.superadminservice.Addfaqs(formData).subscribe((res)=>{
+      this.superadminservice.Addfaqs(data).subscribe((res)=>{
         console.log(res);
         minst.toaster.success('Successfully faq Uploaded!');
         this.allfaqs();
+        $('#AddFaqs').hide();
+        this.AddFaqs.reset();
+        this.submitted = false;
       },(error)=>{
         console.error(error);
         minst.toaster.error('Somthing went to wrong');
+        $('#AddFaqs').hide();
+        this.AddFaqs.reset();
+        this.submitted = false;
       })
     }
   }
@@ -133,18 +144,29 @@ export class FaqsComponent  {
     }
     else{
       console.log(this.UpdateFaqs.value);
-      const formData = new FormData
-      formData.append('question',this.UpdateFaqs.value.question);
-      formData.append('answer',this.UpdateFaqs.value.answer);
+      const data = {
+        "question": this.UpdateFaqs.value.question,
+        "answer": this.UpdateFaqs.value.answer,
+        "status": this.UpdateFaqs.value.status
+      }
+      // const formData = new FormData
+      // formData.append('question',this.UpdateFaqs.value.question);
+      // formData.append('answer',this.UpdateFaqs.value.answer);
       // formData.append('id',this.UpdateFaqs.value.id);
-      formData.append('status',this.UpdateFaqs.value.status);
-      this.superadminservice.updatefaq(this.faq_id,formData).subscribe((res)=>{
+      // formData.append('status',this.UpdateFaqs.value.status);
+      this.superadminservice.updatefaq(this.faq_id,data).subscribe((res)=>{
         console.log(res);
         mint.toaster.success('Successfully faq updated!');
         this.allfaqs();
+        this.UpdateFaqs.reset();
+        this.updatesubmitted = false;
+        $('#UpdateFaqs').hide();
       },(error)=>{
         console.error(error);
         mint.toaster.error('Somthing went to wrong');
+        this.UpdateFaqs.reset();
+        this.updatesubmitted = false;
+        $('#UpdateFaqs').hide();
       })
     }
   }

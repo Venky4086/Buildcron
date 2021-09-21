@@ -40,6 +40,7 @@
         </ul>
       </li> -->
         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <li><a class="nav-link scrollto cursor_pointer" (click)="login()">Login</a></li>
         <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
@@ -113,9 +114,10 @@
                   id="numbers"
                   aria-label="Numbers"
                   name="numbers" formControlName="planenumber"
-                   [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }">
+                   [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }" (change)="onChange($event)">
                     <option value="" selected>--select the one option --</option>
-                    <option value="1">1</option>
+                    <option value="{{n.id}}" *ngFor="let n of data">{{n.id}}</option>
+                    <!-- <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -124,7 +126,7 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
-                    <option value="10">10</option>
+                    <option value="10">10</option> -->
                 </select>
                 <div *ngIf="submitted && f.planenumber.errors" class="invalid-feedback">
                   <div *ngIf="f.planenumber.errors.required" class="fs-15 fw-700">Plane Count is required</div>
@@ -179,12 +181,22 @@
                   class="form-control text-end"
                   id="amount"
                   name="amount"
-                  [(ngModel)]="planeamount"
-                  
+                  [(ngModel)]="countamount"
                   readonly=""
                   aria-label="Total Amount in INR"
                   formControlName="planeamount"
-                  [ngClass]="{ 'is-invalid': submitted && f.planeamount.errors }" />
+                  [ngClass]="{ 'is-invalid': submitted && f.planeamount.errors }" *ngIf="second"/>
+
+                    <input
+                  type="text"
+                  class="form-control text-end"
+                  id="amount"
+                  name="amount"
+                  [(ngModel)]="planeamount"
+                  readonly=""
+                  aria-label="Total Amount in INR"
+                  formControlName="planeamount"
+                  [ngClass]="{ 'is-invalid': submitted && f.planeamount.errors }" *ngIf="default"/>
 
                 <div *ngIf="submitted && f.planeamount.errors" class="invalid-feedback">
                   <div *ngIf="f.planeamount.errors.required" class="fs-15 fw-700">Plane Amount is required</div>

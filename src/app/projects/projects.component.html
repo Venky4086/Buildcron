@@ -7,22 +7,22 @@
                 </div><!-- /.col -->
 
                 <div class="col-sm-6">
-                    <div class="alig_btns">
+                    <div class="alig_btns p-3">
                         <div class="add_btn">
-                            <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                            <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddProject" >
                                 + Add Project</button>
                         </div>
 
 
 
-
+<!-- 
                         <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
                             </span>
 
                             <div class="small06">*In CSV File or Excel Format</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -82,28 +82,31 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="Platform(s): activate to sort column ascending">
                                                         Name</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
                                                         Phase</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">ID
-                                                    </th>
+                                                    </th> -->
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         Location</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Employees Details</th>
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">Type
-                                                    </th>
+                                                    </th> -->
                                                     <th ngbDropdown class="sorting" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
-                                                        Approver <i class="fa fa-chevron-down" id="dropdownBasic1"
-                                                            ngbDropdownToggle></i>
-                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                        Approver 
+                                                        <!-- <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                                             <li> <button class="fs-12" ngbDropdownItem>Action -
                                                                     1</button></li>
                                                             <li><button class="fs-12" ngbDropdownItem>Another
@@ -111,7 +114,7 @@
                                                             <li><button class="fs-12" ngbDropdownItem>Something else is
                                                                     here</button>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
 
                                                     </th>
                                                     <th rowspan="1" colspan="1">Action
@@ -120,160 +123,32 @@
                                             </thead>
                                             <tbody>
 
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
+                                                <tr class="odd" *ngFor="let project of projectlist;let i = index">
+                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="sorting_1">{{project.created_at}}</td>
+                                                    <td>{{project.name}}</td>
+                                                    <!-- <td>2nd</td> -->
+                                                    <td>{{project.location}}</td>
                                                     <td>
-                                                        <a href="">
+                                                        <ul>
+                                                            <li *ngFor="let employee of project.employee">
+                                                              <a class="cursor_pointer text-decoration-none" (click)="employedetails(employee.user.id)">
+                                                                {{employee.user.first_name}}
+                                                              </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                    <td>{{project.approver.user.first_name}}</td>
+                                                    <td>
+                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(project.name,project.location,project.approver.user.first_name)">
                                                         <i class='fa fa-eye mr-1'></i>
                                                         </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateProject">
+                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateProject" (click)="edit(project.id,project.name,project.location,project.approver.user.first_name,project.approver.id)">
                                                         <i class="fa fa-edit mr-1"></i>
                                                         </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteProject">
+                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteProject" (click)="delete(project.id)">
                                                         <i class="fa fa-trash mr-1"></i>
                                                         </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>Dell</td>
-                                                    <td>2nd</td>
-                                                    <td>1025142</td>
-                                                    <td>Hyderabad</td>
-                                                    <td>Normal</td>
-                                                    <td>Zuken John</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -329,6 +204,85 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- view -->
+
+<div class="modal fade" id="View" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Name:</label>
+                      <p class="font-weight-bold">{{projectname}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Location:</label>
+                      <p class="font-weight-bold">{{location}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Approver:</label>
+                    <p class="font-weight-bold">{{Approver}}</p>
+                </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+  
+      </div>
+</div>
+
+<div class="modal fade" id="EmployeeView" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Employee View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="empclose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">First Name:</label>
+                      <p class="font-weight-bold">{{first_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Email:</label>
+                      <p class="font-weight-bold">{{email}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Mobile:</label>
+                    <p class="font-weight-bold">{{mobile}}</p>
+                </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" (click)="empclose()" aria-label="Close">OK</button>
+        </div>
+      </div>
+      </div>
 </div>
 
 <!-- Add Projects -->
@@ -426,13 +380,11 @@
     </div>
 </ng-template>
 
-<!-- update -->
-
-<div class="modal fade" id="UpdateProject" data-backdrop="static">
+<div class="modal fade" id="AddProject" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-blu">
-            <h4 class="modal-title mb-0" id="modal-basic-title">Update Projects</h4>
+            <h4 class="modal-title mb-0" id="modal-basic-title">Add Projects</h4>
       
            
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -442,9 +394,135 @@
         </div>
         <div class="modal-body">
 
+            <form [formGroup]="AddProject">
+                <div class="row">
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Date:</label>
+                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                                Date is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Name:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Phase:</label>
+                        <input type="text" class="form-control" formControlName="phase" [ngClass]="{'is-invalid':submitted && f.phase.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.phase.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.phase.errors.required">
+                                Phase is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.id.errors.required">
+                                Id is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Location City:</label>
+                        <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid':submitted && f.location.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.location.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.location.errors.required">
+                                Location is required
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Type:</label>
+                        <select class="form-control" formControlName="type" [ngClass]="{'is-invalid':submitted && f.type.errors}">
+                            <option>Yes</option>
+                            <option>Nos</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submitted && f.type.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.type.errors.required">
+                                Type is required
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Approver:</label>
+                        <select class="form-select" [(ngModel)]="Approver" [ngModelOptions]="{standalone:true}">
+                           <option value="undefined" selected>-- select the approver --</option>
+                           <option value="{{emp.id}}" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
+                        </select>
+                        <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.approver.errors.required">
+                                Project Address is required
+                            </div>
+                        </div> -->
+                    </div>
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Assigned Employee:</label>
+                        <!-- <select class="form-select">
+                           <option value="" selected>-- select the employe --</option>
+                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
+                        </select> -->
+                        <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.approver.errors.required">
+                                Project Address is required
+                            </div>
+                        </div> -->
+
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Assigned employee'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                        [ngModelOptions]="{standalone:true}">
+                      </ng-multiselect-dropdown>
+
+                    </div>
+                    
+                </div>
+            </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add Project</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- update -->
+
+<div class="modal fade" id="UpdateProject" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update Projects</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
             <form [formGroup]="UpdateProject">
                 <div class="row">
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
@@ -452,11 +530,11 @@
                                 Date is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
+                        <input type="text" class="form-control" [(ngModel)]="projectname" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
                             <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
                                 Name is required
@@ -464,7 +542,7 @@
                         </div>
                     </div>
     
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Phase:</label>
                         <input type="text" class="form-control" formControlName="phase" [ngClass]="{'is-invalid':updatesubmitted && u.phase.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.phase.errors">
@@ -472,9 +550,9 @@
                                 Phase is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
@@ -482,11 +560,11 @@
                                 Id is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Location:</label>
-                        <input type="text" class="form-control" formControlName="location" [ngClass]="{'is-invalid':updatesubmitted && u.location.errors}"/>
+                        <input type="text" class="form-control" formControlName="location" [(ngModel)]="location" [ngClass]="{'is-invalid':updatesubmitted && u.location.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.location.errors">
                             <div class="fs-15 fw-700" *ngIf="u.location.errors.required">
                                 Location is required
@@ -494,7 +572,7 @@
                         </div>
                     </div>
     
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Type:</label>
                         <select class="form-control" formControlName="type" [ngClass]="{'is-invalid':updatesubmitted && u.type.errors}">
                             <option>Yes</option>
@@ -505,15 +583,40 @@
                                 Type is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Approver:</label>
-                        <input type="text" class="form-control" formControlName="approver" [ngClass]="{'is-invalid':updatesubmitted && u.approver.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.approver.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.approver.errors.required">
-                                Approver is required
+                        <select class="form-select" #approver>
+                           <!-- <option value="undefined" selected>-- select the Approver --</option> -->
+                           <option [value]="emp.id" *ngFor="let emp of employelist" [selected]="emp.id == empseleted">{{emp.user.first_name}}</option>
+                        </select>
+                        <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.approver.errors.required">
+                                Project Address is required
                             </div>
-                        </div>
+                        </div> -->
+                    </div>
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Assigned Employee:</label>
+                        <!-- <select class="form-select">
+                           <option value="" selected>-- select the employe --</option>
+                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
+                        </select> -->
+                        <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.approver.errors.required">
+                                Project Address is required
+                            </div>
+                        </div> -->
+
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Assigned employee'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                        [ngModelOptions]="{standalone:true}">
+                      </ng-multiselect-dropdown>
+
                     </div>
     
                 </div>
@@ -521,7 +624,7 @@
     
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
+            <button type="button" class="btn btn-primary" (click)="Update(approver.value)">Update</button>
         </div>
       </div>
     </div>
@@ -535,7 +638,7 @@
          <h1 class="text-white fs-20">Are you sure, you want to delete the Project</h1>
          <div class="d-flex justify-content-end">
             <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
-            <button class="btn btn-primary bg2">Yes</button>
+            <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
          </div>
       </div>
     </div>

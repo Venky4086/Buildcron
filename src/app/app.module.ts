@@ -58,7 +58,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { SubscriptionordersComponent } from './subscriptionorders/subscriptionorders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RegistrationService } from './services/registration.service';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquestion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +99,8 @@ import { RegistrationService } from './services/registration.service';
     WebsiteregisterComponent,
     LandingpageComponent,
     SubscriptionordersComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SafetyquestionComponent
   ],
   imports: [
     BrowserModule,
@@ -120,6 +122,7 @@ import { RegistrationService } from './services/registration.service';
     HttpClientModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [SuperadminService,AdminService,RegistrationService],
   bootstrap: [AppComponent],

@@ -49,16 +49,16 @@ export class RegistrationsComponent  {
     phone:['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     email:['', [Validators.required,Validators.email]],
     username:['', [Validators.required]],
-    password:['', [Validators.required]],
+    password:['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
     gstno:['', [Validators.required, Validators.pattern("^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$")]],
     address:['', Validators.required],
     city:['', Validators.required],
     state:['', Validators.required],
     pincode:['', [Validators.required,Validators.pattern("[0-9]{6}$"),Validators.maxLength(6)]],
-    startdate:['', Validators.required],
-    enddate:['', Validators.required],
-    // nooflicense:['', Validators.required],
-    contactperson:['', Validators.required],
+    // startdate:['', Validators.required],
+    // enddate:['', Validators.required],
+    nooflicense:['', Validators.required],
+    // contactperson:['', Validators.required],
   });  
   UpdateCompanyRegistration = this.fb.group({
     name:['', Validators.required],
@@ -70,15 +70,15 @@ export class RegistrationsComponent  {
     state:['', Validators.required],
     pincode:['', [Validators.required,Validators.pattern("[0-9]{6}$"),Validators.maxLength(6)]],
     status:['', Validators.required],
-    startdate:['', Validators.required],
-    enddate:['', Validators.required],
-    // nooflicense:['', Validators.required],
-    contactperson:['', Validators.required],
+    // startdate:['', Validators.required],
+    // enddate:['', Validators.required],
+    nooflicense:['', Validators.required],
+    // contactperson:['', Validators.required],
   })
 
   ngOnInit() {
   this.allcompanydetails();
-  this.userlist();
+  // this.userlist();
   }
 
   get f(){
@@ -189,16 +189,18 @@ export class RegistrationsComponent  {
       // }
       // this.spinner.show();
       const data = {
-        "user":{"email":this.CompanyRegistration.value.email,"phone":this.CompanyRegistration.value.phone,
-        "username":this.CompanyRegistration.value.username,"password":this.CompanyRegistration.value.password},
+        "user":{"email":this.CompanyRegistration.value.email,"phone_number":this.CompanyRegistration.value.phone,
+        "first_name":this.CompanyRegistration.value.username,"password":this.CompanyRegistration.value.password},
         "gstin":this.CompanyRegistration.value.gstno,
         "name":this.CompanyRegistration.value.name,
-        "published_date":this.CompanyRegistration.value.startdate,
-        'end_at':this.end_date,
-        "contact_person":this.CompanyRegistration.value.contactperson,
-        "state":this.CompanyRegistration.value.state,"city":this.CompanyRegistration.value.pincode,
-        "pincode":this.CompanyRegistration.value.pincode,"addres":this.CompanyRegistration.value.address
+        // "published_date":this.CompanyRegistration.value.startdate,
+        // 'end_at':this.end_date,
+        // "contact_person":this.CompanyRegistration.value.contactperson,
+        "state":this.CompanyRegistration.value.state,"city":this.CompanyRegistration.value.city,
+        "pincode":this.CompanyRegistration.value.pincode,"addres":this.CompanyRegistration.value.address,
+        "license_purchased":this.CompanyRegistration.value.nooflicense
       }
+      console.log(data);
       const formData = new FormData
       formData.append('name', this.CompanyRegistration.value.name);
       formData.append('phone', this.CompanyRegistration.value.phone);
@@ -218,20 +220,24 @@ export class RegistrationsComponent  {
         // this.spinner.hide(); 
         mint.toastr.success('Sucessfully registration done!');
         this.allcompanydetails();
-        $('#content').hide();
+        this.CompanyRegistration.reset();
+        this.submitted =false;
+        $('#Addcompany').hide();
       },(error)=>{
         console.error(error);
         // this.spinner.hide(); 
         mint.toastr.error('Somthing went wrong');
-        this.getDismissReason;
-        $('#content').hide();
+        // this.getDismissReason;
+        this.CompanyRegistration.reset();
+        this.submitted =false;
+        $('#Addcompany').hide();
       })
     }
   }
 
 // view company details
 
-  Details(id:any,company_name:any,phone:any,email:any,gstn:any,address:any,city:any,state:any,pincode:any,status:any,start_date:any,end_date:any,no_of_license:any,contact_person:any) {
+  Details(id:any,company_name:any,phone:any,email:any,gstn:any,address:any,city:any,state:any,pincode:any,status:any,no_of_license:any) {
     this.company_id = id;
     this.company_name = company_name;
     this.phone = phone;
@@ -242,15 +248,15 @@ export class RegistrationsComponent  {
     this.state = state;
     this.pincode = pincode;
     this.status = status;
-    this.start_date = start_date;
-    this.end_date = end_date;
+    // this.start_date = start_date;
+    // this.end_date = end_date;
     this.no_of_license = no_of_license;
-    this.contact_person = contact_person; 
+    // this.contact_person = contact_person; 
   }
 
 //  update company details 
 
-  edit(id:any,company_name:any,user_id:any,user_name:any,phone:any,email:any,gstn:any,address:any,city:any,state:any,pincode:any,status:any,start_date:any,end_date:any,no_of_license:any,contact_person:any) {
+  edit(id:any,company_name:any,user_id:any,user_name:any,phone:any,email:any,gstn:any,address:any,city:any,state:any,pincode:any,status:any,no_of_license:any) {
     this.company_id = id;
     this.company_name = company_name;
     this.user_id = user_id;
@@ -263,10 +269,10 @@ export class RegistrationsComponent  {
     this.state = state;
     this.pincode = pincode;
     this.status = status;
-    this.start_date = start_date;
-    this.end_date = end_date;
+    // this.start_date = start_date;
+    // this.end_date = end_date;
     this.no_of_license = no_of_license;
-    this.contact_person = contact_person; 
+    // this.contact_person = contact_person; 
   }
   Update(){
     const mint = this
@@ -275,44 +281,50 @@ export class RegistrationsComponent  {
       return
     }
     else{
-      // const data = {
-      //   "user":{"email":this.UpdateCompanyRegistration.value.email,"phone":this.UpdateCompanyRegistration.value.phone,
-      //   "username":this.UpdateCompanyRegistration.value.username,"password":this.UpdateCompanyRegistration.value.password},
-      //   "gstin":this.UpdateCompanyRegistration.value.gstno,
-      //   "name":this.UpdateCompanyRegistration.value.name,
-      //   "published_date":this.UpdateCompanyRegistration.value.startdate,
-      //   'end_at':this.end_date,
-      //   "contact_person":this.UpdateCompanyRegistration.value.contactperson,
-      //   "addres":{"state":this.UpdateCompanyRegistration.value.state,"city":this.UpdateCompanyRegistration.value.pincode,
-      //   "pincode":this.UpdateCompanyRegistration.value.pincode,"addres":this.UpdateCompanyRegistration.value.address}
-      // }
+      const data = {
+        // "user":{
+        //   "id":this.user_id,
+        //   "email":this.UpdateCompanyRegistration.value.email,
+        //   "phone_number":this.UpdateCompanyRegistration.value.phone,
+        // },
+        "gstin":this.UpdateCompanyRegistration.value.gstno,
+        "name":this.UpdateCompanyRegistration.value.name,
+        // "published_date":this.UpdateCompanyRegistration.value.startdate,
+        // 'end_at':this.end_date,
+        // "contact_person":this.UpdateCompanyRegistration.value.contactperson,
+        "state":this.UpdateCompanyRegistration.value.state,"city":this.UpdateCompanyRegistration.value.city,
+        "pincode":this.UpdateCompanyRegistration.value.pincode,"addres":this.UpdateCompanyRegistration.value.address ,
+        "license_purchased":this.UpdateCompanyRegistration.value.nooflicense
+      }
 
       // this.spinner.show();
-      const formData = new FormData
-      formData.append('name', this.UpdateCompanyRegistration.value.name);
-      // formData.append('phone', this.UpdateCompanyRegistration.value.phone);
+      // const formData = new FormData
+      // formData.append('name', this.UpdateCompanyRegistration.value.name);
+      // formData.append('phone', this.UpdateCompanyRegistration.value.phone)
       // formData.append('email', this.UpdateCompanyRegistration.value.email);
-      formData.append('user',this.user_id);
-      formData.append('gstin', this.UpdateCompanyRegistration.value.gstno);
-      formData.append('addres', this.UpdateCompanyRegistration.value.address);
-      formData.append('city', this.UpdateCompanyRegistration.value.city);
-      formData.append('state', this.UpdateCompanyRegistration.value.state);
-      formData.append('pincode', this.UpdateCompanyRegistration.value.pincode);
-      formData.append('status', this.UpdateCompanyRegistration.value.status);
-      formData.append('published_date', this.UpdateCompanyRegistration.value.startdate);
-      formData.append('end_at', this.end_date);
+      // formData.append('user',this.user_id);
+      // formData.append('gstin', this.UpdateCompanyRegistration.value.gstno);
+      // formData.append('addres', this.UpdateCompanyRegistration.value.address);
+      // formData.append('city', this.UpdateCompanyRegistration.value.city);
+      // formData.append('state', this.UpdateCompanyRegistration.value.state);
+      // formData.append('pincode', this.UpdateCompanyRegistration.value.pincode);
+      // formData.append('status', this.UpdateCompanyRegistration.value.status);
+      // formData.append('published_date', this.UpdateCompanyRegistration.value.startdate);
+      // formData.append('end_at', this.end_date);
       // formData.append('no_licenses', this.UpdateCompanyRegistration.value.nooflicense);
-      formData.append('contact_person', this.UpdateCompanyRegistration.value.contactperson);
+      // formData.append('contact_person', this.UpdateCompanyRegistration.value.contactperson);
       console.log(this.UpdateCompanyRegistration.value);
-      this.superadminserivce.updatecompanyregistrationdata(this.company_id,formData).subscribe((res)=>{
+      this.superadminserivce.updatecompanyregistrationdata(this.company_id,data).subscribe((res)=>{
         console.log(res);
         // this.spinner.hide(); 
         mint.toastr.success('Successfully Updated!');
+        $('#Updatecompany').hide();
         this.allcompanydetails();
       },(error)=>{
         console.log(error);
         // this.spinner.hide(); 
         mint.toastr.error('Somthing went wrong');
+        $('#Updatecompany').hide();
       })
     }
   }
@@ -327,11 +339,13 @@ export class RegistrationsComponent  {
     const mint = this
     this.superadminserivce.deletecompanyregistrationdata(this.company_id).subscribe((res)=>{
       console.log(res);
-     mint.toastr.success('Successfully Deleted !');
+     mint.toastr.success('Successfully Deleted!');
      this.allcompanydetails();
+     $('#Deletecompany').hide();
     },(error)=>{
       console.error(error);
       mint.toastr.error('Somthing went wrong');
+     $('#Deletecompany').hide();
     })
   }
 }

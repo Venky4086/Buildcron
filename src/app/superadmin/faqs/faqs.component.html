@@ -10,7 +10,7 @@
               <div class="col-sm-6">
                   <div class="alig_btns">
                       <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                          <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddFaqs">
                               + Add Query</button>
                       </div>
 
@@ -251,7 +251,9 @@
      
               <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Answer:</label>
-                  <input type="text" class="form-control" formControlName="answer" [ngClass]="{'is-invalid':submitted && f.answer.errors}"/>
+                  <!-- <input type="text" class="form-control" formControlName="answer" [ngClass]="{'is-invalid':submitted && f.answer.errors}"/> -->
+                  <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':submitted && u.answer.errors}">
+                  </textarea>
                   <div class="invalid-feedback" *ngIf="submitted && f.answer.errors">
                     <div class="fs-15 fw-700" *ngIf="f.answer.errors.required">
                         Answer is required
@@ -287,6 +289,78 @@
       <button type="button" class="btn btn-primary" (click)="Add()">Add FAQs</button>
   </div>
 </ng-template>
+
+
+<div class="modal fade" id="AddFaqs" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Add FAQs</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="AddFaqs">
+                <div class="row">
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Question:</label>
+                        <input type="text" class="form-control" formControlName="question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.question.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.question.errors.required">
+                                Question is required
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Answer:</label>
+                        <!-- <input type="text" class="form-control" formControlName="answer" [ngClass]="{'is-invalid':submitted && f.answer.errors}"/> -->
+                        <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':submitted && u.answer.errors}">
+                        </textarea>
+                        <div class="invalid-feedback" *ngIf="submitted && f.answer.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.answer.errors.required">
+                              Answer is required
+                          </div>
+                        </div>
+                    </div>
+      <!-- 
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}">
+                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.id.errors">
+                              Id is required
+                          </div>
+                        </div>
+                    </div>
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Status:</label>
+                        <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.status.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.status.errors">
+                              Status is required
+                          </div>
+                        </div>
+                    </div> -->
+      
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add FAQs</button>
+        </div>
+      </div>
+    </div>
+</div>
+
 
 <!-- Update FAQ -->
 

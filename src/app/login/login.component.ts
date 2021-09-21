@@ -38,11 +38,12 @@ export class LoginComponent implements OnInit {
       console.log(formData);
       this.superadminservice.Login(formData).subscribe((res)=>{
         console.log(res);
-        sessionStorage.setItem('auth_token',res.access);
+        sessionStorage.setItem('auth_token', res.access);
         this.toaster.success('Successfully Login Done!')
         this.router.navigate(['/SuperAdmin']);
         this.roles = res.role;
-        this.toaster.success('Successfully Login Done!')
+        sessionStorage.setItem('company_id',res.company_id);
+        // this.toaster.success('Successfully Login Done!')
         if(this.roles === 'SA'){
           this.router.navigate(['/SuperAdmin']);
         }

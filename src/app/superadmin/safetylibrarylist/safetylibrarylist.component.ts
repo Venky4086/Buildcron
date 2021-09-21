@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -24,24 +25,24 @@ export class SafetylibrarylistComponent {
   name:any;
   status:any;
   type: any;
-  constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
+  constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   AddSafetyLibraryList = this.fb.group({
     // date:['', Validators.required],
     // id:['', Validators.required],
     name:['', Validators.required],
-    type:['', Validators.required],
-    status:['', Validators.required]
+    // type:['', Validators.required],
+    // status:['', Validators.required]
   });
   UpdateSafetyLibraryList = this.fb.group({
     // date:['', Validators.required],
     // id:['', Validators.required],
     name:['', Validators.required],
-    type:['', Validators.required],
-    status:['', Validators.required]
+    // type:['', Validators.required],
+    // status:['', Validators.required]
   });
   ngOnInit(){
    this.allsafetylibrarylist();
-   this.types();
+  //  this.types();
   }
   get f(){
     return this.AddSafetyLibraryList.controls
@@ -108,39 +109,50 @@ export class SafetylibrarylistComponent {
       else{
         console.log(this.AddSafetyLibraryList.value);
         const mint = this
-        const formData = new FormData;
+        const data = {
+          "name": this.AddSafetyLibraryList.value.name,
+          "typee": "Safety",
+        }
+        // const formData = new FormData;
         // formData.append('date',this.AddSafetyLibraryList.value.date);
         // formData.append('id',this.AddSafetyLibraryList.value.id);
-        formData.append('name',this.AddSafetyLibraryList.value.name);
-        formData.append('quality_type',this.AddSafetyLibraryList.value.type);
+        // formData.append('name',this.AddSafetyLibraryList.value.name);
+        // formData.append('quality_type',this.AddSafetyLibraryList.value.type);
         // formData.append('status',this.AddSafetyLibraryList.value.status);
-        this.superadminservice.Addsaftylibrarylist(formData).subscribe((res)=>{
+        this.superadminservice.Addsaftylibrarylist(data).subscribe((res)=>{
           console.log(res);
           mint.toaster.success('Successfully Safty done!');
           this.allsafetylibrarylist();
+          $('#AddSafety').hide();
+          this.AddSafetyLibraryList.reset();
+          this.submitted = false;
         },(error)=>{
           console.error(error);
           mint.toaster.error('Somthing went wrong');
+          $('#AddSafety').hide();
+          this.AddSafetyLibraryList.reset();
+          this.submitted = false;
         })
       }
     }
 
-    view(id:any,date:any,quality_id:any,name:any,type:any,status:any){
+    view(id:any,quality_id:any,name:any){
       this.safety_id = id;
-      this.date = date;
-      this.type = type;
+      // this.date = date;
+      // this.type = type;
       this.quality_id = quality_id;
       this.name  = name;
-      this.status = status
+      // this.status = status
   }
-    edit(id:any,date:any,quality_id:any,name:any,type:any,status:any){
-        $("#UpdateSafety").modal('show');
+    edit(id:any,quality_id:any,name:any){
+        // $("#UpdateSafety").modal('show');
         this.safety_id = id;
-        this.date = date;
-        this.type = type;
+        // this.date = date;
+        // this.type = type;
         this.quality_id = quality_id;
         this.name  = name;
-        this.status = status;
+        // this.status = status;
+        // $("#UpdateSafety").modal('show');
     } 
 
   // update
@@ -152,19 +164,25 @@ export class SafetylibrarylistComponent {
     }
     else{
       const mint = this
-      const formData = new FormData;
+      const data = {
+        "name": this.UpdateSafetyLibraryList.value.name,
+        "typee": "Safety",
+      }
+      // const formData = new FormData;
       // formData.append('date',this.UpdateSafetyLibraryList.value.date);
       // formData.append('id',this.UpdateSafetyLibraryList.value.id);
-      formData.append('name',this.UpdateSafetyLibraryList.value.name);
-      formData.append('quality_type',this.UpdateSafetyLibraryList.value.type);
-      formData.append('status',this.UpdateSafetyLibraryList.value.status);
-      this.superadminservice.updatesaftylibrarylist(this.safety_id,formData).subscribe((res)=>{
+      // formData.append('name',this.UpdateSafetyLibraryList.value.name);
+      // formData.append('quality_type',this.UpdateSafetyLibraryList.value.type);
+      // formData.append('status',this.UpdateSafetyLibraryList.value.status);
+      this.superadminservice.updatesaftylibrarylist(this.safety_id,data).subscribe((res)=>{
         console.log(res);
         mint.toaster.success('Succefully Update!');
         this.allsafetylibrarylist();
+        $("#UpdateSafety").hide();
       },(error)=>{
         console.error(error);
         mint.toaster.error('Somthing went to wrong');
+        $("#UpdateSafety").hide();
       })
     }
   }
@@ -180,11 +198,19 @@ export class SafetylibrarylistComponent {
       console.log(res);
       mint.toaster.success('Successfully deleted!');
       this.allsafetylibrarylist();
+      $("#DeleteSafety").hide();
     },(error)=>{
       console.error(error.error.message);
       mint.toaster.error('Somthing went wrong');
+      $("#DeleteSafety").hide();
     })
   }
+
+  checklistdetails(safety_id:any){
+  sessionStorage.setItem('safety_id',safety_id);
+  this.router.navigate(['/SafetyQuestion'])
+  }
+
 
 }
 

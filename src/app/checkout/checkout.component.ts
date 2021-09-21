@@ -25,7 +25,7 @@ export class CheckoutComponent implements OnInit {
     phone:['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     email:['', [Validators.required,Validators.email]],
     username:['', [Validators.required]],
-    password:['', [Validators.required]],
+    password:['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
     gstno:['', [Validators.required, Validators.pattern("^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$")]],
     address:['', Validators.required],
     city:['', Validators.required],
@@ -34,7 +34,7 @@ export class CheckoutComponent implements OnInit {
     // startdate:['', Validators.required],
     // enddate:['', Validators.required],
     // nooflicense:['', Validators.required],
-    contactperson:['', Validators.required],
+    // contactperson:['', Validators.required],
   }); 
   Total_Amount = sessionStorage.getItem('planeamount')
   ngOnInit(): void {
@@ -81,7 +81,7 @@ pay(){
         "state":this.CompanyRegistration.value.state,
         "city":this.CompanyRegistration.value.city,
         "addres":this.CompanyRegistration.value.address,
-        "contact_person":this.CompanyRegistration.value.contactperson,
+        // "contact_person":this.CompanyRegistration.value.contactperson,
         "pincode":this.CompanyRegistration.value.pincode,
         "status":true
       },
@@ -109,6 +109,10 @@ submit(){
 window.open(this.next);
 $('#PayModal').modal('hide');
 this.router.navigate(['/login']);
+}
+
+login(){
+  this.router.navigate(['/login']);
 }
 
 }

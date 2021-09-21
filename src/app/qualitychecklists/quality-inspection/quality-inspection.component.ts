@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin.service';
+import { SuperadminService } from 'src/app/services/superadmin.service';
 
 @Component({
   selector: 'app-quality-inspection',
@@ -16,33 +18,49 @@ export class QualityInspectionComponent {
   closeResult = '';
   submitted = false;
   updatesubmitted = false;
-  quality_id:any;
-  Qualitylist:any;
-  constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
+  quality_id: any;
+  Qualitylist: any;
+  projectlist: any;
+  selectedItems:any[] = [];
+  dropdownSettings:IDropdownSettings = {};
+  dropdownList:any[]=[];
+  librarylists: any;
+  constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
-    date:['', Validators.required],
-    name:['', Validators.required],
-    description:['', Validators.required],
+    // date:['', Validators.required],
+    name: ['', Validators.required],
+    // description:['', Validators.required],
     // id:['', Validators.required],
-    uploaded:['', Validators.required],
-    project_assigned:['', Validators.required],
+    // uploaded:['', Validators.required],
+    project_assigned: ['', Validators.required],
   });
   UpdateQualityInspection = this.fb.group({
-    date:['', Validators.required],
-    name:['', Validators.required],
-    description:['', Validators.required],
+    // date:['', Validators.required],
+    name: ['', Validators.required],
+    // description:['', Validators.required],
     // id:['', Validators.required],
-    uploaded:['', Validators.required],
-    project_assigned:['', Validators.required],
+    // uploaded: ['', Validators.required],
+    project_assigned: ['', Validators.required],
   });
   ngOnInit(): void {
-  this.QualityInspectionlist();
+    // this.QualityInspectionlist();
+    this.allprojects();
+    this.alllibrarylist();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: false
+    };
   }
-  get f(){
+  get f() {
     return this.AddQualityInspection.controls
   }
-  get u(){
+  get u() {
     return this.UpdateQualityInspection.controls
   }
   open(content: any) {
@@ -63,82 +81,132 @@ export class QualityInspectionComponent {
     }
   }
 
+// all projects
+
+  allprojects(){
+    this.spinner.show();
+    this.adminservice.Projectslist().subscribe((res)=>{
+      if(res){
+        console.log(res);
+        this.projectlist = res;
+        this.spinner.hide();
+      }
+      else{
+        console.warn(res);
+      }
+    },(error)=>{
+      console.error(error);
+      this.spinner.hide();
+    })
+  }
+
+  // all librarylist
+
+  alllibrarylist(){
+    this.spinner.show();
+    let tmp:any[] = [];
+    this.superadminserivce.alllibrarylist().subscribe((res)=>{
+      if(res){
+        console.log(res);
+        this.librarylists = res;
+        for(let i=0; i < this.librarylists.length; i++) {
+          tmp.push({ item_id: this.librarylists[i].id, item_text: this.librarylists[i].name });
+        }
+        this.dropdownList = tmp;
+        this.spinner.hide();
+      }
+      else{
+        console.warn(res);
+      }
+    },(error)=>{
+      console.log(error);
+      this.spinner.hide();
+    })
+  }
+
   // QualityInspection list
 
-  QualityInspectionlist(){
-     this.spinner.show();
-     this.adminservice.QualityInspectionlist().subscribe((res)=>{
-         if(res){
-           console.log(res);
-           this.Qualitylist = res;
-           this.spinner.hide();
-         }
-         else{
-           console.warn(res);
-         }
-     },(error)=>{
-       console.error(error);
-       this.spinner.hide();
-     })
+  QualityInspectionlist() {
+    this.spinner.show();
+    this.adminservice.QualityInspectionlist().subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.Qualitylist = res;
+        this.spinner.hide();
+      }
+      else {
+        console.warn(res);
+      }
+    }, (error) => {
+      console.error(error);
+      this.spinner.hide();
+    })
   }
 
   // Add
 
-  Add(){
-   this.submitted = true;
-   if(this.AddQualityInspection.invalid){
-     return
-   }
-   else{
-     const mint = this
-     console.log(this.AddQualityInspection.value);
-     const formData = new FormData;
-     formData.append('date',this.AddQualityInspection.value.date);
-     formData.append('name',this.AddQualityInspection.value.name);
-     formData.append('description',this.AddQualityInspection.value.description);
-     formData.append('uploaded',this.AddQualityInspection.value.uploaded);
-     formData.append('project_assigned',this.AddQualityInspection.value.project_assigned);
-     this.adminservice.AddQualityInspection(formData).subscribe((res)=>{
-       console.log(res);
-       mint.toaster.success(res.message);
-     },(error)=>{
-       console.error(error);
-       mint.toaster.success(error.error.message);
-     })
-   }
+  Add() {
+    this.submitted = true;
+    if (this.AddQualityInspection.invalid) {
+      return
+    }
+    else {
+      const mint = this
+      console.log(this.AddQualityInspection.value);
+      const formData = new FormData;
+      formData.append('date', this.AddQualityInspection.value.date);
+      formData.append('name', this.AddQualityInspection.value.name);
+      formData.append('description', this.AddQualityInspection.value.description);
+      formData.append('uploaded', this.AddQualityInspection.value.uploaded);
+      formData.append('project_assigned', this.AddQualityInspection.value.project_assigned);
+      this.adminservice.AddQualityInspection(formData).subscribe((res) => {
+        console.log(res);
+        mint.toaster.success('Sucessfully Add Inspection Done!');
+      }, (error) => {
+        console.error(error);
+        mint.toaster.error('Somthing went wrong!');
+      })
+    }
   }
 
   // Update
 
-  Update(){
-  this.updatesubmitted = true;
-  if(this.UpdateQualityInspection.invalid){
-    return
-  }
-  else{
-    const mint = this
-    console.log(this.UpdateQualityInspection.value);
-    const formData = new FormData;
-    formData.append('date',this.UpdateQualityInspection.value.date);
-    formData.append('name',this.UpdateQualityInspection.value.name);
-    formData.append('description',this.UpdateQualityInspection.value.description);
-    formData.append('uploaded',this.UpdateQualityInspection.value.uploaded);
-    formData.append('project_assigned',this.UpdateQualityInspection.value.project_assigned);
-    this.adminservice.UpdateQualityInspection(this.quality_id,formData).subscribe((res)=>{
-      console.log(res);
-      mint.toaster.success(res.message);
-    },(error)=>{
-      console.error(error);
-      mint.toaster.success(error.error.message);
-    })
-  }
+  Update() {
+    this.updatesubmitted = true;
+    if (this.UpdateQualityInspection.invalid) {
+      return
+    }
+    else {
+      const mint = this
+      console.log(this.UpdateQualityInspection.value);
+      const formData = new FormData;
+      formData.append('date', this.UpdateQualityInspection.value.date);
+      formData.append('name', this.UpdateQualityInspection.value.name);
+      formData.append('description', this.UpdateQualityInspection.value.description);
+      formData.append('uploaded', this.UpdateQualityInspection.value.uploaded);
+      formData.append('project_assigned', this.UpdateQualityInspection.value.project_assigned);
+      this.adminservice.UpdateQualityInspection(this.quality_id, formData).subscribe((res) => {
+        console.log(res);
+        mint.toaster.success(res.message);
+      }, (error) => {
+        console.error(error);
+        mint.toaster.success(error.error.message);
+      })
+    }
 
   }
 
   // Delete
 
   Delete(){
-   
+    const mint = this
+    this.adminservice.DeleteQualityInspection(this.quality_id).subscribe((res) => {
+      console.log(res);
+      mint.toaster.success(res.message);
+    }, (error) => {
+      console.error(error);
+      mint.toaster.success(error.error.message);
+    })
   }
 
-}
+  }

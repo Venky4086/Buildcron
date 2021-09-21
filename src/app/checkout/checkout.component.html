@@ -39,6 +39,7 @@
             </ul>
           </li> -->
         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <li><a class="nav-link scrollto cursor_pointer" (click)="login()">Login</a></li>
         <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
@@ -155,10 +156,10 @@
                     </div>
 
                     <div class="form-group col-md-6 mb-3">
-                   <label for="">First Name:</label>
+                   <label for="">User Name:</label>
                    <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required" class="fs-15 fw-700">First Name is required</div>
+                    <div *ngIf="f.username.errors.required" class="fs-15 fw-700">User Name is required</div>
                    </div>
                   </div>
                       
@@ -167,6 +168,7 @@
                     <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                       <div *ngIf="f.password.errors.required" class="fs-15 fw-700">Password is required</div>
+                      <div *ngIf="f.password.errors.pattern" class="fs-15 fw-700">Password should have min 8 characters with atleast 1 uppercase , 1 lowercase , 1 number & 1 special character.</div>
                     </div>
                   </div>
 
@@ -250,10 +252,10 @@
       </div>
     </div> -->
 
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Contact Person:</label>
                       <input class="form-control" name="" id="" formControlName="contactperson"
-                        [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }">
+                        [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }"> -->
 <!-- 
                         <select name="" id="" class="form-select" formControlName="contactperson"
                         [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }">
@@ -261,11 +263,11 @@
                           <option value="{{contactperson.id}}" *ngFor="let contactperson of contactpersons">{{contactperson.first_name}}</option>
                         </select> -->
 
-                      <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
+                      <!-- <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
                         <div *ngIf="f.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                 </form>

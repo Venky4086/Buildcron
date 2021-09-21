@@ -7,22 +7,22 @@
               </div><!-- /.col -->
 
               <div class="col-sm-6">
-                  <div class="alig_btns">
+                  <div class="alig_btns p-3">
                       <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                          <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddEmployee">
                               + Add Employee</button>
                       </div>
 
 
 
 
-                      <div class="bulk_btn">
+                      <!-- <div class="bulk_btn">
                           <span class="btn btn-default btn-file bg1 mtop">
                               Bulk Upload <input type="file">
                           </span>
 
                           <div class="small06">*In CSV File or Excel Format</div>
-                      </div>
+                      </div> -->
                   </div>
               </div>
           </div><!-- /.row -->
@@ -88,11 +88,11 @@
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">Employee ID
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
+                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Designation
-                                                </th>
+                                                </th> -->
                                                 <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="Engine version: activate to sort column ascending">
@@ -101,11 +101,11 @@
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Mobile No</th>
-                                                <th ngbDropdown class="sorting" tabindex="0"
+                                                <!-- <th ngbDropdown class="sorting" tabindex="0"
                                                     aria-controls="example1" rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Project
-                                                    <!-- Project <i class="fa fa-chevron-down"
+                                                    Project <i class="fa fa-chevron-down"
                                                         id="dropdownBasic1" ngbDropdownToggle></i>
                                                     <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                                         <li> <button class="fs-12" ngbDropdownItem>Action -
@@ -115,9 +115,9 @@
                                                         <li><button class="fs-12" ngbDropdownItem>Something else is
                                                                 here</button>
                                                         </li>
-                                                    </ul> -->
+                                                    </ul>
 
-                                                </th>
+                                                </th> -->
 
                                                 <th>Action
                                                 </th>
@@ -125,171 +125,28 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr class="odd">
-                                                <td class="dtr-control">1</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
+                                            <tr class="odd" *ngFor="let emp of employelist;let i=index">
+                                                <td class="dtr-control">{{i+1}}</td>
+                                                <td class="sorting_1">{{emp.created_at}}</td>
+                                                <td>{{emp.user.first_name}}</td>
+                                                <td>{{emp.eid}}</td>
+                                                <td>{{emp.user.email}}</td>
+                                                <td>{{emp.user.phone_number}}</td>
 
-                                                <td>To Vendor</td>
+                                                <!-- <td>{{emp.projects}}</td> -->
                                                 <td>
-                                                    <a href="">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(emp.eid,emp.user.first_name,emp.user.email,emp.user.phone_number)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee" (click)="edit(emp.user.id,emp.user.first_name,emp.user.email,emp.user.phone_number)">
                                                     <i class="fa fa-edit mr-1"></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee" (click)="delete(emp.user.id)">
                                                     <i class="fa fa-trash mr-1"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">2</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">3</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">4</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">5</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">6</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">7</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">8</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">9</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="dtr-control">10</td>
-                                                <td class="sorting_1">10-05-2021</td>
-                                                <td>Dell</td>
-                                                <td>2nd</td>
-                                                <td>UI Developer</td>
-                                                <td>test@gmail.com</td>
-                                                <td>9963509329</td>
-
-                                                <td>To Vendor</td>
-                                                <td>
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                </td>
-                                            </tr>
+                                          
                                         </tbody>
 
                                     </table>
@@ -444,13 +301,57 @@
   </div>
 </ng-template>
 
-<!-- update -->
+<!-- view -->
 
-<div class="modal fade" id="UpdateEmployee" data-backdrop="static">
+<div class="modal fade" id="View" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+          <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+    
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+    
+      </div>
+      <div class="modal-body">
+
+        <form>
+            <div class="row">
+              <div class="form-group col-md-6 mb-3">
+                <label for="dateOfBirth">Employee Id:</label>
+                <p class="font-weight-bold">{{emid}}</p>
+            </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Name:</label>
+                    <p class="font-weight-bold">{{name}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Email:</label>
+                    <p class="font-weight-bold">{{email}}</p>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Mobile:</label>
+                  <p class="font-weight-bold">{{mobile}}</p>
+              </div>
+            </div>
+        </form>
+  
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+      </div>
+    </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="AddEmployee" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-blu">
-            <h4 class="modal-title mb-0" id="modal-basic-title">Update Projects</h4>
+            <h4 class="modal-title mb-0" id="modal-basic-title">Add Employe</h4>
       
            
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -460,9 +361,120 @@
         </div>
         <div class="modal-body">
 
+            <form [formGroup]="AddEmployee">
+                <div class="row">
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Date:</label>
+                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                              Date is required
+                            </div>
+                        </div>
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Name:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                            Name is required
+                          </div>
+                        </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.id.errors.required">
+                            Id is required
+                          </div>
+                        </div>
+                    </div> -->
+<!--       
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Designation:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.id.errors.required">
+                              Designation is required
+                          </div>
+                        </div>
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Email ID:</label>
+                        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.email.errors.required">
+                            Email is required
+                          </div>
+                          <div class="fs-15 fw-700" *ngIf="f.email.errors.email">
+                             Please provide the valid email id
+                          </div>
+                        </div>
+                    </div>
+      
+                    <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Mobile Number:</label>
+                      <input type="text" class="form-control" formControlName="mobile" [ngClass]="{'is-invalid':submitted && f.mobile.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.mobile.errors.required">
+                            Mobile number is required
+                          </div>
+                          <div class="fs-15 fw-700" *ngIf="f.mobile.errors.pattern">
+                             mobile number must be at 10 digits is required
+                          </div>
+                      </div>
+                    </div>
+      
+                  <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Project Assigned:</label> -->
+                    <!-- <input type="text" class="form-control"/> -->
+                    <!-- <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.project_assigned.errors.required">
+                          Project Assigned is required
+                      </div>
+                  </div> -->
+                  <!-- <ng-multiselect-dropdown
+                  [placeholder]="'Assigned Project'"
+                  [settings]="dropdownSettings"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems"
+                  [ngModelOptions]="{standalone:true}">
+                </ng-multiselect-dropdown>
+                  </div> -->
+      
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add Employee</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- update -->
+
+<div class="modal fade" id="UpdateEmployee" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update Employe</h4>
+        
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
             <form [formGroup]="UpdateEmployee">
                 <div class="row">
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
@@ -470,11 +482,11 @@
                               Date is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
+                        <input type="text" class="form-control" [(ngModel)]="name" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
                           <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
                             Name is required
@@ -482,7 +494,7 @@
                         </div>
                     </div>
       
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
@@ -500,11 +512,11 @@
                             Id is required
                           </div>
                         </div>
-                    </div>
+                    </div> -->
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Email ID:</label>
-                        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':updatesubmitted && u.email.errors}"/>
+                        <input type="text" class="form-control" [(ngModel)]="email" formControlName="email" [ngClass]="{'is-invalid':updatesubmitted && u.email.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.email.errors">
                           <div class="fs-15 fw-700" *ngIf="u.email.errors.required">
                             Email is required
@@ -517,7 +529,7 @@
       
                     <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Mobile Number:</label>
-                      <input type="text" class="form-control" formControlName="mobile" [ngClass]="{'is-invalid':updatesubmitted && u.mobile.errors}"/>
+                      <input type="text" class="form-control" [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':updatesubmitted && u.mobile.errors}"/>
                       <div class="invalid-feedback" *ngIf="updatesubmitted && u.mobile.errors">
                           <div class="fs-15 fw-700" *ngIf="u.mobile.errors.required">
                             Mobile number is required
@@ -527,7 +539,7 @@
                           </div>
                       </div>
                   </div>
-      
+<!--       
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Project Assigned:</label>
                     <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':updatesubmitted && u.project_assigned.errors}"/>
@@ -536,7 +548,7 @@
                           Project Assigned is required
                       </div>
                   </div>
-                </div>
+                  </div> -->
       
                 </div>
             </form>

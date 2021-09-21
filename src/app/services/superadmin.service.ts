@@ -52,18 +52,18 @@ export class SuperadminService {
   // company registration
 
   companyregistration(data:any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'company/create/admin', data , options)
+    return this.http.post<any>(GlobalData.url_account + 'company/create/admin', data , options)
   }
   allcompanyregistrationdata(): Observable<any> {
     return this.http.get<any>(GlobalData.url_account + 'company/list/admin' , options)
       .pipe(shareReplay(1));
   }
   deletecompanyregistrationdata(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'accounts/api/company/rd/' + id)
+    return this.http.delete<any>(GlobalData.url_account + 'company/rud/' + id, options)
       .pipe(shareReplay(1));
   }
   updatecompanyregistrationdata(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_api + 'accounts/api/company/update/' + id, data)
+    return this.http.put<any>(GlobalData.url_account + 'company/rud/' + id, data, options)
       .pipe(shareReplay(1));
   }
 
@@ -107,35 +107,35 @@ export class SuperadminService {
   // quality librarylist
 
   Addlibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'buildcron/api/quality/list_or_create', data)
+    return this.http.post<any>(GlobalData.url_buildcron + 'quality/create', data, options)
   }
   alllibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_api + 'buildcron/api/quality/list_or_create')
+    return this.http.get<any>(GlobalData.url_buildcron + 'quality/list', options)
       .pipe(shareReplay(1));
   }
   deletelibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'buildcron/api/quality/rud/' + id)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'quality/rud/' + id, options)
       .pipe(shareReplay(1));
   }
   updatelibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_api + 'buildcron/api/quality/rud/' + id, data)
+    return this.http.put<any>(GlobalData.url_buildcron + 'quality/rud/' + id, data, options)
       .pipe(shareReplay(1));
   }
 
 // checklist
 
   Addchecklist(data:any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'buildcron/api/check/create',data)
+    return this.http.post<any>(GlobalData.url_buildcron + 'check/create',data, options)
   }
-  allchecklist(): Observable<any>{
-    return this.http.get<any>(GlobalData.url_api + 'buildcron/api/check/list')
+  allchecklist(id:any): Observable<any>{
+    return this.http.get<any>(GlobalData.url_buildcron + 'quality/checklist/' + id, options)
   }
   deletechecklist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'buildcorn/api/check/rud/' + id)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'check/rud/' + id , options)
       .pipe(shareReplay(1));
   }
   updatechecklist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_api + 'buildcorn/api/check/rud/' + id, data)
+    return this.http.put<any>(GlobalData.url_buildcron + 'check/rud/' + id, data, options)
       .pipe(shareReplay(1));
   }
   // quality testlibrarylist
@@ -156,23 +156,35 @@ export class SuperadminService {
       .pipe(shareReplay(1));
   }
 
-  //  saftylibrarylist
+  //  safetylibrarylist
 
   Addsaftylibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'safety/list_or_create', data)
+    return this.http.post<any>(GlobalData.url_buildcron + 'safety/create', data,options)
   }
   allsaftylibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_api + 'safety/list_or_create')
+    return this.http.get<any>(GlobalData.url_buildcron + 'safety/list',options)
       .pipe(shareReplay(1));
   }
   deletesaftylibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'safety/rud/' + id)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'safety/rud/' + id,options)
       .pipe(shareReplay(1));
   }
   updatesaftylibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_api + 'safety/rud/' + id, data,)
+    return this.http.put<any>(GlobalData.url_buildcron + 'safety/rud/' + id, data,options)
       .pipe(shareReplay(1));
   }
+
+// safety checklist
+
+
+allsaftychecklist(id:any): Observable<any> {
+  return this.http.get<any>(GlobalData.url_buildcron + 'safety/checklist/' + id,options)
+    .pipe(shareReplay(1));
+}
+deletesaftychecklist(id: any): Observable<any> {
+  return this.http.delete<any>(GlobalData.url_buildcron + 'safety/checklist/' + id,options)
+    .pipe(shareReplay(1));
+}
 
   // safety testlibrarylist
 
@@ -231,18 +243,18 @@ export class SuperadminService {
   // FAQs
 
   Addfaqs(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'faq/list_or_create', data)
+    return this.http.post<any>(GlobalData.url_buildcron + 'faq/list_or_create', data,options)
   }
   allfaqs(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_api + 'faq/list_or_create')
+    return this.http.get<any>(GlobalData.url_buildcron + 'faq/list_or_create',options)
       .pipe(shareReplay(1));
   }
   deletefaq(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'faq/rud/' + id,)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'faq/rud/' + id,options)
       .pipe(shareReplay(1));
   }
   updatefaq(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_api + 'faq/rud/' + id, data,)
+    return this.http.put<any>(GlobalData.url_buildcron + 'faq/rud/' + id, data,options)
       .pipe(shareReplay(1));
   }
 

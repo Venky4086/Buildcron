@@ -36,7 +36,13 @@ export class LandingpageComponent implements OnInit {
   buynow(planename:any,planeamount:any){
     sessionStorage.setItem('planename', planename);
     sessionStorage.setItem('planeamount', planeamount);
-    console.log(planeamount);
+    // console.log(planeamount);
     this.router.navigate(['/subscription']);
+  }
+
+  // login
+
+  login(){
+    this.router.navigate(['/login']);
   }
 }

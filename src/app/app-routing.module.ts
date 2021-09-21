@@ -36,6 +36,7 @@ import { WebsiteregisterComponent } from './websiteregister/websiteregister.comp
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SubscriptionordersComponent } from './subscriptionorders/subscriptionorders.component';
+import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquestion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
@@ -49,7 +50,7 @@ const routes: Routes = [
     component: VendorLayoutComponent,
     children: [
       { path: 'CilentAdmin',
-        component: DashboardComponent
+        component: DashboardComponent,canActivate: [AuthguardGuard]
       },
       { path: 'Employees',
     component: EmployeesComponent
@@ -99,7 +100,7 @@ const routes: Routes = [
   component: SuperadminLayoutComponent,
   children: [
     { path: 'SuperAdmin',
-    component: SuperdashboardComponent
+    component: SuperdashboardComponent,canActivate: [AuthguardGuard]
     },
     { path: 'Registrations',
     component: RegistrationsComponent
@@ -115,6 +116,9 @@ const routes: Routes = [
     },
     { path: 'SafetyLibraryList',
     component: SafetylibrarylistComponent
+    },
+    { path: 'SafetyQuestion',
+    component: SafetyquestionComponent
     },
     { path: 'TestdataLibrarylist2',
       component: Testdatalibrarylist2Component

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-layout',
@@ -12,10 +13,13 @@ export class VendorLayoutComponent implements OnInit {
   public isCollapsed2 = true;
   public isCollapsed3 = true;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
+  }
 
 }

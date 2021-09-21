@@ -143,7 +143,12 @@
                                                 <td>{{alllicense.created_at}}</td>
                                                 <td>{{alllicense.end_at}}</td>
                                                 <td>{{alllicense.user.first_name}}</td>
-                                                <td>{{alllicense.status}}</td>
+                                                <td *ngIf="alllicense.status == true">
+                                                    Active
+                                                </td>
+                                                <td *ngIf="alllicense.status == false">
+                                                    InActive
+                                                </td>
                                                 <!-- <td>23652l</td>
                                                 <td>{{alllicense.user_name}}</td>
                                                 <td>{{alllicense.created_at}}</td>

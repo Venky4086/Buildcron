@@ -10,7 +10,7 @@
                 <div class="col-sm-6 mt-3">
                     <div class="alig_btns">
                         <div class="add_btn">
-                            <button class="btn btn-primary mr-4 mright bg2" (click)="open(content)"> +
+                            <button class="btn btn-primary mr-4 mright bg2" data-toggle="modal" data-target="#AddQuality"> +
                                 Add checklist</button>
                         </div>
 
@@ -68,20 +68,20 @@
                                                     <th class="sorting sorting_desc" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="Browser: activate to sort column ascending"
-                                                        aria-sort="descending">Date</th>
+                                                        aria-sort="descending">CheckList Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Platform(s): activate to sort column ascending">
-                                                        Name</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                       Checklist Questions</th>
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
-                                                        Description</th>
+                                                        Description</th> -->
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending">ID
+                                                        aria-label="CSS grade: activate to sort column ascending">Checklist ID
                                                     </th>
-                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                    <!-- <th ngbDropdown class="sorting" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         Uploaded By <i class="fa fa-chevron-down" id="dropdownBasic1"
@@ -96,14 +96,13 @@
                                                             </li>
                                                         </ul>
 
-                                                    </th>
+                                                    </th> -->
 
                                                     <th ngbDropdown class="sorting" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
-                                                        Project Assigned <i class="fa fa-chevron-down"
-                                                            id="dropdownBasic1" ngbDropdownToggle></i>
-                                                        <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                        Project Assigned
+                                                        <!-- <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                                             <li> <button class="fs-12" ngbDropdownItem>Action -
                                                                     1</button></li>
                                                             <li><button class="fs-12" ngbDropdownItem>Another
@@ -111,7 +110,7 @@
                                                             <li><button class="fs-12" ngbDropdownItem>Something else is
                                                                     here</button>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
 
                                                     </th>
                                                     <th>Action
@@ -126,8 +125,8 @@
                                                     <td>John smith</td>
                                                     <td>12552</td>
                                                     <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
+                                                    <!-- <td>User</td> -->
+                                                    <!-- <td>Kittu Johnl</td> -->
 
                                                     <td>
                                                         <a class="cursor_pointer">
@@ -141,141 +140,7 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">10-05-2021</td>
-                                                    <td>John smith</td>
-                                                    <td>12552</td>
-                                                    <td>lorem idem</td>
-                                                    <td>User</td>
-                                                    <td>Kittu Johnl</td>
-
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
+                                         
                                             </tbody>
 
                                         </table>
@@ -343,7 +208,7 @@
 
         <form [formGroup]="AddQualityInspection">
             <div class="row">
-                <div class="form-group col-md-6 mb-3">
+                <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Date:</label>
                     <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
                     <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
@@ -351,10 +216,10 @@
                             Date is required
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Name:</label>
+                    <label for="dateOfBirth">Quality Checklist Name:</label>
                     <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
                     <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
                         <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
@@ -363,7 +228,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-6 mb-3">
+                <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Description:</label>
                     <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
                     <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
@@ -371,14 +236,14 @@
                             Description is required
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">ID:</label>
                     <input type="text" class="form-control" />
                 </div> -->
 
-                <div class="form-group col-md-6 mb-3">
+                <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Uploaded By:</label>
                     <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':submitted && f.uploaded.errors}"/>
                     <div class="invalid-feedback" *ngIf="submitted && f.uploaded.errors">
@@ -386,7 +251,7 @@
                             Uploaded is required
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Project Assigned:</label>
@@ -407,6 +272,98 @@
     </div>
 </ng-template>
 
+<div class="modal fade" id="AddQuality" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Inspection</h4>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="AddQualityInspection">
+                <div class="row">
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Date:</label>
+                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
+                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                                Date is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Quality Checklist Name:</label>
+                        <!-- <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/> -->
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Assigned Quality Checklist'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                        [ngModelOptions]="{standalone:true}" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">
+                      </ng-multiselect-dropdown>
+                        <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                                Quality Checklist Name is required
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Description:</label>
+                        <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.description.errors.required">
+                                Description is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" />
+                    </div> -->
+    
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Uploaded By:</label>
+                        <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':submitted && f.uploaded.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.uploaded.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.uploaded.errors.required">
+                                Uploaded is required
+                            </div>
+                        </div>
+                    </div> -->
+    
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Project Assigned:</label>
+                        <select class="form-select" formControlName="project_assigned" [ngClass]="{'is-invalid':submitted && f.project_assigned.errors}">
+                        <option value="" selected>-- select project --</option>
+                        <option value="{{project.id}}" *ngFor="let project of projectlist">{{project.name}}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.project_assigned.errors.required">
+                                Project Assigned is required
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add Checklist</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 <!-- update -->
 
 <div class="modal fade" id="UpdateQuality" data-backdrop="static">
@@ -425,7 +382,7 @@
 
             <form [formGroup]="UpdateQualityInspection">
                 <div class="row">
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}" />
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
@@ -433,7 +390,7 @@
                                 Date is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Name:</label>
@@ -445,7 +402,7 @@
                         </div>
                     </div>
     
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Description:</label>
                         <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':updatesubmitted && u.description.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.description.errors">
@@ -453,14 +410,14 @@
                                 Description is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
                     <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" />
                     </div> -->
     
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Uploaded By:</label>
                         <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':updatesubmitted && u.uploaded.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.uploaded.errors">
@@ -468,7 +425,7 @@
                                 Uploaded is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
     
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Project Assigned:</label>

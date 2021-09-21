@@ -9,7 +9,7 @@
               <div class="col-sm-6">
                   <div class="alig_btns">
                       <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                          <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddChecklist">
                               + Add Question</button>
                       </div>
 
@@ -109,16 +109,16 @@
                                                   <td>{{checklist.question}}</td>
                                                   <!-- <td>{{checklist.name}}</td>
                                                   <td>{{checklist.id}}</td> -->
-                                                  <td>
+                                                  <!-- <td>
                                                       {{checklist.status}}
-                                                  </td>
-                                                  <!-- <td *ngIf="checklist.status == true">Valid</td>
-                                                  <td *ngIf="checklist.status == false">InValid</td> -->
+                                                  </td> -->
+                                                  <td *ngIf="checklist.status == true">Valid</td>
+                                                  <td *ngIf="checklist.status == false">InValid</td>
                                                   <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.name,checklist.checklist_id,checklist.text,checklist.status)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.question,checklist.checklist_id,checklist.status)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateChecklist" (click)="edit(checklist.id,checklist.name,checklist.checklist_id,checklist.text,checklist.status)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateChecklist" (click)="edit(checklist.id,checklist.question,checklist.checklist_id,checklist.status)">
                                                     <i class="fa fa-edit mr-1"></i>
                                                     </a>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteChecklist" (click)="delete(checklist.id)">
@@ -251,6 +251,81 @@
   </div>
 </ng-template>
 
+
+<div class="modal fade" id="AddChecklist" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Quality Library List</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="AddCheckList">
+                <div class="row">
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Name:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Name is required</div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">ID:</label>
+                        <input type="text" class="form-control" />
+                    </div> -->
+      <!-- 
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Checklist ID:</label>
+                        <input type="text" class="form-control" />
+                    </div> -->
+      
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Checklist Question:</label>
+                        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Checklist Question is required</div>
+                        </div>
+                    </div>
+      
+      
+                    <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Status:</label>
+                      <!-- <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/> -->
+                      <select class="form-select" formControlName="status" [ngClass]="{'is-invalid':submitted  && f.status.errors}">
+                        <option value="" selected>-- selected status --</option>
+                        <option value="true">Valid</option>
+                        <option value="false">InValid</option>
+                      </select>
+                      <div class="invalid-feedback" *ngIf="submitted  && f.status.errors">
+                        <div class="fs-15 fw-700" *ngIf="f.status.errors.required">
+                            Status is required
+                        </div>
+                      </div>
+                    </div>
+      
+                    <!-- <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Status:</label>
+                        <input type="text" class="form-control" />
+                    </div> -->
+      
+      
+                </div>
+            </form>
+      
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add Question</button>
+        </div>
+      </div>
+    </div>
+</div>
+
 <!-- view -->
 
 <div class="modal fade" id="View" data-backdrop="static">
@@ -276,13 +351,15 @@
                     <label for="dateOfBirth">checklist id</label>
                     <p class="font-weight-bold">{{checklist_id}}</p>
                   </div>
-                  <div class="form-group col-md-6 mb-3">
+                  <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Text</label>
                     <p class="font-weight-bold">{{text}}</p>
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Status:</label>
-                    <p class="font-weight-bold">{{status}}</p>
+                    <p class="font-weight-bold" *ngIf="status == true">Valid</p>
+                    <p class="font-weight-bold" *ngIf="status == false">InValid</p>
+                    <!-- <p class="font-weight-bold">InValid</p> -->
                  </div>
               </div>
           </form>
@@ -305,7 +382,6 @@
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Quality Library List</h4>
       
-           
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -326,7 +402,12 @@
                       </div>
                   </div> -->
 
-                    <div class="form-group col-md-6 mb-3">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="">Checklist Id</label>
+                      <input type="text" class="form-control" value="{{checklist_id}}" readonly>
+                  </div>
+
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Name:</label>
                         <input type="text" class="form-control" [(ngModel)]="name" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted  && u.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted  && u.name.errors">
@@ -334,13 +415,13 @@
                             Name is required
                           </div>
                         </div>
-                    </div>
+                    </div> -->
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Checklist Question:</label>
-                        <input type="text" class="form-control" formControlName="text" [(ngModel)]="text" [ngClass]="{ 'is-invalid': updatesubmitted && u.text.errors }"/>
-                        <div *ngIf="updatesubmitted && f.text.errors" class="invalid-feedback">
-                          <div *ngIf="f.text.errors.required" class="fs-15 fw-700">Text is required</div>
+                        <input type="text" class="form-control" [(ngModel)]="name" formControlName="questionname" [ngClass]="{ 'is-invalid': updatesubmitted && u.questionname.errors }"/>
+                        <div *ngIf="updatesubmitted && u.questionname.errors" class="invalid-feedback">
+                          <div *ngIf="u.questionname.errors.required" class="fs-15 fw-700">Checklist Question is required</div>
                         </div>
                     </div>
 <!--       
@@ -361,8 +442,8 @@
                         <!-- <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/> -->
                         <select class="form-select" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}">
                           <option  [(ngModel)]="status"  selected>{{status}}</option>
-                          <option value="Valid">Valid</option>
-                          <option value="InValid">InValid</option>
+                          <option value="true">Valid</option>
+                          <option value="false">InValid</option>
                         </select>
                         <div class="invalid-feedback" *ngIf="updatesubmitted  && u.status.errors">
                             <div class="fs-15 fw-700" *ngIf="u.status.errors.required">
@@ -387,7 +468,7 @@
 <div class="modal fade" id="DeleteChecklist" data-backdrop="static">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content pd-20 delete-bg">
-         <h1 class="text-white fs-20">Are you sure, you want to delete List </h1>
+         <h1 class="text-white fs-20">Are you sure, you want to delete the List </h1>
          <div class="d-flex justify-content-end">
             <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
             <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>

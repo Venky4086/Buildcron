@@ -14,8 +14,7 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#plans">Plans</a></li>
-          <li><a class="nav-link scrollto" href="#testimonies">Testimonies</a></li>
-          
+          <li><a class="nav-link scrollto" href="#testimonies">Testimonies</a></li>          
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -34,6 +33,8 @@
             </ul>
           </li> -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto cursor_pointer" (click)="login()">Login</a></li>
+
           <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -276,9 +277,9 @@
           <p>Check our Pricing</p>
         </header>
 
-        <div class="row gy-4" data-aos="fade-left" *ngFor="let Allplane of Allplanes">
+        <div class="row gy-4" data-aos="fade-left">
 
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100" *ngFor="let Allplane of Allplanes">
             <div class="box">
               <h3 style="color: #07d5c0;">{{Allplane.name}}</h3>
               <div class="price"><sup>$</sup>{{Allplane.amount}}<span> / mo</span></div>
