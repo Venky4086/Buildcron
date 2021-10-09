@@ -79,7 +79,7 @@
                                                   <th class="sorting sorting_desc" tabindex="0"
                                                       aria-controls="example1" rowspan="1" colspan="1"
                                                       aria-label="Browser: activate to sort column ascending"
-                                                      aria-sort="descending">ID</th>
+                                                      aria-sort="descending">FAQs ID</th>
                                                   <th class="sorting" tabindex="0" aria-controls="example1"
                                                       rowspan="1" colspan="1"
                                                       aria-label="Platform(s): activate to sort column ascending">
@@ -105,7 +105,8 @@
                                                   <td>{{faq.faq_id}}</td>
                                                   <td>{{faq.question}}</td>
                                                   <td>{{faq.answer}}</td>
-                                                  <td>{{faq.status}}</td>
+                                                  <td *ngIf="faq.status == true">Valid</td>
+                                                  <td *ngIf="faq.status == false">InValid</td>
                                                   <!-- <td>N/A</td> -->
                                                   <td>
                                                       <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(faq.id,faq.faq_id,faq.question,faq.answer,faq.status)">
@@ -210,7 +211,8 @@
                  </div>
                  <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Status:</label>
-                    <p class="font-weight-bold">{{status}}</p>
+                    <p class="font-weight-bold" *ngIf="status ==true">Valid</p>
+                    <p class="font-weight-bold" *ngIf="status ==false">InValid</p>
                  </div>
               </div>
           </form>
@@ -412,7 +414,7 @@
                         </div>
                     </div> -->
       
-                    <div class="form-group col-md-6 mb-3">
+                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Status:</label>
                         <input type="text" class="form-control" [(ngModel)]="status" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted && u.status.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.status.errors">
@@ -420,7 +422,7 @@
                               Status is required
                           </div>
                         </div>
-                    </div>
+                    </div> -->
       
                 </div>
             </form>

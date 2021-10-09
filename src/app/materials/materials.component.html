@@ -9,7 +9,7 @@
               <div class="col-sm-6">
                   <div class="alig_btns">
                       <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                          <button class="btn btn-primary mr-2 mright bg2" data-target="#AddMaterial" data-toggle="modal">
                               + Add Material</button>
                       </div>
 
@@ -127,218 +127,54 @@
 
                                             <tbody>
 
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
+                                                <tr class="odd" *ngFor="let material of Materiallists
+                                                | paginate
+                                            :{
+                                              id:'listing_pagination',
+                                              itemsPerPage:5,
+                                              currentPage:page,
+                                              totalItems:totalRecords
+                                            }
+                                                ;let i = index">
+                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="sorting_1">{{material.name}}</td>
+                                                    <td>{{material.mid}}</td>
+                                                    <td>{{material.description}}</td>
+                                                    <td>{{material.boq_ref}}</td>
+                                                    <td>
+                                                        {{material.maker.name}}
+                                                    </td>
                                                     <td>User</td>
 
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
+                                                    <!-- <td>uom1</td> -->
+                                                    <td>{{material.total_uom}}</td>
+                                                    <td>{{material.total_qty}}</td>
+                                                    <td>{{material.b_uom}}</td>
+                                                    <td>{{material.b_qty}}</td>
                                                     <td>
-                                                        <a class="cursor_pointer">
+                                                        <a class="cursor_pointer" (click)="view(material.name,material.mid,material.description,material.boq_ref,material.maker.name,material.total_uom,material.total_qty,material.b_uom,material.b_qty)">
                                                         <i class='fa fa-eye mr-1'></i>
                                                         </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateMaterial">
+                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateMaterial" (click)="edit(material.id,material.name,material.mid,material.description,material.boq_ref,material.maker.id,material.maker.name,material.total_uom,material.total_qty,material.b_uom,material.b_qty)">
                                                         <i class="fa fa-edit mr-1"></i>
                                                         </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteMaterial">
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        <i class="fa fa-trash mr-1"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd">
-                                                    <td class="dtr-control">1</td>
-                                                    <td class="sorting_1">John</td>
-                                                    <td>25125</td>
-                                                    <td>lorem ipsum</td>
-                                                    <td>ref1</td>
-                                                    <td>Yes</td>
-                                                    <td>User</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>uom1</td>
-                                                    <td>20kgs</td>
-                                                    <td>
-                                                        <a class="cursor_pointer">
-                                                        <i class='fa fa-eye mr-1'></i>
-                                                        </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateMaterial">
-                                                        <i class="fa fa-edit mr-1"></i>
-                                                        </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteMaterial">
+                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteMaterial" (click)="delete(material.id)">
                                                         <i class="fa fa-trash mr-1"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                
                                             </tbody>
 
                                         </table>
                                     </div>
-                                    <div class="patch-cls-cream">
-
+                                    <div class="my-2 text-right">
+                                        <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                               <div class="col-md-6 col-md-offset-6">
 
 
@@ -361,7 +197,7 @@
                                       </ul>
                                   </div>
                               </div>
-                          </div>
+                            </div> -->
                           <div class="row">
                             <div class="col-md-12">
                              <ngx-spinner
@@ -384,6 +220,70 @@
   </div>
 </div>
 
+<!-- view material -->
+
+<div class="modal fade" id="MaterialView" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Material View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="matclose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Material Name:</label>
+                      <p class="font-weight-bold">{{material_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Material Id:</label>
+                      <p class="font-weight-bold">{{materialId}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Description:</label>
+                    <p class="font-weight-bold">{{descriprion}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">BOQ Ref:</label>
+                    <p class="font-weight-bold">{{boq_ref}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Make:</label>
+                    <p class="font-weight-bold">{{maker_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Total Quality UOM:</label>
+                    <p class="font-weight-bold">{{total_uom}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Total Quality Qty:</label>
+                    <p class="font-weight-bold">{{total_qty}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Baseline Quantity UOM:</label>
+                    <p class="font-weight-bold">{{b_uom}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Baseline Quantity Qty:</label>
+                    <p class="font-weight-bold">{{b_qty}}</p>
+                  </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" (click)="matclose()" aria-label="Close">OK</button>
+        </div>
+      </div>
+      </div>
+</div>
+
 <!-- Add Material -->
 
 <ng-template #content let-modal>
@@ -400,9 +300,9 @@
           <div class="row">
               <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Name:</label>
-                  <input type="text" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
-                  <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                      <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                  <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}" />
+                  <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
                           Name is required
                       </div>
                   </div>
@@ -424,7 +324,7 @@
                   <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
                   <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
                     <div class="fs-15 fw-700" *ngIf="f.description.errors.required">
-                        Id is required
+                        Description is required
                     </div>
                   </div>
               </div>
@@ -503,9 +403,141 @@
 
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="Add()">Add Project</button>
+      <button type="button" class="btn btn-primary" (click)="Add()">Add Material</button>
   </div>
 </ng-template>
+
+<div class="modal fade" id="AddMaterial" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blu">
+                <h4 class="modal-title mb-0" id="modal-basic-title">Add Material</h4>
+
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="AddMaterial">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="dateOfBirth">Name:</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Enter Material Name" [ngClass]="{'is-invalid':submitted && f.name.errors}" />
+                            <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                                <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                                    Name is required
+                                </div>
+                            </div>
+          
+                        </div>
+          
+                        <!-- <div class="form-group col-md-6 mb-3">
+                            <label for="dateOfBirth">ID:</label>
+                            <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
+                            <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
+                              <div class="fs-15 fw-700" *ngIf="f.id.errors.required">
+                                  Id is required
+                              </div>
+                            </div>
+                        </div> -->
+          
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="dateOfBirth">Description:</label>
+                            <input type="text" class="form-control" formControlName="description" placeholder="Enter Material Description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
+                            <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
+                              <div class="fs-15 fw-700" *ngIf="f.description.errors.required">
+                                  Description is required
+                              </div>
+                            </div>
+                        </div>
+          
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="dateOfBirth">BOQ Ref:</label>
+                            <input type="text" class="form-control" formControlName="boq_ref" placeholder="Enter Material boq_ref" [ngClass]="{'is-invalid':submitted && f.boq_ref.errors}"/>
+                            <div class="invalid-feedback" *ngIf="submitted && f.boq_ref.errors">
+                              <div class="fs-15 fw-700" *ngIf="f.boq_ref.errors.required">
+                                  BOQ Ref is required
+                              </div>
+                            </div>
+                        </div>
+          
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="dateOfBirth">Make:</label>
+                            <select type="text" class="form-select" formControlName="make" [ngClass]="{'is-invalid':submitted && f.make.errors}">
+                                <option value="" selected>-- select the vendor --</option>
+                                <option value="{{vendor.id}}" *ngFor="let vendor of vendorlist">
+                                    {{vendor.name}}
+                                </option>
+                             </select>   
+                            <div class="invalid-feedback" *ngIf="submitted && f.make.errors">
+                              <div class="fs-15 fw-700" *ngIf="f.make.errors.required">
+                                  Make is required
+                              </div>
+                            </div>
+                        </div>
+          
+                        <!-- <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Project Assigned:</label>
+                          <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':submitted && f.project_assigned.errors}"/>
+                          <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
+                              <div class="fs-15 fw-700" *ngIf="f.project_assigned.errors.required">
+                                  Project Assigned is required
+                              </div>
+                          </div>
+                      </div> -->
+          
+                      <div class="form-group col-md-6 mb-3">
+                        <label for="dateOfBirth">Total UOM:</label>
+                        <input type="text" class="form-control" formControlName="total_uom" placeholder="Enter Material total_uom" [ngClass]="{'is-invalid':submitted && f.total_uom.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.total_uom.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.total_uom.errors.required">
+                              Total UOM is required
+                          </div>
+                       </div>
+                    </div>
+          
+                    <div class="form-group col-md-6 mb-3">
+                      <label for="dateOfBirth">Total Quantity:</label>
+                      <input type="text" class="form-control" formControlName="total_quantity" placeholder="Enter Material total_quantity" [ngClass]="{'is-invalid':submitted && f.total_quantity.errors}"/>
+                      <div class="invalid-feedback" *ngIf="submitted && f.total_quantity.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.total_quantity.errors.required">
+                              Total Quantity is required
+                          </div>
+                      </div>
+                  </div>
+          
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Baseline UOM:</label>
+                    <input type="text" class="form-control" formControlName="baseline_uom" placeholder="Enter Material baseline_uom" [ngClass]="{'is-invalid':submitted && f.baseline_uom.errors}"/>
+                    <div class="invalid-feedback" *ngIf="submitted && f.baseline_uom.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.baseline_uom.errors.required">
+                          Baseline UOM is required
+                      </div>
+                  </div>
+                </div>
+          
+                <div class="form-group col-md-6 mb-3">
+                  <label for="dateOfBirth">Baseline Quantity:</label>
+                  <input type="text" class="form-control" formControlName="baseline_quantity" placeholder="Enter Material baseline_quantity" [ngClass]="{'is-invalid':submitted && f.baseline_quantity.errors}"/>
+                  <div class="invalid-feedback" *ngIf="submitted && f.baseline_quantity.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.baseline_quantity.errors.required">
+                          Baseline Quantity is required
+                      </div>
+                  </div>
+              </div>
+                    </div>
+                </form>
+          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="Add()">Add Material</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- update -->
 
@@ -514,7 +546,6 @@
         <div class="modal-content">
             <div class="modal-header bg-blu">
                 <h4 class="modal-title mb-0" id="modal-basic-title">Update Material</h4>
-
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -526,39 +557,39 @@
                 <form [formGroup]="UpdateMaterial">
                     <div class="row">
                         <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Date:</label>
-                            <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}" />
-                            <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
-                                <div class="fs-15 fw-700" *ngIf="u.date.errors.required">
-                                    Date is required
+                            <label for="dateOfBirth">Name:</label>
+                            <input type="name" class="form-control" [(ngModel)]="material_name" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}" />
+                            <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
+                                <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
+                                    Name is required
                                 </div>
                             </div>
           
                         </div>
           
                         <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">ID:</label>
-                            <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}"/>
-                            <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
+                            <label for="dateOfBirth">Material Id:</label>
+                            <input type="text" class="form-control" value="{{materialId}}" readonly/>
+                            <!-- <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
                               <div class="fs-15 fw-700" *ngIf="u.id.errors.required">
                                   Id is required
                               </div>
-                            </div>
+                            </div> -->
                         </div>
           
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Description:</label>
-                            <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':updatesubmitted && u.description.errors}"/>
+                            <input type="text" class="form-control" [(ngModel)]="descriprion" formControlName="description" [ngClass]="{'is-invalid':updatesubmitted && u.description.errors}"/>
                             <div class="invalid-feedback" *ngIf="updatesubmitted && u.description.errors">
                               <div class="fs-15 fw-700" *ngIf="u.description.errors.required">
-                                  Id is required
+                                Description is required
                               </div>
                             </div>
                         </div>
           
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">BOQ Ref:</label>
-                            <input type="text" class="form-control" formControlName="boq_ref" [ngClass]="{'is-invalid':updatesubmitted && u.boq_ref.errors}"/>
+                            <input type="text" class="form-control" [(ngModel)]="boq_ref" formControlName="boq_ref" [ngClass]="{'is-invalid':updatesubmitted && u.boq_ref.errors}"/>
                             <div class="invalid-feedback" *ngIf="updatesubmitted && u.boq_ref.errors">
                               <div class="fs-15 fw-700" *ngIf="u.boq_ref.errors.required">
                                   BOQ Ref is required
@@ -568,7 +599,9 @@
           
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Make:</label>
-                            <input type="text" class="form-control" formControlName="make" [ngClass]="{'is-invalid':updatesubmitted && u.make.errors}"/>
+                            <select type="text" class="form-select" [(ngModel)]="maker_id" formControlName="make" [ngClass]="{'is-invalid':updatesubmitted && u.make.errors}">
+                                <option value="{{vendor.id}}" *ngFor="let vendor of vendorlist" [selected]="vendor.id == maker_id" >{{vendor.name}}</option>
+                            </select>
                             <div class="invalid-feedback" *ngIf="updatesubmitted && u.make.errors">
                               <div class="fs-15 fw-700" *ngIf="u.make.errors.required">
                                   Make is required
@@ -576,7 +609,7 @@
                             </div>
                         </div>
           
-                        <div class="form-group col-md-6 mb-3">
+                        <!-- <div class="form-group col-md-6 mb-3">
                           <label for="dateOfBirth">Project Assigned:</label>
                           <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':updatesubmitted && u.project_assigned.errors}"/>
                           <div class="invalid-feedback" *ngIf="updatesubmitted && u.project_assigned.errors">
@@ -584,11 +617,11 @@
                                   Project Assigned is required
                               </div>
                           </div>
-                      </div>
+                      </div> -->
           
                       <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Total UOM:</label>
-                        <input type="text" class="form-control" formControlName="total_uom" [ngClass]="{'is-invalid':updatesubmitted && u.total_uom.errors}"/>
+                        <input type="text" class="form-control" [(ngModel)]="total_uom" formControlName="total_uom" [ngClass]="{'is-invalid':updatesubmitted && u.total_uom.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.total_uom.errors">
                           <div class="fs-15 fw-700" *ngIf="u.total_uom.errors.required">
                               Total UOM is required
@@ -598,7 +631,7 @@
           
                     <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Total Quantity:</label>
-                      <input type="text" class="form-control" formControlName="total_quantity" [ngClass]="{'is-invalid':updatesubmitted && u.total_quantity.errors}"/>
+                      <input type="text" class="form-control" [(ngModel)]="total_qty" formControlName="total_quantity" [ngClass]="{'is-invalid':updatesubmitted && u.total_quantity.errors}"/>
                       <div class="invalid-feedback" *ngIf="updatesubmitted && u.total_quantity.errors">
                           <div class="fs-15 fw-700" *ngIf="u.total_quantity.errors.required">
                               Total Quantity is required
@@ -608,7 +641,7 @@
           
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Baseline UOM:</label>
-                    <input type="text" class="form-control" formControlName="baseline_uom" [ngClass]="{'is-invalid':updatesubmitted && u.baseline_uom.errors}"/>
+                    <input type="text" class="form-control" [(ngModel)]="b_uom" formControlName="baseline_uom" [ngClass]="{'is-invalid':updatesubmitted && u.baseline_uom.errors}"/>
                     <div class="invalid-feedback" *ngIf="updatesubmitted && u.baseline_uom.errors">
                       <div class="fs-15 fw-700" *ngIf="u.baseline_uom.errors.required">
                           Baseline UOM is required
@@ -618,7 +651,7 @@
           
                 <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Baseline Quantity:</label>
-                  <input type="text" class="form-control" formControlName="baseline_quantity" [ngClass]="{'is-invalid':updatesubmitted && u.baseline_quantity.errors}"/>
+                  <input type="text" class="form-control" [(ngModel)]="b_qty" formControlName="baseline_quantity" [ngClass]="{'is-invalid':updatesubmitted && u.baseline_quantity.errors}"/>
                   <div class="invalid-feedback" *ngIf="updatesubmitted && u.baseline_quantity.errors">
                       <div class="fs-15 fw-700" *ngIf="u.baseline_quantity.errors.required">
                           Baseline Quantity is required

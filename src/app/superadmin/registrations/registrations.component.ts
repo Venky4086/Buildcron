@@ -12,7 +12,7 @@ declare var $: any;
   selector: 'app-registrations',
   templateUrl: './registrations.component.html',
   styleUrls: ['./registrations.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe,SuperadminService]
 })
 export class RegistrationsComponent  {
   closeResult = '';
@@ -43,9 +43,12 @@ export class RegistrationsComponent  {
   contactperson: any;
   user_id: any;
   user_name: any;
+  totalRecords:any;
+  page:any=1;
   constructor(private datePipe: DatePipe,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
   CompanyRegistration = this.fb.group({
     name:['', Validators.required],
+    countryCode:['', Validators.required],
     phone:['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     email:['', [Validators.required,Validators.email]],
     username:['', [Validators.required]],
@@ -145,6 +148,7 @@ export class RegistrationsComponent  {
       if(res){
         console.log(res);
         this.companyregistrationdatas = res;
+        this.totalRecords = res.length;
         this.contactperson = res.contact_person;
         // console.log(this.contactperson);
         this.spinner.hide();
@@ -189,7 +193,7 @@ export class RegistrationsComponent  {
       // }
       // this.spinner.show();
       const data = {
-        "user":{"email":this.CompanyRegistration.value.email,"phone_number":this.CompanyRegistration.value.phone,
+        "user":{"email":this.CompanyRegistration.value.email,"phone_number":this.CompanyRegistration.value.countryCode+this.CompanyRegistration.value.phone,
         "first_name":this.CompanyRegistration.value.username,"password":this.CompanyRegistration.value.password},
         "gstin":this.CompanyRegistration.value.gstno,
         "name":this.CompanyRegistration.value.name,

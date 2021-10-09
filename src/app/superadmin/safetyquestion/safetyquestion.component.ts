@@ -63,6 +63,11 @@ export class SafetyquestionComponent implements OnInit {
     }
   }
   
+  Status:any[]=[
+    {id:1,name:'Valid'},
+    {id:2,name:'InValid'},
+  ]
+
 // list
 
   list(){
@@ -70,7 +75,7 @@ export class SafetyquestionComponent implements OnInit {
     this.superservice.allsaftychecklist(sessionStorage.getItem('safety_id')).subscribe((res)=>{
       if(res){
         console.log(res);
-        this.checklists = res.checklist;
+        this.checklists = res.question;
         this.spinner.hide();
       }
       else{
@@ -91,9 +96,10 @@ export class SafetyquestionComponent implements OnInit {
   else{
     const data = {
       "question": this.AddCheckList.value.name,
-      "answer": "it regular",
-      "status": this.AddCheckList.value.status,
-      "pid":sessionStorage.getItem('safety_id')
+      // "answer": "it regular",
+      "typee":"Safety",
+      "admin_status": this.AddCheckList.value.status,
+      "type_id":sessionStorage.getItem('safety_id')
     }
     // console.log(this.AddCheckList.value);
     // const formData = new FormData
@@ -143,11 +149,18 @@ export class SafetyquestionComponent implements OnInit {
       return
     }
     else{
+      // const data = {
+      //   "question": this.UpdateCheckList.value.questionname,
+      //   "answer": "it regular",
+      //   "status": this.UpdateCheckList.value.status,
+      //   "pid":sessionStorage.getItem('safety_id')
+      // }
       const data = {
         "question": this.UpdateCheckList.value.questionname,
-        "answer": "it regular",
-        "status": this.UpdateCheckList.value.status,
-        "pid":sessionStorage.getItem('safety_id')
+        // "answer": "it regular",
+        "typee":"Safety",
+        "admin_status": this.UpdateCheckList.value.status,
+        "type_id":sessionStorage.getItem('safety_id')
       }
        // const formData = new FormData
       // formData.append('name',this.UpdateCheckList.value.name),

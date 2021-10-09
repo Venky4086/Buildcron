@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +9,8 @@ import { SuperadminService } from 'src/app/services/superadmin.service';
 @Component({
   selector: 'app-license',
   templateUrl: './license.component.html',
-  styleUrls: ['./license.component.css']
+  styleUrls: ['./license.component.css'],
+  providers:[SuperadminService]
 })
 export class LicenseComponent {
   submitted = false;
@@ -33,8 +35,10 @@ export class LicenseComponent {
   Days:any;
   Months:any;
   Years: any;
-  devicelists:any
-  constructor(private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }  
+  devicelists:any;
+  totalRecords:any;
+  page:any=1;
+  constructor(private router:Router,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }  
     AddLicense = this.fb.group({
       // id:['', Validators.required],
       // client_id:['', Validators.required],
@@ -67,7 +71,7 @@ export class LicenseComponent {
     ngOnInit() {
       this.allLicenseData();
       this.allcompanydetails();
-      this.device_list();
+      // this.device_list();
       }
     get f(){
       return this.AddLicense.controls
@@ -135,6 +139,7 @@ export class LicenseComponent {
       if(res){
         console.log(res);
         this.alllicenses = res;
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{
@@ -279,5 +284,9 @@ export class LicenseComponent {
    })
   }
 
+  single_license_details(company:any){
+   sessionStorage.setItem('c_name',company);
+   this.router.navigate(['/userlicense']);
+  }
 
 }

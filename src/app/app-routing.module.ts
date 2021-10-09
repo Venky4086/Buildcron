@@ -37,6 +37,11 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SubscriptionordersComponent } from './subscriptionorders/subscriptionorders.component';
 import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquestion.component';
+import { CfaqsComponent } from './cfaqs/cfaqs.component';
+import { CbannersComponent } from './cbanners/cbanners.component';
+import { UsedlicenseComponent } from './superadmin/usedlicense/usedlicense.component';
+import { SafetydashboardComponent } from './safetydashboard/safetydashboard.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
@@ -51,6 +56,10 @@ const routes: Routes = [
     children: [
       { path: 'CilentAdmin',
         component: DashboardComponent,canActivate: [AuthguardGuard]
+      },
+      {
+      path:'Safetydashboard',
+      component:SafetydashboardComponent
       },
       { path: 'Employees',
     component: EmployeesComponent
@@ -93,6 +102,17 @@ const routes: Routes = [
   { path: 'Contactus',
     component: ContactusComponent
    },
+   { path: 'cfaqs',
+   component: CfaqsComponent
+  },
+  {
+    path:'cbanners',
+    component:CbannersComponent
+  },
+  {
+    path:'changepassword',
+    component:ChangepasswordComponent
+  }
     ]
    },
 
@@ -107,6 +127,9 @@ const routes: Routes = [
     },
     { path: 'License',
     component: LicenseComponent,
+    },
+    {
+      path:'userlicense',component:UsedlicenseComponent
     },
     { path: 'QualityLibraryList',
     component: LibrarylistComponent
@@ -146,7 +169,7 @@ const routes: Routes = [
   },
   {
     path:'webregister', component:WebsiteregisterComponent
-    },
+    }
   ]
    }
 

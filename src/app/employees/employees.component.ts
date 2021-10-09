@@ -9,7 +9,8 @@ declare var $: any;
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
+  styleUrls: ['./employees.component.css'],
+  providers:[AdminService]
 })
 export class EmployeesComponent {
   closeResult = '';
@@ -26,12 +27,15 @@ export class EmployeesComponent {
   email: any;
   mobile: any;
   emid: any;
+  totalRecords:any;
+  page:any=1;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddEmployee = this.fb.group({
     // date:['', Validators.required],
     name:['', Validators.required],
     // id:['', Validators.required],
     // designation:['', Validators.required],
+    countrycode:['', Validators.required],
     email:['',[Validators.required,Validators.email]],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     // project_assigned:['', Validators.required]
@@ -91,7 +95,6 @@ export class EmployeesComponent {
       if(res){
         console.log(res);
         this.projectlist = res;
-
         for(let i=0; i < this.projectlist.length; i++) {
           tmp.push({ item_id: this.projectlist[i].id, item_text: this.projectlist[i].name });
         }
@@ -116,6 +119,7 @@ export class EmployeesComponent {
       if(res){
         console.log(res);
         this.employelist = res;
+        this.totalRecords = res.length
         this.spinner.hide();
       }
       else{
@@ -133,6 +137,7 @@ export class EmployeesComponent {
     this.email = email,
     this.mobile = mobile
   }
+
   // Add
 
   Add(){
@@ -153,13 +158,13 @@ export class EmployeesComponent {
           "user": {
           "email": this.AddEmployee.value.email,
           "first_name": this.AddEmployee.value.name,
-          "phone_number": this.AddEmployee.value.mobile
+          "phone_number": this.AddEmployee.value.countrycode+this.AddEmployee.value.mobile
           },
-          "company": {
-            "id":sessionStorage.getItem('company_id')
-          },
-          "designation": "Site engineer",
-          "projects": this.ProjectList
+          // "company": {
+          //   "id":sessionStorage.getItem('company_id')
+          // },
+          // "designation": "Site engineer",
+          // "projects": this.ProjectList
       }
       // const formData = new FormData;
       // formData.append('date',this.AddEmployee.value.date);
@@ -187,12 +192,14 @@ export class EmployeesComponent {
   }
 
   // update
+
   edit(employe_id:any,name:any,email:any,mobile:any){
     this.employe_id =employe_id,
     this.name = name,
     this.email = email,
     this.mobile = mobile
   }
+
   Update(){
     const mint = this
     this.updatesubmitted = true;
@@ -205,7 +212,7 @@ export class EmployeesComponent {
         "first_name": this.UpdateEmployee.value.name,
         "email": this.UpdateEmployee.value.email,
         "phone_number": this.UpdateEmployee.value.mobile,
-        "is_active": true
+        // "is_active": true
     }
 
       const formData = new FormData;

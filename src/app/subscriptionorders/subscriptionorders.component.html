@@ -88,9 +88,9 @@
                   class="form-select"
                   id="plan"
                   aria-label="Plan"
-                  name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }">
-                  <option  value="{{planename}}" selected>{{planename}}</option>
-                  <option value="{{Allplane.name}}" *ngFor="let Allplane of Allplanes">{{Allplane.name}}</option>
+                  name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }" (change)="plane($event)">
+                  <!-- <option  value="{{planename}}" selected>{{planename}}</option> -->
+                  <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.name}}</option>
                   <!-- <option value="annual">Annual</option>
                   <option value="perpetual">Perpetual</option> -->
                 </select>

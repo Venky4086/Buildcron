@@ -21,6 +21,7 @@ export class FaqsComponent  {
   question: any;
   answer: any;
   faqs_id: any;
+  // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
      question:['', Validators.required],
@@ -32,7 +33,7 @@ export class FaqsComponent  {
     question:['', Validators.required],
     answer:['', Validators.required],
     // id:['', Validators.required],
-    status:['', Validators.required]
+    // status:['', Validators.required]
   });
   ngOnInit() {
     this.allfaqs();
@@ -147,7 +148,7 @@ export class FaqsComponent  {
       const data = {
         "question": this.UpdateFaqs.value.question,
         "answer": this.UpdateFaqs.value.answer,
-        "status": this.UpdateFaqs.value.status
+        "status": 'true'
       }
       // const formData = new FormData
       // formData.append('question',this.UpdateFaqs.value.question);
@@ -181,9 +182,11 @@ export class FaqsComponent  {
       console.log(res);
       mint.toaster.success('Successfully faq Deleted!');
       this.allfaqs();
+      $('#DeleteFaqs').hide();
     },(error)=>{
       console.error(error);
       mint.toaster.error('Somthing went to wrong');
+      $('#DeleteFaqs').hide();
     })
   }
 }

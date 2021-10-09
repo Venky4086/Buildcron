@@ -3322,4 +3322,21 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     font-size: 13px;
     color: #004add;
   }
-  
+
+/* placeholder */
+
+input::placeholder{
+  color: #000!important;
+  font-size: 14px !important;
+}
+  /* pagination */
+
+  .ngx-pagination li.current{
+    border: 1px solid #FF6600 !important;
+  }
+  .ngx-pagination li.current{
+    padding: 0.1875rem 0.625rem !important;
+    background: #FF6600 !important;
+    color: #fefefe !important;
+    cursor: default !important;
+  }

@@ -35,7 +35,7 @@ export class QuestionsComponent  {
   });
   ngOnInit(){
     this.list();
-    console.log(sessionStorage.getItem('quality_id'));
+    // console.log(sessionStorage.getItem('quality_id'));
   }
 
   get f(){
@@ -71,7 +71,7 @@ export class QuestionsComponent  {
     this.superservice.allchecklist(sessionStorage.getItem('quality_id')).subscribe((res)=>{
       if(res){
         console.log(res);
-        this.checklists = res.checklist;
+        this.checklists = res.question;
         this.spinner.hide();
       }
       else{
@@ -92,9 +92,10 @@ export class QuestionsComponent  {
   else{
     const data = {
       "question": this.AddCheckList.value.name,
-      "answer": "it regular",
-      "status": this.AddCheckList.value.status,
-      "pid":sessionStorage.getItem('quality_id')
+      // "answer": "it regular",
+      "admin_status": this.AddCheckList.value.status,
+      "type_id":sessionStorage.getItem('quality_id'),
+      "typee":"Quality"
     }
     // console.log(this.AddCheckList.value);
     // const formData = new FormData
@@ -145,11 +146,18 @@ export class QuestionsComponent  {
       return
     }
     else{
-      const data = {
+      // const data = {
+      //   "question": this.UpdateCheckList.value.questionname,
+      //   "answer": "it regular",
+      //   "status": this.UpdateCheckList.value.status,
+      //   "pid":sessionStorage.getItem('quality_id')
+      // } 
+       const data = {
         "question": this.UpdateCheckList.value.questionname,
-        "answer": "it regular",
-        "status": this.UpdateCheckList.value.status,
-        "pid":sessionStorage.getItem('quality_id')
+        // "answer": "it regular",
+        "admin_status": this.UpdateCheckList.value.status,
+        "type_id":sessionStorage.getItem('quality_id'),
+        "typee":"Quality"
       }
        // const formData = new FormData
       // formData.append('name',this.UpdateCheckList.value.name),
@@ -186,4 +194,8 @@ export class QuestionsComponent  {
     })
   }
 
+Status:any[]=[
+  {id:1,name:'Valid'},
+  {id:2,name:'InValid'},
+]
 }

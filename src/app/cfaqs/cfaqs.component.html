@@ -1,0 +1,54 @@
+<div class="container-fluid px-0">
+    <div class="card">
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-6 pl-25">
+                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">FAQs List</h3>
+                </div><!-- /.col --> 
+  
+               
+            </div><!-- /.row -->
+  
+  
+            <div class="container-fluid pd-20">
+                <div class="row">
+
+                   <div class="col-md-12">
+
+                       <!-- <div class="card cls-cream pd-5">
+                         <h1 class="mgb-0 fs-20">
+                             {{Faq.question}}
+                         </h1>
+                       </div> -->
+
+                       <div class="accordion" id="accordionExample">
+
+                        <div class="card" *ngFor="let faq of FaqsLists;let i=index">
+                          <div class="card-header d-flex align-items-center" id="headingOne">
+                            <h2 class="mgb-0 fs-15">{{i+1}}</h2>
+                            <h2 class="mb-0">
+                                
+                              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#test' + i" aria-expanded="true" aria-controls="collapseOne">
+                                {{faq.question}}
+                              </button>
+                            </h2>
+                          </div>
+                      
+                          <div id="test{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                              {{faq.answer}}
+                            </div>
+                          </div>
+                        </div>
+    
+                       </div>
+
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  

@@ -13,6 +13,7 @@ import { SuperadminService } from '../services/superadmin.service';
 })
 export class LoginComponent implements OnInit {
   submitted = false;
+  fieldTextType:any;
   roles: any;
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   Login = this.fb.group({
@@ -43,6 +44,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/SuperAdmin']);
         this.roles = res.role;
         sessionStorage.setItem('company_id',res.company_id);
+        sessionStorage.setItem('company_name',res.company_name);
+
+        sessionStorage.setItem('first_name',res.first_name);
+        sessionStorage.setItem('adminemail',res.email);
+        sessionStorage.setItem('license_count',res.license_count);
         // this.toaster.success('Successfully Login Done!')
         if(this.roles === 'SA'){
           this.router.navigate(['/SuperAdmin']);
@@ -52,8 +58,16 @@ export class LoginComponent implements OnInit {
         }
       },(error)=>{
         console.error(error);
+        if(error.error.error){
+          this.toaster.error(error.error.error);
+        }
+        else{
         this.toaster.error('Somthing went to wrong');
+        }
       });
     }
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

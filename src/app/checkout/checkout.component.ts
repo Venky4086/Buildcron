@@ -19,9 +19,13 @@ export class CheckoutComponent implements OnInit {
   next: any;
   payment_id: any;
   contactpersons: any;
+  planename = sessionStorage.getItem('planename');
+  fieldTextType:any;
+  
   constructor(private router:Router,private datePipe: DatePipe,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private registrationService:RegistrationService) { }
   CompanyRegistration = this.fb.group({
     name:['', Validators.required],
+    countryCode:['', Validators.required],
     phone:['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     email:['', [Validators.required,Validators.email]],
     username:['', [Validators.required]],
@@ -39,6 +43,7 @@ export class CheckoutComponent implements OnInit {
   Total_Amount = sessionStorage.getItem('planeamount')
   ngOnInit(): void {
     this.contactperson();
+    console.log(sessionStorage.getItem('planename'));
   }
 
   get f(){
@@ -72,7 +77,7 @@ pay(){
       "user_details":{
         "first_name":this.CompanyRegistration.value.username,
         "email":this.CompanyRegistration.value.email,
-        "phone_number":this.CompanyRegistration.value.phone,
+        "phone_number":this.CompanyRegistration.value.countryCode+this.CompanyRegistration.value.phone,
         "password":this.CompanyRegistration.value.password
       },
       "company_details":{
@@ -111,8 +116,17 @@ $('#PayModal').modal('hide');
 this.router.navigate(['/login']);
 }
 
+
+cancel(){
+  $('#PayModal').hide();
+}
+
 login(){
   this.router.navigate(['/login']);
 }
 
+
+toggleFieldTextType() {
+  this.fieldTextType = !this.fieldTextType;
+}
 }

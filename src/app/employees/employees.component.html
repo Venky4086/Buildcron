@@ -125,14 +125,20 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr class="odd" *ngFor="let emp of employelist;let i=index">
+                                            <tr class="odd" *ngFor="let emp of employelist | paginate
+                                            :{
+                                              id:'listing_pagination',
+                                              itemsPerPage:5,
+                                              currentPage:page,
+                                              totalItems:totalRecords
+                                            }
+                                            ;let i=index">
                                                 <td class="dtr-control">{{i+1}}</td>
                                                 <td class="sorting_1">{{emp.created_at}}</td>
                                                 <td>{{emp.user.first_name}}</td>
                                                 <td>{{emp.eid}}</td>
                                                 <td>{{emp.user.email}}</td>
                                                 <td>{{emp.user.phone_number}}</td>
-
                                                 <!-- <td>{{emp.projects}}</td> -->
                                                 <td>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(emp.eid,emp.user.first_name,emp.user.email,emp.user.phone_number)">
@@ -146,17 +152,16 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                          
                                         </tbody>
 
                                     </table>
-                                    <div class="patch-cls-cream">
-
+                                    <div class="my-2 text-right">
+                                      <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                     </div>
                                 </div>
 
                               </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                 <div class="col-md-6 col-md-offset-6">
 
 
@@ -179,7 +184,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col-md-12">
                                      <ngx-spinner
@@ -353,7 +358,6 @@
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Add Employe</h4>
       
-           
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -375,7 +379,7 @@
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
                           <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
                             Name is required
@@ -405,7 +409,7 @@
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Email ID:</label>
-                        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
+                        <input type="text" class="form-control" formControlName="email" placeholder="Enter Employee Email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
                           <div class="fs-15 fw-700" *ngIf="f.email.errors.required">
                             Email is required
@@ -415,17 +419,30 @@
                           </div>
                         </div>
                     </div>
-      
-                    <div class="form-group col-md-6 mb-3">
-                      <label for="dateOfBirth">Mobile Number:</label>
-                      <input type="text" class="form-control" formControlName="mobile" [ngClass]="{'is-invalid':submitted && f.mobile.errors}"/>
-                      <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
-                          <div class="fs-15 fw-700" *ngIf="f.mobile.errors.required">
-                            Mobile number is required
+                    <div class="form-row">
+                      <div class="from-group col-md-4 mb-3">
+                        <label for="">Country Code</label>
+                        <select name="countryCode" id="" class="form-select" formControlName="countrycode" [ngClass]="{'is-invalid':submitted && f.countrycode.errors}">
+                          <option value="" Selected>--select code--</option>
+                          <option data-countryCode="US" value="+91">India (+91)</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submitted && f.countrycode.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.countrycode.errors.required">
+                            Country Code is required
                           </div>
-                          <div class="fs-15 fw-700" *ngIf="f.mobile.errors.pattern">
-                             mobile number must be at 10 digits is required
-                          </div>
+                      </div>
+                       </div>
+                      <div class="form-group col-md-8 mb-3">
+                        <label for="dateOfBirth">Mobile Number:</label>
+                        <input type="text" class="form-control" formControlName="mobile" placeholder="Enter Employee Mobile Number" [ngClass]="{'is-invalid':submitted && f.mobile.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
+                            <div class="fs-15 fw-700" *ngIf="f.mobile.errors.required">
+                              Mobile number is required
+                            </div>
+                            <div class="fs-15 fw-700" *ngIf="f.mobile.errors.pattern">
+                               mobile number must be at 10 digits is required
+                            </div>
+                        </div>
                       </div>
                     </div>
       

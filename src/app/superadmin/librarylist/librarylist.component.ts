@@ -41,7 +41,7 @@ export class LibrarylistComponent  {
 });
    ngOnInit(){
     this.alllibrarylist();
-    this.types();
+    // this.types();
    }
    get f(){
      return this.AddLibrayList.controls
@@ -166,6 +166,7 @@ export class LibrarylistComponent  {
   else{
   const data = {
     "name":this.UpdateLibrayList.value.name,
+    "typee":'Quality'
   }
     // const formData = new FormData
       // formDate.append('date',this.UpdateLibrayList.value.date);

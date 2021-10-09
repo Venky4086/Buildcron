@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from 'src/app/services/admin.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-daily',
@@ -10,8 +12,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class DailyComponent  {
 
   closeResult = '';
+  totalRecords:any;
+  page:any=1;
+  AllReports: any;
+  constructor(private modalService: NgbModal,private adminservice:AdminService,private spinner:NgxSpinnerService) { }
 
-  constructor(private modalService: NgbModal) { }
+  ngOnInit(): void {
+    // this.allreports();
+  }
 
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -29,6 +37,23 @@ export class DailyComponent  {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+
+  allreports(){
+    this.spinner.show();
+    this.adminservice.allreports().subscribe((res)=>{
+      if(res){
+        console.log(res);
+        this.AllReports = res;
+        this.totalRecords = res.length;
+      }
+      else{
+        console.warn(res);
+      }
+    },(error)=>{
+      console.error(error);
+    });
   }
 
 }

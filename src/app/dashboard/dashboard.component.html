@@ -1,140 +1,421 @@
 <div class="container-fluid px-0">
-    <div class="card p-3">
+    <div class="card p-3 card-bg">
         <div class="content-header">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h2 class="m-0 font-weight-bold fs-600">Dashboard</h2>
+                    <h2 class="m-0 font-weight-bold fs-600">Quality Dashboard</h2>
                 </div><!-- /.col -->
-
+                <!-- {{selectedObject | json}} -->
             </div><!-- /.row -->
         </div>
 
 
-        <div class="row">
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3 class="text-white">150</h3>
-
-                        <p class="text-white">New Orders</p>
-                    </div>
-                    <div class="icon">
-                        <i class="far fa-shopping-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer text-white">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
+        <div class="row mgb-20">
+            <div class="col-md-4">
+                <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
+                    (change)="onChange($event)">
+                    <option [ngValue]="" selected>Select Project from Dropdown</option>
+                    <option *ngFor="let project of project_list" [ngValue]="project">{{project.project_name}}</option>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="buttons">
+                    <div class="quality-btn"><a class="cursor_pointer text-white text-decoration-none">Qality</a></div>
+                    <div class="safety-btn"><a class="cursor_pointer text-white text-decoration-none"
+                            routerLink="/Safetydashboard">Safety</a></div>
                 </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h3 class="text-white">53<sup style="font-size: 20px">%</sup></h3>
-
-                        <p class="text-white">Bounce Rate</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
+            <div class="col-md-4">
+                <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
+                    (change)="Analysis($event)">
+                    <option value="">Project Analysis</option>
+                    <option value="Employee Analysis">Employee Analysis</option>
+                    <option value="Vendor Analysis">Vendor Analysis</option>
+                </select>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>44</h3>
-
-                        <p>User Registrations</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="#" class="small-box-footer ">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3 class="text-white">65</h3>
-
-                        <p class="text-white">Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer text-white">More info <i
-                            class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
         </div>
 
-
-
-
-
         <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-7 connectedSortable ui-sortable">
-                <!-- Custom tabs (Charts with tabs)-->
-                <div class="card">
-                    <div class="card-header cls-bg" style="cursor: move;">
-                        <h3 class="card-title mb-0">
-                            <i class="fa fa-chart-pie mr-1"></i>
-                            Projects
-                        </h3>
-                    </div><!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="tab-content p-0">
-                            <!-- Morris chart - Sales -->
-                            <div class="chart tab-pane active" style="position: relative; height:400px;">
-                                <div class="chartjs-size-monitor">
-                                    <div class="chartjs-size-monitor-expand">
-                                        <div class="">
-                                            <img src="assets/images/chartBar.png" class="img-fluid" />
-                                        </div>
-                                    </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box first-box">
+                            <div class="inner">
+                                <!-- <h3 class="text-white mgb-10">{{total_inspections}}</h3> -->
+                                <h3 class="text-white mgb-10">888</h3>
 
-                                </div>
-
+                                <p class="text-white">Inspection Till Date</p>
                             </div>
-
-                        </div>
-                    </div><!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </section>
-
-
-            <section class="col-md-5">
-                <div class="card">
-                    <div class="card-header cls-bg" style="cursor: move;">
-                        <h3 class="card-title mb-0">
-                            <i class="fa fa-chart-pie mr-1"></i>
-                            Employees
-                        </h3>
-                    </div><!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="tab-content p-0">
-                            <!-- Morris chart - Sales -->
-                            <div class="chart" style="position: relative; height: 400px;">
-                                <div class="chartjs-size-monitor">
-                                    <div class="chartjs-size-monitor-expand">
-                                        <div class="">
-                                            <img src="assets/images/radialChart.png" class="img-fluid" />
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="icon">
+                                <i class="far fa-shopping-bag"></i>
                             </div>
-
+                            <!-- <a href="#" class="small-box-footer text-white">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a> -->
                         </div>
-                    </div><!-- /.card-body -->
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box second-box">
+                            <div class="inner">
+                                <!-- <h3 class="text-white mgb-10">{{success_percent}}</h3> -->
+                                <h3 class="text-white mgb-10">44%</h3>
+
+                                <p class="text-white">Inspection Passed</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box third-box">
+                            <div class="inner">
+                                <h3 class="text-white mgb-10">15</h3>
+
+                                <p class="text-white">NCRs Issued</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <!-- <a href="#" class="small-box-footer ">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box fourth-box">
+                            <div class="inner">
+                                <h3 class="text-white mgb-10">443</h3>
+
+                                <p class="text-white">Site Instructions</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <!-- <a href="#" class="small-box-footer text-white">More info <i
+                                    class="fa fa-arrow-circle-right"></i></a> -->
+                        </div>
+                    </div>
+                    <!-- ./col -->
                 </div>
-            </section>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div style="display: block;" class="card pd-10">
+                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Quality
+                                Inspections</h1>
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                [options]="barChartOptions" [colors]="barChartColors" [plugins]="barChartPlugins"
+                                [legend]="barChartLegend" [chartType]="barChartType">
+                            </canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <!-- project list -->
+
+                <div class="card pd-10" *ngIf="project">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-15 fw-700 mgb-10 check-border-bottom">Top Checklists by use</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">BlockWork / BrickWork Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">150</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Plesting Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">125</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Water Proof Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">92</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Door window Works Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">85</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Form Work Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">70</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13"> Rainforcement Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">70</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Concrete Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">45</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Post Concrete Checklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">32</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="list-unstyled fs-13">Wall Finishes (Paint) Cchecklist</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <p class="list-unstyled fs-13">30</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- employe list  -->
+
+                <div class="card pd-10" *ngIf="employee_list">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-15 fw-700 mgb-10 employee-border-bottom">Employee Performance</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13 fw-700">Employee Name</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13 fw-700">Open Checklist</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13 fw-700">Open Site Instractions</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Abhishek Singh</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">150</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">5</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Aditya Varma</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">2</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Amit Sachdeva</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">2</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Rohit Yadhav</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">20</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">71</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Deepak Varma</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">21</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Sam</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">291</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">72</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Naveen Reddy</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">291</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">72</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- vendor list -->
+
+                <div class="card pd-10" *ngIf="vendor_list">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="fs-15 fw-700 mgb-10 check-border-bottom">Vendor Performance</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13 fw-700">Vendor Name</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13 fw-700">Open Inspections</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13 fw-700">Open Site Instractions</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Abhishek Singh</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">150</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">5</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Aditya Varma</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">2</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Amit Sachdeva</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">2</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Rohit Yadhav</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">20</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">71</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Deepak Varma</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">21</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">7</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Sam</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">291</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">72</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="list-unstyled fs-13">Naveen Reddy</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">291</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <p class="list-unstyled fs-13">72</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row my-2">
+
+            <div class="col-md-4">
+                <div style="display: block" class="card pd-10">
+                    <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:150px">Material
+                        Inspections</h1>
+                    <canvas baseChart [datasets]="barhorizontalChartData" [labels]="barhorizontalChartLabels"
+                        [options]="barhorizontalChartOptions" [colors]="barHorizontalChartColors"
+                        [legend]="barhorizontalChartLegend" [chartType]="barhorizontalChartType"
+                        (chartHover)="charthorizontalHovered($event)" (chartClick)="chartPClicked($event)">
+                    </canvas>
+                </div>
+                <!-- <button mat-button (click)="randomize()">Update</button> -->
+            </div>
+            <div class="col-md-4">
+                <div style="display: block" class="card pd-10">
+                    <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site Inspections
+                    </h1>
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [colors]="pieChartColors" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartPClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="display: block" class="card pd-10">
+                    <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:95px">Quality NCRs</h1>
+                    <canvas baseChart class="pie" [data]="QalitypieChartData" [labels]="QalitypieChartLabels"
+                        [chartType]="QalitypieChartType" (chartHover)="QalitychartHovered($event)"
+                        (chartClick)="QalitychartPClicked($event)" [colors]="QalitypieChartColors">
+                    </canvas>
+                </div>
+            </div>
         </div>

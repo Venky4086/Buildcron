@@ -1,0 +1,243 @@
+<div class="container-fluid px-0">
+    <div class="card">
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-6 pl-25">
+                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Licenses Details</h3>
+                </div><!-- /.col -->
+  
+                <div class="col-sm-6">
+                    <div class="alig_btns">
+                        <!-- <div class="add_btn">
+                            <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                                + Add License</button>
+                        </div> -->
+  
+  
+  
+  
+                        <!-- <div class="bulk_btn">
+                            <span class="btn btn-default btn-file bg1 mtop">
+                                Bulk Upload <input type="file">
+                            </span>
+  
+                            <div class="small06">*In CSV File or Excel Format</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div><!-- /.row -->
+  
+  
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="table-responsive">
+                        <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+                        </ngx-table> -->
+  
+                        <div class="card-body pt-0">
+                            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                      <div class="filter-sect">
+                                        <span class="mr-2">Show</span>
+                                        <div class="sele-drp">
+                                            <select class="form-control">
+                                                <option>5</option>
+                                                <option>10</option>
+                                                <option>15</option>
+                                                <option>20</option>
+                                            </select>
+                                        </div>
+                                        <span class="ml-2">Entries</span>
+                                    </div>
+                                    </div>
+  
+  
+                                    <div class="col-sm-12 col-md-7">
+                                      <div class="showhide pt-4 text-right floatright">
+                                        <span class='text-right'>Show/Hide:</span>
+                                        <span><i class="fa fa-table"></i></span>
+                                    </div>
+                                    </div>
+  
+  
+                                </div>
+  
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                      <table id="example1"
+                                          class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                                          role="grid" aria-describedby="example1_info">
+                                          <thead class="cls-cream">
+                                              <tr role="row">
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Rendering engine: activate to sort column ascending">
+                                                      S.No</th>
+                                                  <th class="sorting sorting_desc" tabindex="0"
+                                                      aria-controls="example1" rowspan="1" colspan="1"
+                                                      aria-label="Browser: activate to sort column ascending"
+                                                      aria-sort="descending">License ID</th>
+                                                  <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Platform(s): activate to sort column ascending">
+                                                      Client ID</th> -->
+  
+  
+                                                  <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">Username
+                                                  </th> -->
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Start Date
+                                                  </th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                  rowspan="1" colspan="1"
+                                                  aria-label="CSS grade: activate to sort column ascending">
+                                                  End Date
+                                                  </th>
+                                                  <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                  rowspan="1" colspan="1"
+                                                  aria-label="CSS grade: activate to sort column ascending">
+                                                  License Details
+                                                  </th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1"
+                                                  rowspan="1" colspan="1"
+                                                  aria-label="CSS grade: activate to sort column ascending">
+                                                  Total Licenses
+                                                  </th> -->
+                                                  <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="Engine version: activate to sort column ascending">
+                                                      Mobile</th> -->
+                                                  <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Email</th> -->
+  <!-- 
+                                                      <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Device ID</th> -->
+  
+                                                      <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Device Name</th> -->
+                                                      <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Status</th> -->
+                                                      <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                      rowspan="1" colspan="1"
+                                                      aria-label="CSS grade: activate to sort column ascending">
+                                                      Designation</th> -->
+  
+                                                  <!-- <th>Action
+                                                  </th> -->
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+  
+                                              <tr class="odd" *ngFor="let alllicense of singlelicenses;let i=index">
+                                                  <td class="dtr-control">{{i+1}}</td>
+                                                  <td>
+                                                      <ul>
+                                                          <li *ngFor="let employee of alllicense.employee">
+                                                            {{employee.eid}}
+                                                          </li>
+                                                      </ul>
+                                                  </td>
+                                                  <td>{{alllicense.created_at}}</td>
+                                                  <td>{{alllicense.end_at}}</td>
+                                                  <!-- <td>{{alllicense.company.name}}</td> -->
+                                                  <!-- <td class="text-center">{{alllicense.company.total_licenses}} - {{alllicense.company.license_used_count}}</td>
+                                                  <td *ngIf="alllicense.status == true">
+                                                      Active
+                                                  </td>
+                                                  <td *ngIf="alllicense.status == false">
+                                                      InActive
+                                                  </td> -->
+                                                  <!-- <td>23652l</td>
+                                                  <td>{{alllicense.user_name}}</td>
+                                                  <td>{{alllicense.created_at}}</td>
+                                                  <td>{{alllicense.end_at}}</td>
+                                                  <td>{{alllicense.user_phone}}</td>
+                                                  <td>{{alllicense.user_email}}</td> -->
+                                                  <!-- <td>{{alllicense.device_id}}</td>
+                                                  <td>{{alllicense.device_name}}</td> -->
+                                                  <!-- <td>{{alllicense.status}}</td> -->
+  
+                                                  <!-- <td class="d-none">{{alllicense.users_designation}}</td> -->
+                                                  <!-- <td>Client</td> -->
+                                                  <!-- <td>
+                                                      <a data-toggle="modal" data-target="#ViewLicense" class="cursor_pointer" (click)="Details(alllicense.id,alllicense.user_name,alllicense.start_date,alllicense.user_phone,alllicense.user_email,alllicense.status,alllicense.device_id,alllicense.device_name,alllicense.users_designation)" class="cursor_pointer">
+                                                      <i class='fa fa-eye mr-1'></i>
+                                                      </a>
+                                                      <a data-toggle="modal" data-target="#UpdateLicense" class="cursor_pointer" (click)="Edit(alllicense.id,alllicense.user_name,alllicense.start_date,alllicense.user_phone,alllicense.user_email,alllicense.status,alllicense.device_id,alllicense.device_name,alllicense.users_designation)">
+                                                          <i class="fa fa-edit mr-1"></i>
+                                                      </a>
+                                                      <a data-toggle="modal" data-target="#DeleteLicense" class="cursor_pointer" (click)="delete(alllicense.id)">
+                                                          <i class="fa fa-trash mr-1"></i>
+                                                      </a>
+                                                  </td> -->
+                                              </tr>
+                                          
+                                          </tbody>
+  
+                                      </table>
+                                      <div class="patch-cls-cream">
+  
+                                      </div>
+                                    </div>
+  
+                                  </div>
+  
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 col-md-offset-6">
+  
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                        <ul class="pagination float-rt">
+                                            <li class="paginate_button page-item previous disabled"
+                                                id="example1_previous"><a href="#" aria-controls="example1"
+                                                    data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                            <li class="paginate_button page-item active-cream active"><a href="#"
+                                                    aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                                    class="page-link">1</a></li>
+                                            <li class="paginate_button page-item "><a href="#"
+                                                    aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                                    class="page-link">2</a></li>
+                                            <li class="paginate_button page-item next" id="example1_next"><a
+                                                    href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                                    class="page-link">Next</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                   <ngx-spinner
+                                   bdColor="rgba(51,51,51,0.8)"
+                                   size="medium"
+                                   color="#fff"
+                                   type="ball-scale-multiple"
+                                 >
+                                   <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                                 </ngx-spinner>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

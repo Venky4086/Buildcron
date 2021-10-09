@@ -14,12 +14,14 @@ export class SubscriptionordersComponent implements OnInit {
   // planeamount:any;
   submitted = false;
   planename = sessionStorage.getItem('planename');
+  plane_id = sessionStorage.getItem('plane_id');
   planeamount:any;
   Allplanes: any;
   count: any;
   countamount: any;
   default =true;
   second = false;
+  plane_amount: any;
   constructor(private fb:FormBuilder,private Registration:RegistrationService,private router:Router) { }
   Subscription = this.fb.group({
     planename:['', Validators.required],
@@ -73,6 +75,21 @@ login(){
   this.router.navigate(['/login']);
 }
 
+plane(event:any){
+console.log(event.target.value);
+this.Registration.singleplane(event.target.value).subscribe((Res)=>{
+  console.log(Res);
+  this.planeamount = Res.amount;
+  this.second = false;
+  this.default = true;
+  sessionStorage.setItem('planeamount',this.plane_amount);
+  sessionStorage.setItem('planename',Res.name);
+  console.log(sessionStorage.getItem('planename'));
+},(error)=>{
+  console.error(error);
+})
+}
+
 onChange(event:any){
   this.second = true;
   this.default = false;
@@ -94,7 +111,7 @@ checkout(){
     return
   }
   else{
-    sessionStorage.setItem('planename',this.Subscription.value.planename);
+    // sessionStorage.setItem('planename',this.Subscription.value.planename);
     sessionStorage.setItem('planecount',this.Subscription.value.planenumber);
     sessionStorage.setItem('planeamount',this.Subscription.value.planeamount);
     this.router.navigate(['/checkout']);

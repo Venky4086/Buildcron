@@ -60,6 +60,16 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { RegistrationService } from './services/registration.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquestion.component';
+import { CfaqsComponent } from './cfaqs/cfaqs.component';
+import { CbannersComponent } from './cbanners/cbanners.component';
+import { UsedlicenseComponent } from './superadmin/usedlicense/usedlicense.component';
+import { StoreModule } from '@ngrx/store';
+import { SafetydashboardComponent } from './safetydashboard/safetydashboard.component';
+// import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ChartsModule } from 'ng2-charts';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +110,12 @@ import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquest
     LandingpageComponent,
     SubscriptionordersComponent,
     CheckoutComponent,
-    SafetyquestionComponent
+    SafetyquestionComponent,
+    CfaqsComponent,
+    CbannersComponent,
+    UsedlicenseComponent,
+    SafetydashboardComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +137,10 @@ import { SafetyquestionComponent } from './superadmin/safetyquestion/safetyquest
     HttpClientModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    StoreModule.forRoot({}, {}),
+    ChartsModule,
+    NgxPaginationModule
   ],
   providers: [SuperadminService,AdminService,RegistrationService],
   bootstrap: [AppComponent],

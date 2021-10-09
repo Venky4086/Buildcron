@@ -8,17 +8,27 @@
   </div>
   <div class="right_sec">
     <!-- <input type="text" class="form-control input-search" placeholder="Search.." id="demo" name="email"> -->
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>mail <span class="mail_badge">3</span></mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon matBadge="10" matBadgeOverlap=false>notifications <span class="not_badge">3</span></mat-icon>
-    </button>
+    </button> -->
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <span class="material-icons-outlined">
+        <i class="fa fa-id-card fx-31" aria-hidden="true"></i><span class="not_badge">{{license_count}}</span>
+      </span>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" routerLink="/changepassword" aria-label="Example icon-button with heart icon">
+      <span class="material-icons-outlined">
+        <i class="fa fa-key fx-31 fs-23"></i>
+      </span>
+    </button>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <span class="material-icons-outlined">
         <i class='fa fa-cog fx-31'></i>
       </span>
-    </button>
+    </button> -->
   </div>
 </mat-toolbar>
 
@@ -32,7 +42,7 @@
         </div>
 
         <div class="user_name">
-          <a href="#" class="text-white text-decoration-none">ABC Building</a>
+          <a href="#" class="text-white text-decoration-none">{{client_company_name}}</a>
         </div>
       </div>
 
@@ -48,9 +58,9 @@
       <li><a routerLink="/CilentAdmin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
           class="text-white text-decoration-none">Dashboard</a>
       </li>
-      <li><a routerLink="/Projects" routerLinkActive="active" class=" text-white text-decoration-none">Projects</a></li>
       <li><a routerLink="/Employees" routerLinkActive="active" class=" text-white text-decoration-none">Employees</a>
       </li>
+      <li><a routerLink="/Projects" routerLinkActive="active" class=" text-white text-decoration-none">Projects</a></li>
       <li><a routerLink="/Vendors" routerLinkActive="active" class=" text-white text-decoration-none">Vendors</a></li>
       <li><a routerLink="/Materials" routerLinkActive="active" class=" text-white text-decoration-none">Materials</a>
       </li>
@@ -60,8 +70,8 @@
         <ul class="sub_menu_cls" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed1">
           <li><a routerLink="/QualityInspection" routerLinkActive="active"
               class="pl-3 text-white text-decoration-none pl3rem">Quality Inspection</a></li>
-          <li><a routerLink="/QualityTestingData" routerLinkActive="active"
-              class="pl-3 text-white text-decoration-none pl3rem">Quality Testing Data</a></li>
+          <!-- <li><a routerLink="/QualityTestingData" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Quality Testing Data</a></li> -->
         </ul>
       </li>
       <li><a class="text-white text-decoration-none" (click)="collapse2.toggle()">Safety Checklists
@@ -69,23 +79,24 @@
         <ul class="sub_menu_cls" #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
           <li><a routerLink="/SafetyInspection" routerLinkActive="active"
               class="pl-3 text-white text-decoration-none pl3rem">Safety Inspection</a></li>
-          <li><a routerLink="/SafetyPermits" routerLinkActive="active"
-              class="pl-3 text-white text-decoration-none pl3rem">Safety Permits</a></li>
+          <!-- <li><a routerLink="/SafetyPermits" routerLinkActive="active"
+              class="pl-3 text-white text-decoration-none pl3rem">Safety Permits</a></li> -->
         </ul>
       </li>
-      <li><a class="text-white text-decoration-none" (click)="collapse3.toggle()">Reports
-        <i class="fa fa-chevron-down text-right left3"></i></a>
-        <ul class="sub_menu_cls" #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+      <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/DailyReport">Reports
+        </a>
+        <!-- <ul class="sub_menu_cls" #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
           <li><a routerLink="/DailyReport"
               class="pl-3 text-white text-decoration-none pl3rem">Daily Report</a></li>
           <li><a routerLink="/SiteInstruction"
               class="pl-3 text-white text-decoration-none pl3rem">Site Instruction Report</a></li>
               <li><a routerLink="/SiteNCReport"
                 class="pl-3 text-white text-decoration-none pl3rem">Site NC Report</a></li>
-        </ul>
+        </ul> -->
       </li>
-
-      <li><a href="/Contactus" class="text-white text-decoration-none">Contact us</a></li>
+      <li><a href="/Contactus" class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cbanners">Banner</a></li>
+      <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cfaqs">FAQs</a></li>
+      <li><a href="/Contactus" class="text-white text-decoration-none">Technical Queries</a></li>
       <li><a class="text-white text-decoration-none" data-toggle="modal" data-target="#Logout">Logout</a></li>
     </ul>
 

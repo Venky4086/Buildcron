@@ -105,20 +105,20 @@
 
                                               <tr class="odd" *ngFor="let checklist of checklists;let i=index">
                                                   <td class="dtr-control">{{i+1}}</td>
-                                                  <td>{{checklist.checklist_id}}</td>
+                                                  <td>{{checklist.question_id}}</td>
                                                   <td>{{checklist.question}}</td>
                                                   <!-- <td>{{checklist.name}}</td>
                                                   <td>{{checklist.id}}</td> -->
                                                   <!-- <td>
                                                       {{checklist.status}}
                                                   </td> -->
-                                                  <td *ngIf="checklist.status == true">Valid</td>
-                                                  <td *ngIf="checklist.status == false">InValid</td>
+                                                  <td >{{checklist.admin_status}}</td>
+                                                  <!-- <td *ngIf="checklist.status == false">InValid</td> -->
                                                   <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.question,checklist.checklist_id,checklist.status)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.question,checklist.question_id,checklist.admin_status)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateChecklist" (click)="edit(checklist.id,checklist.question,checklist.checklist_id,checklist.status)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateChecklist" (click)="edit(checklist.id,checklist.question,checklist.question_id,checklist.admin_status)">
                                                     <i class="fa fa-edit mr-1"></i>
                                                     </a>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteChecklist" (click)="delete(checklist.id)">
@@ -299,8 +299,8 @@
                       <!-- <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/> -->
                       <select class="form-select" formControlName="status" [ngClass]="{'is-invalid':submitted  && f.status.errors}">
                         <option value="" selected>-- selected status --</option>
-                        <option value="true">Valid</option>
-                        <option value="false">InValid</option>
+                        <option value="{{s.name}}" *ngFor="let s of Status">{{s.name}}</option>
+                        <!-- <option value="InValid">InValid</option> -->
                       </select>
                       <div class="invalid-feedback" *ngIf="submitted  && f.status.errors">
                         <div class="fs-15 fw-700" *ngIf="f.status.errors.required">
@@ -357,8 +357,8 @@
                   </div> -->
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Status:</label>
-                    <p class="font-weight-bold" *ngIf="status == true">Valid</p>
-                    <p class="font-weight-bold" *ngIf="status == false">InValid</p>
+                    <p class="font-weight-bold">{{status}}</p>
+                    <!-- <p class="font-weight-bold" *ngIf="status == false">InValid</p> -->
                     <!-- <p class="font-weight-bold">InValid</p> -->
                  </div>
               </div>
@@ -435,15 +435,13 @@
                         </div>
                     </div> -->
 
-
-
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Status:</label>
                         <!-- <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/> -->
-                        <select class="form-select" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}">
-                          <option  [(ngModel)]="status"  selected>{{status}}</option>
-                          <option value="true">Valid</option>
-                          <option value="false">InValid</option>
+                        <select class="form-select" [(ngModel)]="status" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}">
+                          <!-- <option  selected>{{status}}</option> -->
+                          <option value="{{s.name}}" *ngFor="let s of Status" [selected]="s.name == status">{{s.name}}</option>
+                          <!-- <option value="InValid">InValid</option> -->
                         </select>
                         <div class="invalid-feedback" *ngIf="updatesubmitted  && u.status.errors">
                             <div class="fs-15 fw-700" *ngIf="u.status.errors.required">

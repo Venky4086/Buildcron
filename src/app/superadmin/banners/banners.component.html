@@ -9,7 +9,7 @@
               <div class="col-sm-6">
                   <div class="alig_btns">
                       <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" (click)="open(content)">
+                          <button class="btn btn-primary mr-2 mright bg2" data-target="#Addbanner" data-toggle="modal">
                               + Add List</button>
                       </div>
 
@@ -95,15 +95,17 @@
                                                 <td>{{i+1}}</td>
                                                 <td>{{BannerList.name}}</td>
                                                 <td>
-                                                    <div class="banner_image">
-                                                     <img src="{{BannerList.image}}" alt="Banner_image" class="img-fluid image">
+                                                   <div class="row">
+                                                    <div class="banner_image col-md-4" *ngFor="let image of BannerList.images">
+                                                        <img src="{{'http://ec2-65-2-38-45.ap-south-1.compute.amazonaws.com/'+image}}" alt="Banner_image" class="img-fluid image">
                                                     </div>
+                                                   </div>
                                                 </td>
                                                 <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(BannerList.id,BannerList.name,BannerList.image)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(BannerList.id,BannerList.name,BannerList.images)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#Updatebanner" (click)="edit(BannerList.id,BannerList.name,BannerList.image)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#Updatebanner" (click)="edit(BannerList.id,BannerList.name,BannerList.images)">
                                                     <i class="fa fa-edit mr-1"></i>
                                                     </a>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#Deletebanner" (click)="delete(BannerList.id)">
@@ -195,7 +197,7 @@
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Banner_IMage</label>
                     <div class="banner_image">
-                        <img src="{{banner_image}}" alt="" class="img-fluid image">
+                        <img src="{{'http://ec2-65-2-38-45.ap-south-1.compute.amazonaws.com/'+banner_image}}" alt="" class="img-fluid image">
                     </div> 
                  </div>
                   <!-- <div class="form-group col-md-6 mb-3">
@@ -252,13 +254,54 @@
   </div>
 </ng-template>
 
+<div class="modal fade" id="Addbanner" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Add Banner</h4>
+      
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="AddBanner">
+                  <div class="form-group">
+                      <label for="">Banner Name</label>
+                      <input type="name" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">  
+                      <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                          <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                              Banner Name is required
+                          </div>
+                      </div>
+                  </div>
+                <div class="form-group">
+                    <label for="">Banner Image</label>
+                    <input multiple="" type="file" class="form-control" formControlName="image" [ngClass]="{'is-invalid':submitted && f.image.errors}" (change)="OnFileSelect($event)" accept="image/png, image/gif, image/jpeg">  
+                    <div class="invalid-feedback" *ngIf="submitted && f.image.errors">
+                      <div class="fs-15 fw-700" *ngIf="f.image.errors.required">
+                          Banner Image is required
+                      </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="Add()">Add Banner</button>
+        </div>
+      </div>
+    </div>
+</div>
+
 <!-- update -->
 
 <div class="modal fade" id="Updatebanner" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-blu">
-            <h4 class="modal-title mb-0" id="modal-basic-title">Update Material</h4>
+            <h4 class="modal-title mb-0" id="modal-basic-title">Update Banner</h4>
       
            
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
