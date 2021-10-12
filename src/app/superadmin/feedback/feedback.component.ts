@@ -15,7 +15,8 @@ export class FeedbackComponent implements OnInit {
   Contact_email: any;
   Contact_phone: any;
   Contact_address: any;
-
+  totalRecords: any;
+  page:any = 1;
 constructor(private superadminservice:SuperadminService,private spinner:NgxSpinnerService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ allcontactlsit(){
     console.log(res);
     this.spinner.hide();
     this.Contactlist = res;
+    this.totalRecords = res.length;
   },(error)=>{
     console.error(error);
     this.spinner.hide();

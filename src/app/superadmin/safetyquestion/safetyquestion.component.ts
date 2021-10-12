@@ -20,6 +20,8 @@ export class SafetyquestionComponent implements OnInit {
   checklist_id: any;
   text: any;
   status: any;
+  totalRecords: any;
+  page:any =1;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
@@ -76,6 +78,7 @@ export class SafetyquestionComponent implements OnInit {
       if(res){
         console.log(res);
         this.checklists = res.question;
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{

@@ -25,4 +25,8 @@ export class ClientAdmindashboardService {
     return this.http.get<any>(GlobalData.url_dashbaord + 'project/analysis', options)
       .pipe(shareReplay(1));
   }
+  SingleProjectslist(project_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_dashbaord + 'project/analysis/read/'+project_id, options)
+      .pipe(shareReplay(1));
+  }
 }

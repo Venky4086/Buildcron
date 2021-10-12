@@ -145,7 +145,7 @@ public chartHovered(e:any):void {
 public barvendorChartOptions: ChartOptions = {
   responsive: true,
 };
-public barvendorChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+public barvendorChartLabels: Label[] = ['Vendor-1', 'Vendor-2', 'Vendor-3', 'Vendor-3', 'Vendor-4', 'Vendor-5', 'Vendor-6'];
 public barvendorChartType: ChartType = 'bar';
 public barvendorChartLegend = true;
 public barvendorChartPlugins = [];

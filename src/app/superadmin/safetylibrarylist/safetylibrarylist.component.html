@@ -104,7 +104,15 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr class="odd" *ngFor="let safetylibrarylist of safetylibrarylists;let i=index">
+                                            <tr class="odd" *ngFor="let safetylibrarylist of safetylibrarylists
+                                            | paginate
+                                            :{
+                                              id:'listing_pagination',
+                                              itemsPerPage:5,
+                                              currentPage:page,
+                                              totalItems:totalRecords
+                                            }
+                                            ;let i=index">
                                                 <td class="dtr-control">{{i+1}}</td>
                                                 <!-- <td class="sorting_1">{{safetylibrarylist.date}}</td> -->
                                                 <td>{{safetylibrarylist.checklist_id}}</td>
@@ -130,13 +138,13 @@
 
                                     </table>
                                   </div>
-                                    <div class="patch-cls-cream">
-
-                                    </div>
+                                  <div class="my-2 text-right">
+                                    <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
+                                  </div>
                                 </div>
 
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                               <div class="col-md-6 col-md-offset-6">
 
 
@@ -159,7 +167,7 @@
                                       </ul>
                                   </div>
                               </div>
-                          </div>
+                            </div> -->
                           </div>
                       </div>
                   </div>
@@ -344,7 +352,7 @@
                   </div> -->
                     <div class="form-group col-md-8 offset-2 mb-3">
                         <label for="dateOfBirth">Safety CheckList Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Safety CheckList Name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
                           <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
                               Safety CheckList Name is required

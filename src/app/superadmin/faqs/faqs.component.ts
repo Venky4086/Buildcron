@@ -21,6 +21,8 @@ export class FaqsComponent  {
   question: any;
   answer: any;
   faqs_id: any;
+  totalRecords: any;
+  page:any =1;
   // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
@@ -70,6 +72,7 @@ export class FaqsComponent  {
       if(res){
         console.log(res);
         this.faqs = res;
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{

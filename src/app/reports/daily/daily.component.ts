@@ -18,7 +18,7 @@ export class DailyComponent  {
   constructor(private modalService: NgbModal,private adminservice:AdminService,private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
-    // this.allreports();
+    this.allreports();
   }
 
   open(content: any) {
@@ -47,12 +47,14 @@ export class DailyComponent  {
         console.log(res);
         this.AllReports = res;
         this.totalRecords = res.length;
+        this.spinner.hide();
       }
       else{
         console.warn(res);
       }
     },(error)=>{
       console.error(error);
+      this.spinner.hide();
     });
   }
 

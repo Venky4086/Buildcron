@@ -114,7 +114,7 @@ export class QualityInspectionComponent {
   alllibrarylist(){
     // this.spinner.show();
     let tmp:any[] = [];
-    this.superadminserivce.alllibrarylist().subscribe((res)=>{
+    this.adminservice.alllibrarylist().subscribe((res)=>{
       if(res){
         console.log(res);
         this.librarylists = res;

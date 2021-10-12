@@ -24,6 +24,8 @@ export class LibrarylistComponent  {
   name:any;
   status:any;
   type: any;
+  totalRecords:any;
+  page:any=1;
   constructor(private toaster: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private router:Router) { } 
    AddLibrayList = this.fb.group({
       //  date:['', Validators.required],
@@ -91,6 +93,7 @@ export class LibrarylistComponent  {
       if(res){
         console.log(res);
         this.librarylists = res;
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{

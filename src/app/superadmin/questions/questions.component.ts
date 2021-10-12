@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SuperadminService } from 'src/app/services/superadmin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ThrowStmt } from '@angular/compiler';
 declare var $:any;
 @Component({
   selector: 'app-questions',
@@ -20,6 +21,8 @@ export class QuestionsComponent  {
   checklist_id: any;
   text: any;
   status: any;
+  totalRecords: any;
+  page:any =1;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
@@ -72,6 +75,7 @@ export class QuestionsComponent  {
       if(res){
         console.log(res);
         this.checklists = res.question;
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{

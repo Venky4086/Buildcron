@@ -120,6 +120,11 @@ export class AdminService {
 
   // QualityInspection
 
+  alllibrarylist(): Observable<any> {
+    return this.http.get<any>(GlobalData.url_buildcron + 'quality/questions/list', this.options)
+      .pipe(shareReplay(1));
+  }
+
   AddQualityInspection(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_buildcron + 'quality/checklist/assign/project', data,this.options)
   }

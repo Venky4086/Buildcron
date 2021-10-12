@@ -100,7 +100,15 @@
                                           </thead>
                                           <tbody>
 
-                                              <tr class="odd" *ngFor="let faq of faqs;let i=index">
+                                              <tr class="odd" *ngFor="let faq of faqs
+                                              | paginate
+                                              :{
+                                                id:'listing_pagination',
+                                                itemsPerPage:3,
+                                                currentPage:page,
+                                                totalItems:totalRecords
+                                              }
+                                              ;let i=index">
                                                   <td>{{i+1}}</td>
                                                   <td>{{faq.faq_id}}</td>
                                                   <td>{{faq.question}}</td>
@@ -123,15 +131,15 @@
                                           </tbody>
 
                                       </table>
-                                      <div class="patch-cls">
-
+                                      <div class="my-2 text-right">
+                                        <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                       </div>
                                     </div>
 
                                   </div>
 
                               </div>
-                              <div class="row">
+                              <!-- <div class="row">
                                   <div class="col-md-6 col-md-offset-6">
 
 
@@ -154,7 +162,7 @@
                                           </ul>
                                       </div>
                                   </div>
-                              </div>
+                              </div> -->
                               <div class="row">
                                 <div class="col-md-12">
                                  <ngx-spinner
@@ -312,7 +320,7 @@
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Question:</label>
-                        <input type="text" class="form-control" formControlName="question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
+                        <input type="text" class="form-control" formControlName="question" placeholder="Enter Question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.question.errors">
                             <div class="fs-15 fw-700" *ngIf="f.question.errors.required">
                                 Question is required

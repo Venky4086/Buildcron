@@ -12,10 +12,10 @@
 
         <div class="row mgb-20">
             <div class="col-md-4">
-                <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
+                <select name="" id="" [(ngModel)]="selectedObject" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
                     (change)="onChange($event)">
-                    <option [ngValue]="" selected>Select Project from Dropdown</option>
-                    <option *ngFor="let project of project_list" [ngValue]="project">{{project.project_name}}</option>
+                    <option value="" selected>Select Project from Dropdown</option>
+                    <option *ngFor="let project of project_list" value="{{project.project_id}}" [selected]="project.project_id == project.project_id">{{project.project_name}}</option>
                 </select>
             </div>
             <div class="col-md-4 d-flex justify-content-center">
@@ -28,12 +28,13 @@
             <div class="col-md-4">
                 <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
                     (change)="Analysis($event)">
-                    <option value="">Project Analysis</option>
+                    <option value="" selected>Project Analysis</option>
                     <option value="Employee Analysis">Employee Analysis</option>
                     <option value="Vendor Analysis">Vendor Analysis</option>
                 </select>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-md-8">
@@ -43,7 +44,9 @@
                         <div class="small-box first-box">
                             <div class="inner">
                                 <!-- <h3 class="text-white mgb-10">{{total_inspections}}</h3> -->
-                                <h3 class="text-white mgb-10">888</h3>
+                                <h3 class="text-white mgb-10">
+                                    {{total_inspections}}
+                                </h3>
 
                                 <p class="text-white">Inspection Till Date</p>
                             </div>
@@ -60,7 +63,9 @@
                         <div class="small-box second-box">
                             <div class="inner">
                                 <!-- <h3 class="text-white mgb-10">{{success_percent}}</h3> -->
-                                <h3 class="text-white mgb-10">44%</h3>
+                                <h3 class="text-white mgb-10">
+                                    {{success_percent}} <span>%</span>
+                                </h3>
 
                                 <p class="text-white">Inspection Passed</p>
                             </div>
@@ -75,7 +80,7 @@
                         <!-- small box -->
                         <div class="small-box third-box">
                             <div class="inner">
-                                <h3 class="text-white mgb-10">15</h3>
+                                <h3 class="text-white mgb-10">{{ncr}}</h3>
 
                                 <p class="text-white">NCRs Issued</p>
                             </div>
@@ -90,9 +95,9 @@
                         <!-- small box -->
                         <div class="small-box fourth-box">
                             <div class="inner">
-                                <h3 class="text-white mgb-10">443</h3>
+                                <h3 class="text-white mgb-10">{{site_observation}}</h3>
 
-                                <p class="text-white">Site Instructions</p>
+                                <p class="text-white">Site Observation</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -103,18 +108,74 @@
                     </div>
                     <!-- ./col -->
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="project">
                     <div class="col-md-12">
 
                         <div style="display: block;" class="card pd-10">
                             <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Quality
-                                Inspections</h1>
+                                Observation</h1>
                             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
                                 [options]="barChartOptions" [colors]="barChartColors" [plugins]="barChartPlugins"
                                 [legend]="barChartLegend" [chartType]="barChartType">
                             </canvas>
                         </div>
 
+                    </div>
+                </div>
+                <div class="row" *ngIf="employee_list">
+                    <div class="col-md-12">
+
+                        <div style="display: block;" class="card pd-10">
+                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Quality
+                                Observation</h1>
+                            <canvas baseChart [datasets]="barEmployeeChartData" [labels]="barEmployeeChartLabels"
+                                [options]="barEmployeeChartOptions" [colors]="barChartColors" [plugins]="barEmployeeChartPlugins"
+                                [legend]="barEmployeeChartLegend" [chartType]="barEmployeeChartType">
+                            </canvas>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row my-2" *ngIf="employee_list">
+                    <div class="col-md-12">
+                        <div style="display: block" class="card pd-10">
+                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:150px">Material
+                                Observation</h1>
+                            <canvas baseChart [datasets]="EmployeebarhorizontalChartData" [labels]="EmployeebarhorizontalChartLabels"
+                                [options]="barhorizontalChartOptions" [colors]="EmployeebarHorizontalChartColors"
+                                [legend]="EmployeebarhorizontalChartLegend" [chartType]="EmployeebarhorizontalChartType"
+                                (chartHover)="EmployeecharthorizontalHovered($event)" (chartClick)="chartPClicked($event)">
+                            </canvas>
+                        </div>
+                        <!-- <button mat-button (click)="randomize()">Update</button> -->
+                    </div>
+                </div>
+                <div class="row" *ngIf="vendor_list">
+                    <div class="col-md-12">
+
+                        <div style="display: block;" class="card pd-10">
+                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Quality
+                                Observation</h1>
+                            <canvas baseChart [datasets]="barVendorChartData" [labels]="barVendorChartLabels"
+                                [options]="barVendorChartOptions" [colors]="barVendorChartColors" [plugins]="barVendorChartPlugins"
+                                [legend]="barVendorChartLegend" [chartType]="barVendorChartType">
+                            </canvas>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row my-2" *ngIf="vendor_list">
+                    <div class="col-md-12">
+                        <div style="display: block" class="card pd-10">
+                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:150px">Material
+                                Observation</h1>
+                            <canvas baseChart [datasets]="VendorbarhorizontalChartData" [labels]="VendorbarhorizontalChartLabels"
+                                [options]="VendorbarhorizontalChartOptions" [colors]="VendorbarHorizontalChartColors"
+                                [legend]="VendorbarhorizontalChartLegend" [chartType]="VendorbarhorizontalChartType"
+                                (chartHover)="VendorcharthorizontalHovered($event)" (chartClick)="chartPClicked($event)">
+                            </canvas>
+                        </div>
+                        <!-- <button mat-button (click)="randomize()">Update</button> -->
                     </div>
                 </div>
             </div>
@@ -203,7 +264,7 @@
                             <p class="list-unstyled fs-13 fw-700">Open Checklist</p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <p class="list-unstyled fs-13 fw-700">Open Site Instractions</p>
+                            <p class="list-unstyled fs-13 fw-700">Open Site Observation</p>
                         </div>
                     </div>
                     <div class="row">
@@ -301,7 +362,7 @@
                             <p class="list-unstyled fs-13 fw-700">Open Inspections</p>
                         </div>
                         <div class="col-md-3 text-center">
-                            <p class="list-unstyled fs-13 fw-700">Open Site Instractions</p>
+                            <p class="list-unstyled fs-13 fw-700">Open Site Observation</p>
                         </div>
                     </div>
                     <div class="row">
@@ -385,12 +446,12 @@
 
             </div>
         </div>
-        <div class="row my-2">
+        <div class="row my-2" *ngIf="project">
 
             <div class="col-md-4">
                 <div style="display: block" class="card pd-10">
                     <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:150px">Material
-                        Inspections</h1>
+                        Observation</h1>
                     <canvas baseChart [datasets]="barhorizontalChartData" [labels]="barhorizontalChartLabels"
                         [options]="barhorizontalChartOptions" [colors]="barHorizontalChartColors"
                         [legend]="barhorizontalChartLegend" [chartType]="barhorizontalChartType"
@@ -401,7 +462,7 @@
             </div>
             <div class="col-md-4">
                 <div style="display: block" class="card pd-10">
-                    <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site Inspections
+                    <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site Observation
                     </h1>
                     <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
                         [colors]="pieChartColors" (chartHover)="chartHovered($event)"

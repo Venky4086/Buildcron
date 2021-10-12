@@ -20,6 +20,8 @@ export class BannersComponent implements OnInit {
   banner_name: any;
   banner_image: any;
   images:any=[];
+  totalRecords:any;
+  page:any = 1;
   constructor(private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
   AddBanner = this.fb.group({
     name:['', Validators.required],
@@ -100,6 +102,7 @@ export class BannersComponent implements OnInit {
        if(res){
        console.log(res);
        this.BannerLists = res;
+       this.totalRecords = res.length;
        this.spinner.hide();
        }
        else{

@@ -129,18 +129,28 @@
                                           </thead>
                                           <tbody>
 
-                                              <tr class="odd">
-                                                  <td class="dtr-control">1</td>
-                                                  <td class="sorting_1">dummy1</td>
-                                                  <td>sdfd</td>
-                                                  <td>sdfsd</td>
-                                                  <td>sdf</td>
-                                                  <td>sdfsdf</td>
-                                                  <td>sdfdsf</td>
-                                                  <td>sdfdsf</td>
-                                                  <td>
+                                              <tr class="odd" *ngFor="let AllReport of AllReports
+                                              | paginate
+                                              :{
+                                                id:'listing_pagination',
+                                                itemsPerPage:5,
+                                                currentPage:page,
+                                                totalItems:totalRecords
+                                              }
+                                              ;let i =index">
+                                                  <td>{{i+1}}</td>
+                                                  <td class="dtr-control">{{AllReport.rid}}</td>
+                                                  <td class="sorting_1">{{AllReport.updated_at}}</td>
+                                                  <td>{{AllReport.name}}</td>
+                                                  <td>{{AllReport.typee}}</td>
+                                                  <td>{{AllReport.project}}</td>
+                                                  <td>{{AllReport.submitted_by}}</td>
+                                                  <td>{{AllReport.status}}</td>
+                                                  <!-- <td>sdfdsf</td> -->
+                                                  <!-- <td>sdfdsf</td> -->
+                                                  <td class="text-center">
                                                     <a class="cursor_pointer">
-                                                    <i class='fa fa-download mr-1'></i>
+                                                        <i class="fa fa-file-pdf" style="font-size: 18px !important;"></i>
                                                     </a>
                                                   </td>
                                                   <td>

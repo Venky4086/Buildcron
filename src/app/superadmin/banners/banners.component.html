@@ -91,7 +91,15 @@
                                               </tr>
                                           </thead>
                                           <tbody>                                     
-                                            <tr class="odd" *ngFor="let BannerList of BannerLists;let i=index">
+                                            <tr class="odd" *ngFor="let BannerList of BannerLists
+                                            | paginate
+                                            :{
+                                              id:'listing_pagination',
+                                              itemsPerPage:5,
+                                              currentPage:page,
+                                              totalItems:totalRecords
+                                            }
+                                            ;let i=index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{BannerList.name}}</td>
                                                 <td>
@@ -117,13 +125,13 @@
 
                                       </table>
                                     </div>
-                                      <div class="patch-cls">
-
-                                      </div>
+                                    <div class="my-2 text-right">
+                                        <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
+                                    </div>
                                   </div>
 
                               </div>
-                              <div class="row">
+                              <!-- <div class="row">
                                   <div class="col-md-6 col-md-offset-6">
 
 
@@ -146,7 +154,7 @@
                                           </ul>
                                       </div>
                                   </div>
-                              </div>
+                              </div> -->
                               <div class="row">
                                 <div class="col-md-12">
                                  <ngx-spinner
@@ -270,7 +278,7 @@
             <form [formGroup]="AddBanner">
                   <div class="form-group">
                       <label for="">Banner Name</label>
-                      <input type="name" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">  
+                      <input type="name" class="form-control" formControlName="name" placeholder="Enter Banner Name" [ngClass]="{'is-invalid':submitted && f.name.errors}">  
                       <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
                           <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
                               Banner Name is required

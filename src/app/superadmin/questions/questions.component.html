@@ -103,7 +103,15 @@
                                           </thead>
                                           <tbody>
 
-                                              <tr class="odd" *ngFor="let checklist of checklists;let i=index">
+                                              <tr class="odd" *ngFor="let checklist of checklists
+                                              | paginate
+                                              :{
+                                                id:'listing_pagination',
+                                                itemsPerPage:5,
+                                                currentPage:page,
+                                                totalItems:totalRecords
+                                              }
+                                              ;let i=index">
                                                   <td class="dtr-control">{{i+1}}</td>
                                                   <td>{{checklist.question_id}}</td>
                                                   <td>{{checklist.question}}</td>
@@ -135,7 +143,10 @@
                                   </div>
 
                               </div>
-                              <div class="row">
+                              <div class="my-2 text-right">
+                                <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
+                              </div>
+                              <!-- <div class="row">
                                   <div class="col-md-6 col-md-offset-6">
 
 
@@ -158,7 +169,7 @@
                                           </ul>
                                       </div>
                                   </div>
-                              </div>
+                              </div> -->
                               <div class="row">
                                 <div class="col-md-12">
                                  <ngx-spinner
@@ -287,7 +298,7 @@
       
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Checklist Question:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Checklist Question" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
                         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                           <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Checklist Question is required</div>
                         </div>

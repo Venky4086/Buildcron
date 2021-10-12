@@ -120,7 +120,15 @@
                                             </thead>
                                             <tbody>
   
-                                                <tr *ngFor="let contact of Contactlist;let i = index">
+                                                <tr *ngFor="let contact of Contactlist
+                                                | paginate
+                                              :{
+                                                id:'listing_pagination',
+                                                itemsPerPage:3,
+                                                currentPage:page,
+                                                totalItems:totalRecords
+                                              }
+                                                ;let i = index">
                                                     <td>{{i+1}}</td>
                                                     <td>{{contact.name}}</td>
                                                     <td>{{contact.email}}</td>
@@ -149,10 +157,10 @@
                                     </div>
   
                                 </div>
-                                <div class="patch-cls">
-  
+                                <div class="my-2 text-right">
+                                    <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
   
   
@@ -175,7 +183,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                      <div class="col-md-12">
                                       <ngx-spinner
