@@ -11,7 +11,7 @@
   
   
             <div class="container-fluid pd-20">
-                <div class="row">
+                <div class="row" *ngIf="FaqsLists !==0;else elseBlack">
 
                    <div class="col-md-12">
 
@@ -46,9 +46,19 @@
                    </div>
 
                 </div>
+                <ng-template #elseBlack>
+                  <div class="row my-2">
+                      <div class="col-md-12">
+                          <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                              <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Vendors is Available</h1>
+                              <!-- <div>
+                                  <img src="assets/images/no-data.png" alt="" class="img-fluid">
+                              </div> -->
+                          </div>
+                      </div>
+                   </div>
+              </ng-template>
             </div>
         </div>
     </div>
   </div>
-  
-  

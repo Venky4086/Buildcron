@@ -71,13 +71,12 @@
                                       <span><i class="fa fa-table"></i></span>
                                   </div>
                                   </div>
-
-
                               </div>
 
-                              <div class="row">
+                              <div class="row" *ngIf="AllReports.length !== 0;else elseBlack">
                                   <div class="col-sm-12 table-responsive">
-                                      <table style="overflow:auto !important;width:1400px !important;" id="example1"
+
+                                      <table style="overflow:auto !important;width:1400px !important;" id="pdf"
                                           class="table mb-0 table-bordered table-striped dataTable dtr-inline"
                                           role="grid" aria-describedby="example1_info">
                                           <thead class="cls-light">
@@ -133,12 +132,12 @@
                                               | paginate
                                               :{
                                                 id:'listing_pagination',
-                                                itemsPerPage:5,
+                                                itemsPerPage:count,
                                                 currentPage:page,
                                                 totalItems:totalRecords
                                               }
                                               ;let i =index">
-                                                  <td>{{i+1}}</td>
+                                                  <td>{{(page - 1) * count + i + 1}}</td>
                                                   <td class="dtr-control">{{AllReport.rid}}</td>
                                                   <td class="sorting_1">{{AllReport.updated_at}}</td>
                                                   <td>{{AllReport.name}}</td>
@@ -149,15 +148,15 @@
                                                   <!-- <td>sdfdsf</td> -->
                                                   <!-- <td>sdfdsf</td> -->
                                                   <td class="text-center">
-                                                    <a class="cursor_pointer">
+                                                    <a class="cursor_pointer" (click)="download()">
                                                         <i class="fa fa-file-pdf" style="font-size: 18px !important;"></i>
                                                     </a>
                                                   </td>
                                                   <td>
-                                                    <a class="cursor_pointer">
+                                                    <a class="cursor_pointer" data-target="#ReportView" data-toggle="modal" (click)="view(AllReport.name,AllReport.typee,AllReport.project,AllReport.submitted_by,AllReport.status)">
                                                         <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteReport" (click)="delete(AllReport.id)">
                                                         <i class='fa fa-trash mr-1'></i>
                                                     </a>
                                                   </td>
@@ -173,6 +172,20 @@
                                     <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                   </div>
                               </div>
+
+                              <ng-template #elseBlack>
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                            <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Reports is Available</h1>
+                                            <!-- <div>
+                                                <img src="assets/images/no-data.png" alt="" class="img-fluid">
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                 </div>
+                              </ng-template>
+
                               <!-- <div class="row">
                                   <div class="col-md-6 col-md-offset-6">
 
@@ -277,3 +290,65 @@
       <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Add Project</button>
   </div>
 </ng-template>
+
+<!-- report view -->
+
+<div class="modal fade" id="ReportView" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-blu">
+            <h4 class="modal-title mb-0" id="modal-basic-title">Report View Record</h4>
+      
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+      
+        </div>
+        <div class="modal-body">
+  
+          <form>
+              <div class="row">
+                  <div class="form-group col-md-6 mb-3">
+                      <label for="">Report Name:</label>
+                      <p class="font-weight-bold">{{report_name}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="">Report Typee:</label>
+                    <p class="font-weight-bold">{{report_type}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="">Report Project:</label>
+                    <p class="font-weight-bold">{{report_project}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="">Report Submitted:</label>
+                    <p class="font-weight-bold">{{report_submitted}}</p>
+                  </div>
+                  <div class="form-group col-md-6 mb-3">
+                    <label for="">Report Status:</label>
+                    <p class="font-weight-bold">{{report_status}}</p>
+                  </div>
+              </div>
+          </form>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        </div>
+      </div>
+      </div>
+</div>
+
+<!-- report delete -->
+
+<div class="modal fade" id="DeleteReport" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content pd-20 delete-bg">
+            <h1 class="text-white fs-20">Are you sure, you want to delete the Report</h1>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+                <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>

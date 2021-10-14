@@ -17,6 +17,7 @@ export class FeedbackComponent implements OnInit {
   Contact_address: any;
   totalRecords: any;
   page:any = 1;
+  count:number = 5;
 constructor(private superadminservice:SuperadminService,private spinner:NgxSpinnerService,private toastr:ToastrService) { }
 
   ngOnInit(): void {

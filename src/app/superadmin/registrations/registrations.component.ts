@@ -45,6 +45,7 @@ export class RegistrationsComponent  {
   user_name: any;
   totalRecords:any;
   page:any=1;
+  count:any = 5;
   constructor(private datePipe: DatePipe,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
   CompanyRegistration = this.fb.group({
     name:['', Validators.required],

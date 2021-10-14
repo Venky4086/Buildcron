@@ -23,6 +23,8 @@ export class QuestionsComponent  {
   status: any;
   totalRecords: any;
   page:any =1;
+  count:any = 5;
+  nodatafound = false;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;

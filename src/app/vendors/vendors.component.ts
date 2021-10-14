@@ -24,6 +24,7 @@ export class VendorsComponent {
   supervisor_contact: any;
   totalRecords:any;
   page:any =1;
+  count:any = 5;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddVendor = this.fb.group({
     name:['', Validators.required],

@@ -40,21 +40,27 @@ export class LoginComponent implements OnInit {
       this.superadminservice.Login(formData).subscribe((res)=>{
         console.log(res);
         sessionStorage.setItem('auth_token', res.access);
-        this.toaster.success('Successfully Login Done!')
         this.router.navigate(['/SuperAdmin']);
         this.roles = res.role;
-        sessionStorage.setItem('company_id',res.company_id);
-        sessionStorage.setItem('company_name',res.company_name);
-
-        sessionStorage.setItem('first_name',res.first_name);
-        sessionStorage.setItem('adminemail',res.email);
-        sessionStorage.setItem('license_count',res.license_count);
         // this.toaster.success('Successfully Login Done!')
         if(this.roles === 'SA'){
+          this.toaster.success('Successfully Login Done!');
+          // sessionStorage.setItem('company_id',res.company_id);
+          // sessionStorage.setItem('company_name',res.company_name);
+          // sessionStorage.setItem('first_name',res.first_name);
+          // sessionStorage.setItem('adminemail',res.email);
+          // sessionStorage.setItem('license_count',res.license_count);
           this.router.navigate(['/SuperAdmin']);
         }
         else{
-          this.router.navigate(['/CilentAdmin']);
+          // this.toaster.error('You are not authorized to login!');
+          this.toaster.success('Successfully Login Done!');
+          sessionStorage.setItem('company_id',res.company_id);
+          sessionStorage.setItem('company_name',res.company_name);
+          sessionStorage.setItem('first_name',res.first_name);
+          sessionStorage.setItem('adminemail',res.email);
+          sessionStorage.setItem('license_count',res.license_count);
+          this.router.navigate(['/ClientAdmin']);
         }
       },(error)=>{
         console.error(error);

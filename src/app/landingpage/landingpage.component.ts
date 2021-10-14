@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as AOS from 'aos';
 import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from '../services/registration.service';
+declare var $:any;
 @Component({
   selector: 'app-landingpage',
   templateUrl: './landingpage.component.html',
@@ -12,12 +13,23 @@ import { RegistrationService } from '../services/registration.service';
 export class LandingpageComponent implements OnInit {
   Allplanes:any;
   submitted = false;
-  constructor(private Registration:RegistrationService,private router:Router,private fb:FormBuilder,private toastr:ToastrService) { }
+  constructor(private Registration:RegistrationService,private router:Router,private fb:FormBuilder,private toastr:ToastrService) {
+   }
 
   ngOnInit(): void {
+
+    $(window).scroll(()=>{
+      var sticky = $('#header'),
+          scroll = $(window).scrollTop();
+    
+      if (scroll >= 100) sticky.addClass('header-scrolled');
+      else sticky.removeClass('header-scrolled');
+    });
+
     this.allplanes();
     AOS.init();
   }
+  
   ContactUs = this.fb.group({
     name:['', Validators.required],
     email:['', [Validators.required, Validators.email]],
@@ -83,4 +95,5 @@ export class LandingpageComponent implements OnInit {
    });
     }
   }
+
 }

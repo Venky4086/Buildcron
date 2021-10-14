@@ -123,12 +123,12 @@
                                                 | paginate
                                             :{
                                               id:'listing_pagination',
-                                              itemsPerPage:5,
+                                              itemsPerPage:count,
                                               currentPage:page,
                                               totalItems:totalRecords
                                             }
                                                 ;let i = index">
-                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td class="sorting_1">22-09-21</td>
                                                     <td>
                                                         <ul>
@@ -230,7 +230,7 @@
             </button>
       
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-overflow-scroll">
            <div *ngIf="questiondata">
             <div class="card my-2" *ngFor="let check of checklists">
                 <div class="card-body">

@@ -44,18 +44,19 @@ import { SafetydashboardComponent } from './safetydashboard/safetydashboard.comp
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
-  {path:'Landingpage', component:LandingpageComponent},
-  {path:'subscription', component:SubscriptionordersComponent},
-  {path:'checkout', component:CheckoutComponent},
+  // { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path:'login', component:LoginComponent
   },
+  {path:'Landingpage', component:LandingpageComponent},
+  {path:'subscription', component:SubscriptionordersComponent},
+  {path:'checkout', component:CheckoutComponent},
    { path: '',
-    component: VendorLayoutComponent,
+    component: VendorLayoutComponent,canActivate: [AuthguardGuard],
     children: [
-      { path: 'CilentAdmin',
-        component: DashboardComponent,canActivate: [AuthguardGuard]
+      { path: 'ClientAdmin',
+        component: DashboardComponent
       },
       {
       path:'Safetydashboard',
@@ -117,10 +118,10 @@ const routes: Routes = [
    },
 
    { path: '',
-  component: SuperadminLayoutComponent,
+  component: SuperadminLayoutComponent,canActivate: [AuthguardGuard],
   children: [
     { path: 'SuperAdmin',
-    component: SuperdashboardComponent,canActivate: [AuthguardGuard]
+    component: SuperdashboardComponent
     },
     { path: 'Registrations',
     component: RegistrationsComponent

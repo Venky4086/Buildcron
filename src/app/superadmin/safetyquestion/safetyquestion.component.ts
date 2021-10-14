@@ -22,6 +22,7 @@ export class SafetyquestionComponent implements OnInit {
   status: any;
   totalRecords: any;
   page:any =1;
+  count:any = 5;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
@@ -104,6 +105,7 @@ export class SafetyquestionComponent implements OnInit {
       "admin_status": this.AddCheckList.value.status,
       "type_id":sessionStorage.getItem('safety_id')
     }
+    // console.log(data);
     // console.log(this.AddCheckList.value);
     // const formData = new FormData
     // formData.append('name',this.AddCheckList.value.name)

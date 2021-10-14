@@ -13,7 +13,6 @@
                                 + Add Client</button>
                         </div>
   
-  
                         <!-- <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file" (change)="onFileSelect($event)" accept="application/pdf, application/vnd.ms-excel">
@@ -65,7 +64,7 @@
   
                                 </div>
   
-                                <div class="row">
+                                <div class="row" *ngIf="companyregistrationdatas.length !== 0;else elseBlack">
                                     <div class="col-sm-12">
                                       <div class="table-responsive">
                                         <table id="example1" style="overflow: auto !important; width:1400px !important;"
@@ -149,12 +148,12 @@
                                                 | paginate
                                             :{
                                               id:'listing_pagination',
-                                              itemsPerPage:5,
+                                              itemsPerPage:count,
                                               currentPage:page,
                                               totalItems:totalRecords
                                             }
                                                 ; let i=index">
-                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td>{{crd.user.client_id}}</td>
                                                     <td>{{crd.name}}</td>
                                                     <td>{{crd.user.phone_number}}</td>
@@ -200,6 +199,20 @@
                                 <div class="my-2 text-right">
                                   <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                 </div>
+
+                                <ng-template #elseBlack>
+                                  <div class="row my-2">
+                                      <div class="col-md-12">
+                                          <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                              <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Clients is Available</h1>
+                                              <!-- <div>
+                                                  <img src="assets/images/no-data.png" alt="" class="img-fluid">
+                                              </div> -->
+                                          </div>
+                                      </div>
+                                   </div>
+                               </ng-template>
+
                                 <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
   

@@ -34,6 +34,7 @@ export class QualityInspectionComponent {
   project: any;
   totalRecords:any;
   page:any=1;
+  count:any = 5;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({

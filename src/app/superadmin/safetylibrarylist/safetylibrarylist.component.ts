@@ -27,6 +27,7 @@ export class SafetylibrarylistComponent {
   type: any;
   totalRecords:any;
   page:any = 1;
+  count:any =5;
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   AddSafetyLibraryList = this.fb.group({
     // date:['', Validators.required],

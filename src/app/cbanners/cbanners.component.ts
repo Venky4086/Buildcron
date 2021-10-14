@@ -4,6 +4,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SuperadminService } from 'src/app/services/superadmin.service';
+import { AdminService } from '../services/admin.service';
 declare var $:any;
 
 @Component({
@@ -23,7 +24,7 @@ export class CbannersComponent implements OnInit {
   images:any=[];
   totalRecords:any;
   page:any=1;
-  constructor(private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
+  constructor(private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private adminserivce:AdminService) { }
   AddBanner = this.fb.group({
     name:['', Validators.required],
     image:['', Validators.required],
@@ -99,7 +100,7 @@ export class CbannersComponent implements OnInit {
 
   list(){
     this.spinner.show();
-    this.superadminserivce.Listbanner().subscribe((res)=>{
+    this.adminserivce.Listbanner().subscribe((res)=>{
        if(res){
        console.log(res);
        this.BannerLists = res;
@@ -130,11 +131,11 @@ export class CbannersComponent implements OnInit {
      }
      const formData = new FormData
      formData.append('name',this.AddBanner.value.name),
-     formData.append('image',this.file)
+     formData.append('images',this.file)
     //  console.log(data);
      console.log(formData);
     // console.log(this.AddBanner.value);
-     this.superadminserivce.Addbanner(formData).subscribe((res)=>{
+     this.adminserivce.Addbanner(formData).subscribe((res)=>{
        console.log(res);
        this.toastr.success('Successfully Banners Uploaded!');
        this.list();
@@ -173,8 +174,8 @@ view(banner_id:any,banner_name:any,banner_image:any){
     else{
        const formData = new FormData
        formData.append('name',this.UpdateBanner.value.banner_name)
-       formData.append('image',this.file)
-       this.superadminserivce.updatebanner(this.banner_id,formData).subscribe((res)=>{
+       formData.append('images',this.file)
+       this.adminserivce.updatebanner(this.banner_id,formData).subscribe((res)=>{
         console.log(res);
         this.toastr.success('Successfully Banner Updated!');
         this.list();
@@ -192,7 +193,7 @@ view(banner_id:any,banner_name:any,banner_image:any){
   }
 
   Delete(){
-    this.superadminserivce.deletebanner(this.banner_id).subscribe((res)=>{
+    this.adminserivce.deletebanner(this.banner_id).subscribe((res)=>{
       console.log(res);
        this.toastr.success('Successfully Banner Deleted!');
        this.list();

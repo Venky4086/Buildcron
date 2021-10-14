@@ -1374,6 +1374,7 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     font-size: 48px;
     font-weight: 700;
     color: #004add;
+    line-height: 1.0;
   }
   
   .hero h2 {
@@ -3340,3 +3341,24 @@ input::placeholder{
     color: #fefefe !important;
     cursor: default !important;
   }
+  
+
+/* textoverflow */
+
+.text-overflow{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 560px;
+}
+
+/* modal overflow scroll */
+
+.modal-overflow-scroll{
+  overflow-y: scroll;
+  height: 400px;
+
+}
+.opacity-8{
+  opacity: 0.8 !important;
+}

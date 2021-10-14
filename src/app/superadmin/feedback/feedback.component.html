@@ -124,12 +124,12 @@
                                                 | paginate
                                               :{
                                                 id:'listing_pagination',
-                                                itemsPerPage:3,
+                                                itemsPerPage:count,
                                                 currentPage:page,
                                                 totalItems:totalRecords
                                               }
                                                 ;let i = index">
-                                                    <td>{{i+1}}</td>
+                                                    <td>{{(page - 1) * count + i + 1}}</td>
                                                     <td>{{contact.name}}</td>
                                                     <td>{{contact.email}}</td>
                                                     <td>{{contact.phone}}</td>

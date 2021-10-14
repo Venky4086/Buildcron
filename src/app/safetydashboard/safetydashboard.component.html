@@ -1,7 +1,7 @@
 <div class="container-fluid px-0">
     <div class="card p-3 card-bg">
         <div class="content-header">
-            <div class="row mb-2">
+            <div class="row my-2">
                 <div class="col-sm-12">
                     <h2 class="m-0 font-weight-bold fs-600">Safety Dashboard</h2>
                 </div><!-- /.col -->
@@ -10,22 +10,22 @@
         </div>
 
 
-        <div class="row mgb-20">
-            <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 my-2">
                 <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
                     (change)="onChange($event)">
                     <option value="">Select Project from Dropdown</option>
                     <option *ngFor="let project of project_list" [ngValue]="project">{{project.project_name}}</option>
                 </select>
             </div>
-            <div class="col-md-4 d-flex justify-content-center">
+            <div class="col-md-4 my-2 d-flex justify-content-center">
                 <div class="buttons">
                     <div class="quality-btn"><a class="cursor_pointer text-white text-decoration-none"
                             routerLink="/CilentAdmin">Qality</a></div>
                     <div class="safety-btn"><a class="cursor_pointer text-white text-decoration-none">Safety</a></div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
                 <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
                     (change)="analysis($event)">
                     <option value="Project Analysis">Project Analysis</option>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="row" *ngIf="project">
-            <div class="col-md-8">
+            <div class="col-md-8 my-2">
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
@@ -117,8 +117,8 @@
 
                     </div>
                 </div>
-                <div class="row my-3">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 my-2">
                         <div style="display: block" class="card pd-10">
                             <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site
                                 Inspections</h1>
@@ -128,7 +128,7 @@
                             </canvas>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 my-2">
                         <div style="display: block" class="card pd-10">
                             <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:95px">Safety NCRs
                             </h1>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
                 <div class="card pd-10 Covid-19">
                     <div class="row">
                         <div class="col-md-12">
@@ -270,7 +270,7 @@
         </div>
 
         <div class="row" *ngIf="vendor_list">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box first-box">

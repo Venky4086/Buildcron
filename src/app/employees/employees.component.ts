@@ -29,6 +29,7 @@ export class EmployeesComponent {
   emid: any;
   totalRecords:any;
   page:any=1;
+  count: any = 5;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddEmployee = this.fb.group({
     // date:['', Validators.required],
@@ -119,7 +120,7 @@ export class EmployeesComponent {
       if(res){
         console.log(res);
         this.employelist = res;
-        this.totalRecords = res.length
+        this.totalRecords = res.length;
         this.spinner.hide();
       }
       else{

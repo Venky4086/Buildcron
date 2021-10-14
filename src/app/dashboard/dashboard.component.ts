@@ -93,14 +93,14 @@ export class DashboardComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barChartLabels: Label[] = ['11-10-2021', '12-10-2021', '13-10-2021', '14-10-2021', '15-10-2021', '16-10-2021', '17-10-2021'];
+  public barChartLabels: Label[] = ['11-10-2021', '12-10-2021', '13-10-2021', '14-10-2021', '15-10-2021', '16-10-2021', '17-10-2021','11-10-2021', '12-10-2021', '13-10-2021', '14-10-2021', '15-10-2021', '16-10-2021', '17-10-2021'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'No of Inspection (Closed)' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'No of Inspection (Open)' }
+    { data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40], label: 'No of Inspection (Closed)' },
+    { data: [28, 48, 40, 19, 86, 27, 90,28, 48, 40, 19, 86, 27, 90], label: 'No of Inspection (Open)' }
   ];
 
   public barChartColors: Color[] = [

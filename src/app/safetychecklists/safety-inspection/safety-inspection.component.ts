@@ -32,6 +32,7 @@ export class SafetyInspectionComponent {
   project: any;
   totalRecords:any;
   page:any=1;
+  count:any = 5;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -112,7 +113,7 @@ export class SafetyInspectionComponent {
   alllibrarylist(){
     // this.spinner.show();
     let tmp:any[] = [];
-    this.superadminserivce.allsaftylibrarylist().subscribe((res)=>{
+    this.adminservice.allsaftylibrarylist().subscribe((res)=>{
       if(res){
         console.log(res);
         this.librarylists = res;

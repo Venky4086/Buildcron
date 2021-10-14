@@ -662,3 +662,36 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+
+
+ <script>
+
+  const scrollto = (el) => {
+    let header = select("#header");
+    let offset = header.offsetHeight;
+
+    if (!header.classList.contains("header-scrolled")) {
+      offset -= 10;
+    }
+
+    let elementPos = select(el).offsetTop;
+    window.scrollTo({
+      top: elementPos - offset,
+      behavior: "smooth",
+    });
+  };
+
+  let selectHeader = select("#header");
+  if (selectHeader) {
+    const headerScrolled = () => {
+      if (window.scrollY > 100) {
+        selectHeader.classList.add("header-scrolled");
+      } else {
+        selectHeader.classList.remove("header-scrolled");
+      }
+    };
+    window.addEventListener("load", headerScrolled);
+    onscroll(document, headerScrolled);
+  }
+ 
+ </script>

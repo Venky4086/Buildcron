@@ -69,6 +69,7 @@ import { SafetydashboardComponent } from './safetydashboard/safetydashboard.comp
 import { ChartsModule } from 'ng2-charts';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthenticationserviceService } from './services/authenticationservice.service';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ChartsModule,
     NgxPaginationModule
   ],
-  providers: [SuperadminService,AdminService,RegistrationService],
+  providers: [SuperadminService,AdminService,RegistrationService,AuthenticationserviceService],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

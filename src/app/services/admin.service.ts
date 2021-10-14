@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { GlobalData } from '../globaldata/global.data';
 import { pluck, share, shareReplay, tap } from 'rxjs/operators';
 
-// var auth_token = sessionStorage.getItem('auth_token');
+var auth_token = sessionStorage.getItem('auth_token');
 
 const headers = new HttpHeaders()
   .set('content-type', 'application/json')
@@ -13,6 +13,12 @@ const headers = new HttpHeaders()
 //   const options = {
 //     headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + auth_token }
 // }
+
+const config = {
+  headers:{
+    // 'content-type': 'multipart/form-data', 
+  'Authorization': 'JWT ' + auth_token }
+};
 
 @Injectable({
   providedIn: 'root'
@@ -143,6 +149,11 @@ export class AdminService {
 
   // Quality Safety Inspection
 
+  allsaftylibrarylist(): Observable<any> {
+    return this.http.get<any>(GlobalData.url_buildcron + 'safety/questions/list', this.options)
+      .pipe(shareReplay(1));
+  }
+
   AddSafetyInspection(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_buildcron + 'safety/checklist/assign/project', data,this.options)
   }
@@ -184,9 +195,35 @@ allreports(): Observable<any> {
     .pipe(shareReplay(1));
 }
 
+deletereports(delete_id:any): Observable<any>{
+  return this.http.delete<any>(GlobalData.url_buildcron + 'report/delete/'+ delete_id,this.options)
+  .pipe(shareReplay(1));
+}
+
 // change password
 
 changepassword(data:any):Observable<any>{
   return this.http.put<any>(GlobalData.url_account+'password/'+`${this.getemail()}`+'/reset',data,this.options);
 }
+
+
+// banners
+
+
+Addbanner(data:any):Observable<any>{
+  return this.http.post<any>(GlobalData.url_buildcron + 'tenent/banner/create' , data,config)
+}
+Listbanner():Observable<any>{
+  return this.http.get<any>(GlobalData.url_buildcron + 'tenent/banner/list',this.options)
+  .pipe(shareReplay(1));
+}
+deletebanner(id: any): Observable<any> {
+  return this.http.delete<any>(GlobalData.url_buildcron + 'tenent/banner/delete/' + id,this.options)
+    .pipe(shareReplay(1));
+}
+updatebanner(id: any, data: any): Observable<any> {
+  return this.http.put<any>(GlobalData.url_buildcron + 'tenent/banner/update/' + id, data, config)
+    .pipe(shareReplay(1));
+}
+
 }

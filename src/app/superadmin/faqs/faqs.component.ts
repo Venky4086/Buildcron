@@ -23,6 +23,7 @@ export class FaqsComponent  {
   faqs_id: any;
   totalRecords: any;
   page:any =1;
+  count:number = 3;
   // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
@@ -192,4 +193,13 @@ export class FaqsComponent  {
       $('#DeleteFaqs').hide();
     })
   }
+
+// show text
+
+isReadMore = true;
+
+showText() {
+   this.isReadMore = !this.isReadMore;
+}
+
 }

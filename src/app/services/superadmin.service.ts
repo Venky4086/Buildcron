@@ -279,18 +279,18 @@ deletesaftychecklist(id: any): Observable<any> {
   // banner
 
   Addbanner(data:any):Observable<any>{
-    return this.http.post<any>(GlobalData.url_buildcron + 'banner/list_or_create' , data,config)
+    return this.http.post<any>(GlobalData.url_buildcron + 'banner/create' , data,config)
   }
   Listbanner():Observable<any>{
-    return this.http.get<any>(GlobalData.url_buildcron + 'banner/list_or_create',this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'banner/list',this.options)
     .pipe(shareReplay(1));
   }
   deletebanner(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'banner/rud/' + id,this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'banner/delete/' + id,this.options)
       .pipe(shareReplay(1));
   }
   updatebanner(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'banner/rud/' + id, data, config)
+    return this.http.put<any>(GlobalData.url_buildcron + 'banner/update/' + id, data, config)
       .pipe(shareReplay(1));
   }
 

@@ -13,9 +13,6 @@
                                 + Add Vendor</button>
                         </div>
 
-
-
-
                         <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
@@ -63,7 +60,7 @@
 
                                 </div>
 
-                                <div class="row">
+                                <div class="row"  *ngIf="vendorlist.length !== 0;else elseBlack">
                                     <div class="col-sm-12">
                                         <table id="example1"
                                             class="table mb-0 table-bordered table-striped dataTable dtr-inline"
@@ -122,12 +119,12 @@
                                                 | paginate
                                             :{
                                               id:'listing_pagination',
-                                              itemsPerPage:5,
+                                              itemsPerPage:count,
                                               currentPage:page,
                                               totalItems:totalRecords
                                             }
                                                 ;let i =index">
-                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td class="sorting_1">{{vendor.name}}</td>
                                                     <td>{{vendor.ven_id}}</td>
                                                     <td>{{vendor.address}}</td>
@@ -160,6 +157,18 @@
                                     </div>
 
                                 </div>
+                                <ng-template #elseBlack>
+                                    <div class="row my-2">
+                                        <div class="col-md-12">
+                                            <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                                <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Vendors is Available</h1>
+                                                <!-- <div>
+                                                    <img src="assets/images/no-data.png" alt="" class="img-fluid">
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                     </div>
+                                </ng-template>
                                 <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
 

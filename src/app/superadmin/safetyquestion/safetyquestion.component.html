@@ -13,9 +13,6 @@
                                 + Add Question</button>
                         </div>
   
-  
-  
-  
                         <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
@@ -63,7 +60,7 @@
   
                                 </div>
   
-                                <div class="row">
+                                <div class="row" *ngIf="checklists.length !== 0; else elseBlack">
                                     <div class="col-sm-12">
                                       <div class="table-responsive">
                                         <table id="example1"
@@ -107,14 +104,18 @@
                                                 | paginate
                                                 :{
                                                   id:'listing_pagination',
-                                                  itemsPerPage:5,
+                                                  itemsPerPage:count,
                                                   currentPage:page,
                                                   totalItems:totalRecords
                                                 }
                                                 ;let i=index">
-                                                    <td class="dtr-control">{{i+1}}</td>
+                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td>{{checklist.question_id}}</td>
-                                                    <td>{{checklist.question}}</td>
+                                                    <td>
+                                                        <p class="text-overflow">
+                                                            {{checklist.question}}
+                                                        </p>
+                                                    </td>
                                                     <!-- <td>{{checklist.name}}</td>
                                                     <td>{{checklist.id}}</td> -->
                                                     <!-- <td>
@@ -150,6 +151,17 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <ng-template #elseBlack>
+                                    <div class="row my-2">
+                                        <div class="col-md-12">
+                                            <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                                <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Safety Questions is Available</h1>
+                                            </div>
+                                        </div>
+                                     </div>
+                                 </ng-template>
+
                                 <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
   

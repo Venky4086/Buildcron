@@ -129,7 +129,7 @@ export class BannersComponent implements OnInit {
      }
      const formData = new FormData
      formData.append('name',this.AddBanner.value.name),
-     formData.append('image',this.file)
+     formData.append('images',this.file)
     //  console.log(data);
      console.log(formData);
     // console.log(this.AddBanner.value);
@@ -142,8 +142,14 @@ export class BannersComponent implements OnInit {
        this.submitted = false;
      },(error)=>{
        console.error(error);
-       this.toastr.error('Somthing went to wrong');
        $('#Addbanner').hide();
+       this.AddBanner.reset();
+       this.submitted = false;
+       if(error.error.name){
+        this.toastr.error(error.error .name[0]);
+       }else{
+        this.toastr.error('Somthing went to wrong');
+       }
      })
    }
   }
@@ -172,7 +178,7 @@ view(banner_id:any,banner_name:any,banner_image:any){
     else{
        const formData = new FormData
        formData.append('name',this.UpdateBanner.value.banner_name)
-       formData.append('image',this.file)
+       formData.append('images',this.file)
        this.superadminserivce.updatebanner(this.banner_id,formData).subscribe((res)=>{
         console.log(res);
         this.toastr.success('Successfully Banner Updated!');

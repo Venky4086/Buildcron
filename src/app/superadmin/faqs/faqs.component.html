@@ -14,9 +14,6 @@
                               + Add Query</button>
                       </div>
 
-
-
-
                       <div class="bulk_btn">
                           <span class="btn btn-default btn-file bg1 mtop">
                               Bulk Upload <input type="file">
@@ -64,7 +61,7 @@
 
                               </div>
 
-                              <div class="row">
+                              <div class="row" *ngIf="faqs.length !== 0;else elseBlack">
                                   <div class="col-sm-12">
                                     <div class="table-responsive">
                                       <table id="example1"
@@ -104,15 +101,22 @@
                                               | paginate
                                               :{
                                                 id:'listing_pagination',
-                                                itemsPerPage:3,
+                                                itemsPerPage:count,
                                                 currentPage:page,
                                                 totalItems:totalRecords
                                               }
                                               ;let i=index">
-                                                  <td>{{i+1}}</td>
+                                                  <td>{{(page - 1) * count + i + 1}}</td>
                                                   <td>{{faq.faq_id}}</td>
                                                   <td>{{faq.question}}</td>
-                                                  <td>{{faq.answer}}</td>
+                                                  <td>
+                                                      <p class="mgb-0" [ngClass]="{'limitTextHeight': isReadMore}">
+                                                        {{faq.answer}}
+                                                      </p>
+                                                      <a (click)="showText()" class="cursor_pointer">
+                                                        {{ isReadMore ? 'Read More': 'Read Less' }}
+                                                      </a>
+                                                  </td>
                                                   <td *ngIf="faq.status == true">Valid</td>
                                                   <td *ngIf="faq.status == false">InValid</td>
                                                   <!-- <td>N/A</td> -->
@@ -139,6 +143,20 @@
                                   </div>
 
                               </div>
+
+                              <ng-template #elseBlack>
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                            <h1 class="mgb-0 fs-20 fw-700 opacity-8">No FAQs is Available</h1>
+                                            <!-- <div>
+                                                <img src="assets/images/no-data.png" alt="" class="img-fluid">
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                 </div>
+                              </ng-template>
+
                               <!-- <div class="row">
                                   <div class="col-md-6 col-md-offset-6">
 

@@ -14,8 +14,6 @@
                         </div>
   
   
-  
-  
                         <!-- <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
@@ -112,12 +110,12 @@
                                               | paginate
                                             :{
                                               id:'listing_pagination',
-                                              itemsPerPage:5,
+                                              itemsPerPage:count,
                                               currentPage:page,
                                               totalItems:totalRecords
                                             }
                                               ;let i=index">
-                                                  <td class="dtr-control">{{i+1}}</td>
+                                                  <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                   <!-- <td class="sorting_1">{{librarylist.date}}</td> -->
                                                   <!-- <td>{{librarylist.id}}</td> -->
                                                   <td>{{librarylist.checklist_id}}</td>
@@ -127,7 +125,7 @@
                                                   <!-- <td *ngIf="librarylist.status == true">Active</td>
                                                   <td *ngIf="librarylist.status == false">InActive</td> -->
                                                   <td>
-                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(librarylist.id,librarylist.quality_id,librarylist.name)">
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(librarylist.id,librarylist.checklist_id,librarylist.name)">
                                                       <i class='fa fa-eye mr-1'></i>
                                                       </a>
                                                       <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateQulaity" (click)="edit(librarylist.id,librarylist.checklist_id,librarylist.name)">
