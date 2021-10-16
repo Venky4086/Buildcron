@@ -117,19 +117,23 @@ export class DashboardComponent implements OnInit {
   public barEmployeeChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barEmployeeChartLabels: Label[] = ['Abhis', 'Aditya', 'Amit', 'Mahesh', 'Rohit', 'Yash', 'Ankit'];
+  public barEmployeeChartLabels: Label[] = ['Abhis', 'Aditya', 'Amit', 'Mahesh', 'Rohit', 'Yash', 'Ankit','Abhis', 'Aditya', 'Amit', 'Mahesh', 'Rohit', 'Yash', 'Ankit'];
   public barEmployeeChartType: ChartType = 'bar';
   public barEmployeeChartLegend = true;
   public barEmployeeChartPlugins = [];
 
   public barEmployeeChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'No of Inspection (Closed)' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'No of Inspection (Open)' }
+    { data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40], label: 'Checklists' },
+    { data: [28, 48, 40, 19, 86, 27, 90,28, 48, 40, 19, 86, 27, 90], label: 'Site Observations' },
+    {
+      data:[18, 0, 10, 0, 10, 0, 10,18, 0, 10, 0, 10, 0, 10],label:'NCRs'
+    }
   ];
 
   public barEmployeeChartColors: Color[] = [
     { backgroundColor: '#1d9eff' },
     { backgroundColor: '#ff781d' },
+    {backgroundColor:'#00b050'}
   ]
 
 
@@ -138,19 +142,24 @@ export class DashboardComponent implements OnInit {
   public barVendorChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barVendorChartLabels: Label[] = ['Vendor-1', 'Vendor-2', 'Vendor-3', 'Vendor-4', 'Vendor-5', 'Vendor-6', 'Vendor-7'];
+  public barVendorChartLabels: Label[] = ['Vendor-1', 'Vendor-2', 'Vendor-3', 'Vendor-4', 'Vendor-5', 'Vendor-6', 'Vendor-7','Vendor-8', 'Vendor-9', 'Vendor-10', 'Vendor-11', 'Vendor-12', 'Vendor-13', 'Vendor-14'];
   public barVendorChartType: ChartType = 'bar';
   public barVendorChartLegend = true;
   public barVendorChartPlugins = [];
 
   public barVendorChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'No of Inspection (Closed)' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'No of Inspection (Open)' }
+    { data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40], label: 'Checklists' },
+    { data: [28, 48, 40, 19, 86, 27, 90,28, 48, 40, 19, 86, 27, 90], label: 'Site Observations' },
+    {
+      data:[18, 0, 10, 0, 10, 0, 10,18, 0, 10, 0, 10, 0, 10],label:'NCRs'
+    }
+
   ];
 
   public barVendorChartColors: Color[] = [
     { backgroundColor: '#1d9eff' },
     { backgroundColor: '#ff781d' },
+    {backgroundColor:'#00b050'}
   ]
 
 // site pie inspection
