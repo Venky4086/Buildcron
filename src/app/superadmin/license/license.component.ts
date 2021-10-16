@@ -287,7 +287,7 @@ export class LicenseComponent {
 
   single_license_details(company:any){
    sessionStorage.setItem('c_name',company);
-   this.router.navigate(['/userlicense']);
+   this.router.navigate(['/Usedlicense']);
   }
 
 }

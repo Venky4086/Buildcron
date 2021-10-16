@@ -139,7 +139,7 @@
                                     </div>
 
                                 </div> -->
-                                <div class="row" *ngIf="BannerLists.length !== 0; else elseBlack">
+                                <div class="row" *ngIf="totalRecords !== 0; else elseBlack">
                                     <div class="col-lg-4 col-md-4 col-sm-4 my-3" *ngFor="let BannerList of BannerLists">
                                         <div class="card">
                                             <div class="banner_header">

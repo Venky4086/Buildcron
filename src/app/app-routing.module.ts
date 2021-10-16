@@ -130,7 +130,7 @@ const routes: Routes = [
     component: LicenseComponent,
     },
     {
-      path:'userlicense',component:UsedlicenseComponent
+      path:'Usedlicense',component:UsedlicenseComponent
     },
     { path: 'QualityLibraryList',
     component: LibrarylistComponent

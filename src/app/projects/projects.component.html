@@ -61,7 +61,7 @@
 
                                 </div>
 
-                                <div class="row" *ngIf="projectlist.length !== 0;else elseBlack">
+                                <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
                                     <div class="col-sm-12">
                                         <table id="example1"
                                             class="table mb-0 table-bordered table-striped dataTable dtr-inline"
@@ -203,6 +203,7 @@
                                         </div>
                                      </div>
                                 </ng-template>
+                                
                                 <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
 
