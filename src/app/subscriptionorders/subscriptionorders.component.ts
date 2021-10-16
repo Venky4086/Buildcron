@@ -117,6 +117,7 @@ checkout(){
     return
   }
   else{
+    console.log(this.Subscription.value.planenumber);
     // sessionStorage.setItem('planename',this.Subscription.value.planename);
     sessionStorage.setItem('planecount',this.Subscription.value.planenumber);
     sessionStorage.setItem('planeamount',this.Subscription.value.planeamount);

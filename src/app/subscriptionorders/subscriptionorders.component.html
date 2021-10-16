@@ -109,7 +109,7 @@
                 Number
               </div>
               <div class="card-body">
-                <select
+                <!-- <select
                   class="form-select"
                   id="numbers"
                   aria-label="Numbers"
@@ -117,7 +117,6 @@
                    [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }" (change)="onChange($event)">
                     <option value="" selected>--select the one option --</option>
                     <option value="{{n.id}}" *ngFor="let n of data">{{n.id}}</option>
-                    <!-- <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -126,8 +125,14 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
-                    <option value="10">10</option> -->
-                </select>
+                    <option value="10">10</option>
+                </select> -->
+                <input type="text" class="form-control"
+                id="numbers"
+                aria-label="Numbers"
+                placeholder="Enter the plane number"
+                name="numbers" formControlName="planenumber"
+                 [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }" (keyup)="onChange($event)">
                 <div *ngIf="submitted && f.planenumber.errors" class="invalid-feedback">
                   <div *ngIf="f.planenumber.errors.required" class="fs-13 fw-500">Plane Count is required</div>
                  </div>
