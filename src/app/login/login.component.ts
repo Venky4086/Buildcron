@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   Login = this.fb.group({
     email:['', Validators.required],
-    password:['', Validators.required],
-    // password:['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
+    // password:['', Validators.required],
+    password:['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
   });
   ngOnInit(): void {
   }
@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
         this.roles = res.role;
         // this.toaster.success('Successfully Login Done!')
         if(this.roles === 'SA'){
-          this.toaster.success('Successfully Login Done!');
+          this.toaster.error('Use this Credentials in superadmin.buildcron.com');
           // sessionStorage.setItem('company_id',res.company_id);
           // sessionStorage.setItem('company_name',res.company_name);
           // sessionStorage.setItem('first_name',res.first_name);
           // sessionStorage.setItem('adminemail',res.email);
           // sessionStorage.setItem('license_count',res.license_count);
-          this.router.navigate(['/SuperAdmin']);
+          this.router.navigate(['/login']);
         }
         else{
           // this.toaster.error('You are not authorized to login!');

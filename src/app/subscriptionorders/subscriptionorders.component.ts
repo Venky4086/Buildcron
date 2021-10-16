@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
-
+declare var $:any;
 @Component({
   selector: 'app-subscriptionorders',
   templateUrl: './subscriptionorders.component.html',
   styleUrls: ['./subscriptionorders.component.css']
 })
 export class SubscriptionordersComponent implements OnInit {
-
   // planename:any;
   // planeamount:any;
   submitted = false;
@@ -29,6 +28,13 @@ export class SubscriptionordersComponent implements OnInit {
     planeamount:['', Validators.required],
   });
   ngOnInit(): void {
+    $(window).scroll(()=>{
+      var sticky = $('#header'),
+          scroll = $(window).scrollTop();
+    
+      if (scroll >= 100) sticky.addClass('header-scrolled');
+      else sticky.removeClass('header-scrolled');
+    });
     this.planeamount = sessionStorage.getItem('planeamount');
     this.allplanes()
   }

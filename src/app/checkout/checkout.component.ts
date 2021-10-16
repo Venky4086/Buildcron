@@ -42,6 +42,15 @@ export class CheckoutComponent implements OnInit {
   }); 
   Total_Amount = sessionStorage.getItem('planeamount')
   ngOnInit(): void {
+
+    $(window).scroll(()=>{
+      var sticky = $('#header'),
+          scroll = $(window).scrollTop();
+    
+      if (scroll >= 100) sticky.addClass('header-scrolled');
+      else sticky.removeClass('header-scrolled');
+    });
+
     this.contactperson();
     console.log(sessionStorage.getItem('planename'));
   }

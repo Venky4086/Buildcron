@@ -64,7 +64,7 @@
   
                                 </div>
   
-                                <div class="row" *ngIf="totalRecords.length !== 0;else elseBlack">
+                                <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
                                     <div class="col-sm-12">
                                       <div class="table-responsive">
                                         <table id="example1" style="overflow: auto !important; width:1400px !important;"
@@ -198,7 +198,6 @@
                                       <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
                                     </div>
                                 </div>
-                               
 
                                 <ng-template #elseBlack>
                                   <div class="row my-2">
@@ -211,7 +210,7 @@
                                           </div>
                                       </div>
                                    </div>
-                               </ng-template>
+                                </ng-template>
 
                                 <!-- <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
