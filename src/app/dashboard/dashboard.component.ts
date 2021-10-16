@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   selectedObject:any;
   site_observation: any;
   ncr: any;
+  checklists: any;
 
   constructor(private clientadmin:ClientAdmindashboardService) { 
   }
@@ -64,12 +65,13 @@ export class DashboardComponent implements OnInit {
       this.success_percent = this.quality.success_percent;
       this.site_observation = this.quality.site_observation;
       this.ncr = this.quality.ncr;
+      this.checklists = res.quality.checklists
     },(error)=>{
       console.error(error);
     })
   }
   onChange(project_id:any) {
-    console.log(project_id.target.value);
+    // console.log(project_id.target.value);
     this.project_id = project_id.target.value;
     this.clientadmin.SingleProjectslist(this.project_id).subscribe((res)=>{
       console.log(res);
@@ -78,9 +80,10 @@ export class DashboardComponent implements OnInit {
       this.success_percent = this.quality.success_percent;
       this.site_observation = this.quality.site_observation;
       this.ncr = this.quality.ncr;
+      this.checklists = res.quality.checklists
     },(error)=>{
       console.error(error);
-    })
+    });
     // this.selectedObject = deviceValue.target.value;
     // console.log("name",this.selectedObject);
     // this.quality = this.selectedObject.quality,

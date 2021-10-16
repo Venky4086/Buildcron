@@ -114,7 +114,7 @@ export class ProjectsComponent {
 // all empoyess
 
   allemploys(){
-    this.spinner.show();
+    // this.spinner.show();
     let tmp:any[] = [];
     this.adminservice.Employeslist().subscribe((res)=>{
       if(res){
@@ -130,14 +130,14 @@ export class ProjectsComponent {
       //   this.employe_name = res[index].user.first_name;
       //   console.log(this.employe_name);
       // }
-        this.spinner.hide();
+        // this.spinner.hide();
       }
       else{
         console.warn(res);
       }
     },(error)=>{
       console.error(error.error.message);
-      this.spinner.hide();
+      // this.spinner.hide();
     })
   }
 
@@ -159,26 +159,26 @@ export class ProjectsComponent {
       }
     },(error)=>{
       console.error(error);
-      this.spinner.hide();
+      // this.spinner.hide();
     })
 }
 
 // all vendros
 
   allvendors(){
-    this.spinner.show();
+    // this.spinner.show();
     this.adminservice.vendorslist().subscribe((res)=>{
       if(res){
         console.log(res);
         this.vendorlist = res;
-        this.spinner.hide();
+        // this.spinner.hide();
       }
       else{
         console.warn(res);
       }
     },(error)=>{
       console.error(error.error.message);
-      this.spinner.hide();
+      // this.spinner.hide();
     })
   }
 

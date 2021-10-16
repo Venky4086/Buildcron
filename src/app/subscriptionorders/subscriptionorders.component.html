@@ -95,7 +95,7 @@
                   <option value="perpetual">Perpetual</option> -->
                 </select>
                 <div *ngIf="submitted && f.planename.errors" class="invalid-feedback">
-                  <div *ngIf="f.planename.errors.required" class="fs-15 fw-700">Plane Name is required</div>
+                  <div *ngIf="f.planename.errors.required" class="fs-13 fw-500">Plane Name is required</div>
                  </div>
                 <div class="progress-bar" style="display: none">
                   <span class="bar">
@@ -129,7 +129,7 @@
                     <option value="10">10</option> -->
                 </select>
                 <div *ngIf="submitted && f.planenumber.errors" class="invalid-feedback">
-                  <div *ngIf="f.planenumber.errors.required" class="fs-15 fw-700">Plane Count is required</div>
+                  <div *ngIf="f.planenumber.errors.required" class="fs-13 fw-500">Plane Count is required</div>
                  </div>
               </div>
             </div>
@@ -199,7 +199,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.planeamount.errors }" *ngIf="default"/>
 
                 <div *ngIf="submitted && f.planeamount.errors" class="invalid-feedback">
-                  <div *ngIf="f.planeamount.errors.required" class="fs-15 fw-700">Plane Amount is required</div>
+                  <div *ngIf="f.planeamount.errors.required" class="fs-13 fw-500">Plane Amount is required</div>
                  </div>
 
               </div>

@@ -512,7 +512,7 @@
                   <label for="">Name</label>
                   <input type="text" name="name" class="form-control" placeholder="Your Name" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">
                   <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                    <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
                         Name is required
                     </div>
                   </div>
@@ -522,10 +522,10 @@
                   <label for="">Email</label>
                   <input type="email" class="form-control" name="email" placeholder="Your Email" formControlName="email" [ngClass]="{'is-invalid':submitted && f.email.errors}">
                   <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.email.errors.required">
+                    <div class="fs-13 fw-500" *ngIf="f.email.errors.required">
                        Email is required
                     </div>
-                    <div class="fs-15 fw-700" *ngIf="f.email.errors.email">
+                    <div class="fs-13 fw-500" *ngIf="f.email.errors.email">
                       Please provide the valid email addrerss
                    </div>
                   </div>
@@ -535,10 +535,10 @@
                   <label for="">Mobile</label>
                   <input type="text" class="form-control" name="subject" placeholder="Subject" formControlName="mobile" [ngClass]="{'is-invalid':submitted && f.mobile.errors}">
                   <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.mobile.errors.required">
+                    <div class="fs-13 fw-500" *ngIf="f.mobile.errors.required">
                         Mobile is required
                     </div>
-                    <div *ngIf="f.mobile.errors.pattern" class="fs-15 fw-700">Mobil Number must be at 10 digits
+                    <div *ngIf="f.mobile.errors.pattern" class="fs-13 fw-500">Mobil Number must be at 10 digits
                       required</div>
                   </div>
                 </div>
@@ -547,7 +547,7 @@
                   <label for="">Address</label>
                   <textarea class="form-control" name="message" rows="6" placeholder="Message" formControlName="address" [ngClass]="{'is-invalid':submitted && f.address.errors}"></textarea>
                   <div class="invalid-feedback" *ngIf="submitted && f.address.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.address.errors.required">
+                    <div class="fs-13 fw-500" *ngIf="f.address.errors.required">
                         Address is required
                     </div>
                   </div>

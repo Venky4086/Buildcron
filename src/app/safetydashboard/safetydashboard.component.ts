@@ -16,6 +16,10 @@ export class SafetydashboardComponent implements OnInit {
   success_percent: any;
   vendor_list = false;
   project = true;
+  project_id: any;
+  site_observation: any;
+  ncr: any;
+  checklists: any;
 
   constructor(private clientadmin:ClientAdmindashboardService) { 
   }
@@ -29,6 +33,15 @@ export class SafetydashboardComponent implements OnInit {
      if(res){
       console.log(res);
       this.project_list = res;
+      this.project_list.filter((
+        project: { project_id: any; },index: number
+      )=>{
+        if(index == (this.project_list.length - 1)){
+           this.project_id = project.project_id;
+           console.log(this.project_id);
+           this.defaultproject();
+        }
+      })
      }
      else{
        console.warn(res);
@@ -37,13 +50,41 @@ export class SafetydashboardComponent implements OnInit {
       console.error(error);
     })
   }
-  onChange(deviceValue:any) {
-    console.log(JSON.stringify(deviceValue.target.value));
+
+  defaultproject(){
+    this.clientadmin.SingleProjectslist(this.project_id).subscribe((res)=>{
+      console.log(res);
+      this.safety = res.safety;
+      this.total_inspections = this.safety.total_inspections;
+      this.success_percent = this.safety.success_percent;
+      this.site_observation = this.safety.site_observation;
+      this.ncr = this.safety.ncr;
+      this.checklists = res.safety.checlists
+    },(error)=>{
+      console.error(error);
+    })
+  }
+
+  onChange(project_id:any) {
+    // console.log(JSON.stringify(deviceValue.target.value));
+    this.project_id = project_id.target.value;
+    this.clientadmin.SingleProjectslist(this.project_id).subscribe((res)=>{
+      console.log(res);
+      this.safety = res.safety;
+      this.total_inspections = this.safety.total_inspections;
+      this.success_percent = this.safety.success_percent;
+      this.site_observation = this.safety.site_observation;
+      this.ncr = this.safety.ncr;
+      this.checklists = res.safety.checlists;
+    },(error)=>{
+      console.error(error);
+    })
+
     // this.selectedObject = deviceValue.target.value;
-    console.log(this.selectedObject);
-    this.safety = this.selectedObject.safety ,
-    this.total_inspections = this.selectedObject.safety.total_inspections,
-    this.success_percent = this.selectedObject.safety.success_percent
+    // console.log(this.selectedObject);
+    // this.safety = this.selectedObject.safety ,
+    // this.total_inspections = this.selectedObject.safety.total_inspections,
+    // this.success_percent = this.selectedObject.safety.success_percent
   }
 
   // analysis

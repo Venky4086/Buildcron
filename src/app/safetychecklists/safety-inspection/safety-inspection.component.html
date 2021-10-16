@@ -303,7 +303,7 @@
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
                         <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.date.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
                                 Date is required
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                         [ngModelOptions]="{standalone:true}" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}">
                       </ng-multiselect-dropdown>
                         <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
                                 Safety Checklist Name is required
                             </div>
                         </div>
@@ -330,7 +330,7 @@
                         <label for="dateOfBirth">Description:</label>
                         <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.description.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.description.errors.required">
                                 Description is required
                             </div>
                         </div>
@@ -345,7 +345,7 @@
                         <label for="dateOfBirth">Uploaded By:</label>
                         <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':submitted && f.uploaded.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.uploaded.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.uploaded.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.uploaded.errors.required">
                                 Uploaded is required
                             </div>
                         </div>
@@ -358,7 +358,7 @@
                         <option value="{{project.id}}" *ngFor="let project of projectlist">{{project.name}}</option>
                         </select>
                         <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.project_assigned.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.project_assigned.errors.required">
                                 Project Assigned is required
                             </div>
                         </div>
@@ -396,7 +396,7 @@
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}" />
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.date.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.date.errors.required">
                                 Date is required
                             </div>
                         </div>
@@ -406,7 +406,7 @@
                         <label for="dateOfBirth">Name:</label>
                         <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
                                 Name is required
                             </div>
                         </div>
@@ -423,7 +423,7 @@
                         [ngModelOptions]="{standalone:true}" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}">
                       </ng-multiselect-dropdown>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.name.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
                                 Quality Checklist Name is required
                             </div>
                         </div>
@@ -433,7 +433,7 @@
                         <label for="dateOfBirth">Description:</label>
                         <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':updatesubmitted && u.description.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.description.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.description.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.description.errors.required">
                                 Description is required
                             </div>
                         </div>
@@ -448,7 +448,7 @@
                         <label for="dateOfBirth">Uploaded By:</label>
                         <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':updatesubmitted && u.uploaded.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.uploaded.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.uploaded.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.uploaded.errors.required">
                                 Uploaded is required
                             </div>
                         </div>
@@ -458,7 +458,7 @@
                         <label for="dateOfBirth">Project Assigned:</label>
                         <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':updatesubmitted && u.project_assigned.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.project_assigned.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.project_assigned.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.project_assigned.errors.required">
                                 Project Assigned is required
                             </div>
                         </div>
@@ -471,7 +471,7 @@
                         <option value="{{project.id}}" *ngFor="let project of projectlist" [selected]="project.id == project_id">{{project.name}}</option>
                         </select>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.project_assigned.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.project_assigned.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.project_assigned.errors.required">
                                 Project Assigned is required
                             </div>
                         </div>

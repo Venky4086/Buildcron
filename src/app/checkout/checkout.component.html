@@ -129,7 +129,7 @@
                       <input type="text" class="form-control" formControlName="name"
                         [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
                       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                        <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Company Name is required</div>
+                        <div *ngIf="f.name.errors.required" class="fs-13 fw-500">Company Name is required</div>
                       </div>
                     </div>
 
@@ -359,7 +359,7 @@
                       </optgroup>
                     </select>
                     <div *ngIf="submitted && f.countryCode.errors" class="invalid-feedback">
-                      <div *ngIf="f.countryCode.errors.required" class="fs-15 fw-700">CountryCode is required</div>
+                      <div *ngIf="f.countryCode.errors.required" class="fs-13 fw-500">CountryCode is required</div>
                     </div>
                    </div>
 
@@ -369,8 +369,8 @@
                       <input type="text" class="form-control" formControlName="phone"
                         [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
                       <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                        <div *ngIf="f.phone.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
-                        <div *ngIf="f.phone.errors.pattern" class="fs-15 fw-700">Mobil Number must be at 10 digits
+                        <div *ngIf="f.phone.errors.required" class="fs-13 fw-500">Mobile Number is required</div>
+                        <div *ngIf="f.phone.errors.pattern" class="fs-13 fw-500">Mobil Number must be at 10 digits
                           required</div>
                       </div>
                     </div>
@@ -380,8 +380,8 @@
                       <input type="text" class="form-control" formControlName="email"
                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                        <div *ngIf="f.email.errors.required" class="fs-15 fw-700">Email is required</div>
-                        <div *ngIf="f.email.errors.email" class="fs-15 fw-700">Please provide a valid email address
+                        <div *ngIf="f.email.errors.required" class="fs-13 fw-500">Email is required</div>
+                        <div *ngIf="f.email.errors.email" class="fs-13 fw-500">Please provide a valid email address
                         </div>
                       </div>
                     </div>
@@ -390,7 +390,7 @@
                    <label for="">Name:</label>
                    <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required" class="fs-15 fw-700">User Name is required</div>
+                    <div *ngIf="f.username.errors.required" class="fs-13 fw-500">User Name is required</div>
                    </div>
                   </div>
                       
@@ -412,8 +412,8 @@
                     </div>
                    </div>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                      <div *ngIf="f.password.errors.required" class="fs-15 fw-700">Password is required</div>
-                      <div *ngIf="f.password.errors.pattern" class="fs-15 fw-700">Password should have min 8 characters with atleast 1 uppercase , 1 lowercase , 1 number & 1 special character.</div>
+                      <div *ngIf="f.password.errors.required" class="fs-13 fw-500">Password is required</div>
+                      <div *ngIf="f.password.errors.pattern" class="fs-13 fw-500">Password should have min 8 characters with atleast 1 uppercase , 1 lowercase , 1 number & 1 special character.</div>
                     </div>
                   </div>
 
@@ -422,8 +422,8 @@
                       <input type="text" class="form-control" formControlName="gstno"
                         [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }" />
                       <div *ngIf="submitted && f.gstno.errors" class="invalid-feedback">
-                        <div *ngIf="f.gstno.errors.required" class="fs-15 fw-700">GST No is required</div>
-                        <div *ngIf="f.gstno.errors.pattern" class="fs-15 fw-700">Please provide a valid GST No</div>
+                        <div *ngIf="f.gstno.errors.required" class="fs-13 fw-500">GST No is required</div>
+                        <div *ngIf="f.gstno.errors.pattern" class="fs-13 fw-500">Please provide a valid GST No</div>
                       </div>
                     </div>
 
@@ -432,7 +432,7 @@
                       <input type="text" class="form-control" formControlName="address"
                         [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
                       <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-                        <div *ngIf="f.address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                        <div *ngIf="f.address.errors.required" class="fs-13 fw-500">Company Address is required</div>
                       </div>
                     </div>
                     <div class="form-group col-md-6 mb-3">
@@ -440,7 +440,7 @@
                       <input type="text" class="form-control" formControlName="city"
                         [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                       <div *ngIf="submitted &&f.city.errors" class="invalid-feedback">
-                        <div *ngIf="f.city.errors.required" class="fs-15 fw-700">City is required</div>
+                        <div *ngIf="f.city.errors.required" class="fs-13 fw-500">City is required</div>
                       </div>
                     </div>
 
@@ -449,7 +449,7 @@
                       <input type="text" class="form-control" formControlName="state"
                         [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
                       <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                        <div *ngIf="f.state.errors.required" class="fs-15 fw-700">State is required</div>
+                        <div *ngIf="f.state.errors.required" class="fs-13 fw-500">State is required</div>
                       </div>
                     </div>
 
@@ -458,9 +458,9 @@
                       <input type="text" class="form-control" formControlName="pincode"
                         [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }" />
                       <div *ngIf="submitted && f.pincode.errors" class="invalid-feeddack">
-                        <div *ngIf="f.pincode.errors.required" class="fs-15 fw-700 text-danger">Pincode is required
+                        <div *ngIf="f.pincode.errors.required" class="fs-13 fw-500 text-danger">Pincode is required
                         </div>
-                        <div *ngIf="f.pincode.errors.pattern" class="fs-15 fw-700 text-danger">pincode must be at 6
+                        <div *ngIf="f.pincode.errors.pattern" class="fs-13 fw-500 text-danger">pincode must be at 6
                           digits required</div>
                       </div>
                     </div>
@@ -469,7 +469,7 @@
           <label for="dateOfBirth">Status:</label>
           <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
           <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-            <div *ngIf="f.status.errors.required" class="fs-15 fw-700">Status is required</div>
+            <div *ngIf="f.status.errors.required" class="fs-13 fw-500">Status is required</div>
           </div>
         </div> -->
 
@@ -477,7 +477,7 @@
         <label for="dateOfBirth">Start date:</label>
         <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }"/>
         <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
-            <div *ngIf="f.startdate.errors.required" class="fs-15 fw-700">Start Date is required</div>
+            <div *ngIf="f.startdate.errors.required" class="fs-13 fw-500">Start Date is required</div>
         </div>
       </div> -->
 
@@ -485,7 +485,7 @@
         <label for="dateOfBirth">End date:</label>
         <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': submitted && f.enddate.errors }" (change)="enddate(date.value)" #date/>
         <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
-            <div *ngIf="f.enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
+            <div *ngIf="f.enddate.errors.required" class="fs-13 fw-500">End Date is required</div>
         </div>
       </div> -->
 
@@ -493,7 +493,7 @@
       <label for="dateOfBirth">No of License:</label>
       <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': submitted && f.nooflicense.errors }"/>
       <div *ngIf="submitted && f.nooflicense.errors" class="invalid-feedback">
-        <div *ngIf="f.nooflicense.errors.required" class="fs-15 fw-700">No OF License is required</div>
+        <div *ngIf="f.nooflicense.errors.required" class="fs-13 fw-500">No OF License is required</div>
       </div>
     </div> -->
 
@@ -509,7 +509,7 @@
                         </select> -->
 
                       <!-- <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
-                        <div *ngIf="f.contactperson.errors.required" class="fs-15 fw-700">Contact Person is required
+                        <div *ngIf="f.contactperson.errors.required" class="fs-13 fw-500">Contact Person is required
                         </div>
                       </div>
                     </div> -->

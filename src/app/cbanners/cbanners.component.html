@@ -263,8 +263,8 @@
                     </div>
                     <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Banner_IMage</label>
-                      <div class="banner_image">
-                          <img src="{{'http://ec2-65-2-38-45.ap-south-1.compute.amazonaws.com/'+banner_image}}" alt="" class="img-fluid image">
+                      <div class="view_banner_image">
+                          <img src="{{'http://ec2-52-66-198-112.ap-south-1.compute.amazonaws.com/'+banner_image}}" alt="" class="img-fluid image">
                       </div> 
                    </div>
                     <!-- <div class="form-group col-md-6 mb-3">
@@ -300,7 +300,7 @@
                   <label for="">Banner Name</label>
                   <input type="name" class="form-control" formControlName="banner_name" [ngClass]="{'is-invalid':submitted && f.banner_name.errors}">  
                   <div class="invalid-feedback" *ngIf="submitted && f.banner_name.errors">
-                      <div class="fs-15 fw-700" *ngIf="f.banner_name.errors.required">
+                      <div class="fs-13 fw-500" *ngIf="f.banner_name.errors.required">
                           Banner Name is required
                       </div>
                   </div>
@@ -309,7 +309,7 @@
                 <label for="">Banner Image</label>
                 <input type="file" class="form-control" formControlName="banner_image" [ngClass]="{'is-invalid':submitted && f.banner_image.errors}" (change)="OnFileSelect($event)">  
                 <div class="invalid-feedback" *ngIf="submitted && f.banner_image.errors">
-                  <div class="fs-15 fw-700" *ngIf="f.banner_image.errors.required">
+                  <div class="fs-13 fw-500" *ngIf="f.banner_image.errors.required">
                       Banner Image is required
                   </div>
               </div>
@@ -339,7 +339,7 @@
                         <label for="">Banner Name</label>
                         <input type="name" class="form-control" formControlName="name" placeholder="Enter Banner Name" [ngClass]="{'is-invalid':submitted && f.name.errors}">  
                         <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.name.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
                                 Banner Name is required
                             </div>
                         </div>
@@ -348,7 +348,7 @@
                       <label for="">Banner Image</label>
                       <input multiple="" type="file" class="form-control" formControlName="image" [ngClass]="{'is-invalid':submitted && f.image.errors}" (change)="OnFileSelect($event)" accept="image/png, image/gif, image/jpeg">  
                       <div class="invalid-feedback" *ngIf="submitted && f.image.errors">
-                        <div class="fs-15 fw-700" *ngIf="f.image.errors.required">
+                        <div class="fs-13 fw-500" *ngIf="f.image.errors.required">
                             Banner Image is required
                         </div>
                       </div>
@@ -383,7 +383,7 @@
                       <label for="">Banner Name</label>
                       <input type="name" class="form-control" [(ngModel)]="banner_name" formControlName="banner_name" [ngClass]="{'is-invalid':submitted && u.banner_name.errors}">  
                       <div class="invalid-feedback" *ngIf="updatesubmitted && u.banner_name.errors">
-                          <div class="fs-15 fw-700" *ngIf="u.banner_name.errors.required">
+                          <div class="fs-13 fw-500" *ngIf="u.banner_name.errors.required">
                               Banner Name is required
                           </div>
                       </div>
@@ -392,7 +392,7 @@
                     <label for="">Banner Image</label>
                     <input type="file" class="form-control" [(ngModel)]="banner_image" formControlName="banner_image" [ngClass]="{'is-invalid':updatesubmitted && u.banner_image.errors}" (change)="OnFileSelect($event)">  
                     <div class="invalid-feedback" *ngIf="updatesubmitted && u.banner_image.errors">
-                      <div class="fs-15 fw-700" *ngIf="u.banner_image.errors.required">
+                      <div class="fs-13 fw-500" *ngIf="u.banner_image.errors.required">
                           Banner Image is required
                       </div>
                   </div>

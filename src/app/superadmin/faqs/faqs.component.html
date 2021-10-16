@@ -271,7 +271,7 @@
                   <label for="dateOfBirth">Question:</label>
                   <input type="text" class="form-control" formControlName="question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
                   <div class="invalid-feedback" *ngIf="submitted && f.question.errors">
-                      <div class="fs-15 fw-700" *ngIf="f.question.errors.required">
+                      <div class="fs-13 fw-500" *ngIf="f.question.errors.required">
                           Question is required
                       </div>
                   </div>
@@ -283,7 +283,7 @@
                   <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':submitted && u.answer.errors}">
                   </textarea>
                   <div class="invalid-feedback" *ngIf="submitted && f.answer.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.answer.errors.required">
+                    <div class="fs-13 fw-500" *ngIf="f.answer.errors.required">
                         Answer is required
                     </div>
                   </div>
@@ -293,7 +293,7 @@
                   <label for="dateOfBirth">ID:</label>
                   <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}">
                   <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.id.errors">
+                    <div class="fs-13 fw-500" *ngIf="f.id.errors">
                         Id is required
                     </div>
                   </div>
@@ -303,7 +303,7 @@
                   <label for="dateOfBirth">Status:</label>
                   <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
                   <div class="invalid-feedback" *ngIf="submitted && f.status.errors">
-                    <div class="fs-15 fw-700" *ngIf="f.status.errors">
+                    <div class="fs-13 fw-500" *ngIf="f.status.errors">
                         Status is required
                     </div>
                   </div>
@@ -340,7 +340,7 @@
                         <label for="dateOfBirth">Question:</label>
                         <input type="text" class="form-control" formControlName="question" placeholder="Enter Question" [ngClass]="{'is-invalid':submitted && f.question.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.question.errors">
-                            <div class="fs-15 fw-700" *ngIf="f.question.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="f.question.errors.required">
                                 Question is required
                             </div>
                         </div>
@@ -352,7 +352,7 @@
                         <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':submitted && u.answer.errors}">
                         </textarea>
                         <div class="invalid-feedback" *ngIf="submitted && f.answer.errors">
-                          <div class="fs-15 fw-700" *ngIf="f.answer.errors.required">
+                          <div class="fs-13 fw-500" *ngIf="f.answer.errors.required">
                               Answer is required
                           </div>
                         </div>
@@ -362,7 +362,7 @@
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}">
                         <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                          <div class="fs-15 fw-700" *ngIf="f.id.errors">
+                          <div class="fs-13 fw-500" *ngIf="f.id.errors">
                               Id is required
                           </div>
                         </div>
@@ -372,7 +372,7 @@
                         <label for="dateOfBirth">Status:</label>
                         <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
                         <div class="invalid-feedback" *ngIf="submitted && f.status.errors">
-                          <div class="fs-15 fw-700" *ngIf="f.status.errors">
+                          <div class="fs-13 fw-500" *ngIf="f.status.errors">
                               Status is required
                           </div>
                         </div>
@@ -413,7 +413,7 @@
                         <label for="dateOfBirth">Question:</label>
                         <input type="text" class="form-control" [(ngModel)]="question" formControlName="question" [ngClass]="{'is-invalid':updatesubmitted && u.question.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.question.errors">
-                            <div class="fs-15 fw-700" *ngIf="u.question.errors.required">
+                            <div class="fs-13 fw-500" *ngIf="u.question.errors.required">
                                 Question is required
                             </div>
                         </div>
@@ -424,7 +424,7 @@
                         <textarea type="text" class="form-control"  [(ngModel)]="answer" formControlName="answer" [ngClass]="{'is-invalid':updatesubmitted && u.answer.errors}">
                          </textarea>   
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.answer.errors">
-                          <div class="fs-15 fw-700" *ngIf="u.answer.errors.required">
+                          <div class="fs-13 fw-500" *ngIf="u.answer.errors.required">
                               Answer is required
                           </div>
                         </div>
@@ -434,7 +434,7 @@
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}">
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
-                          <div class="fs-15 fw-700" *ngIf="u.id.errors">
+                          <div class="fs-13 fw-500" *ngIf="u.id.errors">
                               Id is required
                           </div>
                         </div>
@@ -444,7 +444,7 @@
                         <label for="dateOfBirth">Status:</label>
                         <input type="text" class="form-control" [(ngModel)]="status" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted && u.status.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.status.errors">
-                          <div class="fs-15 fw-700" *ngIf="u.status.errors.required">
+                          <div class="fs-13 fw-500" *ngIf="u.status.errors.required">
                               Status is required
                           </div>
                         </div>

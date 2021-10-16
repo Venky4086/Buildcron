@@ -14,14 +14,14 @@
             <div class="col-md-4 my-2">
                 <select name="" id="" class="form-select select-drop-down" placeholder="Select Project from Dropdown"
                     (change)="onChange($event)">
-                    <option value="">Select Project from Dropdown</option>
-                    <option *ngFor="let project of project_list" [ngValue]="project">{{project.project_name}}</option>
+                    <!-- <option value="">Select Project from Dropdown</option> -->
+                    <option *ngFor="let project of project_list" value="{{project.project_id}}" [selected]="project.project_id == project.project_id">{{project.project_name}}</option>
                 </select>
             </div>
             <div class="col-md-4 my-2 d-flex justify-content-center">
                 <div class="buttons">
                     <div class="quality-btn"><a class="cursor_pointer text-white text-decoration-none"
-                            routerLink="/CilentAdmin">Qality</a></div>
+                            routerLink="/ClientAdmin">Quality</a></div>
                     <div class="safety-btn"><a class="cursor_pointer text-white text-decoration-none">Safety</a></div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                         <!-- small box -->
                         <div class="small-box first-box">
                             <div class="inner">
-                                <!-- <h3 class="text-white mgb-10">{{total_inspections}}</h3> -->
-                                <h3 class="text-white mgb-10">554</h3>
+                                <h3 class="text-white mgb-10">{{total_inspections}}</h3>
+                                <!-- <h3 class="text-white mgb-10">554</h3> -->
 
 
                                 <p class="text-white">Inspection Till Date</p>
@@ -59,8 +59,8 @@
                         <!-- small box -->
                         <div class="small-box second-box">
                             <div class="inner">
-                                <!-- <h3 class="text-white mgb-10">{{success_percent}}</h3> -->
-                                <h3 class="text-white mgb-10">98%</h3>
+                                <h3 class="text-white mgb-10">{{success_percent}} %</h3>
+                                <!-- <h3 class="text-white mgb-10">98%</h3> -->
 
                                 <p class="text-white">Inspection Passed</p>
                             </div>
@@ -75,7 +75,9 @@
                         <!-- small box -->
                         <div class="small-box third-box">
                             <div class="inner">
-                                <h3 class="text-white mgb-10">15</h3>
+                                <h3 class="text-white mgb-10">{{ncr}}</h3>
+
+                                <!-- <h3 class="text-white mgb-10">15</h3> -->
 
                                 <p class="text-white">NCRs Issued</p>
                             </div>
@@ -90,9 +92,10 @@
                         <!-- small box -->
                         <div class="small-box fourth-box">
                             <div class="inner">
-                                <h3 class="text-white mgb-10">443</h3>
+                                <h3 class="text-white mgb-10">{{site_observation}}</h3>
+                                <!-- <h3 class="text-white mgb-10">443</h3> -->
 
-                                <p class="text-white">Site Instructions</p>
+                                <p class="text-white">Site Observation</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -107,7 +110,7 @@
                     <div class="col-md-12">
 
                         <div style="display: block;" class="card pd-10">
-                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Safety
+                            <h1 class="fs-13 fw-500 mgb-5" style="border-bottom: 2px solid #000;width:140px">Safety
                                 Inspections</h1>
                             <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
                                 [options]="barChartOptions" [colors]="barChartColors" [plugins]="barChartPlugins"
@@ -120,7 +123,7 @@
                 <div class="row">
                     <div class="col-md-6 my-2">
                         <div style="display: block" class="card pd-10">
-                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site
+                            <h1 class="fs-13 fw-500 mgb-5" style="border-bottom: 2px solid #000;width:120px">Site
                                 Inspections</h1>
                             <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
                                 [colors]="pieChartColors" (chartHover)="chartHovered($event)"
@@ -130,7 +133,7 @@
                     </div>
                     <div class="col-md-6 my-2">
                         <div style="display: block" class="card pd-10">
-                            <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:95px">Safety NCRs
+                            <h1 class="fs-13 fw-500 mgb-5" style="border-bottom: 2px solid #000;width:95px">Safety NCRs
                             </h1>
                             <canvas baseChart class="pie" [data]="QalitypieChartData" [labels]="QalitypieChartLabels"
                                 [chartType]="QalitypieChartType" (chartHover)="QalitychartHovered($event)"
@@ -144,126 +147,140 @@
                 <div class="card pd-10 Covid-19">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="fs-15 fw-700 mgb-10 check-border-bottom">Covid-19 Statistics</h1>
+                            <h1 class="fs-13 fw-500 mgb-10 check-border-bottom">Covid-19 Statistics</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Preparedness Inspection</p>
+                    <div class="row" *ngIf="checklists.length !== 0;else elseBlack">
+                        <div class="row" *ngFor="let checklist of checklists">
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">{{checklist.name}}</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">{{checklist.count}}</p>
+                            </div>
+                            <!-- <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Employee Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">125</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Site Visitor Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">92</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Site Worker Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">95</p>
+                            </div> -->
+                            <!-- <div class="col-md-8">
+                        <p class="list-unstyled fs-13">Form Work Checklist</p>
+                     </div>
+                     <div class="col-md-4 text-center">
+                        <p class="list-unstyled fs-13">70</p>
+                     </div>  <div class="col-md-8">
+                        <p class="list-unstyled fs-13"> Rainforcement Checklist</p>
+                     </div>
+                     <div class="col-md-4 text-center">
+                        <p class="list-unstyled fs-13">70</p>
+                     </div>  <div class="col-md-8">
+                        <p class="list-unstyled fs-13">Concrete Checklist</p>
+                     </div>
+                     <div class="col-md-4 text-center">
+                        <p class="list-unstyled fs-13">45</p>
+                     </div>  <div class="col-md-8">
+                        <p class="list-unstyled fs-13">Post Concrete Checklist</p>
+                     </div>
+                     <div class="col-md-4 text-center">
+                        <p class="list-unstyled fs-13">32</p>
+                     </div>  <div class="col-md-8">
+                        <p class="list-unstyled fs-13">Wall Finishes (Paint) Cchecklist</p>
+                     </div>
+                     <div class="col-md-4 text-center">
+                        <p class="list-unstyled fs-13">30</p>
+                   </div>
+                -->
                         </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">150</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Employee Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">125</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Visitor Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">92</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Worker Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">95</p>
-                        </div>
-                        <!-- <div class="col-md-8">
-                    <p class="list-unstyled fs-13">Form Work Checklist</p>
-                 </div>
-                 <div class="col-md-4 text-center">
-                    <p class="list-unstyled fs-13">70</p>
-                 </div>  <div class="col-md-8">
-                    <p class="list-unstyled fs-13"> Rainforcement Checklist</p>
-                 </div>
-                 <div class="col-md-4 text-center">
-                    <p class="list-unstyled fs-13">70</p>
-                 </div>  <div class="col-md-8">
-                    <p class="list-unstyled fs-13">Concrete Checklist</p>
-                 </div>
-                 <div class="col-md-4 text-center">
-                    <p class="list-unstyled fs-13">45</p>
-                 </div>  <div class="col-md-8">
-                    <p class="list-unstyled fs-13">Post Concrete Checklist</p>
-                 </div>
-                 <div class="col-md-4 text-center">
-                    <p class="list-unstyled fs-13">32</p>
-                 </div>  <div class="col-md-8">
-                    <p class="list-unstyled fs-13">Wall Finishes (Paint) Cchecklist</p>
-                 </div>
-                 <div class="col-md-4 text-center">
-                    <p class="list-unstyled fs-13">30</p>
-               </div>
-            -->
                     </div>
+                    <ng-template #elseBlack>
+                        <div class="row my-2">
+                            <div class="col-md-12">
+                                <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                                    <h1 class="mgb-0 fs-18 fw-700 opacity-8">In this Project No Used Checklists is Available</h1>
+                                </div>
+                            </div>
+                         </div>
+                    </ng-template>
                 </div>
                 <div class="card pd-10 my-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="fs-15 fw-700 mgb-10" style="border-bottom: 2px solid #000;width: 210px;">Top
+                            <h1 class="fs-13 fw-500 mgb-10" style="border-bottom: 2px solid #000;width: 210px;">Top
                                 Inspection/Permits by use</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Preparedness Inspection</p>
+                    <div class="row" *ngIf="checklists.length !== 0;else elseBlack">
+                        <div class="row" *ngFor="let checklist of checklists">
+                            <div class="col-md-8">
+                                <!-- <p class="list-unstyled fs-13">Site Preparedness Inspection</p> -->
+                                <p class="list-unstyled fs-13">{{checklist.name}}</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">{{checklist.count}}</p>
+                            </div>
+                            <!-- <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Employee Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">125</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Site Visitor Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">92</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Site Worker Screenings</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">95</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Form Work Checklist</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">70</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13"> Rainforcement Checklist</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">70</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Concrete Checklist</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">45</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Post Concrete Checklist</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">32</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="list-unstyled fs-13">Wall Finishes (Paint) Cchecklist</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <p class="list-unstyled fs-13">30</p>
+                            </div> -->
+    
                         </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">150</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Employee Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">125</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Visitor Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">92</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Site Worker Screenings</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">95</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Form Work Checklist</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">70</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13"> Rainforcement Checklist</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">70</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Concrete Checklist</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">45</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Post Concrete Checklist</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">32</p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="list-unstyled fs-13">Wall Finishes (Paint) Cchecklist</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <p class="list-unstyled fs-13">30</p>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -342,7 +359,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div style="display: block;" class="card pd-10">
-                                <h1 class="fs-15 fw-700 mgb-5" style="border-bottom: 2px solid #000;width:140px">Safety
+                                <h1 class="fs-13 fw-500 mgb-5" style="border-bottom: 2px solid #000;width:140px">Safety
                                     Inspections</h1>
                                 <canvas baseChart [datasets]="barvendorChartData" [labels]="barvendorChartLabels"
                                     [options]="barvendorChartOptions" [colors]="barvendorChartColors"
@@ -359,7 +376,7 @@
                     <div class="card pd-10">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="fs-15 fw-700 mgb-10 check-border-bottom">Vendor Performance</h1>
+                                <h1 class="fs-13 fw-500 mgb-10 check-border-bottom">Vendor Performance</h1>
                             </div>
                         </div>
                         <div class="row">
