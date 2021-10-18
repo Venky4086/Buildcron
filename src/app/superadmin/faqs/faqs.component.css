@@ -2,3 +2,6 @@
     height: 42px;
     overflow: hidden;
 }
+.lineheightzero{
+    line-height: auto;
+}

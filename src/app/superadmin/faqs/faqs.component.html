@@ -109,11 +109,11 @@
                                                   <td>{{faq.faq_id}}</td>
                                                   <td>{{faq.question}}</td>
                                                   <td>
-                                                      <p class="mgb-0" [ngClass]="{'limitTextHeight': isReadMore}">
+                                                      <p class="mgb-0" [ngClass]="{'limitTextHeight': ReadMore == true,lineheightzero:ReadMore == false}">
                                                         {{faq.answer}}
                                                       </p>
-                                                      <a (click)="showText()" class="cursor_pointer">
-                                                        {{ isReadMore ? 'Read More': 'Read Less' }}
+                                                      <a (click)="showText(faq.id)" class="cursor_pointer">
+                                                        {{ isReadMore[faq.id] ? 'Read More': 'Read Less' }}
                                                       </a>
                                                   </td>
                                                   <td *ngIf="faq.status == true">Valid</td>

@@ -51,20 +51,22 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('first_name',res.first_name);
           sessionStorage.setItem('adminemail',res.email);
           sessionStorage.setItem('license_count',res.license_count);
-          sessionStorage.setItem('auth_token', res.access);
+          // sessionStorage.setItem('auth_token', res.access);
           this.router.navigate(['/SuperAdmin']);
+          // this.router.navigate(['/login']);
         }
         else{
-          this.toaster.error('Use this Credentials in clientadmin.buildcron.com');
-          // this.toaster.success('Successfully Login Done!');
-          //  sessionStorage.setItem('auth_token', res.access);
-          // sessionStorage.setItem('company_id',res.company_id);
-          // sessionStorage.setItem('company_name',res.company_name);
-          // sessionStorage.setItem('first_name',res.first_name);
-          // sessionStorage.setItem('adminemail',res.email);
-          // sessionStorage.setItem('license_count',res.license_count);
-          // this.router.navigate(['/ClientAdmin']);
-          this.router.navigate(['/login']);
+          // this.toaster.error('Use this Credentials in clientadmin.buildcron.com');
+          this.toaster.success('Successfully Login Done!');
+           sessionStorage.setItem('auth_token', res.access);
+          sessionStorage.setItem('company_id',res.company_id);
+          sessionStorage.setItem('company_name',res.company_name);
+          sessionStorage.setItem('first_name',res.first_name);
+          sessionStorage.setItem('adminemail',res.email);
+          sessionStorage.setItem('license_count',res.license_count);
+          // sessionStorage.setItem('auth_token', res.access);
+          this.router.navigate(['/ClientAdmin']);
+          // this.router.navigate(['/login']);
         }
       },(error)=>{
         console.error(error);

@@ -196,10 +196,12 @@ export class FaqsComponent  {
 
 // show text
 
-isReadMore = true;
-
-showText() {
-   this.isReadMore = !this.isReadMore;
+isReadMore:any = {};
+ReadMore = true;
+showText(id:any) {
+  // console.log(i);
+   this.isReadMore[id] = !this.isReadMore[id];
+  // this.ReadMore = false
 }
 
 }

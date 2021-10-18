@@ -44,14 +44,14 @@ import { SafetydashboardComponent } from './safetydashboard/safetydashboard.comp
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path:'login', component:LoginComponent
   },
-  // {path:'Landingpage', component:LandingpageComponent},
-  // {path:'subscription', component:SubscriptionordersComponent},
-  // {path:'checkout', component:CheckoutComponent},
+  {path:'Landingpage', component:LandingpageComponent},
+  {path:'subscription', component:SubscriptionordersComponent},
+  {path:'checkout', component:CheckoutComponent},
    { path: '',
     component: VendorLayoutComponent,canActivate: [AuthguardGuard],
     children: [

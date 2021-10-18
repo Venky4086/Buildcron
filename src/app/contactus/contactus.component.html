@@ -1,1 +1,77 @@
-<p>No Data found for contact us</p>
+<!-- add technical suport -->
+
+
+
+<div class="container-fluid px-0">
+    <div class="card">
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-4 pl-25">
+                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Technical Suport</h3>
+                </div><!-- /.col -->
+                <div class="container-fluid pl-25 pr-25">
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            
+            <form [formGroup]="AddTechnical">
+                <!-- <div class="row"> -->
+                    <div class="form-group mb-3">
+                        <label for="dateOfBirth">Email ID:</label>
+                        <input type="text" class="form-control" formControlName="email" placeholder="Enter Employee Email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+                          <div class="fs-13 fw-500" *ngIf="f.email.errors.required">
+                            Email is required
+                          </div>
+                          <div class="fs-13 fw-500" *ngIf="f.email.errors.email">
+                             Please provide the valid email id
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group  mb-3">
+                        <label for="dateOfBirth">Description:</label>
+                        <textarea type="text" class="form-control" placeholder="Enter Description......" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}">
+                    
+                        </textarea>
+                        <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
+                          <div class="fs-13 fw-500" *ngIf="f.description.errors.required">
+                            Description is required
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="dateOfBirth">License Id:</label>
+                        <input type="text" class="form-control" formControlName="license_id" placeholder="Enter Employee License_id" [ngClass]="{'is-invalid':submitted && f.license_id.errors}"/>
+                        <div class="invalid-feedback" *ngIf="submitted && f.license_id.errors">
+                          <div class="fs-13 fw-500" *ngIf="f.license_id.errors.required">
+                            License Id is required
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="">Type</label>
+                        <select name="" id=""  class="form-select" formControlName="type" [ngClass]="{'is-invalid':submitted && f.type.errors}">
+                            <option value="">-- select the type --</option>
+                            <option value="WebSite">Website</option>
+                            <option value="Mobile">Mobile</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="submitted && f.type.errors">
+                            <div class="fs-13 fw-500" *ngIf="f.type.errors.required">
+                              Type is required
+                            </div>
+                          </div>
+                    </div>
+                
+      
+                <!-- </div> -->
+            </form>
+                        </div>
+                        <div class="offset-5 col-md-6 mb-3">
+                            <button type="button" class="btn btn-primary" (click)="Add()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </div>
+</div>
