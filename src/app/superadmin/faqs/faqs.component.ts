@@ -24,6 +24,7 @@ export class FaqsComponent  {
   totalRecords: any;
   page:any =1;
   count:number = 3;
+  showless: any;
   // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
@@ -198,10 +199,17 @@ export class FaqsComponent  {
 
 isReadMore:any = {};
 ReadMore = true;
-showText(id:any) {
-  // console.log(i);
-   this.isReadMore[id] = !this.isReadMore[id];
-  // this.ReadMore = false
+showText(i:any) {
+  console.log(i);
+  console.log(this.faqs);
+  var test =  this.faqs.filter((e:any)=>{
+   return e == this.faqs[i];
+  })
+  console.log(test[0].answer);
+  this.showless = test[0].answer;
+  this.ReadMore = false;
+  //  this.isReadMore[id] = !this.isReadMore[id];
+  // this.ReadMore = ! this.ReadMore
 }
 
 }

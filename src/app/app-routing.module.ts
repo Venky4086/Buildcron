@@ -170,6 +170,10 @@ const routes: Routes = [
   },
   {
     path:'webregister', component:WebsiteregisterComponent
+    },
+    {
+      path:'changepassword',
+      component:ChangepasswordComponent
     }
   ]
    }

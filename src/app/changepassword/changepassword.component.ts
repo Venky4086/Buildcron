@@ -17,10 +17,10 @@ export class ChangepasswordComponent implements OnInit {
   newpasw:any;
   submitted = false;
   ChangePassword = this.fb.group({
-   c_password:['',[Validators.required]],
-   n_password:['',[Validators.required]],
+   c_password:['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
+   n_password:['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
   //  Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]
-   r_password:['',[Validators.required]]
+   r_password:['',[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]]
   });
   ngOnInit(): void {
   }
@@ -62,7 +62,7 @@ submit(){
     },(error)=>{
       console.error(error);
       if(error){
-        this.toaster.error(error.error.status);
+        this.toaster.error(error.error);
         this.ChangePassword.reset();
         this.submitted = false;
       }

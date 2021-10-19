@@ -260,18 +260,34 @@ deletesaftychecklist(id: any): Observable<any> {
   // FAQs
 
   Addfaqs(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'faq/list_or_create', data,this.options)
+    return this.http.post<any>(GlobalData.url_buildcron + 'faq/list_or_create', data,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
   }
   allfaqs(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'faq/list_or_create',this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'faq/list_or_create',
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   deletefaq(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'faq/rud/' + id,this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'faq/rud/' + id,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   updatefaq(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'faq/rud/' + id, data,this.options)
+    return this.http.put<any>(GlobalData.url_buildcron + 'faq/rud/' + id, data,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
 
@@ -282,11 +298,19 @@ deletesaftychecklist(id: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_buildcron + 'banner/create' , data,config)
   }
   Listbanner():Observable<any>{
-    return this.http.get<any>(GlobalData.url_buildcron + 'banner/list',this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'banner/list',
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
     .pipe(shareReplay(1));
   }
   deletebanner(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'banner/delete/' + id,this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'banner/delete/' + id,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   updatebanner(id: any, data: any): Observable<any> {
@@ -297,11 +321,19 @@ deletesaftychecklist(id: any): Observable<any> {
 // website contacts
 
   all_contacts(): Observable<any>{
-    return this.http.get<any>(GlobalData.url_account + 'contact',this.options)
+    return this.http.get<any>(GlobalData.url_account + 'contact',
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+  )
     .pipe(shareReplay(1));
   }
   delete_contact(id:any): Observable<any>{
-    return this.http.delete<any>(GlobalData.url_account + 'contact/delete/'+id,this.options)
+    return this.http.delete<any>(GlobalData.url_account + 'contact/delete/'+id,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
     .pipe(shareReplay(1));
   }
 }
