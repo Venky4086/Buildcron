@@ -110,15 +110,33 @@
                                                   <td>{{faq.question}}</td>
                                                   <td>
                                                       
-                                                      <p *ngIf="ReadMore;else less" class="mgb-0" [ngClass]="{'limitTextHeight': ReadMore}">
-                                                        {{faq.answer}}
-                                                      </p>
-                                                      <ng-template #less>
-                                                        <p>{{showless}}</p>
-                                                      </ng-template>
-                                                      <a (click)="showText(i)" class="cursor_pointer">
-                                                        {{ ReadMore ? 'Read More': 'Read Less' }}
+                                                     
+                                                      <p class="mgb-0" id="Readmore{{i}}">{{faq.answer}}</p>
+
+                                                      <!-- <p class="mgb-0" *ngIf="ReadMore">
+                                                        {{showless}}
+                                                      </p> -->
+
+                                                      <!-- <ng-template #less> -->
+                                                        <p class="mgb-0"  [ngClass]="{'limitTextHeight': ReadMore}">
+                                                            {{faq.answer}}
+                                                        </p>
+                                                      <!-- </ng-template> -->
+<!-- 
+                                                      <a (click)="showText(faq.id)" class="cursor_pointer">
+                                                        {{ ReadMore ? 'Read More':'Read Less'}}
+                                                      </a> -->
+                                                      
+                                                      <a (click)="Read_Less(i)" id="Readmore{{i}}" class="cursor_pointer">
+                                                        ReadLess
                                                       </a>
+                                                      
+                                                     <!-- <ng-template #elseBlock> -->
+                                                        <a (click)="Read_More(i)"  class="cursor_pointer">
+                                                            ReadMore
+                                                        </a>
+                                                     <!-- </ng-template> -->
+
                                                   </td>
                                                   <td *ngIf="faq.status == true">Valid</td>
                                                   <td *ngIf="faq.status == false">InValid</td>

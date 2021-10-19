@@ -25,6 +25,7 @@ export class FaqsComponent  {
   page:any =1;
   count:number = 3;
   showless: any;
+  faqid: any;
   // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
@@ -199,17 +200,79 @@ export class FaqsComponent  {
 
 isReadMore:any = {};
 ReadMore = true;
-showText(i:any) {
-  console.log(i);
-  console.log(this.faqs);
-  var test =  this.faqs.filter((e:any)=>{
-   return e == this.faqs[i];
-  })
-  console.log(test[0].answer);
-  this.showless = test[0].answer;
-  this.ReadMore = false;
-  //  this.isReadMore[id] = !this.isReadMore[id];
-  // this.ReadMore = ! this.ReadMore
-}
+ReadLess = false;
 
+  Read_More(id:any) {
+    // $("#GFG_UP").removeClass("d-none");
+    // $("#GFG_UP").addClass("color fontWeight");
+    $("#Readmore" + id).hide();
+    // this.faqid = id;
+    //  console.log(id);
+    //  this.ReadMore = ! this.ReadMore;
+
+    //  if(id){
+    //     console.log(id)
+    //     this.ReadLess = true;
+    //     this.ReadMore = false;
+    //   }
+    //   else {
+    //     console.log(id)
+    //     this.ReadMore = true;
+    //   }
+
+
+    // for(let i=0;i<this.faqs.length;i++){
+    //   if(i == id){
+    //     console.log(i)
+    //     this.ReadMore = ! this.ReadMore;
+    //   }
+    //   else {
+    //     console.log(i)
+    //     this.ReadMore = true;
+    //   }
+    // }
+
+  //   this.faqs.filter((e:any)=> {
+  //     this.faq_id = e.id;
+  //   });
+  //  if(i == this.faq_id){
+  //   console.log(i);
+  //   this.ReadMore = ! this.ReadMore;
+  //  }
+  //  else{
+  //    this.ReadMore = true;
+  //  }
+    // console.log(this.faqs);
+    // this.faqs.some((e:any)=> {
+    //   console.log(this.ReadMore)
+    //   if(e.id == id){
+    //     console.log(e.id);
+    //     this.showless = e.answer;
+    //     this.ReadMore = false;
+    //     this.ReadLess = true;
+    //     this.ReadMore = !this.ReadMore; 
+    //   }
+    //   else{
+    //     console.log(e.id)
+    //     this.ReadMore = false;
+    //   }
+    // })
+    // console.log(test[0].answer);
+    // this.showless = test[0].answer;
+    // this.ReadMore = false;
+    //  this.isReadMore[id] = !this.isReadMore[id];
+  }
+  Read_Less(id:any){
+    console.log(id);
+    //  this.ReadMore = ! this.ReadMore;
+     if(id){
+        console.log(id)
+        this.ReadLess = false;
+        this.ReadMore = true;
+      }
+      else {
+        console.log(id)
+        this.ReadMore = true;
+      }
+  }
 }

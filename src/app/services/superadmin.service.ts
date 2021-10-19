@@ -98,18 +98,34 @@ export class SuperadminService {
   // license 
 
   Addlicense(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'license/create' , data , { 'headers': headers })
+    return this.http.post<any>(GlobalData.url_api + 'license/create' , data , 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
   } 
   alllicensedata(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'license', this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'license', 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   singleicensedata(c_name:any): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'license/employee/'+ c_name, this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'license/employee/'+ c_name, 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   deletelicense(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'license/rd/' + id , { 'headers': headers })
+    return this.http.delete<any>(GlobalData.url_api + 'license/rd/' + id , 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   updatelicense(id: any, data: any): Observable<any> {
@@ -125,18 +141,33 @@ export class SuperadminService {
   // quality librarylist
 
   Addlibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'quality/check/create', data, this.options)
+    return this.http.post<any>(GlobalData.url_buildcron + 'quality/check/create', data, 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
   }
   alllibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'quality/check/list', this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'quality/check/list', 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   deletelibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'quality/check/rd/' + id, this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'quality/check/rd/' + id, 
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   updatelibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'quality/check/update/' + id, data, this.options)
+    return this.http.put<any>(GlobalData.url_buildcron + 'quality/check/update/' + id, data, {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
 
@@ -177,18 +208,34 @@ export class SuperadminService {
   //  safetylibrarylist
 
   Addsaftylibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'safety/check/create',data,this.options)
+    return this.http.post<any>(GlobalData.url_buildcron + 'safety/check/create',data,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
   }
   allsaftylibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'safety/check/list',this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'safety/check/list',
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   deletesaftylibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'safety/check/rd/' + id,this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'safety/check/rd/' + id,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
   updatesaftylibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'safety/check/update/' + id, data,this.options)
+    return this.http.put<any>(GlobalData.url_buildcron + 'safety/check/update/' + id, data,
+    {
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
+    }
+    )
       .pipe(shareReplay(1));
   }
 
