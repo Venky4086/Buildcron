@@ -118,7 +118,7 @@
                                                       </p> -->
 
                                                       <!-- <ng-template #less> -->
-                                                        <p class="mgb-0"  [ngClass]="{'limitTextHeight': ReadMore}">
+                                                        <p class="mgb-0" id="Readless{{i}}" [ngClass]="{'limitTextHeight': ReadMore}">
                                                             {{faq.answer}}
                                                         </p>
                                                       <!-- </ng-template> -->
@@ -127,14 +127,16 @@
                                                         {{ ReadMore ? 'Read More':'Read Less'}}
                                                       </a> -->
                                                       
-                                                      <a (click)="Read_Less(i)" id="Readmore{{i}}" class="cursor_pointer">
+                                                      <a (click)="Read_Less(i)" id="Readless{{i}}" class="cursor_pointer">
                                                         ReadLess
                                                       </a>
                                                       
                                                      <!-- <ng-template #elseBlock> -->
-                                                        <a (click)="Read_More(i)"  class="cursor_pointer">
+
+                                                        <a (click)="Read_More(i)" id="Readmore{{i}}" class="cursor_pointer">
                                                             ReadMore
                                                         </a>
+
                                                      <!-- </ng-template> -->
 
                                                   </td>

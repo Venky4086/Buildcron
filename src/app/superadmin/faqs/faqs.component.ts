@@ -205,7 +205,7 @@ ReadLess = false;
   Read_More(id:any) {
     // $("#GFG_UP").removeClass("d-none");
     // $("#GFG_UP").addClass("color fontWeight");
-    $("#Readmore" + id).hide();
+    $("#Readless" + id).hide();
     // this.faqid = id;
     //  console.log(id);
     //  this.ReadMore = ! this.ReadMore;
@@ -263,16 +263,17 @@ ReadLess = false;
     //  this.isReadMore[id] = !this.isReadMore[id];
   }
   Read_Less(id:any){
-    console.log(id);
+    $("#Readmore" + id).hide();
+    // console.log(id);
     //  this.ReadMore = ! this.ReadMore;
-     if(id){
-        console.log(id)
-        this.ReadLess = false;
-        this.ReadMore = true;
-      }
-      else {
-        console.log(id)
-        this.ReadMore = true;
-      }
+    //  if(id){
+    //     console.log(id)
+    //     this.ReadLess = false;
+    //     this.ReadMore = true;
+    //   }
+    //   else {
+    //     console.log(id)
+    //     this.ReadMore = true;
+    //   }
   }
 }
