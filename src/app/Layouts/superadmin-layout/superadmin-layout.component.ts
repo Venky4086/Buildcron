@@ -27,4 +27,9 @@ export class SuperadminLayoutComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/login']);
   }
+
+
+  onActivate(event:any) {
+    window.scroll(0,0);
+  }
 }

@@ -742,3 +742,6 @@
     line-height: 15px;
     display: inline-block;
 }
+mat-sidenav-content{
+    overflow: scroll !important;
+}

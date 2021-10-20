@@ -17,6 +17,7 @@ export class VendorLayoutComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    // window.scroll(0,0);
   }
   logout(){
     sessionStorage.clear();
@@ -26,5 +27,7 @@ export class VendorLayoutComponent implements OnInit {
   // client_name(){
   //   return sessionStorage.getItem('first_name');
   // }
-
+  onActivate(event:any) {
+    window.scroll(0,0);
+  }
 }
