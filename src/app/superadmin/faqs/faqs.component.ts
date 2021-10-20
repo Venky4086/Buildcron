@@ -276,4 +276,9 @@ ReadLess = false;
     //     this.ReadMore = true;
     //   }
   }
+
+  showText(id:any){
+    console.log(id);
+    this.ReadMore = !this.ReadMore
+  }
 }
