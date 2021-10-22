@@ -26,6 +26,7 @@ export class FaqsComponent  {
   count:number = 3;
   showless: any;
   faqid: any;
+  ReadMore:any;
   // updatestatus:any[] = [ ]
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService) { }
    AddFaqs = this.fb.group({
@@ -42,6 +43,23 @@ export class FaqsComponent  {
   });
   ngOnInit() {
     this.allfaqs();
+    this.superadminservice.allfaqs().subscribe((res)=>{
+      if(res){
+        // console.log(res);
+        this.faqs = res;
+        for (let index = 0; index < this.faqs.length; index++) {
+          // console.log(this.faqs[index].id);
+         this.ReadMore
+        }
+      }
+      else{
+        console.warn(res);
+        this.spinner.hide();
+      }
+    },(error)=>{
+      console.log(error);
+      this.spinner.hide();
+    })
   }
  get f(){
    return this.AddFaqs.controls
@@ -198,9 +216,9 @@ export class FaqsComponent  {
 
 // show text
 
-isReadMore:any = {};
-ReadMore = true;
-ReadLess = false;
+// isReadMore:any = {};
+ 
+// ReadLess = false;
 
   Read_More(id:any) {
     // $("#GFG_UP").removeClass("d-none");
