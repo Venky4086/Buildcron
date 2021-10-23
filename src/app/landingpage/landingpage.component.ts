@@ -13,6 +13,7 @@ declare var $:any;
 export class LandingpageComponent implements OnInit {
   Allplanes:any;
   submitted = false;
+  allplanelength: any;
   constructor(private Registration:RegistrationService,private router:Router,private fb:FormBuilder,private toastr:ToastrService) {
    }
 
@@ -41,7 +42,8 @@ export class LandingpageComponent implements OnInit {
     this.Registration.allplanes().subscribe((res)=>{
       if(res){
         console.log(res);
-        this.Allplanes = res
+        this.Allplanes = res;
+        this.allplanelength = res.length
       }
       else{
         console.warn(res);
