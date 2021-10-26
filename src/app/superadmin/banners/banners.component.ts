@@ -110,6 +110,7 @@ export class BannersComponent implements OnInit {
        }
     },(error)=>{
       console.error(error);
+      this.spinner.hide();
     })
   }
 
