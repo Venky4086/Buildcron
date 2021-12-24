@@ -23,8 +23,8 @@ singleplane(id:any):Observable<any>{
   return this.http.get<any>(GlobalData.url_account+'plans/read/'+id);
 }
 
-plane(data:any):Observable<any>{
-  return this.http.post<any>(GlobalData.url_account+'payment/request',data);
+Client_Registration(data:any):Observable<any>{
+  return this.http.post<any>(GlobalData.url_account+'client/registration',data);
 }
 contacts(data:any){
   return this.http.post<any>(GlobalData.url_account+'contact/create',data);

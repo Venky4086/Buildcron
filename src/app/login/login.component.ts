@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from '../services/admin.service';
+import { AuthenticationserviceService } from '../services/authenticationservice.service';
 import { SuperadminService } from '../services/superadmin.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   fieldTextType:any;
   roles: any;
-  constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
+  constructor(private auth:AuthenticationserviceService,private adminservice :AdminService,private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   Login = this.fb.group({
     email:['', Validators.required],
     password:['', Validators.required],
@@ -37,44 +39,23 @@ export class LoginComponent implements OnInit {
         password:this.Login.value.password
       }
       console.log(formData);
-      this.superadminservice.Login(formData).subscribe((res)=>{
+      this.auth.ClientLogin(formData).subscribe((res)=>{
         console.log(res);
-        sessionStorage.setItem('auth_token', res.access);
-        
-        this.roles = res.role;
-        if(this.roles === 'SA'){
-          this.toaster.success('Successfully Login Done!');
-          // this.toaster.error('Use this Credentials in superadmin.buildcron.com');
-          sessionStorage.setItem('auth_token',res.access);
-          sessionStorage.setItem('company_id',res.company_id);
-          sessionStorage.setItem('company_name',res.company_name);
-          sessionStorage.setItem('first_name',res.first_name);
-          sessionStorage.setItem('adminemail',res.email);
-          sessionStorage.setItem('license_count',res.license_count);
-          // sessionStorage.setItem('auth_token', res.access);
-          this.router.navigate(['/SuperAdmin']);
-          // this.router.navigate(['/login']);
-        }
-        else{
-          // this.toaster.error('Use this Credentials in clientadmin.buildcron.com');
-          this.toaster.success('Successfully Login Done!');
-           sessionStorage.setItem('auth_token', res.access);
-          sessionStorage.setItem('company_id',res.company_id);
-          sessionStorage.setItem('company_name',res.company_name);
-          sessionStorage.setItem('first_name',res.first_name);
-          sessionStorage.setItem('adminemail',res.email);
-          sessionStorage.setItem('license_count',res.license_count);
-          // sessionStorage.setItem('auth_token', res.access);
-          this.router.navigate(['/ClientAdmin']);
-          // this.router.navigate(['/login']);
-        }
+        this.Login.reset();
+        this.submitted = false;
+        this.toaster.success('Successfully Login Done');
+        this.router.navigate(['/ClientAdmin']);
       },(error)=>{
         console.error(error);
+        this.Login.reset();
+        this.submitted = false;
         if(error.error.error){
           this.toaster.error(error.error.error);
+          this.router.navigate(['/login']);
         }
         else{
         this.toaster.error('Somthing went to wrong');
+        this.router.navigate(['/login']);
         }
       });
     }

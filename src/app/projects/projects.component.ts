@@ -335,7 +335,7 @@ export class ProjectsComponent {
     $('#EmployeeView').modal('show');
     },(error)=>{
       console.error(error);
-    this.toaster.error('Somthing went to wrong!')
+     this.toaster.error('Somthing went to wrong!')
     })
   }
   materialdetails(material_id:any){

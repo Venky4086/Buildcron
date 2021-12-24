@@ -154,16 +154,17 @@
                                             }
                                                 ; let i=index">
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                    <td>{{crd.user.client_id}}</td>
-                                                    <td>{{crd.name}}</td>
-                                                    <td>{{crd.user.phone_number}}</td>
-                                                    <td>{{crd.user.email}}</td>
+                                                    <td>{{crd.client_id}}</td>
+                                                    <td>{{crd.company_name}}</td>
+                                                    <td>{{crd.phone_number}}</td>
+                                                    <td>{{crd.email}}</td>
                                                     <td>{{crd.gstin}}</td>
                                                     <td>{{crd.addres}}</td>
                                                     <td>{{crd.city}}</td>
                                                     <td>{{crd.state}}</td>
                                                     <td>{{crd.pincode}}</td>
-                                                    <td>{{crd.license_purchased}}</td>
+                                                    <!-- <td>{{crd.license_purchased}}</td> -->
+                                                    <td>1</td>
                                                     <!-- <td>{{crd.end_at}}</td> -->
                                                     <!-- <td>{{crd.no_licenses}}</td> -->
                                                     <!-- <td>{{crd.contact_person}}</td> -->
@@ -174,13 +175,13 @@
                                                       Pending
                                                     </td>
                                                     <td>
-                                                      <a data-toggle="modal" data-target="#Viewcompany" (click)="Details(crd.id,crd.name,crd.user.phone_number,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
+                                                      <a data-toggle="modal" data-target="#Viewcompany" (click)="Details(crd.id,crd.client_id,crd.company_name,crd.phone_number,crd.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
                                                         <i class="fa fa-eye mr-1"></i>
                                                       </a>
                                                         <a data-toggle="modal" data-target="#Updatecompany" (click)="edit(crd.id,crd.name,crd.user.id,crd.user.username,crd.user.phone_number,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
                                                             <i class="fa fa-edit mr-1"></i>
                                                         </a>
-                                                        <a data-toggle="modal" data-target="#Deletecompany" class="cursor_pointer" (click)="delete(crd.user.id)">
+                                                        <a data-toggle="modal" data-target="#Deletecompany" class="cursor_pointer" (click)="delete(crd.client_id)">
                                                             <i class="fa fa-trash mr-1"></i>
                                                         </a>
                                                     </td>
@@ -358,7 +359,11 @@
         <form>
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Name:</label>
+                  <label for="dateOfBirth">Client Id:</label>
+                  <p class="font-weight-bold">{{client_id}}</p>
+              </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">Company Name:</label>
                     <p class="font-weight-bold">{{company_name}}</p>
                 </div>
   

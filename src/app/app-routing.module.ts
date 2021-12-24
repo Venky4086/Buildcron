@@ -53,7 +53,7 @@ const routes: Routes = [
   {path:'subscription', component:SubscriptionordersComponent},
   {path:'checkout', component:CheckoutComponent},
    { path: '',
-    component: VendorLayoutComponent,canActivate: [AuthguardGuard],
+    component: VendorLayoutComponent,
     children: [
       { path: 'ClientAdmin',
         component: DashboardComponent
@@ -118,7 +118,7 @@ const routes: Routes = [
    },
 
    { path: '',
-  component: SuperadminLayoutComponent,canActivate: [AuthguardGuard],
+  component: SuperadminLayoutComponent,
   children: [
     { path: 'SuperAdmin',
     component: SuperdashboardComponent

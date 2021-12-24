@@ -83,38 +83,31 @@ pay(){
   }
   else{
     const data = {
-      "user_details":{
-        "first_name":this.CompanyRegistration.value.username,
-        "email":this.CompanyRegistration.value.email,
-        "phone_number":this.CompanyRegistration.value.countryCode+this.CompanyRegistration.value.phone,
-        "password":this.CompanyRegistration.value.password
-      },
-      "company_details":{
-        "name":this.CompanyRegistration.value.name,
-        "gstin":this.CompanyRegistration.value.gstno,
-        "state":this.CompanyRegistration.value.state,
-        "city":this.CompanyRegistration.value.city,
-        "addres":this.CompanyRegistration.value.address,
-        // "contact_person":this.CompanyRegistration.value.contactperson,
-        "pincode":this.CompanyRegistration.value.pincode,
-        "status":true
-      },
-      "plan_details":{
-        "name":sessionStorage.getItem('planename'),
-        "license_count":sessionStorage.getItem('planecount'),
-        "ammount":sessionStorage.getItem('planeamount')
-      }
+      "client_name":this.CompanyRegistration.value.username,
+      "email":this.CompanyRegistration.value.email,
+      "phone_number":this.CompanyRegistration.value.phone,
+      "password":this.CompanyRegistration.value.password,
+      "company_name":this.CompanyRegistration.value.name,
+      "countryCode":this.CompanyRegistration.value.countryCode,
+      "gstin":this.CompanyRegistration.value.gstno,
+      "state":this.CompanyRegistration.value.state,
+      "city":this.CompanyRegistration.value.city,
+      "addres":this.CompanyRegistration.value.address,
+      "contact_person":this.CompanyRegistration.value.contactperson,
+      "pincode":this.CompanyRegistration.value.pincode,
     }
     console.log(data);
-     this.registrationService.plane(data).subscribe((res)=>{
-     $('#PayModal').modal('show');
+     this.registrationService.Client_Registration(data).subscribe((res)=>{
      console.log(res);
-     this.next = res.next;
-     this.payment_id = res.payment_id;
-    //  this.toastr.success('Successfully');
+     this.CompanyRegistration.reset();
+     this.submitted = false;
+     this.toastr.success('Your Registration Sucessfully Done');
+     this.router.navigate(['/login']);
    },(error)=>{
      console.error(error);
-     this.toastr.error('Somthing went wrong');
+     this.CompanyRegistration.reset();
+     this.submitted = false;
+     this.toastr.error(error.error.message);
    });
   }
 }

@@ -38,7 +38,6 @@ export class AdminService {
    options = {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
   }
- 
 
   // project
 

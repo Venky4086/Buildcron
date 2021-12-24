@@ -66,18 +66,18 @@ export class SuperadminService {
   // company registration
 
   companyregistration(data:any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_account + 'company/create/admin', data , this.options)
+    return this.http.post<any>(GlobalData.url_account + 'client/registration', data )
   }
   allcompanyregistrationdata(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_account + 'company/list/admin' , this.options)
+    return this.http.get<any>(GlobalData.url_api + 'admin/client/registration')
       .pipe(shareReplay(1));
   }
-  deletecompanyregistrationdata(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_account + 'company/rud/' + id, this.options)
+  deletecompanyregistrationdata(client_id: any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_api + 'admin/client/registration?client_id='+ client_id,)
       .pipe(shareReplay(1));
   }
   updatecompanyregistrationdata(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_account + 'company/rud/' + id, data, this.options)
+    return this.http.put<any>(GlobalData.url_account + 'company/rud/' + id, data)
       .pipe(shareReplay(1));
   }
 
