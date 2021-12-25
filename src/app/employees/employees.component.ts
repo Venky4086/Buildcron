@@ -35,6 +35,9 @@ export class EmployeesComponent {
   selectedLicense:any;
   LicenseList:any;
   assigned_license: any;
+  update_name: any;
+  update_email: any;
+  update_mobile: any;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddEmployee = this.fb.group({
     name:['', Validators.required],
@@ -46,6 +49,7 @@ export class EmployeesComponent {
   UpdateEmployee = this.fb.group({
     name:['', Validators.required],
     email:['',[Validators.required,Validators.email]],
+    license_id:['',Validators.required],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   });
   ngOnInit(){
@@ -93,7 +97,7 @@ export class EmployeesComponent {
   }
 
   view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
-    this.emid =employe_id,
+    this.emid = employe_id,
     this.name = name,
     this.email = email,
     this.mobile = mobile,
@@ -136,36 +140,27 @@ export class EmployeesComponent {
 
   // update
 
-  edit(employe_id:any,name:any,email:any,mobile:any){
-    this.employe_id =employe_id,
-    this.name = name,
-    this.email = email,
-    this.mobile = mobile
+  edit(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
+    this.employe_id = employe_id,
+    this.update_name = name,
+    this.update_email = email,
+    this.update_mobile = mobile,
+    this.assigned_license = assigned_license
   }
 
   Update(){
     const mint = this
     this.updatesubmitted = true;
     if(this.UpdateEmployee.invalid){
+     console.log('invalid');
       return
     }
     else{
-
-      const data ={
-        "first_name": this.UpdateEmployee.value.name,
+      const data = {
+        "employee_name": this.UpdateEmployee.value.name,
         "email": this.UpdateEmployee.value.email,
         "phone_number": this.UpdateEmployee.value.mobile,
-        // "is_active": true
-    }
-
-      const formData = new FormData;
-      // formData.append('date',this.UpdateEmployee.value.date);SS
-      formData.append('name',this.UpdateEmployee.value.name);
-      // formData.append('id',this.UpdateEmployee.value.id);
-      // formData.append('designation',this.UpdateEmployee.value.designation);
-      formData.append('email',this.UpdateEmployee.value.email);
-      formData.append('mobile',this.UpdateEmployee.value.mobile);
-      formData.append('project_assigned',this.UpdateEmployee.value.project_assigned);
+      }
       this.adminservice.UpdateEmploye(this.employe_id,data).subscribe((res)=>{
         console.log(res)
         mint.toaster.success('Successfully Employe Updated!');
@@ -173,7 +168,12 @@ export class EmployeesComponent {
         this.allemploys();
       },(error)=>{
         console.error(error);
-        mint.toaster.error('Somthing went wrong');
+        if(error.error.message){
+          mint.toaster.error(error.error.message);
+        }
+        else{
+          mint.toaster.error('Somthing went to wrong');  
+        }
         $('#UpdateEmployee').hide();
       });
     }

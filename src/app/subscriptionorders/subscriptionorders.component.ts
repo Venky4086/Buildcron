@@ -112,7 +112,7 @@ checkout(){
   }
   else{
     console.log(this.Subscription.value);
-    this.client_id = sessionStorage.getItem('client_id');
+    this.client_id = sessionStorage.getItem('webclient_id');
     // sessionStorage.setItem('planename',this.Subscription.value.planename);
     // sessionStorage.setItem('planecount',this.Subscription.value.planenumber);
     // sessionStorage.setItem('planeamount',this.Subscription.value.planeamount);
@@ -130,8 +130,15 @@ checkout(){
       this.router.navigate(['/login']);
     },(error)=>{
       console.error(error);
-      this.toastr.success(error.error.message);
-      this.router.navigate(['/License']);
+      this.Subscription.reset();
+      this.submitted = false;
+    if(error.error.message){
+      this.toastr.error(error.error.message);
+    }
+    else{
+      this.toastr.error('Somthing went wrong!');
+    }
+    
     });
   }
 }

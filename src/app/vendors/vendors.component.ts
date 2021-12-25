@@ -25,6 +25,7 @@ export class VendorsComponent {
   totalRecords:any;
   page:any =1;
   count:any = 5;
+  client_id: any;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddVendor = this.fb.group({
     name:['', Validators.required],
@@ -76,8 +77,9 @@ export class VendorsComponent {
   // employe list
 
   allvendors(){
+    this.client_id = sessionStorage.getItem('client_id')
     this.spinner.show();
-    this.adminservice.vendorslist().subscribe((res)=>{
+    this.adminservice.vendorslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.vendorlist = res;
@@ -95,17 +97,17 @@ export class VendorsComponent {
 
   // Add
 
-view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:any,supervisor_contact:any){
-  $('#VendorView').modal('show');
-  this.vendor_id = vendor_id;
-  this.vendor_name = name,
-  this.address = address,
-  this.email = email,
-  this.contact = contact,
-  this.supervisor_name = supervisor_name,
-  this.supervisor_contact = supervisor_contact
-  $('#VendorView').modal('show');
-}
+  view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:any,supervisor_contact:any){
+    $('#VendorView').modal('show');
+    this.vendor_id = vendor_id;
+    this.vendor_name = name,
+    this.address = address,
+    this.email = email,
+    this.contact = contact,
+    this.supervisor_name = supervisor_name,
+    this.supervisor_contact = supervisor_contact
+    $('#VendorView').modal('show');
+  }
   vendorclose(){
     $('#VendorView').modal('hide');
   }
@@ -118,26 +120,17 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
       return
     }
     else{
+      this.client_id = sessionStorage.getItem('client_id')
       const data = {
-        "name":this.AddVendor.value.name,
+        "vendor_name":this.AddVendor.value.name,
         "email":this.AddVendor.value.email,
-        "contact":"+91"+this.AddVendor.value.contact_no,
+        "contact_no":"+91"+this.AddVendor.value.contact_no,
         "address":this.AddVendor.value.address,
         "supervisor_name":this.AddVendor.value.supervisor_name,
         "supervisor_contact":"+91"+this.AddVendor.value.supervisor_no
       }
-      // const formData = new FormData;
-      // formData.append('date',this.AddVendor.value.date);
-      // formData.append('name',this.AddVendor.value.name);
-      // formData.append('id',this.AddVendor.value.id);
-      // formData.append('address',this.AddVendor.value.designation);
-      // formData.append('email',this.AddVendor.value.email);
-      // formData.append('project_assigned',this.AddVendor.value.project_assigned);
-      // formData.append('mobile',this.AddVendor.value.mobile);
-      // formData.append('supervisor_name',this.AddVendor.value.supervisor_name);
-      // formData.append('supervisor_no',this.AddVendor.value.supervisor_no);
       console.log(data);
-      this.adminservice.Addvendor(data).subscribe((res)=>{
+      this.adminservice.Addvendor(this.client_id,data).subscribe((res)=>{
         console.log(res);
         this.allvendors();
         this.AddVendor.reset();
@@ -146,17 +139,14 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
         $('#AddVendor').hide();
       },(error)=>{
         console.error(error);
-        // if(error.error.name[0]){
-        // mint.toaster.error(error.error.name[0]);
-        // }
-        // else if(error.error.contact[0]){
-        //   mint.toaster.error(error.error.contact[0]);
-        // }
-        // else{
-        mint.toaster.error('Somthing went wrong!');
-        // }
         this.AddVendor.reset();
         this.submitted = false;
+        if(error.error.message){
+        mint.toaster.error(error.error.message);
+        }
+        else{
+        mint.toaster.error('Somthing went wrong!');
+        }
         $('#AddVendor').hide();
       });
     }
@@ -172,9 +162,6 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
    this.contact = contact,
    this.supervisor_name = supervisor_name,
    this.supervisor_contact = supervisor_contact
-  //  this.adminservice.Singlevendorlist(this.vendor_id).subscribe((res)=>{
-  //    console.log(res);
-  //  })
   }
 
   Update(){
@@ -184,11 +171,10 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
       return
     }
     else{
-      // const formData = new FormData;
       const data = {
-        "name":this.UpdateVendor.value.name,
+        "vendor_name":this.UpdateVendor.value.name,
         "email":this.UpdateVendor.value.email,
-        "contact":this.UpdateVendor.value.contact_no,
+        "contact_no":this.UpdateVendor.value.contact_no,
         "address":this.UpdateVendor.value.address,
         "supervisor_name":this.UpdateVendor.value.supervisor_name,
         "supervisor_contact":this.UpdateVendor.value.supervisor_no
@@ -200,7 +186,12 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
         $('#UpdateVendor').hide();
       },(error)=>{
         console.error(error);
+       if(error.error.message){
+        mint.toaster.error(error.error.message);
+       }
+       else{
         mint.toaster.error('Somthing went wrong!');
+       }
         $('#UpdateVendor').hide();
       });
     }
@@ -218,12 +209,12 @@ view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:an
       console.log(res);
       mint.toaster.success('Successfully Deleted Vendor!');
       this.allvendors();
-      $('#UpdateVendor').hide();
+      $('#DeleteVendor').hide();
     },(error)=>{
       console.error(error);
       mint.toaster.error('Somthing went wrong!');
       this.allvendors();
-      $('#UpdateVendor').hide();
+      $('#DeleteVendor').hide();
     })
   }
 

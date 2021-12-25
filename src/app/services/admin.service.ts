@@ -41,19 +41,19 @@ export class AdminService {
 
   // project
 
-  AddProject(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'project/create', data, this.options)
+  AddProject(client_id:any,data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id,data)
   }
-  Projectslist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'project/list', this.options)
+  Projectslist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  DeleteProject(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'project/rd/' + id, this.options)
+  DeleteProject(project_id: any,client_id:any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/project?project_id='+project_id+'&'+'client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  UpdateProject(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'project/update/' + id, data, this.options)
+  UpdateProject(client_id: any, data: any): Observable<any> {
+    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id, data)
       .pipe(shareReplay(1));
   }
 
@@ -71,11 +71,11 @@ export class AdminService {
       .pipe(shareReplay(1));
   }
   DeleteEmploye(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'emp/rud/' + id, this.options)
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/assign?employe_id='+ id,)
       .pipe(shareReplay(1));
   }
-  UpdateEmploye(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'emp/rud/' + id, data, this.options)
+  UpdateEmploye(employe_id: any, data: any): Observable<any> {
+    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/assign?employee_id='+ employe_id, data)
       .pipe(shareReplay(1));
   }
   SingleEmployee(id:any):Observable<any>{
@@ -84,41 +84,41 @@ export class AdminService {
   }
   // Vendors
 
-  Addvendor(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'vendor/list_or_create', data,this.options)
+  Addvendor(client_id:any,data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/vendor?client_id='+client_id, data,this.options)
   }
-  vendorslist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'vendor/list_or_create',this.options)
+  vendorslist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/vendor?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   Singlevendorlist(id:any): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'vendor/rud/'+id,this.options)
+    return this.http.get<any>(GlobalData.url_buildcron + 'vendor/rud/'+id,)
       .pipe(shareReplay(1));
   }
-  Deletevendor(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'vendor/rud/' + id, this.options)
+  Deletevendor(vendor_id: any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/vendor?vendor_id='+vendor_id)
       .pipe(shareReplay(1));
   }
-  Updatevendor(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'vendor/rud/' + id, data , this.options)
+  Updatevendor(vendor_id: any, data: any): Observable<any> {
+    return this.http.put<any>(GlobalData.url_account+ 'license/holder/license/vendor?vendor_id='+vendor_id, data)
       .pipe(shareReplay(1));
   }
 
    // Material
 
-  AddMaterial(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'material/create', data , this.options)
+  AddMaterial(client_id:any,vendor_id:any,data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/material?client_id='+client_id+'&'+'make='+vendor_id, data )
   }
-  Materialslist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'material/list', this.options)
+  Materialslist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/material?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   DeleteMaterial(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'material/rud/' + id, this.options)
+    return this.http.delete<any>(GlobalData.url_account + 'material/rud/' + id)
       .pipe(shareReplay(1));
   }
   UpdateMaterial(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'material/rud/' + id, data, this.options)
+    return this.http.put<any>(GlobalData.url_account + 'material/rud/' + id, data)
       .pipe(shareReplay(1));
   }
   SingleMaterial(id: any,): Observable<any> {

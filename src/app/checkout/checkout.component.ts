@@ -101,16 +101,21 @@ pay(){
      this.registrationService.Client_Registration(data).subscribe((res)=>{
      console.log(res);
      this.client_id = res.client_id;
-     sessionStorage.setItem('client_id',this.client_id);
+     sessionStorage.setItem('webclient_id',this.client_id);
      this.CompanyRegistration.reset();
      this.submitted = false;
      this.toastr.success('Your Registration Sucessfully Done');
-     this.router.navigate(['/License']);
+     this.router.navigate(['/ClientLicense']);
    },(error)=>{
      console.error(error);
      this.CompanyRegistration.reset();
      this.submitted = false;
-     this.toastr.error(error.error.message);
+     if(error.error.message){
+      this.toastr.error(error.error.message);
+     }
+     else{
+      this.toastr.error('Somthing went to wrong!');
+     }
    });
   }
 }

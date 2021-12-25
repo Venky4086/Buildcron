@@ -182,15 +182,6 @@ export class LicenseComponent {
     }
     else{
       const formData = new FormData;
-      // formData.append('client',this.AddLicense.value.client_id);
-      // formData.append('user_name', this.AddLicense.value.user_name);
-      // formData.append('start_date', this.AddLicense.value.start_date);
-      // formData.append('user_phone',this.AddLicense.value.mobile);
-      // formData.append('user_email',this.AddLicense.value.email);
-      // formData.append('status',this.AddLicense.value.status);
-      // formData.append('device_id', this.AddLicense.value.device_id);
-      // formData.append('device_name', this.AddLicense.value.device_name);
-      // formData.append('designation', this.AddLicense.value.designation)
 
       formData.append('user_info', this.AddLicense.value.user_info);
       formData.append('created_at', this.AddLicense.value.start_date);

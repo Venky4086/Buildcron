@@ -32,29 +32,25 @@ export class MaterialsComponent {
   totalRecords:any;
   page:any=1;
   count:any = 5;
+  client_id: any;
+  vendor_id: any;
   constructor(private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
   AddMaterial = this.fb.group({
     name: ['', Validators.required],
-    // id: ['', Validators.required],
     description: ['', Validators.required],
     boq_ref: ['', Validators.required],
     make: ['', Validators.required],
-    // project_assigned: ['', Validators.required],
-    total_uom: ['', Validators.required],
+    uom: ['', Validators.required],
     total_quantity: ['', Validators.required],
-    baseline_uom: ['', Validators.required],
     baseline_quantity: ['', Validators.required],
   });
   UpdateMaterial = this.fb.group({
     name: ['', Validators.required],
-    // id: ['', Validators.required],
     description: ['', Validators.required],
     boq_ref: ['', Validators.required],
     make: ['', Validators.required],
-    // project_assigned: ['', Validators.required],
-    total_uom: ['', Validators.required],
+    uom: ['', Validators.required],
     total_quantity: ['', Validators.required],
-    baseline_uom: ['', Validators.required],
     baseline_quantity: ['', Validators.required],
   });
   get f() {
@@ -67,56 +63,39 @@ export class MaterialsComponent {
   this.allmateriallist();
   this.allvendors();
   }
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 
 // vendor list 
 
 allvendors(){
-  this.spinner.show();
-  this.adminservice.vendorslist().subscribe((res)=>{
+  this.client_id = sessionStorage.getItem('client_id');
+  this.adminservice.vendorslist(this.client_id).subscribe((res)=>{
     if(res){
       console.log(res);
       this.vendorlist = res;
-      this.spinner.hide();
+      console.log(this.vendorlist);
     }
     else{
       console.warn(res);
     }
   },(error)=>{
     console.error(error.error.message);
-    this.spinner.hide();
+    // this.spinner.hide();
   })
 }
 
 
 // view material
 
-view(material_name:any,materialId:any,description:any,boq_ref:any,maker_name:any,total_uom:any,total_qty:any,b_uom:any,b_qty:any){
+view(material_name:any,materialId:any,description:any,boq_ref:any,maker_name:any,total_qty:any,b_qty:any){
 $('#MaterialView').modal('show');
 this.material_name = material_name,
 this.materialId = materialId,
 this.descriprion = description,
 this.boq_ref = boq_ref,
 this.maker_name = maker_name,
-this.total_uom = total_uom,
+// this.total_uom = total_uom,
 this.total_qty = total_qty,
-this.b_uom = b_uom,
+// this.b_uom = b_uom,
 this.b_qty = b_qty,
 $('#MaterialView').modal('show');
 }
@@ -128,8 +107,9 @@ matclose(){
 // allmateriallist
 
   allmateriallist(){
+    this.client_id = sessionStorage.getItem('client_id');
       this.spinner.show();
-      this.adminservice.Materialslist().subscribe((res)=>{
+      this.adminservice.Materialslist(this.client_id).subscribe((res)=>{
         if(res){
           this.spinner.hide();
           console.log(res);
@@ -150,32 +130,23 @@ matclose(){
   Add() {
     this.submitted = true;
     if (this.AddMaterial.invalid) {
+      console.log('invalid');
       return
     }
     else {
+      this.client_id = sessionStorage.getItem('client_id');
+      this.vendor_id = this.AddMaterial.value.make;
       const mint = this
-      console.log(this.AddMaterial.value);
       const data = {
-        "name": this.AddMaterial.value.name,
-        "maker": +this.AddMaterial.value.make,
-        "boq_ref": this.AddMaterial.value.boq_ref,
+        "material_name": this.AddMaterial.value.name,
+        "BOQ": this.AddMaterial.value.boq_ref,
         "description": this.AddMaterial.value.description,
-        "b_uom": this.AddMaterial.value.baseline_uom,
-        "b_qty": this.AddMaterial.value.baseline_quantity,
-        "total_uom": this.AddMaterial.value.total_uom,
-        "total_qty": this.AddMaterial.value.total_quantity
+        "Baseline_Quantity": this.AddMaterial.value.baseline_quantity,
+        "UOM": this.AddMaterial.value.uom,
+        "Total_Quantity": this.AddMaterial.value.total_quantity
       }
-      // const formData = new FormData;
-      // formData.append('date', this.AddMaterial.value.date);
-      // formData.append('id', this.AddMaterial.value.id);
-      // formData.append('description', this.AddMaterial.value.description);
-      // formData.append('project_assigned', this.AddMaterial.value.project_assigned);
-      // formData.append('boq_ref', this.AddMaterial.value.boq_ref);
-      // formData.append('total_uom', this.AddMaterial.value.total_uom);
-      // formData.append('total_quantity', this.AddMaterial.value.total_quantity);
-      // formData.append('baseline_uom', this.AddMaterial.value.baseline_uom);
-      // formData.append('baseline_quantity', this.AddMaterial.value.baseline_quantity);
-      this.adminservice.AddMaterial(data).subscribe((res) => {
+      console.log(data);
+      this.adminservice.AddMaterial(this.client_id,this.vendor_id,data).subscribe((res) => {
         console.log(res);
         this.allmateriallist();
         this.AddMaterial.reset();
@@ -186,7 +157,12 @@ matclose(){
         console.error(error);
         this.AddMaterial.reset();
         this.submitted = false;
+        if(error.error.message){
+        mint.toaster.error(error.error.message);
+        }
+        else{
         mint.toaster.error('Somthing went to wrong!');
+        }
         $('#AddMaterial').hide();
       })
     }
@@ -231,16 +207,6 @@ edit(material_id:any,material_name:any,materialId:any,description:any,boq_ref:an
         "total_uom": this.UpdateMaterial.value.total_uom,
         "total_qty": this.UpdateMaterial.value.total_quantity
       }
-      // const formData = new FormData;
-      // formData.append('date', this.UpdateMaterial.value.date);
-      // formData.append('id', this.UpdateMaterial.value.id);
-      // formData.append('description', this.UpdateMaterial.value.description);
-      // formData.append('boq_ref', this.UpdateMaterial.value.boq_ref);
-      // formData.append('project_assigned', this.UpdateMaterial.value.project_assigned);
-      // formData.append('total_uom', this.UpdateMaterial.value.total_uom);
-      // formData.append('total_quantity', this.UpdateMaterial.value.total_quantity);
-      // formData.append('baseline_uom', this.UpdateMaterial.value.baseline_uom);
-      // formData.append('baseline_quantity', this.UpdateMaterial.value.baseline_quantity);
       this.adminservice.UpdateMaterial(this.material_id, data).subscribe((res) => {
         console.log(res);
         mint.toaster.success("Sucessfully Material Updated!");
@@ -272,7 +238,6 @@ delete(material_id:any){
       $('#DeleteMaterial').hide();
     })
   }
-
 
 
 }

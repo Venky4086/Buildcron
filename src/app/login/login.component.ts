@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   fieldTextType:any;
   roles: any;
+  super_user_satus: any;
   constructor(private auth:AuthenticationserviceService,private adminservice :AdminService,private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   Login = this.fb.group({
     email:['', Validators.required],
@@ -41,17 +42,23 @@ export class LoginComponent implements OnInit {
       console.log(formData);
       this.auth.ClientLogin(formData).subscribe((res)=>{
         console.log(res);
-        sessionStorage.setItem('client_id',res.client_id);
         this.Login.reset();
         this.submitted = false;
+        this.super_user_satus = res.super_user_satus
         this.toaster.success('Successfully Login Done');
+        if(this.super_user_satus === false){
+        sessionStorage.setItem('client_id',res.client_id);
         this.router.navigate(['/ClientAdmin']);
+        }
+        else{
+          this.router.navigate(['/SuperAdmin']);
+        }
       },(error)=>{
         console.error(error);
         this.Login.reset();
         this.submitted = false;
-        if(error.error.error){
-          this.toaster.error(error.error.error);
+        if(error.error.message){
+          this.toaster.error(error.error.message);
           this.router.navigate(['/login']);
         }
         else{

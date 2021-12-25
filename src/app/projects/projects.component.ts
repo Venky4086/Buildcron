@@ -29,8 +29,8 @@ export class ProjectsComponent {
   dropdownList:any[]=[];
   Material_List:any[]=[];
   Approver:any;
-  EmployeeList: any[]=[];
-  MaterialList:any[]=[];
+  EmployeeList: any;
+  MaterialList:any;
   projectname: any;
   location: any;
   approver: any;
@@ -94,32 +94,20 @@ export class ProjectsComponent {
   get u(){
     return this.UpdateProject.controls
   }
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 
 // all empoyess
 
   allemploys(){
-    this.client_id = sessionStorage.getItem('client_id')
+    this.client_id = sessionStorage.getItem('client_id');
+    let tmp:any[] = [];
     this.adminservice.Employeslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.employelist = res;
+        for(let i=0; i < this.employelist.length; i++) {
+          tmp.push({ item_id: this.employelist[i].employeeId, item_text: this.employelist[i].employee_name });
+        }
+        this.dropdownList = tmp;
       }
       else{
         console.warn(res);
@@ -132,14 +120,15 @@ export class ProjectsComponent {
 
   allmateriallist(){
     // this.spinner.show();
+    this.client_id = sessionStorage.getItem('client_id');
     let tmp:any[] = [];
-    this.adminservice.Materialslist().subscribe((res)=>{
+    this.adminservice.Materialslist(this.client_id).subscribe((res)=>{
       if(res){
         // this.spinner.hide();
         console.log(res);
         this.Materiallists = res;
         for(let i=0; i < this.Materiallists.length; i++) {
-          tmp.push({ item_id: this.Materiallists[i].id, item_text: this.Materiallists[i].name });
+          tmp.push({ item_id: this.Materiallists[i].materialId, item_text: this.Materiallists[i].material_name});
         }
         this.Material_List = tmp;
       }
@@ -150,13 +139,14 @@ export class ProjectsComponent {
       console.error(error);
       // this.spinner.hide();
     })
-}
+  }
 
 // all vendros
 
   allvendors(){
     // this.spinner.show();
-    this.adminservice.vendorslist().subscribe((res)=>{
+    this.client_id = sessionStorage.getItem('client_id');
+    this.adminservice.vendorslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.vendorlist = res;
@@ -174,8 +164,9 @@ export class ProjectsComponent {
   // listprojects
 
   allprojects(){
+    this.client_id = sessionStorage.getItem('client_id');
     this.spinner.show();
-    this.adminservice.Projectslist().subscribe((res)=>{
+    this.adminservice.Projectslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.projectlist = res;
@@ -201,6 +192,7 @@ export class ProjectsComponent {
   // Add
 
   Add(){
+    this.client_id = sessionStorage.getItem('client_id');
     const mint = this
     this.submitted = true;
     if(this.AddProject.invalid){
@@ -212,23 +204,22 @@ export class ProjectsComponent {
     for(let i=0; i < this.selectedItems.length; i++) {
       arr1.push(this.selectedItems[i].item_id);
     }
-    this.EmployeeList = arr1;
+    this.EmployeeList = arr1.toString();
     let arr2:any[] = []
     console.log(this.selectedmaterial);
     for(let i=0; i < this.selectedmaterial.length; i++) {
       arr2.push(this.selectedmaterial[i].item_id);
     }
-    this.MaterialList = arr2;
+    this.MaterialList = arr2.toString();
     const data = {
-      "name": this.AddProject.value.name,
-      "location": this.AddProject.value.location,
+      "project_name": this.AddProject.value.name,
+      "city": this.AddProject.value.location,
       "approver": this.Approver,
-      "employee":this.EmployeeList,
-      // "vendor": 
-      "material": this.MaterialList   
+      "assigned_employee":this.EmployeeList,
+      "assigned_material": this.MaterialList   
     }
       console.log(data);
-      this.adminservice.AddProject(data).subscribe((res)=>{
+      this.adminservice.AddProject(this.client_id,data).subscribe((res)=>{
         console.log(res);
         mint.toaster.success('Successfully projects done!');
         this.submitted = false;
@@ -237,19 +228,24 @@ export class ProjectsComponent {
         $('#AddProject').hide();
       },(error)=>{
         console.error(error);
-        mint.toaster.error('Somthing went wrong!');
         this.submitted = false;
         this.AddProject.reset();
+        if(error.error.message){
+        mint.toaster.error(error.error.message);
+        }
+        else{
+        mint.toaster.error('Somthing went wrong!');
+        }
         $('#AddProject').hide();
       });
     }
   }
 
-  edit(project_id:any,name:any,location:any,approver:any,empId:any){
+  edit(project_id:any,name:any,location:any,approver:any){
     this.project_id = project_id
     this.projectname = name,
-    this.location = location,
-    this.empseleted = empId;
+    this.location = location
+    // this.empseleted = empId;
     // console.log(this.empseleted)
   }
 
@@ -304,17 +300,24 @@ export class ProjectsComponent {
 
   Delete(){
     const mint = this
-    this.adminservice.DeleteProject(this.project_id).subscribe((res)=>{
+    this.client_id = sessionStorage.getItem('client_id');
+    this.adminservice.DeleteProject(this.project_id,this.client_id).subscribe((res)=>{
       console.log(res);
       mint.toaster.success('Successfully projects deleted!');
       this.allprojects();
       $('#DeleteProject').hide();
     },(error)=>{
       console.error(error);
-      mint.toaster.error(error);
+      if(error.error.message){
+        mint.toaster.error(error.error.message);
+      }
+      else{
+        mint.toaster.error('Somthing went wrong!');
+      }
       $('#DeleteProject').hide();
     })
   }
+
   employedetails(employe_id:any){
     this.adminservice.SingleEmployee(employe_id).subscribe((res)=>{
       console.log(res);

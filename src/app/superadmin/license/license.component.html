@@ -33,33 +33,6 @@
 
                       <div class="card-body pt-0">
                           <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                              <div class="row">
-                                  <div class="col-sm-12 col-md-5">
-                                    <div class="filter-sect">
-                                      <span class="mr-2">Show</span>
-                                      <div class="sele-drp">
-                                          <select class="form-control">
-                                              <option>5</option>
-                                              <option>10</option>
-                                              <option>15</option>
-                                              <option>20</option>
-                                          </select>
-                                      </div>
-                                      <span class="ml-2">Entries</span>
-                                  </div>
-                                  </div>
-
-
-                                  <div class="col-sm-12 col-md-7">
-                                    <div class="showhide pt-4 text-right floatright">
-                                      <span class='text-right'>Show/Hide:</span>
-                                      <span><i class="fa fa-table"></i></span>
-                                  </div>
-                                  </div>
-
-
-                              </div>
-
                               <div class="row" *ngIf="totalRecords !==0;else elseBlack">
                                 <div class="col-sm-12">
                                   <div class="table-responsive">
@@ -124,10 +97,10 @@
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Device Name</th> -->
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="2" 
                                                     aria-label="CSS grade: activate to sort column ascending">
-                                                    Status</th>
+                                                    Status</th> -->
                                                     <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
@@ -153,26 +126,26 @@
                                             }
                                             ;let i=index">
                                                 <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                <td>{{alllicense.company.client_id}}</td>
+                                                <td>{{alllicense.client_id}}</td>
                                                 <td>{{alllicense.created_at}}</td>
                                                 <td>{{alllicense.end_at}}</td>
-                                                <td>{{alllicense.company.name}}</td>
+                                                <td>{{alllicense.company_name}}</td>
                                                 <td class="text-center">
                                                     <a class="cursor_pointer text-decoration-none" (click)="single_license_details(alllicense.company.name)">
-                                                        {{alllicense.company.license_used_count}}
+                                                        {{alllicense.active_license}}
                                                     </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <!-- <a class="cursor_pointer"> -->
-                                                        {{alllicense.company.total_licenses}}
+                                                        {{alllicense.license_status}}
                                                     <!-- </a> -->
                                                 </td>
-                                                <td *ngIf="alllicense.status == true">
+                                                <!-- <td *ngIf="alllicense.status == true">
                                                     Active
                                                 </td>
                                                 <td *ngIf="alllicense.status == false">
                                                     InActive
-                                                </td>
+                                                </td> -->
                                                 <!-- <td>23652l</td>
                                                 <td>{{alllicense.user_name}}</td>
                                                 <td>{{alllicense.created_at}}</td>
@@ -223,29 +196,6 @@
                                  </div>
                               </ng-template>
 
-                            <!-- <div class="row">
-                              <div class="col-md-6 col-md-offset-6">
-
-                              </div>
-                              <div class="col-sm-12 col-md-6">
-                                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                      <ul class="pagination float-rt">
-                                          <li class="paginate_button page-item previous disabled"
-                                              id="example1_previous"><a href="#" aria-controls="example1"
-                                                  data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                          <li class="paginate_button page-item active-cream active"><a href="#"
-                                                  aria-controls="example1" data-dt-idx="1" tabindex="0"
-                                                  class="page-link">1</a></li>
-                                          <li class="paginate_button page-item "><a href="#"
-                                                  aria-controls="example1" data-dt-idx="2" tabindex="0"
-                                                  class="page-link">2</a></li>
-                                          <li class="paginate_button page-item next" id="example1_next"><a
-                                                  href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
-                                                  class="page-link">Next</a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                  <ngx-spinner
@@ -328,148 +278,6 @@
   
       </div>
 </div>
-
-<!-- add -->
-
-<ng-template #content let-modal>
-  <div class="modal-header bg-blu">
-      <h4 class="modal-title mb-0" id="modal-basic-title">Add License</h4>
-
-      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
-          (click)="modal.dismiss('Cross click')">&times;</span>
-
-  </div>
-  <div class="modal-body">
-
-      <form [formGroup]="AddLicense">
-          <div class="row">
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">ID:</label>
-                  <input type="text" class="form-control" formControlName="id" [ngClass]="{ 'is-invalid': submitted && f.id.errors }"/>
-                  <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
-                    <div *ngIf="f.id.errors.required" class="fs-13 fw-500">Id is required</div>
-                  </div>
-              </div> -->
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Client ID:</label>
-                  <input type="text" class="form-control" formControlName="client_id" [ngClass]="{ 'is-invalid': submitted && f.client_id.errors }"/>
-                  <div *ngIf="submitted && f.client_id.errors" class="invalid-feedback">
-                    <div *ngIf="f.client_id.errors.required" class="fs-13 fw-500">Client ID is required</div>
-                  </div>
-              </div> -->
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">User Name:</label>
-                  <input type="text" class="form-control" formControlName="user_name" [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }"/>
-                  <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
-                    <div *ngIf="f.user_name.errors.required" class="fs-13 fw-500">User Name is required</div>
-                  </div>
-              </div> -->
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">ID:</label>
-                  <input type="text" class="form-control" />
-              </div> -->
-               
-
-               <div class="form-group col-md-6 mb-3">
-                   <label for="">User Info</label>
-                   <select class="form-select" formControlName="user_info" aria-label="Default select example" [ngClass]="{ 'is-invalid': submitted && f.user_info.errors }">
-                    <option value="" selected>-- select user info --</option>
-                    <option value="{{user.id}}" *ngFor="let user of users">{{user.name}}</option>
-                   </select>
-                   <div *ngIf="submitted && f.user_info.errors" class="invalid-feedback">
-                    <div *ngIf="f.user_info.errors.required" class="fs-13 fw-500">User Info is required</div>
-                  </div>
-               </div>
-
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Start date:</label>
-                    <input type="date" class="form-control" formControlName="start_date" [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" (change)="startdate(s.value)" #s/>
-                    <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
-                        <div *ngIf="f.start_date.errors.required" class="fs-13 fw-500">Start Date is required</div>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">End date:</label>
-                    <input type="date" class="form-control" formControlName="end_date" [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" (change)="enddate(e.value)"  #e/>
-                    <div *ngIf="submitted && f.end_date.errors" class="invalid-feedback">
-                        <div *ngIf="f.end_date.errors.required" class="fs-13 fw-500">End Date is required</div>
-                    </div>
-                </div>
-
-                <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Tenure:</label>
-                    <input type="text" [(ngModel)]="Days" class="form-control" formControlName="tenure" [ngClass]="{ 'is-invalid': submitted && f.tenure.errors }">
-                    <div *ngIf="submitted && f.tenure.errors" class="invalid-feedback">
-                        <div *ngIf="f.tenure.errors.required" class="fs-13 fw-500">Tenure is required</div>
-                    </div>
-                </div>                 -->
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                <label for="dateOfBirth">Mobile No:</label>
-                <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"/>
-                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
-                    <div *ngIf="f.mobile.errors.required" class="fs-13 fw-500">Mobile is required</div>
-                    <div *ngIf="f.mobile.errors.pattern" class="fs-13 fw-500">Mobile Number must be at 10 digits required</div>
-                </div>
-              </div> -->
-
-            <!-- <div class="form-group col-md-6 mb-3">
-              <label for="dateOfBirth">Email:</label>
-              <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required" class="fs-13 fw-500">Email is required</div>
-                <div *ngIf="f.email.errors.email" class="fs-13 fw-500">Please provide a valid email address</div>
-              </div>
-            </div> -->
-
-
-          <!-- <div class="form-group col-md-6 mb-3">
-            <label for="dateOfBirth">Status:</label>
-            <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
-            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                <div *ngIf="f.status.errors.required" class="fs-13 fw-500">Status is required</div>
-            </div>
-          </div> -->
-
-        <!-- <div class="form-group col-md-6 mb-3">
-          <label for="dateOfBirth">Device ID:</label>
-          <input type="text" class="form-control" formControlName="device_id" [ngClass]="{ 'is-invalid': submitted && f.device_id.errors }"/>
-          <div *ngIf="submitted && f.device_id.errors" class="invalid-feedback">
-            <div *ngIf="f.device_id.errors.required" class="fs-13 fw-500">Device Id is required</div>
-          </div>
-        </div> -->
-
-            <!-- <div class="form-group col-md-6 mb-3">
-                <label for="dateOfBirth">Device Name:</label>
-                <select class="form-select" formControlName="device_name" [ngClass]="{ 'is-invalid': submitted && f.device_name.errors }">
-                    <option value="" selected>-- select --</option>
-                    <option value="{{devicelist.id}}" *ngFor="let devicelist of devicelists">{{devicelist.name}}</option>
-                   </select>
-                   <div *ngIf="submitted && f.device_name.errors" class="invalid-feedback">
-                    <div *ngIf="f.device_name.errors.required" class="fs-13 fw-500">Device Name is required</div>
-                   </div>
-            </div>
-
-            <div class="form-group col-md-6 mb-3">
-            <label for="dateOfBirth">Designation:</label>
-            <input type="text" class="form-control" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"/>
-            <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
-                <div *ngIf="f.designation.errors.required" class="fs-13 fw-500">Designation is required</div>
-            </div>
-            </div> -->
-
-          </div>
-      </form>
-
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-primary bg2" (click)="Add()">License</button>
-  </div>
-</ng-template>
 
 <!-- update -->
 

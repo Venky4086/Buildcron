@@ -35,6 +35,7 @@ export class QualityInspectionComponent {
   totalRecords:any;
   page:any=1;
   count:any = 5;
+  client_id: any;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -94,8 +95,9 @@ export class QualityInspectionComponent {
 // all projects
 
   allprojects(){
+    this.client_id = sessionStorage.getItem('client_id');
     // this.spinner.show();
-    this.adminservice.Projectslist().subscribe((res)=>{
+    this.adminservice.Projectslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.projectlist = res;
@@ -257,7 +259,8 @@ this.project_id = project_id
 
   Delete(){
     const mint = this
-    this.adminservice.DeleteProject(this.project_id).subscribe((res) => {
+    this.client_id = sessionStorage.getItem('client_id');
+    this.adminservice.DeleteProject(this.project_id,this.client_id).subscribe((res) => {
       console.log(res);
       mint.toaster.success('Sucessfully Deleted!');
       $('#DeleteQuality').hide();

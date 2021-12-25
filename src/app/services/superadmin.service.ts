@@ -105,12 +105,8 @@ export class SuperadminService {
     )
   } 
   alllicensedata(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'license', 
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
-      .pipe(shareReplay(1));
+    return this.http.get<any>(GlobalData.url_api + 'admin/client/licence')
+      .pipe(shareReplay(1));  
   }
   singleicensedata(c_name:any): Observable<any> {
     return this.http.get<any>(GlobalData.url_buildcron + 'license/employee/'+ c_name, 
