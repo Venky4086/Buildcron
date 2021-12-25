@@ -89,10 +89,10 @@
                   id="plan"
                   aria-label="Plan"
                   name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }" (change)="plane($event)">
-                  <!-- <option  value="{{planename}}" selected>{{planename}}</option> -->
-                  <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.name}}</option>
-                  <!-- <option value="annual">Annual</option>
-                  <option value="perpetual">Perpetual</option> -->
+                  <option  value="M" selected>Monthly</option>
+                  <!-- <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.name}}</option> -->
+                  <option value="A">Annual</option>
+                  <!-- <option value="perpetual">Perpetual</option> -->
                 </select>
                 <div *ngIf="submitted && f.planename.errors" class="invalid-feedback">
                   <div *ngIf="f.planename.errors.required" class="fs-13 fw-500">Plane Name is required</div>
@@ -217,7 +217,7 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button class="btn btn-primary1" type="button" (click)="checkout()">
           <a class="cls_a">
-            <i class="fa fa-shopping-cart"></i> Proceed to Checkout</a>
+            <i class="fa fa-shopping-cart"></i> Proceed to Pay</a>
         </button>
       </div>
     </div>

@@ -44,6 +44,7 @@ export class ProjectsComponent {
   totalRecords:any;
   page:any=1;
   count:any = 2;
+  client_id: any;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddProject = this.fb.group({
     // date:['', Validators.required],
@@ -114,23 +115,11 @@ export class ProjectsComponent {
 // all empoyess
 
   allemploys(){
-    // this.spinner.show();
-    let tmp:any[] = [];
-    this.adminservice.Employeslist().subscribe((res)=>{
+    this.client_id = sessionStorage.getItem('client_id')
+    this.adminservice.Employeslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.employelist = res;
-        // this.empl
-        for(let i=0; i < this.employelist.length; i++) {
-          tmp.push({ item_id: this.employelist[i].id, item_text: this.employelist[i].user.first_name });
-        }
-        this.dropdownList = tmp;
-      // for (let index = 0; index < this.employelist.length; index++) {
-      //   this.employee_id = res[index].id
-      //   this.employe_name = res[index].user.first_name;
-      //   console.log(this.employe_name);
-      // }
-        // this.spinner.hide();
       }
       else{
         console.warn(res);

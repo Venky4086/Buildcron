@@ -50,8 +50,8 @@ const routes: Routes = [
     path:'login', component:LoginComponent
   },
   {path:'Landingpage', component:LandingpageComponent},
-  {path:'subscription', component:SubscriptionordersComponent},
-  {path:'checkout', component:CheckoutComponent},
+  {path:'ClientLicense', component:SubscriptionordersComponent},
+  {path:'ClientRegistration', component:CheckoutComponent},
    { path: '',
     component: VendorLayoutComponent,
     children: [
@@ -64,7 +64,7 @@ const routes: Routes = [
       },
       { path: 'Employees',
     component: EmployeesComponent
- },
+     },
  { path: 'Projects',
     component: ProjectsComponent
  },

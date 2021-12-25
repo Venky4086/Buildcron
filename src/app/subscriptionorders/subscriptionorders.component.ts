@@ -1,6 +1,8 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from '../services/registration.service';
 declare var $:any;
 @Component({
@@ -21,7 +23,8 @@ export class SubscriptionordersComponent implements OnInit {
   default =true;
   second = false;
   plane_amount: any;
-  constructor(private fb:FormBuilder,private Registration:RegistrationService,private router:Router) { }
+  client_id: any;
+  constructor(private toastr:ToastrService,private fb:FormBuilder,private Registration:RegistrationService,private router:Router) { }
   Subscription = this.fb.group({
     planename:['', Validators.required],
     planenumber:['', Validators.required],
@@ -36,7 +39,8 @@ export class SubscriptionordersComponent implements OnInit {
       else sticky.removeClass('header-scrolled');
     });
     this.planeamount = sessionStorage.getItem('planeamount');
-    this.allplanes()
+    this.allplanes();
+    this.countamount = '';
   }
 
 get f(){
@@ -70,12 +74,6 @@ allplanes(){
   })
 }
 
-// get planename(){
-//   return sessionStorage.getItem('planename');
-// }
-// get planeamount(){
-//   return sessionStorage.getItem('planeamount');
-// }
 
 login(){
   this.router.navigate(['/login']);
@@ -101,15 +99,11 @@ onChange(event:any){
   this.default = false;
   console.log(event.target.value);
   this.count = +event.target.value;
-  this.countamount = this.count * + this.planeamount;
+  this.countamount = this.count * + 100;
   // console.log(this.countamount);
-  // sessionStorage.setItem('planeamount',this.countamount);
+  sessionStorage.setItem('planeamount',this.countamount);
   // window.location.reload();
 }
-
-// get planeamo():number{
-// return this.pl
-// }
 
 checkout(){
   this.submitted = true;
@@ -117,12 +111,28 @@ checkout(){
     return
   }
   else{
-    console.log(this.Subscription.value.planenumber);
+    console.log(this.Subscription.value);
+    this.client_id = sessionStorage.getItem('client_id');
     // sessionStorage.setItem('planename',this.Subscription.value.planename);
-    sessionStorage.setItem('planecount',this.Subscription.value.planenumber);
-    sessionStorage.setItem('planeamount',this.Subscription.value.planeamount);
-    this.router.navigate(['/checkout']);
-    // console.log(this.Subscription.value);
+    // sessionStorage.setItem('planecount',this.Subscription.value.planenumber);
+    // sessionStorage.setItem('planeamount',this.Subscription.value.planeamount);
+    const data = {
+      number_of_license:this.Subscription.value.planenumber,
+      price:this.Subscription.value.planeamount,
+      subcription_plan:this.Subscription.value.planename
+    }
+    console.log(data);
+    this.Registration.license(data,this.client_id).subscribe((res)=>{
+      console.log(res);
+      this.Subscription.reset();
+      this.submitted = false;
+      this.toastr.success('Successfully License Created!');
+      this.router.navigate(['/login']);
+    },(error)=>{
+      console.error(error);
+      this.toastr.success(error.error.message);
+      this.router.navigate(['/License']);
+    });
   }
 }
 

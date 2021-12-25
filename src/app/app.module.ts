@@ -141,7 +141,7 @@ import { AuthenticationserviceService } from './services/authenticationservice.s
     NgMultiSelectDropDownModule.forRoot(),
     StoreModule.forRoot({}, {}),
     ChartsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [SuperadminService,AdminService,RegistrationService,AuthenticationserviceService],
   bootstrap: [AppComponent],

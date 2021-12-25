@@ -1,128 +1,81 @@
 <div class="container-fluid px-0">
   <div class="card">
-      <div class="content-header">
-          <div class="row">
-              <div class="col-sm-6 pl-25">
-                  <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Employee Details</h3>
-              </div><!-- /.col -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6 pl-25">
+          <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Employee Details</h3>
+        </div><!-- /.col -->
 
-              <div class="col-sm-6">
-                  <div class="alig_btns p-3">
-                      <div class="add_btn">
-                          <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddEmployee">
-                              + Add Employee</button>
-                      </div>
+        <div class="col-sm-6">
+          <div class="alig_btns p-3">
+            <div class="add_btn">
+              <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddEmployee">
+                + Add Employee</button>
+            </div>
 
-                      <!-- <div class="bulk_btn">
+            <!-- <div class="bulk_btn">
                           <span class="btn btn-default btn-file bg1 mtop">
                               Bulk Upload <input type="file">
                           </span>
 
                           <div class="small06">*In CSV File or Excel Format</div>
                       </div> -->
-                  </div>
-              </div>
-          </div><!-- /.row -->
+          </div>
+        </div>
+      </div><!-- /.row -->
 
 
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="table-responsive">
-                      <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="table-responsive">
+            <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
                       </ngx-table> -->
 
-                      <div class="card-body pt-0">
-                          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                              <div class="row">
-                                  <div class="col-sm-12 col-md-5">
-                                    <div class="filter-sect">
-                                      <span class="mr-2">Show</span>
-                                      <div class="sele-drp">
-                                          <select class="form-control">
-                                              <option>5</option>
-                                              <option>10</option>
-                                              <option>15</option>
-                                              <option>20</option>
-                                          </select>
-                                      </div>
-                                      <span class="ml-2">Entries</span>
-                                  </div>
-                                  </div>
+            <div class="card-body pt-0">
+              <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
+                  <div class="col-sm-12">
+                    <table id="example1" class="table mb-0 table-bordered table-striped dataTable dtr-inline"
+                      role="grid" aria-describedby="example1_info">
+                      <thead class="cls-cream">
+                        <tr role="row">
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Rendering engine: activate to sort column ascending">
+                            S.No</th>
+                          <th class="sorting sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Browser: activate to sort column ascending" aria-sort="descending">Date</th>
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Platform(s): activate to sort column ascending">
+                            Name</th>
 
 
-                                  <div class="col-sm-12 col-md-7">
-                                    <div class="showhide pt-4 text-right floatright">
-                                      <span class='text-right'>Show/Hide:</span>
-                                      <span><i class="fa fa-table"></i></span>
-                                  </div>
-                                  </div>
-
-
-                              </div>
-
-                              <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
-                                <div class="col-sm-12">
-                                    <table id="example1"
-                                        class="table mb-0 table-bordered table-striped dataTable dtr-inline"
-                                        role="grid" aria-describedby="example1_info">
-                                        <thead class="cls-cream">
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Rendering engine: activate to sort column ascending">
-                                                    S.No</th>
-                                                <th class="sorting sorting_desc" tabindex="0"
-                                                    aria-controls="example1" rowspan="1" colspan="1"
-                                                    aria-label="Browser: activate to sort column ascending"
-                                                    aria-sort="descending">Date</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending">
-                                                    Name</th>
-
-
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">Employee ID
-                                                </th>
-                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending">Employee ID
+                          </th>
+                          <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Designation
                                                 </th> -->
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending">
-                                                    Email ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Mobile No</th>
-                                                <!-- <th ngbDropdown class="sorting" tabindex="0"
-                                                    aria-controls="example1" rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Project
-                                                    Project <i class="fa fa-chevron-down"
-                                                        id="dropdownBasic1" ngbDropdownToggle></i>
-                                                    <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                                        <li> <button class="fs-12" ngbDropdownItem>Action -
-                                                                1</button></li>
-                                                        <li><button class="fs-12" ngbDropdownItem>Another
-                                                                Action</button></li>
-                                                        <li><button class="fs-12" ngbDropdownItem>Something else is
-                                                                here</button>
-                                                        </li>
-                                                    </ul>
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Engine version: activate to sort column ascending">
+                            Email ID</th>
+                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending">
+                            Mobile No</th>
+                          <th ngbDropdown class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending">
+                            assigned_license
+                          </th>
 
-                                                </th> -->
+                          <th>Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
 
-                                                <th>Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr class="odd" *ngFor="let emp of employelist | paginate
+                        <tr class="odd" *ngFor="let emp of employelist | paginate
                                             :{
                                               id:'listing_pagination',
                                               itemsPerPage:count,
@@ -130,49 +83,52 @@
                                               totalItems:totalRecords
                                             }
                                             ;let i=index">
-                                                <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                <td class="sorting_1">{{emp.created_at}}</td>
-                                                <td>{{emp.user.first_name}}</td>
-                                                <td>{{emp.eid}}</td>
-                                                <td>{{emp.user.email}}</td>
-                                                <td>{{emp.user.phone_number}}</td>
-                                                <!-- <td>{{emp.projects}}</td> -->
-                                                <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(emp.eid,emp.user.first_name,emp.user.email,emp.user.phone_number)">
-                                                    <i class='fa fa-eye mr-1'></i>
-                                                    </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee" (click)="edit(emp.user.id,emp.user.first_name,emp.user.email,emp.user.phone_number)">
-                                                    <i class="fa fa-edit mr-1"></i>
-                                                    </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee" (click)="delete(emp.user.id)">
-                                                    <i class="fa fa-trash mr-1"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                          <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
+                          <td class="sorting_1">{{emp.created_at}}</td>
+                          <td>{{emp.employee_name}}</td>
+                          <td>{{emp.employeeId}}</td>
+                          <td>{{emp.email}}</td>
+                          <td>{{emp.phone_number}}</td>
+                          <td>{{emp.assigned_license}}</td>
+                          <td>
+                            <a class="cursor_pointer" data-toggle="modal" data-target="#View"
+                              (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">
+                              <i class='fa fa-eye mr-1'></i>
+                            </a>
+                            <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee"
+                              (click)="edit(emp.user.id,emp.user.first_name,emp.user.email,emp.user.phone_number)">
+                              <i class="fa fa-edit mr-1"></i>
+                            </a>
+                            <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee"
+                              (click)="delete(emp.user.id)">
+                              <i class="fa fa-trash mr-1"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
 
-                                    </table>
-                                </div>
-                                <div class="row my-2">
-                                  <div class="col-md-12 text-right">
-                                      <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
-                                  </div>
-                                </div>
-                              </div>
+                    </table>
+                  </div>
+                  <div class="row my-2">
+                    <div class="col-md-12 text-right">
+                      <pagination-controls id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
+                    </div>
+                  </div>
+                </div>
 
-                              <ng-template #elseBlack>
-                                <div class="row my-2">
-                                    <div class="col-md-12">
-                                        <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
-                                            <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Employees is Available</h1>
-                                            <!-- <div>
+                <ng-template #elseBlack>
+                  <div class="row my-2">
+                    <div class="col-md-12">
+                      <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
+                        <h1 class="mgb-0 fs-20 fw-700 opacity-8">No Employees is Available</h1>
+                        <!-- <div>
                                                 <img src="assets/images/no-data.png" alt="" class="img-fluid">
                                             </div> -->
-                                        </div>
-                                    </div>
-                                 </div>
-                              </ng-template>
-                                <!-- <div class="row">
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <!-- <div class="row">
                                 <div class="col-md-6 col-md-offset-6">
 
                                 </div>
@@ -195,127 +151,24 @@
                                     </div>
                                 </div>
                                 </div> -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                     <ngx-spinner
-                                     bdColor="rgba(51,51,51,0.8)"
-                                     size="medium"
-                                     color="#fff"
-                                     type="ball-scale-multiple"
-                                   >
-                                     <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
-                                   </ngx-spinner>
-                                    </div>
-                                </div>
-                                
-                          </div>
-                      </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+                      <p style="font-size: 20px; color: white" class="mt-2">Loading...</p>
+                    </ngx-spinner>
                   </div>
+                </div>
 
               </div>
+            </div>
           </div>
+
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
-<!-- Add Employe -->
-
-<ng-template #content let-modal>
-  <div class="modal-header bg-blu">
-      <h4 class="modal-title mb-0" id="modal-basic-title">Add Employee</h4>
-
-      <span aria-hidden="true" class="close cursor_point" aria-label="Close"
-          (click)="modal.dismiss('Cross click')">&times;</span>
-
-  </div>
-  <div class="modal-body">
-
-      <form [formGroup]="AddEmployee">
-          <div class="row">
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Date:</label>
-                  <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
-                  <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                      <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
-                        Date is required
-                      </div>
-                  </div>
-              </div> -->
-
-              <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Name:</label>
-                  <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
-                  <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                    <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
-                      Name is required
-                    </div>
-                  </div>
-              </div>
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">ID:</label>
-                  <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
-                  <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                    <div class="fs-13 fw-500" *ngIf="f.id.errors.required">
-                      Id is required
-                    </div>
-                  </div>
-              </div> -->
-
-              <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Designation:</label>
-                  <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
-                  <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                    <div class="fs-13 fw-500" *ngIf="f.id.errors.required">
-                        Designation is required
-                    </div>
-                  </div>
-              </div>
-
-              <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Email ID:</label>
-                  <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
-                  <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-                    <div class="fs-13 fw-500" *ngIf="f.email.errors.required">
-                      Email is required
-                    </div>
-                    <div class="fs-13 fw-500" *ngIf="f.email.errors.email">
-                       Please provide the valid email id
-                    </div>
-                  </div>
-              </div>
-
-              <div class="form-group col-md-6 mb-3">
-                <label for="dateOfBirth">Mobile Number:</label>
-                <input type="text" class="form-control" formControlName="mobile" [ngClass]="{'is-invalid':submitted && f.mobile.errors}"/>
-                <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
-                    <div class="fs-13 fw-500" *ngIf="f.mobile.errors.required">
-                      Mobile number is required
-                    </div>
-                    <div class="fs-13 fw-500" *ngIf="f.mobile.errors.pattern">
-                       mobile number must be at 10 digits is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group col-md-6 mb-3">
-              <label for="dateOfBirth">Project Assigned:</label>
-              <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':submitted && f.project_assigned.errors}"/>
-              <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
-                <div class="fs-13 fw-500" *ngIf="f.project_assigned.errors.required">
-                    Project Assigned is required
-                </div>
-            </div>
-          </div>
-
-          </div>
-      </form>
-
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="Add()">Add Employee</button>
-  </div>
-</ng-template>
 
 <!-- view -->
 
@@ -323,186 +176,164 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-blu">
-          <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
-    
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-    
+        <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
       </div>
       <div class="modal-body">
 
         <form>
-            <div class="row">
-              <div class="form-group col-md-6 mb-3">
-                <label for="dateOfBirth">Employee Id:</label>
-                <p class="font-weight-bold">{{emid}}</p>
+          <div class="row">
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Employee Id:</label>
+              <p class="font-weight-bold">{{emid}}</p>
             </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Name:</label>
-                    <p class="font-weight-bold">{{name}}</p>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Email:</label>
-                    <p class="font-weight-bold">{{email}}</p>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Mobile:</label>
-                  <p class="font-weight-bold">{{mobile}}</p>
-              </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Name:</label>
+              <p class="font-weight-bold">{{name}}</p>
             </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Email:</label>
+              <p class="font-weight-bold">{{email}}</p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Mobile:</label>
+              <p class="font-weight-bold">{{mobile}}</p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Assigned License:</label>
+              <p class="font-weight-bold">{{assigned_license}}</p>
+            </div>
+          </div>
         </form>
-  
+
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
+        <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
       </div>
     </div>
 
-    </div>
+  </div>
 </div>
 
+<!-- add -->
 
 <div class="modal fade" id="AddEmployee" data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-blu">
-            <h4 class="modal-title mb-0" id="modal-basic-title">Add Employe</h4>
-      
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-      
-        </div>
-        <div class="modal-body">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Add Employee</h4>
 
-            <form [formGroup]="AddEmployee">
-                <div class="row">
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
-                              Date is required
-                            </div>
-                        </div>
-                    </div> -->
-      
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                          <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
-                            Name is required
-                          </div>
-                        </div>
-                    </div>
-      
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                          <div class="fs-13 fw-500" *ngIf="f.id.errors.required">
-                            Id is required
-                          </div>
-                        </div>
-                    </div> -->
-<!--       
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Designation:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                          <div class="fs-13 fw-500" *ngIf="f.id.errors.required">
-                              Designation is required
-                          </div>
-                        </div>
-                    </div> -->
-      
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Email ID:</label>
-                        <input type="text" class="form-control" formControlName="email" placeholder="Enter Employee Email" [ngClass]="{'is-invalid':submitted && f.email.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-                          <div class="fs-13 fw-500" *ngIf="f.email.errors.required">
-                            Email is required
-                          </div>
-                          <div class="fs-13 fw-500" *ngIf="f.email.errors.email">
-                             Please provide the valid email id
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="from-group col-md-4 mb-3">
-                        <label for="">Country Code</label>
-                        <select name="countryCode" id="" class="form-select" formControlName="countrycode" [ngClass]="{'is-invalid':submitted && f.countrycode.errors}">
-                          <option value="" Selected>--select code--</option>
-                          <option data-countryCode="US" value="+91">India (+91)</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="submitted && f.countrycode.errors">
-                          <div class="fs-13 fw-500" *ngIf="f.countrycode.errors.required">
-                            Country Code is required
-                          </div>
-                      </div>
-                       </div>
-                      <div class="form-group col-md-8 mb-3">
-                        <label for="dateOfBirth">Mobile Number:</label>
-                        <input type="text" class="form-control" formControlName="mobile" placeholder="Enter Employee Mobile Number" [ngClass]="{'is-invalid':submitted && f.mobile.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.mobile.errors.required">
-                              Mobile number is required
-                            </div>
-                            <div class="fs-13 fw-500" *ngIf="f.mobile.errors.pattern">
-                               mobile number must be at 10 digits is required
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-      
-                  <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Project Assigned:</label> -->
-                    <!-- <input type="text" class="form-control"/> -->
-                    <!-- <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
-                      <div class="fs-13 fw-500" *ngIf="f.project_assigned.errors.required">
-                          Project Assigned is required
-                      </div>
-                  </div> -->
-                  <!-- <ng-multiselect-dropdown
-                  [placeholder]="'Assigned Project'"
-                  [settings]="dropdownSettings"
-                  [data]="dropdownList"
-                  [(ngModel)]="selectedItems"
-                  [ngModelOptions]="{standalone:true}">
-                </ng-multiselect-dropdown>
-                  </div> -->
-      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="AddEmployee">
+          <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Name:</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name"
+                [ngClass]="{'is-invalid':submitted && f.name.errors}" />
+              <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
+                <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
+                  Name is required
                 </div>
-            </form>
-      
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="Add()">Add Employee</button>
-        </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Email ID:</label>
+              <input type="text" class="form-control" formControlName="email" placeholder="Enter Employee Email"
+                [ngClass]="{'is-invalid':submitted && f.email.errors}" />
+              <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+                <div class="fs-13 fw-500" *ngIf="f.email.errors.required">
+                  Email is required
+                </div>
+                <div class="fs-13 fw-500" *ngIf="f.email.errors.email">
+                  Please provide the valid email id
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="from-group col-md-4 mb-3">
+                <label for="">Country Code</label>
+                <select name="countryCode" id="" class="form-select" formControlName="countrycode"
+                  [ngClass]="{'is-invalid':submitted && f.countrycode.errors}">
+                  <option value="" Selected>--select code--</option>
+                  <option data-countryCode="US" value="+91">India (+91)</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="submitted && f.countrycode.errors">
+                  <div class="fs-13 fw-500" *ngIf="f.countrycode.errors.required">
+                    Country Code is required
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-8 mb-3">
+                <label for="dateOfBirth">Mobile Number:</label>
+                <input type="text" class="form-control" formControlName="mobile"
+                  placeholder="Enter Employee Mobile Number" [ngClass]="{'is-invalid':submitted && f.mobile.errors}" />
+                <div class="invalid-feedback" *ngIf="submitted && f.mobile.errors">
+                  <div class="fs-13 fw-500" *ngIf="f.mobile.errors.required">
+                    Mobile number is required
+                  </div>
+                  <div class="fs-13 fw-500" *ngIf="f.mobile.errors.pattern">
+                    mobile number must be at 10 digits is required
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="from-group col-md-12 mb-3">
+              <label for="">License Assigned</label>
+              <select name="select license" class="form-select" formControlName="license_id"
+                [ngClass]="{'is-invalid':submitted && f.license_id.errors}">
+                <option value="" Selected>-- select license --</option>
+                <option value="{{license_id}}" *ngFor="let license_id of LicenseList">
+                  {{license_id}}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="submitted && f.license_id.errors">
+                <div class="fs-13 fw-500" *ngIf="f.license_id.errors.required">
+                  License Assigned is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="Add()">Add Employee</button>
       </div>
     </div>
+  </div>
 </div>
 
 <!-- update -->
 
 <div class="modal fade" id="UpdateEmployee" data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-blu">
-            <h4 class="modal-title mb-0" id="modal-basic-title">Update Employe</h4>
-        
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-      
-        </div>
-        <div class="modal-body">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Update Employe</h4>
 
-            <form [formGroup]="UpdateEmployee">
-                <div class="row">
-                    <!-- <div class="form-group col-md-6 mb-3">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="UpdateEmployee">
+          <div class="row">
+            <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Date:</label>
                         <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
@@ -511,18 +342,19 @@
                             </div>
                         </div>
                     </div> -->
-      
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" [(ngModel)]="name" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
-                          <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
-                            Name is required
-                          </div>
-                        </div>
-                    </div>
-      
-                    <!-- <div class="form-group col-md-6 mb-3">
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Name:</label>
+              <input type="text" class="form-control" [(ngModel)]="name" formControlName="name"
+                [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}" />
+              <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
+                <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
+                  Name is required
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}"/>
                         <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
@@ -541,33 +373,35 @@
                           </div>
                         </div>
                     </div> -->
-      
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Email ID:</label>
-                        <input type="text" class="form-control" [(ngModel)]="email" formControlName="email" [ngClass]="{'is-invalid':updatesubmitted && u.email.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.email.errors">
-                          <div class="fs-13 fw-500" *ngIf="u.email.errors.required">
-                            Email is required
-                          </div>
-                          <div class="fs-13 fw-500" *ngIf="u.email.errors.email">
-                             Please provide the valid email id
-                          </div>
-                        </div>
-                    </div>
-      
-                    <div class="form-group col-md-6 mb-3">
-                      <label for="dateOfBirth">Mobile Number:</label>
-                      <input type="text" class="form-control" [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':updatesubmitted && u.mobile.errors}"/>
-                      <div class="invalid-feedback" *ngIf="updatesubmitted && u.mobile.errors">
-                          <div class="fs-13 fw-500" *ngIf="u.mobile.errors.required">
-                            Mobile number is required
-                          </div>
-                          <div class="fs-13 fw-500" *ngIf="u.mobile.errors.pattern">
-                             mobile number must be at 10 digits is required
-                          </div>
-                      </div>
-                  </div>
-<!--       
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Email ID:</label>
+              <input type="text" class="form-control" [(ngModel)]="email" formControlName="email"
+                [ngClass]="{'is-invalid':updatesubmitted && u.email.errors}" />
+              <div class="invalid-feedback" *ngIf="updatesubmitted && u.email.errors">
+                <div class="fs-13 fw-500" *ngIf="u.email.errors.required">
+                  Email is required
+                </div>
+                <div class="fs-13 fw-500" *ngIf="u.email.errors.email">
+                  Please provide the valid email id
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Mobile Number:</label>
+              <input type="text" class="form-control" [(ngModel)]="mobile" formControlName="mobile"
+                [ngClass]="{'is-invalid':updatesubmitted && u.mobile.errors}" />
+              <div class="invalid-feedback" *ngIf="updatesubmitted && u.mobile.errors">
+                <div class="fs-13 fw-500" *ngIf="u.mobile.errors.required">
+                  Mobile number is required
+                </div>
+                <div class="fs-13 fw-500" *ngIf="u.mobile.errors.pattern">
+                  mobile number must be at 10 digits is required
+                </div>
+              </div>
+            </div>
+            <!--       
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Project Assigned:</label>
                     <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':updatesubmitted && u.project_assigned.errors}"/>
@@ -577,28 +411,28 @@
                       </div>
                   </div>
                   </div> -->
-      
-                </div>
-            </form>
-      
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
-        </div>
+
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
       </div>
     </div>
+  </div>
 </div>
 
 <!-- delete  -->
 
 <div class="modal fade" id="DeleteEmployee" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content pd-20 delete-bg">
-         <h1 class="text-white fs-20">Are you sure, you want to delete the Project</h1>
-         <div class="d-flex justify-content-end">
-            <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
-            <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
-         </div>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content pd-20 delete-bg">
+      <h1 class="text-white fs-20">Are you sure, you want to delete the Employe</h1>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
+        <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
       </div>
     </div>
+  </div>
 </div>

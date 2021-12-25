@@ -26,7 +26,13 @@ singleplane(id:any):Observable<any>{
 Client_Registration(data:any):Observable<any>{
   return this.http.post<any>(GlobalData.url_account+'client/registration',data);
 }
-contacts(data:any){
+
+contacts(data:any):Observable<any>{
   return this.http.post<any>(GlobalData.url_account+'contact/create',data);
 }
+
+license(data:any,client_id:any):Observable<any>{
+  return this.http.post<any>(GlobalData.url_account+'license/holder/licence?payment_status='+'True'+'&'+'client_id='+client_id,data);
+}
+
 }

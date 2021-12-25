@@ -59,11 +59,15 @@ export class AdminService {
 
   // Employess
 
-  AddEmploye(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'emp/list_or_create', data, this.options)
+  AddEmploye(data: any,client_id:any,license_id:any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id+'&'+'license_id='+license_id, data, this.options)
   }
-  Employeslist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'emp/list_or_create' , this.options)
+  ClientLicenselist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/licence?client_id='+client_id)
+      .pipe(shareReplay(1));
+  }
+  Employeslist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   DeleteEmploye(id: any): Observable<any> {

@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       console.log(formData);
       this.auth.ClientLogin(formData).subscribe((res)=>{
         console.log(res);
+        sessionStorage.setItem('client_id',res.client_id);
         this.Login.reset();
         this.submitted = false;
         this.toaster.success('Successfully Login Done');

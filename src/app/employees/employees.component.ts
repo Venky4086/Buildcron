@@ -30,38 +30,27 @@ export class EmployeesComponent {
   totalRecords:any;
   page:any=1;
   count: any = 5;
+  license_id: any;
+  client_id:any;
+  selectedLicense:any;
+  LicenseList:any;
+  assigned_license: any;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddEmployee = this.fb.group({
-    // date:['', Validators.required],
     name:['', Validators.required],
-    // id:['', Validators.required],
-    // designation:['', Validators.required],
     countrycode:['', Validators.required],
     email:['',[Validators.required,Validators.email]],
+    license_id:['',Validators.required],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-    // project_assigned:['', Validators.required]
   });
   UpdateEmployee = this.fb.group({
-    // date:['', Validators.required],
     name:['', Validators.required],
-    // id:['', Validators.required],
-    // designation:['', Validators.required],
     email:['',[Validators.required,Validators.email]],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-    // project_assigned:['', Validators.required]
   });
   ngOnInit(){
     this.allemploys();
-    this.allprojects();
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: false
-    };
+    this.alllicenses();
   }
   get f(){
     return this.AddEmployee.controls
@@ -69,54 +58,25 @@ export class EmployeesComponent {
   get u(){
     return this.UpdateEmployee.controls
   }
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  // project list
-
-  allprojects(){
-    this.spinner.show();
-    let tmp:any[] = [];
-    this.adminservice.Projectslist().subscribe((res)=>{
-      if(res){
-        console.log(res);
-        this.projectlist = res;
-        for(let i=0; i < this.projectlist.length; i++) {
-          tmp.push({ item_id: this.projectlist[i].id, item_text: this.projectlist[i].name });
-        }
-        this.dropdownList = tmp;
-
-        this.spinner.hide();
-      }
-      else{
-        console.warn(res);
-      }
+  // all license
+ 
+  alllicenses(){
+    this.client_id = sessionStorage.getItem('client_id');
+    this.adminservice.ClientLicenselist(this.client_id).subscribe((res)=>{
+      console.log(res);
+      this.LicenseList = res.license_status;
     },(error)=>{
       console.error(error);
-      this.spinner.hide();
-    })
+    });
   }
 
   // employe list
 
   allemploys(){
+    this.client_id = sessionStorage.getItem('client_id');
     this.spinner.show();
-    this.adminservice.Employeslist().subscribe((res)=>{
+    this.adminservice.Employeslist(this.client_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.employelist = res;
@@ -132,11 +92,12 @@ export class EmployeesComponent {
     })
   }
 
-  view(employe_id:any,name:any,email:any,mobile:any){
+  view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
     this.emid =employe_id,
     this.name = name,
     this.email = email,
-    this.mobile = mobile
+    this.mobile = mobile,
+    this.assigned_license = assigned_license
   }
 
   // Add
@@ -148,43 +109,24 @@ export class EmployeesComponent {
       return
     }
     else{
-      let arr1:any[] = []
-      // console.log(this.selectedItems);
-      for(let i=0; i < this.selectedItems.length; i++) {
-        arr1.push(this.selectedItems[i].item_id);
-      }
-      this.ProjectList = arr1;
-      // console.log(this.ProjectList)
+      this.license_id = this.AddEmployee.value.license_id
+      this.client_id = sessionStorage.getItem('client_id');
       const data = {
-          "user": {
           "email": this.AddEmployee.value.email,
-          "first_name": this.AddEmployee.value.name,
+          "employee_name": this.AddEmployee.value.name,
           "phone_number": this.AddEmployee.value.countrycode+this.AddEmployee.value.mobile
-          },
-          // "company": {
-          //   "id":sessionStorage.getItem('company_id')
-          // },
-          // "designation": "Site engineer",
-          // "projects": this.ProjectList
-      }
-      // const formData = new FormData;
-      // formData.append('date',this.AddEmployee.value.date);
-      // formData.append('name',this.AddEmployee.value.name);
-      // formData.append('id',this.AddEmployee.value.id);
-      // formData.append('designation',this.AddEmployee.value.designation);
-      // formData.append('email',this.AddEmployee.value.email);
-      // formData.append('mobile',this.AddEmployee.value.mobile);
-      // formData.append('project_assigned',this.AddEmployee.value.project_assigned);
-      this.adminservice.AddEmploye(data).subscribe((res)=>{
+        }
+        console.log(data);
+      this.adminservice.AddEmploye(data,this.client_id,this.license_id).subscribe((res)=>{
         console.log(res)
-        mint.toaster.success('Successfully Employe Created!');
+        mint.toaster.success(res.message);
         $('#AddEmployee').hide();
         this.allemploys();
         this.AddEmployee.reset();
         this.submitted = false;
       },(error)=>{
         console.error(error);
-        mint.toaster.error('Somthing went wrong');
+        mint.toaster.error(error.error.message);
         this.AddEmployee.reset();
         this.submitted = false;
         $('#AddEmployee').hide();

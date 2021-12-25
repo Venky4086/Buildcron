@@ -188,7 +188,7 @@
                             <h1 class="fs-13 fw-500 mgb-10 check-border-bottom">Top Checklists by use</h1>
                         </div>
                     </div>
-                    <div class="row" *ngIf="checklists.length !== 0;else elseBlack">
+                    <div class="row">
                          <div class="row" *ngFor="let checklist of checklists">
                             <div class="col-md-8">
                                 <p class="list-unstyled fs-13">{{checklist.name}}</p>
@@ -246,7 +246,7 @@
                             <p class="list-unstyled fs-13">30</p>
                         </div> -->
                     </div>
-                    <ng-template #elseBlack>
+                    <!-- <ng-template #elseBlack>
                         <div class="row my-2">
                             <div class="col-md-12">
                                 <div class="card pd-10 text-center" style="background-color: #f7f8f8;">
@@ -254,7 +254,7 @@
                                 </div>
                             </div>
                          </div>
-                    </ng-template>
+                    </ng-template> -->
                 </div>
 
                 <!-- employe list  -->

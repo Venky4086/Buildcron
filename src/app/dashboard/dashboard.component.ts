@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectlist();
+    // this.projectlist();
     // console.log(this.selectedObject);
     // this.defaultproject();
   }

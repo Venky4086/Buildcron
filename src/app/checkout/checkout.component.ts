@@ -19,9 +19,10 @@ export class CheckoutComponent implements OnInit {
   next: any;
   payment_id: any;
   contactpersons: any;
-  planename = sessionStorage.getItem('planename');
+  planename:any;
   fieldTextType:any;
-  
+  client_id: any;
+  Total_Amount:any;
   constructor(private router:Router,private datePipe: DatePipe,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private registrationService:RegistrationService) { }
   CompanyRegistration = this.fb.group({
     name:['', Validators.required],
@@ -40,7 +41,7 @@ export class CheckoutComponent implements OnInit {
     // nooflicense:['', Validators.required],
     // contactperson:['', Validators.required],
   }); 
-  Total_Amount = sessionStorage.getItem('planeamount')
+  // Total_Amount = sessionStorage.getItem('planeamount')
   ngOnInit(): void {
 
 $(window).scroll(()=>{
@@ -99,10 +100,12 @@ pay(){
     console.log(data);
      this.registrationService.Client_Registration(data).subscribe((res)=>{
      console.log(res);
+     this.client_id = res.client_id;
+     sessionStorage.setItem('client_id',this.client_id);
      this.CompanyRegistration.reset();
      this.submitted = false;
      this.toastr.success('Your Registration Sucessfully Done');
-     this.router.navigate(['/login']);
+     this.router.navigate(['/License']);
    },(error)=>{
      console.error(error);
      this.CompanyRegistration.reset();
