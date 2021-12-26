@@ -45,11 +45,19 @@
                                                     <th class="sorting sorting_desc" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="Browser: activate to sort column ascending"
+                                                        aria-sort="descending">Date</th>
+                                                    <th class="sorting sorting_desc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
                                                         aria-sort="descending">Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Platform(s): activate to sort column ascending">
                                                        Vendor ID</th>
+                                                       <th class="sorting sorting_desc" tabindex="0"
+                                                       aria-controls="example1" rowspan="1" colspan="1"
+                                                       aria-label="Browser: activate to sort column ascending"
+                                                       aria-sort="descending">Location</th>
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
@@ -68,10 +76,10 @@
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         S.Name
                                                     </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">S. No
-                                                    </th>
+                                                    </th> -->
 
                                                     <th rowspan="1" colspan="1">Action
                                                     </th>
@@ -89,6 +97,7 @@
                                             }
                                                 ;let i =index">
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
+                                                    <td>{{vendor.create_date}}</td>
                                                     <td class="sorting_1">{{vendor.vendor_name}}</td>
                                                     <td>{{vendor.vendorId}}</td>
                                                     <td>{{vendor.address}}</td>

@@ -16,7 +16,7 @@ export class RegistrationService {
 
 
 allplanes():Observable<any>{
-  return this.http.get<any>(GlobalData.url_account+'plans');
+  return this.http.get<any>(GlobalData.url_api+'admin/client/plan');
 }
 
 singleplane(id:any):Observable<any>{

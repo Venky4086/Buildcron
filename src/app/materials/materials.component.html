@@ -120,7 +120,7 @@
                                                     <td>{{material.UOM}}</td>
                                                     <td>{{material.Baseline_Quantity}}</td>
                                                     <td>
-                                                        <a class="cursor_pointer" (click)="view(material.material_name,material.materialId,material.description,material.BOQ,material.vendor_name,material.Total_Quantity,material.Baseline_Quantity)">
+                                                        <a class="cursor_pointer" (click)="view(material.material_name,material.materialId,material.description,material.BOQ,material.vendor_name,material.Total_Quantity,material.Baseline_Quantity,material.UOM)">
                                                         <i class='fa fa-eye mr-1'></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateMaterial" (click)="edit(material.id,material.name,material.mid,material.description,material.boq_ref,material.maker.id,material.maker.name,material.total_uom,material.total_qty,material.b_uom,material.b_qty)">
@@ -202,21 +202,21 @@
                     <label for="dateOfBirth">Make:</label>
                     <p class="font-weight-bold">{{maker_name}}</p>
                   </div>
-                  <div class="form-group col-md-6 mb-3">
+                  <!-- <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Total Quality UOM:</label>
                     <p class="font-weight-bold">{{total_uom}}</p>
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Total Quality Qty:</label>
-                    <p class="font-weight-bold">{{total_qty}}</p>
+                    <label for="dateOfBirth">Total Quality Qty:</label> 
+                    <p class="font-weight-bold">{{total_qty}} {{uom}}</p>
                   </div>
-                  <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Baseline Quantity UOM:</label>
-                    <p class="font-weight-bold">{{b_uom}}</p>
-                  </div>
+                  <!-- <div class="form-group col-md-6 mb-3">
+                    <label for="dateOfBirth">UOM:</label>
+                    <p class="font-weight-bold">{{b_qty}}</p>
+                  </div> -->
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Baseline Quantity Qty:</label>
-                    <p class="font-weight-bold">{{b_qty}}</p>
+                    <p class="font-weight-bold">{{b_qty}} {{uom}}</p>
                   </div>
               </div>
           </form>

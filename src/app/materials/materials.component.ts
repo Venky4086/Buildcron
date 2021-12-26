@@ -34,6 +34,7 @@ export class MaterialsComponent {
   count:any = 5;
   client_id: any;
   vendor_id: any;
+  uom: any;
   constructor(private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
   AddMaterial = this.fb.group({
     name: ['', Validators.required],
@@ -86,7 +87,7 @@ allvendors(){
 
 // view material
 
-view(material_name:any,materialId:any,description:any,boq_ref:any,maker_name:any,total_qty:any,b_qty:any){
+view(material_name:any,materialId:any,description:any,boq_ref:any,maker_name:any,total_qty:any,b_qty:any,uom:any){
 $('#MaterialView').modal('show');
 this.material_name = material_name,
 this.materialId = materialId,
@@ -95,7 +96,7 @@ this.boq_ref = boq_ref,
 this.maker_name = maker_name,
 // this.total_uom = total_uom,
 this.total_qty = total_qty,
-// this.b_uom = b_uom,
+this.uom = uom,
 this.b_qty = b_qty,
 $('#MaterialView').modal('show');
 }

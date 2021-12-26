@@ -75,7 +75,7 @@
               Software
             </div>
             <div class="card-body">
-              <span class="align-middle">Buildcron</span>
+              <span class="align-middle fw-700 fs-28">Buildcron</span>
             </div>
           </div>
           <!-- <form [formGroup]="Subscription"> -->
@@ -89,13 +89,14 @@
                   id="plan"
                   aria-label="Plan"
                   name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }" (change)="plane($event)">
-                  <option  value="M" selected>Monthly</option>
+                  <option value="" selected>-- select plan name --</option>
+                  <option  value="M">Monthly</option>
                   <!-- <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.name}}</option> -->
                   <option value="A">Annual</option>
                   <!-- <option value="perpetual">Perpetual</option> -->
                 </select>
                 <div *ngIf="submitted && f.planename.errors" class="invalid-feedback">
-                  <div *ngIf="f.planename.errors.required" class="fs-13 fw-500">Plane Name is required</div>
+                  <div *ngIf="f.planename.errors.required" class="fs-13 fw-500">Plan Name is required</div>
                  </div>
                 <div class="progress-bar" style="display: none">
                   <span class="bar">

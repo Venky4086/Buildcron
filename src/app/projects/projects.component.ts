@@ -43,7 +43,7 @@ export class ProjectsComponent {
   vendor_name: any;
   totalRecords:any;
   page:any=1;
-  count:any = 2;
+  count:any = 5;
   client_id: any;
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddProject = this.fb.group({

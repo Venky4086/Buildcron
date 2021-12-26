@@ -104,7 +104,7 @@ pay(){
      sessionStorage.setItem('webclient_id',this.client_id);
      this.CompanyRegistration.reset();
      this.submitted = false;
-     this.toastr.success('Your Registration Sucessfully Done');
+     this.toastr.success('Your Registration Sucessfully Done!');
      this.router.navigate(['/ClientLicense']);
    },(error)=>{
      console.error(error);
