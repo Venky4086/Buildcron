@@ -211,6 +211,7 @@ export class LibrarylistComponent  {
   }
 
   quality_view(quality_id:any){
+    console.log(quality_id);
     sessionStorage.setItem('quality_id',quality_id);
     this.router.navigate(['/Questions']);
   }

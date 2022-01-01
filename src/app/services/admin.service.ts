@@ -130,15 +130,15 @@ export class AdminService {
   // QualityInspection
 
   alllibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'quality/questions/list', this.options)
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality')
       .pipe(shareReplay(1));
   }
 
   AddQualityInspection(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'quality/checklist/assign/project', data,this.options)
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/quality/checklist', data)
   }
-  QualityInspectionlist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'quality/project',this.options)
+  QualityInspectionlist(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   DeleteQualityInspection(id: any): Observable<any> {
@@ -153,15 +153,15 @@ export class AdminService {
   // Quality Safety Inspection
 
   allsaftylibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'safety/questions/list', this.options)
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty')
       .pipe(shareReplay(1));
   }
 
   AddSafetyInspection(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'safety/checklist/assign/project', data,this.options)
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist', data)
   }
-  SafetyInspection(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'safety/project',this.options)
+  SafetyInspection(client_id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   DeleteSafetyInspection(id: any): Observable<any> {

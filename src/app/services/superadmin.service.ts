@@ -159,7 +159,7 @@ export class SuperadminService {
     return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality/question',data)
   }
   allchecklist(id:any): Observable<any>{
-    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality/question')
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality?question_qualityid='+id)
   }
   deletechecklist(id: any): Observable<any> {
     return this.http.delete<any>(GlobalData.url_buildcron + 'question/rud/' + id , this.options)
@@ -208,7 +208,7 @@ export class SuperadminService {
 // safety checklist
 
 allsaftychecklist(id:any): Observable<any> {
-  return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty/question')
+  return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty?question_seftyid='+id)
     .pipe(shareReplay(1));
 }
 addsaftychecklist(data:any): Observable<any> {

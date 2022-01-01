@@ -122,7 +122,7 @@ export class QualityInspectionComponent {
         console.log(res);
         this.librarylists = res;
         for(let i=0; i < this.librarylists.length; i++) {
-          tmp.push({ item_id: this.librarylists[i].id, item_text: this.librarylists[i].name });
+          tmp.push({ item_id: this.librarylists[i].qualityid, item_text: this.librarylists[i].name });
         }
         this.dropdownList = tmp;
         // this.spinner.hide();
@@ -140,7 +140,7 @@ export class QualityInspectionComponent {
 
   QualityInspectionlist() {
     this.spinner.show();
-    this.adminservice.QualityInspectionlist().subscribe((res) => {
+    this.adminservice.QualityInspectionlist(sessionStorage.getItem('client_id')).subscribe((res) => {
       if (res) {
         console.log(res);
         this.Qualitylist = res;
@@ -174,8 +174,9 @@ export class QualityInspectionComponent {
       this.project  =+this.AddQualityInspection.value.project_assigned
       const data = 
         {
-          "project":this.project,
-          "quality":this.cheklistList
+          // "project":this.project,
+          "qualitychecklist":this.cheklistList.toString(),
+          'client_id':sessionStorage.getItem('client_id'),
         }
       // console.log(this.AddQualityInspection.value);
       // const formData = new FormData;

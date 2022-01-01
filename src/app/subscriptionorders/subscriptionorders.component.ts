@@ -83,7 +83,7 @@ plane(event:any){
 console.log(event.target.value);
 this.Registration.singleplane(event.target.value).subscribe((Res)=>{
   console.log(Res);
-  this.planeamount = Res.amount;
+  this.plane_amount = Res.cost;
   this.second = false;
   this.default = true;
   sessionStorage.setItem('planeamount',this.plane_amount);
@@ -99,7 +99,7 @@ onChange(event:any){
   this.default = false;
   console.log(event.target.value);
   this.count = +event.target.value;
-  this.countamount = this.count * + 100;
+  this.countamount = this.count * + this.plane_amount;
   // console.log(this.countamount);
   sessionStorage.setItem('planeamount',this.countamount);
   // window.location.reload();

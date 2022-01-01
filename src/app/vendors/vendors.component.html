@@ -80,7 +80,11 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">S. No
                                                     </th>
-
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">Project Assigned
+                                                    </th>
+                                                      
                                                     <th rowspan="1" colspan="1">Action
                                                     </th>
                                                 </tr>
@@ -105,6 +109,7 @@
                                                     <td>{{vendor.contact_no}}</td>
                                                     <td>{{vendor.supervisor_name}}</td>
                                                     <td>{{vendor.supervisor_contact}}</td>
+                                                    <td>Project Name</td>
                                                     <td>
                                                         <a class="cursor_pointer" (click)="view(vendor.vendorId,vendor.vendor_name,vendor.address,vendor.email,vendor.contact_no,vendor.supervisor_name,vendor.supervisor_contact)">
                                                             <i class='fa fa-eye mr-1'></i>

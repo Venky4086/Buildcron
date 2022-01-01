@@ -16,6 +16,7 @@ export class QuestionsComponent  {
 
   closeResult = '';
   checklists:any;
+  showchecklist!:boolean;
   id: any;
   name: any;
   checklist_id: any;
@@ -25,6 +26,7 @@ export class QuestionsComponent  {
   page:any =1;
   count:any = 5;
   nodatafound = false;
+  check_id:any;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
@@ -73,10 +75,19 @@ export class QuestionsComponent  {
 
   list(){
     this.spinner.show();
-    this.superservice.allchecklist(sessionStorage.getItem('quality_id')).subscribe((res)=>{
+    console.log(sessionStorage.getItem('quality_id'));
+    this.check_id = sessionStorage.getItem('quality_id')
+    this.superservice.allchecklist(this.check_id).subscribe((res)=>{
       if(res){
         console.log(res);
         this.checklists = res;
+        console.log('checklist length',this.checklists.length);
+        if(this.checklists.length !=0){
+          this.showchecklist = true;
+        }
+        else{
+          this.showchecklist = false;
+        }
         this.totalRecords = res.length;
         this.spinner.hide();
       }

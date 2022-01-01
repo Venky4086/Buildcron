@@ -120,21 +120,23 @@
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td class="sorting_1">10-05-2021</td>
                                                     <td>
-                                                        <ul>
+                                                        {{Quality.name}}
+                                                        <!-- <ul>
                                                             <li *ngFor="let checklist of Quality.safety_checklist">
                                                                 <a class="cursor_pointer text-decoration-none">{{checklist.checklist_id}}</a>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
                                                     </td>
                                                     <td>
-                                                        <ul>
+                                                        {{Quality.qualityid}}
+                                                        <!-- <ul>
                                                             <li *ngFor="let checklist of Quality.safety_checklist">
                                                                 <a class="cursor_pointer text-decoration-none" (click)="checklistview(checklist.id)">{{checklist.name}}</a>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
                                                     </td>
                                                     <td>
-                                                        {{Quality.name}}
+                                                        Project Assign
                                                     </td>
                                                     <!-- <td>User</td> -->
                                                     <!-- <td>Kittu Johnl</td> -->

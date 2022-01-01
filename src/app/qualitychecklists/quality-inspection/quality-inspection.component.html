@@ -130,21 +130,23 @@
                                                 ;let i = index">
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                     <td class="sorting_1">22-09-21</td>
-                                                    <td>
-                                                        <ul>
-                                                            <li *ngFor="let checklist of Quality.quality_checklist">
-                                                                <a class="cursor_pointer text-decoration-none" (click)="checklistview(checklist.id)">{{checklist.name}}</a>
+                                                    <td (click)="checklistview(Quality.id)">  
+                                                        <!-- <ul>
+                                                            <li>
+                                                                <a class="cursor_pointer text-decoration-none" (click)="checklistview(Quality.id)">{{Quality.name}}</a>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
+                                                        {{Quality.name}}
                                                     </td>
                                                     <td>
-                                                        <ul>
+                                                        <!-- <ul>
                                                             <li *ngFor="let checklist of Quality.quality_checklist">
                                                                 <a class="cursor_pointer text-decoration-none">{{checklist.checklist_id}}</a>
                                                             </li>
-                                                        </ul>
+                                                        </ul> -->
+                                                        {{Quality.qualityid}}
                                                     </td>
-                                                    <td>{{Quality.name}}</td>
+                                                    <td>project Assigned</td>
                                                     <!-- <td>User</td> -->
                                                     <!-- <td>Kittu Johnl</td> -->
 

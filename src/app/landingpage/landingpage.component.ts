@@ -57,11 +57,11 @@ export class LandingpageComponent implements OnInit {
   }
   // buy 
 
-  buynow(){
-    // sessionStorage.setItem('plane_id', plane_id);
-    // sessionStorage.setItem('planename', planename);
-    // sessionStorage.setItem('planeamount', planeamount);
-    // console.log(planeamount);
+  buynow(plane_id:any,planename:any,planeamount:any){
+    sessionStorage.setItem('plane_id', plane_id);
+    sessionStorage.setItem('planename', planename);
+    sessionStorage.setItem('planeamount', planeamount);
+    console.log(planeamount);
     this.router.navigate(['/ClientRegistration']);
   }
 
