@@ -112,16 +112,16 @@
                                             ;let i=index">
                                                 <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                 <!-- <td class="sorting_1">{{safetylibrarylist.date}}</td> -->
-                                                <td>{{safetylibrarylist.checklist_id}}</td>
+                                                <td>{{safetylibrarylist.saftychecklistid}}</td>
                                                 <td>{{safetylibrarylist.name}}</td>
                                                 <!-- <td>{{safetylibrarylist.quality_type}}</td>
                                                 <td *ngIf="safetylibrarylist.status == true">Active</td>
                                                 <td *ngIf="safetylibrarylist.status == false">InActive</td> -->
                                                 <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(safetylibrarylist.id,safetylibrarylist.checklist_id,safetylibrarylist.name)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(safetylibrarylist.id,safetylibrarylist.saftychecklistid,safetylibrarylist.name)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateSafety" (click)="edit(safetylibrarylist.id,safetylibrarylist.checklist_id,safetylibrarylist.name)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateSafety" (click)="edit(safetylibrarylist.id,safetylibrarylist.saftychecklistid,safetylibrarylist.name)">
                                                     <i class="fa fa-edit mr-1"></i>
                                                     </a>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteSafety" (click)="delete(safetylibrarylist.id)">

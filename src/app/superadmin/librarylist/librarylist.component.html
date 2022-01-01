@@ -118,20 +118,20 @@
                                                   <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
                                                   <!-- <td class="sorting_1">{{librarylist.date}}</td> -->
                                                   <!-- <td>{{librarylist.id}}</td> -->
-                                                  <td>{{librarylist.checklist_id}}</td>
+                                                  <td>{{librarylist.qualityid}}</td>
                                                   <td>{{librarylist.name}}</td>
                                                   <!-- <td>{{librarylist.quality_type}}</td> -->
                                                   <!-- <td>{{librarylist.status}}</td> -->
                                                   <!-- <td *ngIf="librarylist.status == true">Active</td>
                                                   <td *ngIf="librarylist.status == false">InActive</td> -->
                                                   <td>
-                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(librarylist.id,librarylist.checklist_id,librarylist.name)">
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(librarylist.id,librarylist.qualityid,librarylist.name)">
                                                       <i class='fa fa-eye mr-1'></i>
                                                       </a>
-                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateQulaity" (click)="edit(librarylist.id,librarylist.checklist_id,librarylist.name)">
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateQulaity" (click)="edit(librarylist.id,librarylist.qualityid,librarylist.name)">
                                                       <i class="fa fa-edit mr-1"></i>
                                                       </a>
-                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteQulaity" (click)="delete(librarylist.id)">
+                                                      <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteQulaity" (click)="delete(librarylist.id,librarylist.qualityid)">
                                                       <i class="fa fa-trash mr-1"></i>
                                                       </a>
                                                   </td>

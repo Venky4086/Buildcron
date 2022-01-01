@@ -46,7 +46,11 @@
                             Mobile No</th>
                           <th ngbDropdown class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="CSS grade: activate to sort column ascending">
-                            assigned_license
+                            Assigned_license
+                          </th>
+                          <th ngbDropdown class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="CSS grade: activate to sort column ascending">
+                            Assigned_Project
                           </th>
 
                           <th>Action
@@ -64,12 +68,13 @@
                                             }
                                             ;let i=index">
                           <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                          <td class="sorting_1">{{emp.create_date}}</td>
+                          <td class="sorting_1">{{emp.create_date | date: 'dd/MM/yyyy'}}</td>
                           <td>{{emp.employee_name}}</td>
                           <td>{{emp.employeeId}}</td>
                           <td>{{emp.email}}</td>
                           <td>{{emp.phone_number}}</td>
                           <td>{{emp.assigned_license}}</td>
+                          <td></td>
                           <td>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#View"
                               (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">

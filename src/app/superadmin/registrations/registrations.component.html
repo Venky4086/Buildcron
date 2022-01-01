@@ -79,6 +79,10 @@
                                                         <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Platform(s): activate to sort column ascending">
+                                                        Date</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
                                                         Client ID</th>
                                                     <th class="sorting sorting_desc" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
@@ -154,6 +158,7 @@
                                             }
                                                 ; let i=index">
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
+                                                    <td>{{crd.create_date | date: 'dd/MM/yyyy'}}</td>
                                                     <td>{{crd.client_id}}</td>
                                                     <td>{{crd.company_name}}</td>
                                                     <td>{{crd.phone_number}}</td>

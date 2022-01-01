@@ -137,32 +137,18 @@ export class SuperadminService {
   // quality librarylist
 
   Addlibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'quality/check/create', data, 
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality', data)
   }
   alllibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'quality/check/list', 
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality',)
       .pipe(shareReplay(1));
   }
   deletelibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'quality/check/rd/' + id, 
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.delete<any>(GlobalData.url_api + 'admin/checklist/quality?quality_id=' + id,)
       .pipe(shareReplay(1));
   }
   updatelibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'quality/check/update/' + id, data, {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
+    return this.http.put<any>(GlobalData.url_api+ 'admin/checklist/quality?quality_id=' + id, data,
     )
       .pipe(shareReplay(1));
   }
@@ -170,10 +156,10 @@ export class SuperadminService {
 // checklist
 
   Addchecklist(data:any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'question/create',data, this.options)
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality/question',data)
   }
   allchecklist(id:any): Observable<any>{
-    return this.http.get<any>(GlobalData.url_buildcron + 'quality/check/rd/' + id, this.options)
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality/question')
   }
   deletechecklist(id: any): Observable<any> {
     return this.http.delete<any>(GlobalData.url_buildcron + 'question/rud/' + id , this.options)
@@ -204,42 +190,29 @@ export class SuperadminService {
   //  safetylibrarylist
 
   Addsaftylibrarylist(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_buildcron + 'safety/check/create',data,
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/sefty',data)
   }
   allsaftylibrarylist(): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'safety/check/list',
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty')
       .pipe(shareReplay(1));
   }
   deletesaftylibrarylist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'safety/check/rd/' + id,
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.delete<any>(GlobalData.url_api + 'admin/checklist/sefty?safty_id=' + id)
       .pipe(shareReplay(1));
   }
   updatesaftylibrarylist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'safety/check/update/' + id, data,
-    {
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
-    }
-    )
+    return this.http.put<any>(GlobalData.url_api + 'admin/checklist/sefty?safty_id=' + id, data)
       .pipe(shareReplay(1));
   }
 
 // safety checklist
 
 allsaftychecklist(id:any): Observable<any> {
-  return this.http.get<any>(GlobalData.url_buildcron + 'safety/check/rd/' + id,this.options)
+  return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty/question')
     .pipe(shareReplay(1));
+}
+addsaftychecklist(data:any): Observable<any> {
+  return this.http.post<any>(GlobalData.url_api + 'admin/checklist/sefty/question',data)
 }
 deletesaftychecklist(id: any): Observable<any> {
   return this.http.delete<any>(GlobalData.url_buildcron + 'question/rud/' + id,this.options)

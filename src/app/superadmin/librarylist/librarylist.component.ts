@@ -117,7 +117,6 @@ export class LibrarylistComponent  {
     else{
       const data = {
         "name":this.AddLibrayList.value.name,
-        "typee":'Quality'
       }
       // const formDate = new FormData
       // formDate.append('date',this.AddLibrayList.value.date);
@@ -170,7 +169,6 @@ export class LibrarylistComponent  {
   else{
   const data = {
     "name":this.UpdateLibrayList.value.name,
-    "typee":'Quality'
   }
     // const formData = new FormData
       // formDate.append('date',this.UpdateLibrayList.value.date);
@@ -178,7 +176,7 @@ export class LibrarylistComponent  {
       // formData.append('name',this.UpdateLibrayList.value.name);
       // formData.append('quality_type',this.UpdateLibrayList.value.type);
       // formData.append('status',this.UpdateLibrayList.value.status)
-      this.superadminserivce.updatelibrarylist(this.library_id,data).subscribe((res)=>{
+      this.superadminserivce.updatelibrarylist(this.quality_id,data).subscribe((res)=>{
         console.log(res);
           mint.toaster.success('Successfully Quality Updated!');
           this.alllibrarylist();
@@ -193,8 +191,9 @@ export class LibrarylistComponent  {
 
   // delete
 
-  delete(id:any){
-   this.library_id = id
+  delete(id:any,quality_id:any){
+   this.library_id = id;
+   this.quality_id = quality_id
   }
 
   Delete(){

@@ -78,7 +78,7 @@ export class SafetyquestionComponent implements OnInit {
     this.superservice.allsaftychecklist(sessionStorage.getItem('safety_id')).subscribe((res)=>{
       if(res){
         console.log(res);
-        this.checklists = res.question;
+        this.checklists = res;
         this.totalRecords = res.length;
         this.spinner.hide();
       }
@@ -99,11 +99,11 @@ export class SafetyquestionComponent implements OnInit {
   }
   else{
     const data = {
-      "question": this.AddCheckList.value.name,
+      "name": this.AddCheckList.value.name,
       // "answer": "it regular",
-      "typee":"Safety",
-      "admin_status": this.AddCheckList.value.status,
-      "type_id":sessionStorage.getItem('safety_id')
+      // "typee":"Safety",
+      // "admin_status": this.AddCheckList.value.status,
+      "sefty":sessionStorage.getItem('safety_id')
     }
     // console.log(data);
     // console.log(this.AddCheckList.value);
@@ -111,7 +111,7 @@ export class SafetyquestionComponent implements OnInit {
     // formData.append('name',this.AddCheckList.value.name)
     // formData.append('text',this.AddCheckList.value.text)
     // formData.append('status',this.AddCheckList.value.status)
-    this.superservice.Addchecklist(data).subscribe((res)=>{
+    this.superservice.addsaftychecklist(data).subscribe((res)=>{
       console.log(res);
       this.toaster.success('Successfully Checklist Added !');
       this.list();
@@ -161,11 +161,11 @@ export class SafetyquestionComponent implements OnInit {
       //   "pid":sessionStorage.getItem('safety_id')
       // }
       const data = {
-        "question": this.UpdateCheckList.value.questionname,
+        "name": this.UpdateCheckList.value.questionname,
         // "answer": "it regular",
-        "typee":"Safety",
-        "admin_status": this.UpdateCheckList.value.status,
-        "type_id":sessionStorage.getItem('safety_id')
+        // "typee":"Safety",
+        // "admin_status": this.UpdateCheckList.value.status,
+        "sefty":sessionStorage.getItem('safety_id')
       }
        // const formData = new FormData
       // formData.append('name',this.UpdateCheckList.value.name),
@@ -183,6 +183,7 @@ export class SafetyquestionComponent implements OnInit {
       })
     }
   }
+  
   // delete
 
   delete(id:any){

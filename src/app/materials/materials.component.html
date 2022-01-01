@@ -43,6 +43,10 @@
                                                         aria-controls="example1"
                                                         aria-label="Rendering engine: activate to sort column ascending">
                                                         S.No</th>
+                                                        <th class="line-ht sorting" rowspan="2" tabindex="0"
+                                                        aria-controls="example1"
+                                                        aria-label="Rendering engine: activate to sort column ascending">
+                                                        Date</th>
                                                     <th class="line-ht sorting" rowspan="2" tabindex="0"
                                                         aria-controls="example1"
                                                         aria-label="Browser: activate to sort column ascending"
@@ -60,10 +64,10 @@
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         BOQ Ref.
                                                     </th>
-                                                    <th class="line-ht sorting" rowspan="2" tabindex="0"
+                                                    <!-- <th class="line-ht sorting" rowspan="2" tabindex="0"
                                                         aria-controls="example1"
                                                         aria-label="CSS grade: activate to sort column ascending">
-                                                        Make</th>
+                                                        Make</th> -->
                                                     <th class="line-ht sorting" rowspan="2" tabindex="0"
                                                         aria-controls="example1"
                                                         aria-label="CSS grade: activate to sort column ascending">
@@ -105,13 +109,14 @@
                                             }
                                                 ;let i = index">
                                                     <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
+                                                    <td>{{material.create_date | date: 'dd/MM/yyyy'}}</td>
                                                     <td class="sorting_1">{{material.material_name}}</td>
                                                     <td>{{material.materialId}}</td>
                                                     <td>{{material.description}}</td>
                                                     <td>{{material.BOQ}}</td>
-                                                    <td>
+                                                    <!-- <td>
                                                         {{material.vendor_name}}
-                                                    </td>
+                                                    </td> -->
                                                     <td>User</td>
 
                                                     <!-- <td>uom1</td> -->
@@ -276,7 +281,7 @@
                             </div>
                         </div>
           
-                        <div class="form-group col-md-6 mb-3">
+                        <!-- <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Vendor:</label>
                             <select type="text" class="form-select" formControlName="make" [ngClass]="{'is-invalid':submitted && f.make.errors}">
                                 <option value="" selected>-- select the vendor --</option>
@@ -289,7 +294,7 @@
                                   Make is required
                               </div>
                             </div>
-                        </div>
+                        </div> -->
         
                       <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">UOM:</label>
@@ -388,7 +393,7 @@
                               </div>
                             </div>
                         </div>
-          
+<!--           
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Vendor:</label>
                             <select type="text" class="form-select" [(ngModel)]="maker_id" formControlName="make" [ngClass]="{'is-invalid':updatesubmitted && u.make.errors}">
@@ -399,7 +404,7 @@
                                   Make is required
                               </div>
                             </div>
-                        </div>
+                        </div> -->
           
           
                       <div class="form-group col-md-6 mb-3">

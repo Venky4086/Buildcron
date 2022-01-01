@@ -42,11 +42,13 @@ export class LoginComponent implements OnInit {
       console.log(formData);
       this.auth.ClientLogin(formData).subscribe((res)=>{
         console.log(res);
+        this.adminservice
         this.Login.reset();
         this.submitted = false;
         this.super_user_satus = res.super_user_satus
         this.toaster.success('Successfully Login Done');
         if(this.super_user_satus === false){
+        sessionStorage.setItem('license_purchased',res.license_purchased)
         sessionStorage.setItem('client_id',res.client_id);
         this.router.navigate(['/ClientAdmin']);
         }

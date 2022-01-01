@@ -13,7 +13,7 @@ export class VendorLayoutComponent implements OnInit {
   public isCollapsed2 = true;
   public isCollapsed3 = true;
   client_company_name =sessionStorage.getItem('company_name');
-  license_count = sessionStorage.getItem('license_count');
+  license_count = sessionStorage.getItem('license_purchased');
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -27,6 +27,9 @@ export class VendorLayoutComponent implements OnInit {
   // client_name(){
   //   return sessionStorage.getItem('first_name');
   // }
+  client_count(){
+    return sessionStorage.getItem('license_purchased');
+  }
   onActivate(event:any) {
     window.scroll(0,0);
   }

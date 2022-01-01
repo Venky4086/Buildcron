@@ -110,11 +110,11 @@
                                               }
                                               ;let i=index">
                                                   <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                  <td>{{checklist.question_id}}</td>
+                                                  <td>{{checklist.questionid}}</td>
                                                   <!-- <td>{{checklist.question}}</td> -->
                                                   <td>
                                                     <p class="text-overflow">
-                                                        {{checklist.question}}
+                                                        {{checklist.name}}
                                                     </p>
                                                   </td>
                                                   <!-- <td>{{checklist.name}}</td>
@@ -122,8 +122,9 @@
                                                   <!-- <td>
                                                       {{checklist.status}}
                                                   </td> -->
-                                                  <td >{{checklist.admin_status}}</td>
-                                                  <!-- <td *ngIf="checklist.status == false">InValid</td> -->
+                                                  <!-- <td >{{checklist.admin_status}}</td> -->
+                                                  <td *ngIf="checklist.status == false">InValid</td>
+                                                  <td *ngIf="checklist.status == true">Valid</td>
                                                   <td>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.question,checklist.question_id,checklist.admin_status)">
                                                     <i class='fa fa-eye mr-1'></i>

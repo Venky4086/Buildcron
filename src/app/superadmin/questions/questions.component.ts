@@ -76,7 +76,7 @@ export class QuestionsComponent  {
     this.superservice.allchecklist(sessionStorage.getItem('quality_id')).subscribe((res)=>{
       if(res){
         console.log(res);
-        this.checklists = res.question;
+        this.checklists = res;
         this.totalRecords = res.length;
         this.spinner.hide();
       }
@@ -97,11 +97,11 @@ export class QuestionsComponent  {
   }
   else{
     const data = {
-      "question": this.AddCheckList.value.name,
+      "name": this.AddCheckList.value.name,
       // "answer": "it regular",
-      "admin_status": this.AddCheckList.value.status,
-      "type_id":sessionStorage.getItem('quality_id'),
-      "typee":"Quality"
+      // "admin_status": this.AddCheckList.value.status,
+      "quality":sessionStorage.getItem('quality_id'),
+      // "typee":"Quality"
     }
     // console.log(this.AddCheckList.value);
     // const formData = new FormData
