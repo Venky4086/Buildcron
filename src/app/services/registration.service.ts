@@ -20,7 +20,7 @@ allplanes():Observable<any>{
 }
 
 singleplane(id:any):Observable<any>{
-  return this.http.get<any>(GlobalData.url_account+'plans/read/'+id);
+  return this.http.get<any>(GlobalData.url_api+'admin/client/plan?plan_id='+id);
 }
 
 Client_Registration(data:any):Observable<any>{

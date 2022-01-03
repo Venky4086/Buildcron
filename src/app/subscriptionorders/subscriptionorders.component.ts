@@ -16,6 +16,7 @@ export class SubscriptionordersComponent implements OnInit {
   submitted = false;
   planename = sessionStorage.getItem('planename');
   plane_id = sessionStorage.getItem('plane_id');
+  // this.plane_amount = sessionStorage.getItem('planeamount')
   planeamount:any;
   Allplanes: any;
   count: any;
@@ -38,9 +39,10 @@ export class SubscriptionordersComponent implements OnInit {
       if (scroll >= 100) sticky.addClass('header-scrolled');
       else sticky.removeClass('header-scrolled');
     });
+    console.log(sessionStorage.getItem('planeamount'));
     this.planeamount = sessionStorage.getItem('planeamount');
     this.allplanes();
-    this.countamount = '';
+    // this.countamount = '';
   }
 
 get f(){
@@ -83,11 +85,19 @@ plane(event:any){
 console.log(event.target.value);
 this.Registration.singleplane(event.target.value).subscribe((Res)=>{
   console.log(Res);
-  this.plane_amount = Res.cost;
+  this.planeamount = Res.cost;
+  console.log(this.planeamount);
   this.second = false;
   this.default = true;
-  sessionStorage.setItem('planeamount',this.plane_amount);
-  sessionStorage.setItem('planename',Res.name);
+  if(this.Subscription.value.planeamount !== 0){
+    console.log(sessionStorage.getItem('count'));
+    this.count = sessionStorage.getItem('count');
+    this.countamount = this.count * + this.planeamount;
+    console.log(this.countamount);
+  }else{
+    this.countamount = ''
+  }
+  sessionStorage.setItem('planename',Res.plan_name);
   console.log(sessionStorage.getItem('planename'));
 },(error)=>{
   console.error(error);
@@ -99,8 +109,10 @@ onChange(event:any){
   this.default = false;
   console.log(event.target.value);
   this.count = +event.target.value;
-  this.countamount = this.count * + this.plane_amount;
-  // console.log(this.countamount);
+  console.log(this.planeamount);
+  sessionStorage.setItem('count',this.count);
+  this.countamount = this.count * + this.planeamount;
+  console.log(this.countamount);
   sessionStorage.setItem('planeamount',this.countamount);
   // window.location.reload();
 }

@@ -90,9 +90,9 @@
                   aria-label="Plan"
                   name="plan" [(ngModel)]="planename" formControlName="planename" formControlName="planename" [ngClass]="{ 'is-invalid': submitted && f.planename.errors }" (change)="plane($event)">
                   <option value="" selected>-- select plan name --</option>
-                  <option  value="M">Monthly</option>
-                  <!-- <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.name}}</option> -->
-                  <option value="A">Annual</option>
+                  <!-- <option  value="M">Monthly</option> -->
+                  <option value="{{Allplane.id}}" *ngFor="let Allplane of Allplanes" [selected]="Allplane.id == plane_id">{{Allplane.plan_name}}</option>
+                  <!-- <option value="A">Annual</option> -->
                   <!-- <option value="perpetual">Perpetual</option> -->
                 </select>
                 <div *ngIf="submitted && f.planename.errors" class="invalid-feedback">
@@ -131,11 +131,11 @@
                 <input type="text" class="form-control"
                 id="numbers"
                 aria-label="Numbers"
-                placeholder="Enter the plane number"
+                placeholder="Enter the plan number"
                 name="numbers" formControlName="planenumber"
                  [ngClass]="{ 'is-invalid': submitted && f.planenumber.errors }" (keyup)="onChange($event)">
                 <div *ngIf="submitted && f.planenumber.errors" class="invalid-feedback">
-                  <div *ngIf="f.planenumber.errors.required" class="fs-13 fw-500">Plane Count is required</div>
+                  <div *ngIf="f.planenumber.errors.required" class="fs-13 fw-500">Plan Count is required</div>
                  </div>
               </div>
             </div>
@@ -198,7 +198,7 @@
                   class="form-control text-end"
                   id="amount"
                   name="amount"
-                  [(ngModel)]="planeamount"
+                  [(ngModel)]="countamount"
                   readonly=""
                   aria-label="Total Amount in INR"
                   formControlName="planeamount"
