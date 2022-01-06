@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
         if(this.super_user_satus === false){
         sessionStorage.setItem('license_purchased',res.license_purchased)
         sessionStorage.setItem('client_id',res.client_id);
+        sessionStorage.setItem('client_name',res.client_name);
         this.router.navigate(['/ClientAdmin']);
         }
         else{

@@ -12,6 +12,7 @@ export class VendorLayoutComponent implements OnInit {
   public isCollapsed1 = true;
   public isCollapsed2 = true;
   public isCollapsed3 = true;
+  client_name = sessionStorage.getItem('client_name');
   client_company_name =sessionStorage.getItem('company_name');
   license_count = sessionStorage.getItem('license_purchased');
   constructor(private router:Router) { }
