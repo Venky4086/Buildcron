@@ -15,38 +15,39 @@
       <mat-icon matBadge="10" matBadgeOverlap=false>notifications <span class="not_badge">3</span></mat-icon>
     </button> -->
 
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome {{client_name}}
-      </button>
+    <div class="btn-group mr-2">
+      <a class="text-decoration-none text-white dropdown-toggle cursor-pointer d-flex align-items-center" data-toggle="dropdown">
+        <span class="mr-1 fs-15">Welcome {{client_name}}</span>
+        <i class="fa fa-caret-down fs-20"></i>
+      </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Separated link</a>
+        <a class="dropdown-item cursor-pointer" (click)="changepassword()">
+        <i class="fa fa-key fx-31 fs-15 mr-2"></i><span class="fs-14">Change Password</span></a>
+        <a class="dropdown-item cursor-pointer" data-toggle="modal" data-target="#Logout">
+        <i class='fa fa-sign-out-alt fx-31 fs-15 mr-2'></i>
+         <span class="fs-14">Log Out</span></a>
       </div>
     </div>
 
-    <h1 class="mgr-10 fs-15">
+    <!-- <h1 class="mgr-10 fs-15">
       Welcome {{client_name}}
-    </h1>
+    </h1> -->
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <span class="material-icons-outlined">
         <i class="fa fa-id-card fx-31" aria-hidden="true"></i><span class="not_badge">{{license_count}}</span>
       </span>
     </button>
-    <button mat-icon-button class="example-icon favorite-icon" routerLink="/changepassword" aria-label="Example icon-button with heart icon">
+    <!-- <button mat-icon-button class="example-icon favorite-icon" routerLink="/changepassword" aria-label="Example icon-button with heart icon">
       <span class="material-icons-outlined">
         <i class="fa fa-key fx-31 fs-23"></i>
       </span>
     </button>
     <button mat-icon-button class="example-icon favorite-icon" data-toggle="modal" data-target="#Logout">
       <span class="material-icons-outlined">
-        <!-- <i class="fa fa-sign-out" aria-hidden="true"></i> -->
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
         <i class='fa fa-sign-out-alt fx-31 fs-23'></i>
       </span>
-    </button>
+    </button> -->
     <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <span class="material-icons-outlined">
         <i class='fa fa-cog fx-31'></i>

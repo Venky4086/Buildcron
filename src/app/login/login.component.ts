@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.Login.reset();
         this.submitted = false;
         this.super_user_satus = res.super_user_satus
-        this.toaster.success('Successfully Login Done');
+        // this.toaster.success('Successfully Login Done');
         if(this.super_user_satus === false){
         sessionStorage.setItem('license_purchased',res.license_purchased)
         sessionStorage.setItem('client_id',res.client_id);

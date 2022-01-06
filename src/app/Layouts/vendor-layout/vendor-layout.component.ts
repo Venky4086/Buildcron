@@ -34,4 +34,10 @@ export class VendorLayoutComponent implements OnInit {
   onActivate(event:any) {
     window.scroll(0,0);
   }
+  // logout(){
+
+  // }
+  changepassword(){
+    this.router.navigate(['/changepassword']);
+  }
 }
