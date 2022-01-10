@@ -214,9 +214,9 @@ export class ProjectsComponent {
     const data = {
       "project_name": this.AddProject.value.name,
       "city": this.AddProject.value.location,
-      "approver": this.Approver,
-      "assigned_employee":this.EmployeeList,
-      "assigned_material": this.MaterialList   
+      // "approver": this.Approver,
+      // "assigned_employee":this.EmployeeList,
+      // "assigned_material": this.MaterialList   
     }
       console.log(data);
       this.adminservice.AddProject(this.client_id,data).subscribe((res)=>{

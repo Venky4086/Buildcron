@@ -71,6 +71,50 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+
+  login_button_enter(event:any,password:any){
+    this.submitted = true;
+    if(this.Login.invalid){
+      return
+    }
+    else{
+      const formData = {
+        email:this.Login.value.email,
+        password:password
+      }
+      console.log(formData);
+      this.auth.ClientLogin(formData).subscribe((res)=>{
+        console.log(res);
+        this.adminservice
+        this.Login.reset();
+        this.submitted = false;
+        this.super_user_satus = res.super_user_satus
+        // this.toaster.success('Successfully Login Done');
+        if(this.super_user_satus === false){
+        sessionStorage.setItem('license_purchased',res.license_purchased)
+        sessionStorage.setItem('client_id',res.client_id);
+        sessionStorage.setItem('client_name',res.client_name);
+        this.router.navigate(['/ClientAdmin']);
+        }
+        else{
+          this.router.navigate(['/SuperAdmin']);
+        }
+      },(error)=>{
+        console.error(error);
+        this.Login.reset();
+        this.submitted = false;
+        if(error.error.message){
+          this.toaster.error(error.error.message);
+          this.router.navigate(['/login']);
+        }
+        else{
+        this.toaster.error('Somthing went to wrong');
+        this.router.navigate(['/login']);
+        }
+      });
+    }
+  }
+
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }

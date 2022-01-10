@@ -42,10 +42,10 @@ export class AdminService {
   // project
 
   AddProject(client_id:any,data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id,data)
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/project/create?client_id='+client_id,data)
   }
   Projectslist(client_id:any): Observable<any> {
-    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id)
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/project/create?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   DeleteProject(project_id: any,client_id:any): Observable<any> {
@@ -63,7 +63,7 @@ export class AdminService {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id+'&'+'license_id='+license_id, data, this.options)
   }
   ClientLicenselist(client_id:any): Observable<any> {
-    return this.http.get<any>(GlobalData.url_account + 'license/holder/licence?client_id='+client_id)
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/create?client_id='+client_id)
       .pipe(shareReplay(1));
   }
   Employeslist(client_id:any): Observable<any> {
