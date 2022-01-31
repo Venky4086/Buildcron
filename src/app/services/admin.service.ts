@@ -16,7 +16,7 @@ const headers = new HttpHeaders()
 
 const config = {
   headers:{
-    // 'content-type': 'multipart/form-data', 
+    // 'content-type': 'multipart/form-data',
   'Authorization': 'JWT ' + auth_token }
 };
 
@@ -26,7 +26,7 @@ const config = {
 export class AdminService {
 
   constructor(private http: HttpClient) {
-    
+
    }
    getemail() {
     return sessionStorage.getItem('adminemail');
@@ -49,11 +49,11 @@ export class AdminService {
       .pipe(shareReplay(1));
   }
   DeleteProject(project_id: any,client_id:any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/project?project_id='+project_id+'&'+'client_id='+client_id)
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/project/create?project_id='+project_id+'&'+'client_id='+client_id)
       .pipe(shareReplay(1));
   }
   UpdateProject(client_id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/project?client_id='+client_id, data)
+    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/project/create?client_id='+client_id, data)
       .pipe(shareReplay(1));
   }
 
@@ -62,10 +62,16 @@ export class AdminService {
   AddEmploye(data: any,client_id:any,license_id:any): Observable<any> {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id+'&'+'license_id='+license_id, data, this.options)
   }
+
+  Assigneed_Project_Employee(data: any,client_id:any,employeeid:any,projectid:any):Observable<any>{
+    return this.http.patch<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id+"&employee_id="+employeeid+"&project_id="+projectid, data, this.options)
+  }
+
   ClientLicenselist(client_id:any): Observable<any> {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/create?client_id='+client_id)
       .pipe(shareReplay(1));
   }
+
   Employeslist(client_id:any): Observable<any> {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id)
       .pipe(shareReplay(1));
@@ -90,7 +96,13 @@ export class AdminService {
   vendorslist(client_id:any): Observable<any> {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/vendor?client_id='+client_id)
       .pipe(shareReplay(1));
+
   }
+  //projcect assign vendor
+  Assigneed_Project_Vendor(data: any,client_id:any,vendorid:any,projectid:any):Observable<any>{
+    return this.http.patch<any>(GlobalData.url_account + 'license/holder/license/vendor?client_id='+client_id+"&vendor_id="+vendorid+"&project_id="+projectid, data, this.options)
+  }
+
   Singlevendorlist(id:any): Observable<any> {
     return this.http.get<any>(GlobalData.url_buildcron + 'vendor/rud/'+id,)
       .pipe(shareReplay(1));
@@ -113,6 +125,11 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/material?client_id='+client_id)
       .pipe(shareReplay(1));
   }
+  //assing project material
+
+  Assigneed_Project_Meterial(data: any,client_id:any,materialid:any,projectid:any):Observable<any>{
+    return this.http.patch<any>(GlobalData.url_account + 'license/holder/license/material?client_id='+client_id+"&material_id="+materialid+"&project_id="+projectid, data, this.options)
+  }
   DeleteMaterial(id: any): Observable<any> {
     return this.http.delete<any>(GlobalData.url_account + 'material/rud/' + id)
       .pipe(shareReplay(1));
@@ -133,6 +150,13 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality')
       .pipe(shareReplay(1));
   }
+  //PARTICULAR QUALITY CHECKLIST QUESTION
+  libraryquestionlist(checklistid:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality?question_qualityid='+checklistid)
+      .pipe(shareReplay(1));
+  }
+
+
 
   AddQualityInspection(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/quality/checklist', data)
@@ -141,8 +165,8 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  DeleteQualityInspection(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'register/' + id, { 'headers': headers })
+  DeleteQualityInspection(client_id:any,quality:any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id+"&qualitychecklist="+quality)
       .pipe(shareReplay(1));
   }
   UpdateQualityInspection(id: any, data: any): Observable<any> {
@@ -156,6 +180,13 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty')
       .pipe(shareReplay(1));
   }
+  //PARTICULAR SEFTY CHECKLIST QUESTION
+
+  saftylibraryQuestionlist(seftychecklistid:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty?question_seftyid='+seftychecklistid)
+      // .pipe(shareReplay(1));
+  }
+
 
   AddSafetyInspection(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist', data)
@@ -164,15 +195,17 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist?client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  DeleteSafetyInspection(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'register/' + id, { 'headers': headers })
+
+  DeleteSafetyInspection(client_id:any,id:any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist?client_id='+client_id +"&seftychecklist="+id,)
       .pipe(shareReplay(1));
   }
+
   UpdateSafetyInspection(id: any, data: any): Observable<any> {
     return this.http.put<any>(GlobalData.url_api + 'register/' + id, data, { 'headers': headers })
       .pipe(shareReplay(1));
   }
-   
+
 // testdata
 
   AddQualityTestingData(data: any): Observable<any> {

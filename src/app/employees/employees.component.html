@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-
+      <!-- SHOW ALL EMPLOYEE -->
       <div class="container-fluid">
         <div class="row">
           <div class="table-responsive">
@@ -74,7 +74,16 @@
                           <td>{{emp.email}}</td>
                           <td>{{emp.phone_number}}</td>
                           <td>{{emp.assigned_license}}</td>
-                          <td></td>
+                          <td>
+                            <select class="form-control" aria-label="Default select example" *ngIf="emp.assigned_project.length>0;else elseBlock">
+                              <option  *ngFor="let project of emp.assigned_project" value="{{project}}" >{{project}}</option>
+
+                            </select>
+                            <ng-template #elseBlock>
+                             Pending
+                            </ng-template>
+
+                          </td>
                           <td>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#View"
                               (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">
@@ -83,6 +92,11 @@
                             <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee"
                               (click)="edit(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">
                               <i class="fa fa-edit mr-1"></i>
+                            </a>
+
+
+                            <a  class="cursor_pointer" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(emp.employeeId)">
+                              <i class="bi bi-badge-ad"></i>
                             </a>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee"
                               (click)="delete(emp.user.id)">
@@ -372,6 +386,45 @@
         <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
         <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASIGN PROJECT  -->
+
+<div class="modal fade" id="AssingProject" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Assign Project</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+
+          <div class="row">
+            <label for="project" class="form-label">Projects</label><br/>
+            <div class="form-group col-md-6 mb-3" *ngFor="let project of ClientProject">
+
+                <input type="checkbox" (click)="AddProject($event)" value="{{project.projectId}}"/>{{project.projectId}}
+
+
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary" (click)="EmployeeAssingOnProject()">Assign Project</button>
+          </div>
+
+
+      </div>
+
     </div>
   </div>
 </div>

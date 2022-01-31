@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin.service';
 import { SuperadminService } from 'src/app/services/superadmin.service';
+import { from } from 'rxjs';
 declare var $:any;
 @Component({
   selector: 'app-safety-inspection',
@@ -34,6 +35,9 @@ export class SafetyInspectionComponent {
   page:any=1;
   count:any = 5;
   client_id: any;
+  sefty_check_list=new Set();
+  previewquestionlist:any[]=[];
+  saftyID:any;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -157,49 +161,28 @@ export class SafetyInspectionComponent {
   // Add
 
   Add() {
-    this.submitted = true;
-    if (this.AddQualityInspection.invalid) {
-      return
-    }
-    else {
-      let arr1:any[] = []
-    // console.log(this.selectedItems);
-    for(let i=0; i < this.selectedItems.length; i++) {
-      arr1.push(this.selectedItems[i].item_id);
-    }
-    this.cheklistList = arr1;
-      const mint = this
-      this.project  =+this.AddQualityInspection.value.project_assigned
-      const data = 
+
+      const data =
         {
           // "project":this.project,
-          "seftychecklist":this.cheklistList.toString(),
+          "seftychecklist":Array.from(this.sefty_check_list).join(","),
           "client_id":sessionStorage.getItem('client_id'),
         }
-      // console.log(this.AddQualityInspection.value);
-      // const formData = new FormData;
-      // formData.append('date', this.AddQualityInspection.value.date);
-      // formData.append('name', this.AddQualityInspection.value.name);
-      // formData.append('description', this.AddQualityInspection.value.description);
-      // formData.append('uploaded', this.AddQualityInspection.value.uploaded);
-      // formData.append('project_assigned', this.AddQualityInspection.value.project_assigned);
+
       console.log(data);
       this.adminservice.AddSafetyInspection(data).subscribe((res) => {
         console.log(res);
-        mint.toaster.success('Sucessfully Add Inspection Done!');
-        this.AddQualityInspection.reset();
+        this.toaster.success('Sucessfully Add Inspection Done!');
         this.QualityInspectionlist();
-        this.submitted = false;
-        $('#AddQuality').hide();
+        this.alllibrarylist();
+
       }, (error) => {
         console.error(error);
-        mint.toaster.error('Somthing went wrong!');
-        this.AddQualityInspection.reset();
-        this.submitted = false;
-        $('#AddQuality').hide();
+        this.toaster.error('Somthing went wrong!');
+
       })
     }
-  }
+
 
   // Update
 
@@ -221,7 +204,7 @@ export class SafetyInspectionComponent {
       }
       this.cheklistList = arr1;
         const mint = this
-        const data = 
+        const data =
           {
             "project":this.UpdateQualityInspection.value.project_assigned,
             "safety":this.cheklistList
@@ -250,25 +233,63 @@ export class SafetyInspectionComponent {
 
   }
 
+  Addchecklist(data:any){
+    if (this.sefty_check_list.has(data)){
+      this.sefty_check_list.delete(data)
+      console.log(this.sefty_check_list)
+      console.log(Array.from (this.sefty_check_list).join(","))
+    }
+    else{
+      this.sefty_check_list.add(data)
+      console.log(this.sefty_check_list)
+      console.log(Array.from (this.sefty_check_list).join(","))
+
+    }
+
+  }
+
+  previewquestion(data:any){
+    console.log("preview question")
+    this.adminservice.saftylibraryQuestionlist(data)
+          .subscribe(
+            (resp)=>{
+              if(resp){
+                this.previewquestionlist=resp;
+                console.log(resp)
+              }
+              else{
+                this.toaster.error("somthing went wrong")
+              }
+            }
+          )
+  }
+
   // Delete
 
-delete(project_id:any){
-this.project_id = project_id
+delete(safty:any){
+  this.saftyID = safty
 }
 
   Delete(){
     this.client_id = sessionStorage.getItem('client_id');
-    const mint = this
-    this.adminservice.DeleteProject(this.project_id,this.client_id).subscribe((res) => {
+
+    this.adminservice.DeleteSafetyInspection(this.client_id,this.saftyID).subscribe((res) => {
       console.log(res);
-      mint.toaster.success('Sucessfully Deleted!');
-      $('#DeleteQuality').hide();
-      this.QualityInspectionlist();
-    }, (error) => {
-      console.error(error);
-      mint.toaster.success('Somthing went to wrong!');
-      $('#DeleteQuality').hide();
-    })
+      if (res.status){
+
+        this.toaster.success('Sucessfully Deleted!');
+        $('#DeleteQuality').hide();
+        this.QualityInspectionlist();
+
+      }
+      else{
+        console.error(res);
+        this.toaster.error('Somthing went to wrong!');
+        $('#DeleteQuality').hide();
+
+      }
+
+    },)
   }
 
 // checklist view

@@ -15,7 +15,7 @@
 
                       <div class="bulk_btn">
                           <span class="btn btn-default btn-file bg1 mtop">
-                              Bulk Upload <input type="file">
+                              Bulk Upload <input type="file" (change)="excelfile($event)">
                           </span>
 
                           <div class="small06">*In CSV File or Excel Format</div>
@@ -59,7 +59,7 @@
 
 
                               </div>
-                               
+
                               <div class="row" *ngIf="showchecklist; else elseBlack">
                                   <div class="col-sm-12">
                                     <div class="table-responsive">
@@ -88,7 +88,7 @@
                                                       rowspan="1" colspan="1"
                                                       aria-label="Platform(s): activate to sort column ascending">
                                                       ID</th> -->
-                                               
+
                                                   <th class="sorting" tabindex="0" aria-controls="example1"
                                                       rowspan="1" colspan="1"
                                                       aria-label="CSS grade: activate to sort column ascending">
@@ -126,7 +126,7 @@
                                                   <td *ngIf="checklist.status == false">InValid</td>
                                                   <td *ngIf="checklist.status == true">Valid</td>
                                                   <td>
-                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.question,checklist.question_id,checklist.admin_status)">
+                                                    <a class="cursor_pointer" data-toggle="modal" data-target="#View" (click)="view(checklist.id,checklist.name,checklist.questionid,checklist.status)">
                                                     <i class='fa fa-eye mr-1'></i>
                                                     </a>
                                                     <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateChecklist" (click)="edit(checklist.id,checklist.question,checklist.question_id,checklist.admin_status)">
@@ -137,7 +137,7 @@
                                                     </a>
                                                 </td>
                                               </tr>
-                                             
+
                                           </tbody>
 
                                       </table>
@@ -224,22 +224,7 @@
 
       <form [formGroup]="AddCheckList">
           <div class="row">
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Name:</label>
-                  <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required" class="fs-13 fw-500">Name is required</div>
-                  </div>
-              </div> -->
-              <!-- <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">ID:</label>
-                  <input type="text" class="form-control" />
-              </div> -->
-<!-- 
-              <div class="form-group col-md-6 mb-3">
-                  <label for="dateOfBirth">Checklist ID:</label>
-                  <input type="text" class="form-control" />
-              </div> -->
+
 
               <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Checklist Question:</label>
@@ -286,34 +271,19 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Quality Library List</h4>
-      
-           
+
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
 
             <form [formGroup]="AddCheckList">
                 <div class="row">
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                          <div *ngIf="f.name.errors.required" class="fs-13 fw-500">Name is required</div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" />
-                    </div> -->
-      <!-- 
-                    <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Checklist ID:</label>
-                        <input type="text" class="form-control" />
-                    </div> -->
-      
+
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Checklist Question:</label>
                         <input type="text" class="form-control" formControlName="name" placeholder="Enter Checklist Question" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
@@ -321,8 +291,8 @@
                           <div *ngIf="f.name.errors.required" class="fs-13 fw-500">Checklist Question is required</div>
                         </div>
                     </div>
-      
-      
+
+
                     <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Status:</label>
                       <!-- <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/> -->
@@ -337,16 +307,16 @@
                         </div>
                       </div>
                     </div>
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Status:</label>
                         <input type="text" class="form-control" />
                     </div> -->
-      
-      
+
+
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="Add()">Add Question</button>
@@ -362,14 +332,14 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
-      
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
-  
+
           <form>
               <div class="row">
                   <div class="form-group col-md-6 mb-3">
@@ -392,35 +362,35 @@
                  </div>
               </div>
           </form>
-    
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
         </div>
       </div>
-  
+
       </div>
 </div>
 
 
 <!-- Update saftylibrarylist -->
-  
+
 <div class="modal fade" id="UpdateChecklist" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Quality Library List</h4>
-      
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
 
             <form [formGroup]="UpdateCheckList">
                 <div class="row">
-          
+
                     <!-- <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">ID:</label>
                       <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted  && u.id.errors}"/>
@@ -445,7 +415,7 @@
                           </div>
                         </div>
                     </div> -->
-      
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Checklist Question:</label>
                         <input type="text" class="form-control" [(ngModel)]="name" formControlName="questionname" [ngClass]="{ 'is-invalid': updatesubmitted && u.questionname.errors }"/>
@@ -453,7 +423,7 @@
                           <div *ngIf="u.questionname.errors.required" class="fs-13 fw-500">Checklist Question is required</div>
                         </div>
                     </div>
-<!--       
+<!--
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Status:</label>
                         <input type="text" class="form-control" [(ngModel)]="status" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/>
@@ -478,10 +448,10 @@
                             </div>
                         </div>
                     </div>
-      
+
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="Update()">Update</button>

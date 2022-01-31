@@ -23,6 +23,7 @@ export class SafetyquestionComponent implements OnInit {
   totalRecords: any;
   page:any =1;
   count:any = 5;
+  excel!:any;
   constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
@@ -65,7 +66,7 @@ export class SafetyquestionComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
+
   Status:any[]=[
     {id:1,name:'Valid'},
     {id:2,name:'InValid'},
@@ -98,19 +99,13 @@ export class SafetyquestionComponent implements OnInit {
     return
   }
   else{
+
     const data = {
       "name": this.AddCheckList.value.name,
-      // "answer": "it regular",
-      // "typee":"Safety",
-      // "admin_status": this.AddCheckList.value.status,
+      "status": this.AddCheckList.value.status==="Valid" ? true :false,
       "sefty":sessionStorage.getItem('safety_id')
     }
-    // console.log(data);
-    // console.log(this.AddCheckList.value);
-    // const formData = new FormData
-    // formData.append('name',this.AddCheckList.value.name)
-    // formData.append('text',this.AddCheckList.value.text)
-    // formData.append('status',this.AddCheckList.value.status)
+    console.log(data)
     this.superservice.addsaftychecklist(data).subscribe((res)=>{
       console.log(res);
       this.toaster.success('Successfully Checklist Added !');
@@ -126,6 +121,24 @@ export class SafetyquestionComponent implements OnInit {
       this.submitted = false;
     })
   }
+  }
+
+///UPLOAD SAFTYCHECKLIST QUESTION BY EXCEL SHEET
+  excelfile(file:any){
+    this.excel=<File>file.target.files[0]
+    const formData=new FormData();
+    formData.append("file",this.excel,this.excel.name)
+    this.superservice.ExcelsaftychecklistQuestion(formData).subscribe(
+      (res)=>{
+        // console.log(res)
+        this.list();
+        this.toaster.success(res.message)
+      },
+      (error)=>{
+        this.toaster.error(error.statusText,error.status)
+        this.list();
+      }
+    )
   }
 
   // view
@@ -164,34 +177,34 @@ export class SafetyquestionComponent implements OnInit {
         "name": this.UpdateCheckList.value.questionname,
         // "answer": "it regular",
         // "typee":"Safety",
-        // "admin_status": this.UpdateCheckList.value.status,
-        "sefty":sessionStorage.getItem('safety_id')
+        "status": this.UpdateCheckList.value.status==="Valid" ? true :false,
+        // "sefty":sessionStorage.getItem('safety_id')
       }
-       // const formData = new FormData
-      // formData.append('name',this.UpdateCheckList.value.name),
-      // formData.append('text',this.UpdateCheckList.value.text),
-      // formData.append('status',this.UpdateCheckList.value.status)
-      this.superservice.updatechecklist(this.id,data).subscribe((res)=>{
+
+      console.log(data)
+      console.log(this.id)
+      this.superservice.updatesaftycheckquestion(this.id,data).subscribe((res)=>{
         console.log(res);
         this.toaster.success('Checklist successfully Updated!');
       $('#UpdateChecklist').hide();
         this.list();
       },(error)=>{
         console.error(error);
-        this.toaster.error('Somthing went to wrong');
+        this.toaster.error(error.error.message);
       $('#UpdateChecklist').hide();
       })
     }
   }
-  
+
   // delete
 
   delete(id:any){
     this.id = id;
+    console.log(this.id)
   }
-  
+
   Delete(){
-    this.superservice.deletechecklist(this.id).subscribe((res)=>{
+    this.superservice.deletesaftychecklist(this.id).subscribe((res)=>{
       console.log(res);
       this.toaster.success('Succesfully Checklist deleted!');
       this.list();

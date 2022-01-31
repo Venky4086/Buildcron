@@ -27,7 +27,12 @@ export class QuestionsComponent  {
   count:any = 5;
   nodatafound = false;
   check_id:any;
-  constructor(private spinner:NgxSpinnerService,private superservice:SuperadminService,private modalService: NgbModal,private fb:FormBuilder,private toaster:ToastrService) { }
+  excel!:File;
+  constructor(private spinner:NgxSpinnerService,
+              private superservice:SuperadminService,
+              private modalService: NgbModal,
+              private fb:FormBuilder,
+              private toaster:ToastrService) { }
   submitted = false;
   updatesubmitted = false;
   AddCheckList = this.fb.group({
@@ -70,7 +75,7 @@ export class QuestionsComponent  {
       return `with: ${reason}`;
     }
   }
-  
+
 // list
 
   list(){
@@ -114,11 +119,7 @@ export class QuestionsComponent  {
       "quality":sessionStorage.getItem('quality_id'),
       // "typee":"Quality"
     }
-    // console.log(this.AddCheckList.value);
-    // const formData = new FormData
-    // formData.append('name',this.AddCheckList.value.name)
-    // formData.append('text',this.AddCheckList.value.text)
-    // formData.append('status',this.AddCheckList.value.status)
+
     console.log(data);
     this.superservice.Addchecklist(data).subscribe((res)=>{
       console.log(res);
@@ -136,6 +137,28 @@ export class QuestionsComponent  {
     })
   }
   }
+
+//  EXCEL UPLOAD QUESTION FOR QUALITY CHECKLIST
+excelfile(file:any){
+  this.excel=<File>file.target.files[0];
+  const formData=new FormData();
+  formData.append("file",this.excel,this.excel.name)
+  this.superservice.ExcelQualitylibraryQuesiton(formData).subscribe((res)=>{
+
+      this.toaster.success(res.message,res.status)
+      this.list();
+
+  },
+
+  (error)=>{
+    this.toaster.error(error.statusText,error.status)
+  }
+
+  )
+
+
+}
+
 
   // view
 
@@ -168,7 +191,7 @@ export class QuestionsComponent  {
       //   "answer": "it regular",
       //   "status": this.UpdateCheckList.value.status,
       //   "pid":sessionStorage.getItem('quality_id')
-      // } 
+      // }
        const data = {
         "question": this.UpdateCheckList.value.questionname,
         // "answer": "it regular",
@@ -197,7 +220,7 @@ export class QuestionsComponent  {
   delete(id:any){
     this.id = id;
   }
-  
+
   Delete(){
     this.superservice.deletechecklist(this.id).subscribe((res)=>{
       console.log(res);

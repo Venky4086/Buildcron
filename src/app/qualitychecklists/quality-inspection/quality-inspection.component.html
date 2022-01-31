@@ -150,10 +150,15 @@
                                                         </ul> -->
                                                         {{Quality.qualityid}}
                                                     </td>
-                                                    <td>project Assigned</td>
-                                                    <!-- <td>User</td> -->
-                                                    <!-- <td>Kittu Johnl</td> -->
+                                                    <td>
+                                                    <select class="form-control" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
+                                                      <option  *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
 
+                                                    </select>
+                                                    <ng-template #elseBlock>
+                                                      Pending...
+                                                    </ng-template>
+                                                  </td>
                                                     <td>
                                                         <!-- <a class="cursor_pointer">
                                                             <i class='fa fa-eye mr-1'></i>
@@ -180,30 +185,7 @@
                                     </div>
 
                                 </div>
-                                <!-- <div class="row">
-                                  <div class="col-md-6 col-md-offset-6">
 
-
-                                  </div>
-                                  <div class="col-sm-12 col-md-6">
-                                      <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                          <ul class="pagination float-rt">
-                                              <li class="paginate_button page-item previous disabled"
-                                                  id="example1_previous"><a href="#" aria-controls="example1"
-                                                      data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                              <li class="paginate_button page-item bg-blue active"><a href="#"
-                                                      aria-controls="example1" data-dt-idx="1" tabindex="0"
-                                                      class="page-link">1</a></li>
-                                              <li class="paginate_button page-item "><a href="#"
-                                                      aria-controls="example1" data-dt-idx="2" tabindex="0"
-                                                      class="page-link">2</a></li>
-                                              <li class="paginate_button page-item next" id="example1_next"><a
-                                                      href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
-                                                      class="page-link">Next</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                </div> -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff"
@@ -258,172 +240,102 @@
 
 <!-- Add QualityInspection -->
 
-<ng-template #content let-modal>
-    <div class="modal-header bg-blu">
-        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Inspection</h4>
-        <span aria-hidden="true" class="close cursor_point" aria-label="Close"
-            (click)="modal.dismiss('Cross click')">&times;</span>
-    </div>
-    <div class="modal-body">
-
-        <form [formGroup]="AddQualityInspection">
-            <div class="row">
-                <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Date:</label>
-                    <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
-                    <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                        <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
-                            Date is required
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Quality Checklist Name:</label>
-                    <input type="text" class="form-control" formControlName="name"
-                        [ngClass]="{'is-invalid':submitted && f.name.errors}" />
-                    <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                        <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
-                            Name is required
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Description:</label>
-                    <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
-                    <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
-                        <div class="fs-13 fw-500" *ngIf="f.description.errors.required">
-                            Description is required
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">ID:</label>
-                    <input type="text" class="form-control" />
-                </div> -->
-
-                <!-- <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Uploaded By:</label>
-                    <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':submitted && f.uploaded.errors}"/>
-                    <div class="invalid-feedback" *ngIf="submitted && f.uploaded.errors">
-                        <div class="fs-13 fw-500" *ngIf="f.uploaded.errors.required">
-                            Uploaded is required
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="form-group col-md-6 mb-3">
-                    <label for="dateOfBirth">Project Assigned:</label>
-                    <input type="text" class="form-control" formControlName="project_assigned"
-                        [ngClass]="{'is-invalid':submitted && f.project_assigned.errors}" />
-                    <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
-                        <div class="fs-13 fw-500" *ngIf="f.project_assigned.errors.required">
-                            Project Assigned is required
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </form>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="Add()">Add Checklist</button>
-    </div>
-</ng-template>
-
 <div class="modal fade" id="AddQuality" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-blu">
-                <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Inspection</h4>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-            </div>
-            <div class="modal-body">
+      </div>
+      <div class="modal-body">
 
-                <form [formGroup]="AddQualityInspection">
-                    <div class="row">
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}" />
-                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
-                                Date is required
-                            </div>
-                        </div>
-                    </div> -->
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Quality Checklist Name:</label>
-                            <!-- <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}"/> -->
-                            <ng-multiselect-dropdown [placeholder]="'Assigned Quality Checklist'"
-                                [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                [ngModelOptions]="{standalone:true}" formControlName="name"
-                                [ngClass]="{'is-invalid':submitted && f.name.errors}">
-                            </ng-multiselect-dropdown>
-                            <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
-                                <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
-                                    Quality Checklist Name is required
-                                </div>
-                            </div>
-                        </div>
+          <div class="row">
+            <label for="project" class="form-label">Quality Checklist</label><br/>
+            <table>
+              <tr>
+                <th><input type="checkbox"/>Select all</th>
+                <th>CheckList Name</th>
+                <th>Preview Question</th>
+              </tr>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Description:</label>
-                        <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':submitted && f.description.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.description.errors.required">
-                                Description is required
-                            </div>
-                        </div>
-                    </div> -->
+              <tr *ngFor="let list of librarylists">
+                <td><input type="checkbox" (click)="Addchecklist(list.qualityid)" value="{{list.qualityid}}"/></td>
+                <td>{{list.name}}/{{list.qualityid}}</td>
+                <td>
+                    <a type="button" (click)="previewquestion(list.id)" data-toggle="modal" data-target="#qualityview">
+                      <span class="material-icons">
+                        visibility
+                        </span>
+                      </a>
+                </td>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" />
-                    </div> -->
+              </tr>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Uploaded By:</label>
-                        <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':submitted && f.uploaded.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.uploaded.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.uploaded.errors.required">
-                                Uploaded is required
-                            </div>
-                        </div>
-                    </div> -->
+            </table>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Project Assigned:</label>
-                            <select class="form-select" formControlName="project_assigned"
-                                [ngClass]="{'is-invalid':submitted && f.project_assigned.errors}">
-                                <option value="" selected>-- select project --</option>
-                                <option value="{{project.id}}" *ngFor="let project of projectlist">
-                                    {{project.project_name}}</option>
-                            </select>
-                            <div class="invalid-feedback" *ngIf="submitted && f.project_assigned.errors">
-                                <div class="fs-13 fw-500" *ngIf="f.project_assigned.errors.required">
-                                    Project Assigned is required
-                                </div>
-                            </div>
-                        </div>
+          </div>
 
-                    </div>
-                </form>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary" (click)="Add()" >Add CheckList</button>
+          </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="Add()">Add Checklist</button>
-            </div>
-        </div>
+
+      </div>
+
     </div>
+  </div>
 </div>
+
+<!-- CLICK ON VIEW ICOIN AND OPEN THIS MODEL FOR PRIVIEW QUESTION FOR QUALIFTY -->
+<div class="modal fade" id="qualityview" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-blu">
+        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+
+          <div class="row">
+            <label for="project" class="form-label">Quality Checklist Quesition Previews</label><br/>
+            <table>
+              <tr>
+                <th><input type="checkbox"/>Select all</th>
+                <th>Quality Checklist Quesition </th>
+                <th>Question Id</th>
+              </tr>
+
+              <tr *ngFor="let question of previewquestionlist">
+                <td><input type="checkbox" (click)="Addchecklist(question.questionid)" value="{{question.questionid}}"/></td>
+                <td>{{question.name}}</td>
+                <td>{{question.questionid}}</td>
+              </tr>
+
+            </table>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary" >Add Question</button>
+          </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <!-- update -->
 
@@ -442,25 +354,7 @@
 
                 <form [formGroup]="UpdateQualityInspection">
                     <div class="row">
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}" />
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.date.errors.required">
-                                Date is required
-                            </div>
-                        </div>
-                    </div> -->
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Name:</label>
-                        <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
-                                Name is required
-                            </div>
-                        </div>
-                    </div> -->
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Quality Checklist Name:</label>
@@ -476,42 +370,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Description:</label>
-                        <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid':updatesubmitted && u.description.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.description.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.description.errors.required">
-                                Description is required
-                            </div>
-                        </div>
-                    </div> -->
-
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" />
-                    </div> -->
-
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Uploaded By:</label>
-                        <input type="text" class="form-control" formControlName="uploaded" [ngClass]="{'is-invalid':updatesubmitted && u.uploaded.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.uploaded.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.uploaded.errors.required">
-                                Uploaded is required
-                            </div>
-                        </div>
-                    </div> -->
-
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Project Assigned:</label>
-                        <input type="text" class="form-control" formControlName="project_assigned" [ngClass]="{'is-invalid':updatesubmitted && u.project_assigned.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.project_assigned.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.project_assigned.errors.required">
-                                Project Assigned is required
-                            </div>
-                        </div>
-                    </div> -->
-
+                      <div class="row">
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Project Assigned:</label>
                             <select class="form-select" [(ngModel)]="project_id" formControlName="project_assigned"
@@ -525,7 +386,9 @@
                                     Project Assigned is required
                                 </div>
                             </div>
-                        </div>
+                      </div>
+
+
                     </div>
                 </form>
 

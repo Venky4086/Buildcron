@@ -11,15 +11,16 @@
                       <div class="add_btn">
                           <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#AddSafety">
                               + Add Checklist</button>
+
                       </div>
 
-                      <!-- <div class="bulk_btn">
+                      <div class="bulk_btn">
                           <span class="btn btn-default btn-file bg1 mtop">
-                              Bulk Upload <input type="file">
+                              Bulk Upload <input type="file" (change)="excelfile($event)">
                           </span>
 
                           <div class="small06">*In CSV File or Excel Format</div>
-                      </div> -->
+                      </div>
                   </div>
               </div>
           </div><!-- /.row -->
@@ -88,7 +89,7 @@
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">Type
                                                    </th> -->
-<!-- 
+<!--
                                                 <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">
@@ -130,7 +131,7 @@
                                                 </td>
                                                 <td><a class="cursor_pointer" (click)="checklistdetails(safetylibrarylist.id)">View</a></td>
                                             </tr>
-                                          
+
                                         </tbody>
 
                                     </table>
@@ -194,14 +195,14 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
-      
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
-  
+
           <form>
               <div class="row">
                 <!-- <div class="form-group col-md-6 mb-3">
@@ -222,13 +223,13 @@
                  </div>
               </div>
           </form>
-    
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
         </div>
       </div>
-  
+
       </div>
 </div>
 
@@ -318,12 +319,12 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">SafetyLibraryList</h4>
-      
-           
+
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
 
@@ -356,7 +357,7 @@
                           </div>
                         </div>
                     </div>
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Type:</label>
                       <select class="form-select" formControlName="type" aria-label="Default select example" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
@@ -369,8 +370,8 @@
                         </div>
                       </div>
                     </div>
-      
-      
+
+
                       <div class="form-group col-md-6 mb-3">
                           <label for="dateOfBirth">Status:</label>
                           <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
@@ -385,10 +386,10 @@
                               </div>
                           </div>
                       </div> -->
-      
+
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="Add()">Add Checklist</button>
@@ -405,26 +406,18 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Update Safety</h4>
-      
-           
+
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
 
             <form [formGroup]="UpdateSafetyLibraryList">
                 <div class="row">
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input  class="form-control" value="{{date}}" readonly/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted  && u.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.date.errors.required">
-                                Date is required
-                            </div>
-                        </div>
-                    </div> -->
+
                     <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Safety ID:</label>
                       <input type="text" class="form-control" value={{quality_id}} readonly/>
@@ -438,46 +431,10 @@
                           </div>
                         </div>
                     </div>
-      
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Type:</label>
-                        <input type="text" class="form-control" [(ngModel)]="type" formControlName="type" [ngClass]="{'is-invalid':updatesubmitted  && u.type.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted  && u.type.errors">
-                          <div class="fs-13 fw-500" *ngIf="u.type.errors.required">
-                            Type is required
-                          </div>
-                        </div>
-                    </div> -->
 
-<!-- 
                     <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Type:</label>
-                        <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
-                        <select class="form-select"  formControlName="type" [ngClass]="{'is-invalid':updatesubmitted  && u.type.errors}">
-                            <option [(ngModel)]="type" selected>{{type}}</option>
-                            <option value="Safety">Safety</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted  && u.type.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.type.errors.required">
-                              Type is required
-                            </div>
-                        </div>
-                    </div> -->
-      
-      
-                    <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Status:</label>
-                        <input type="text" class="form-control" [(ngModel)]="updatestatus" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted  && u.status.errors">
-                          <div class="fs-13 fw-500" *ngIf="u.status.errors.required">
-                              Status is required
-                          </div>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Status:</label>
-                        <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/>
+                        <!-- <input type="text" class="form-control" formControlName="status" [ngClass]="{'is-invalid':submitted && f.status.errors}"/> -->
                         <select class="form-select" formControlName="status" [ngClass]="{'is-invalid':updatesubmitted  && u.status.errors}">
                             <option [(ngModel)]="status" selected>{{status}}</option>
                             <option value="Active">Active</option>
@@ -488,11 +445,11 @@
                                 Status is required
                             </div>
                         </div>
-                    </div> -->
-      
+                    </div>
+
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="Update()">Update</button>

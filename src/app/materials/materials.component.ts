@@ -35,6 +35,9 @@ export class MaterialsComponent {
   client_id: any;
   vendor_id: any;
   uom: any;
+  //
+  ClientProject:any[]=[];
+  Project =new Set()
   constructor(private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
   AddMaterial = this.fb.group({
     name: ['', Validators.required],
@@ -63,9 +66,10 @@ export class MaterialsComponent {
   ngOnInit() {
   this.allmateriallist();
   this.allvendors();
+  this.allprojects();
   }
 
-// vendor list 
+// vendor list
 
 allvendors(){
   this.client_id = sessionStorage.getItem('client_id');
@@ -220,6 +224,85 @@ edit(material_id:any,material_name:any,materialId:any,description:any,boq_ref:an
       })
     }
   }
+//ALL PROJECT
+//ALL PROJECT OF THIS CLIENT
+allprojects(){
+  this.client_id = sessionStorage.getItem('client_id');
+  this.spinner.show();
+  this.adminservice.Projectslist(this.client_id).subscribe((res)=>{
+    if(res){
+      console.log(res);
+      this.ClientProject = res;
+      // this.totalRecords = res.length
+      this.spinner.hide();
+    }
+    else{
+      console.warn(res);
+    }
+  },(error)=>{
+    console.error(error);
+    this.spinner.hide();
+  })
+}
+
+//PROJECT ASSING HERE GET MATERIAL ID
+AssingProject(data:any){
+  this.material_id=data
+
+}
+
+//CHOOICE PROJECT
+AddProject(event:any){
+  console.log(event.target.value)
+
+
+if (this.Project.has(event.target.value))
+  {
+    this.Project.delete(event.target.value)
+    console.log(this.Project)
+    console.log(Array.from( this.Project).join(","))
+    console.log()
+  }
+else
+  {
+    this.Project.add(event.target.value)
+    console.log(this.Project)
+    console.log(Array.from( this.Project ).join(","))
+  }
+
+
+}
+//MATERIAL ADD ON PROJECT
+MaterialAddOnProject(){
+  this.client_id = sessionStorage.getItem('client_id');
+  console.log(this.client_id)
+  console.log(this.material_id)
+  console.log(Array.from( this.Project).join(","))
+  const formData=new FormData();
+  this.adminservice.Assigneed_Project_Meterial(formData,this.client_id,
+                                                this.material_id,Array.from( this.Project).join(",")
+
+                                              ).subscribe((res)=>{
+                                                if (res.status)
+                                                {
+                                                  console.log(res)
+                                                  this.toaster.success(this.material_id,res.message)
+                                                  this.allmateriallist();
+
+                                                }
+                                                else{
+                                                  this.toaster.error(this.material_id,res.message)
+                                                  this.allmateriallist();
+
+                                                }
+
+                                              },
+
+
+                                              )
+
+
+        }
 
   // delete
 

@@ -29,10 +29,10 @@ var auth_token = sessionStorage.getItem('auth_token');
 
   const config = {
     headers:{
-      // 'content-type': 'multipart/form-data', 
+      // 'content-type': 'multipart/form-data',
     'Authorization': 'JWT ' + auth_token }
   };
-  
+
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,7 @@ export class SuperadminService {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
   }
 
-  //  Login 
+  //  Login
 
   Login(data:any): Observable<any>{
     return this.http.post<any>(GlobalData.url_account + 'token', data )
@@ -92,24 +92,24 @@ export class SuperadminService {
 
   types(){
     return this.http.get<any>(GlobalData.url_api + 'type/list')
-    .pipe(shareReplay(1));  
+    .pipe(shareReplay(1));
   }
 
-  // license 
+  // license
 
   Addlicense(data: any): Observable<any> {
-    return this.http.post<any>(GlobalData.url_api + 'license/create' , data , 
+    return this.http.post<any>(GlobalData.url_api + 'license/create' , data ,
     {
       headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
     }
     )
-  } 
+  }
   alllicensedata(): Observable<any> {
     return this.http.get<any>(GlobalData.url_api + 'admin/client/licence')
-      .pipe(shareReplay(1));  
+      .pipe(shareReplay(1));
   }
   singleicensedata(c_name:any): Observable<any> {
-    return this.http.get<any>(GlobalData.url_buildcron + 'license/employee/'+ c_name, 
+    return this.http.get<any>(GlobalData.url_buildcron + 'license/employee/'+ c_name,
     {
       headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
     }
@@ -117,7 +117,7 @@ export class SuperadminService {
       .pipe(shareReplay(1));
   }
   deletelicense(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_api + 'license/rd/' + id , 
+    return this.http.delete<any>(GlobalData.url_api + 'license/rd/' + id ,
     {
       headers: { 'Content-Type': 'application/json', 'Authorization': 'JWT ' + this.getToken() }
     }
@@ -158,15 +158,21 @@ export class SuperadminService {
   Addchecklist(data:any): Observable<any> {
     return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality/question',data)
   }
+
+  //EXCEL UPLOAD QUALITY CHECKLIST
+  ExcelUploadQualitylibrary(data:any):Observable<any>{
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality/excel',data)
+
+  }
   allchecklist(id:any): Observable<any>{
     return this.http.get<any>(GlobalData.url_api + 'admin/checklist/quality?question_qualityid='+id)
   }
   deletechecklist(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_buildcron + 'question/rud/' + id , this.options)
+    return this.http.delete<any>(GlobalData.url_buildcron + 'admin/checklist/quality/question?question_id='+id)
       .pipe(shareReplay(1));
   }
   updatechecklist(id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_buildcron + 'question/rud/' + id, data, this.options)
+    return this.http.put<any>(GlobalData.url_buildcron + 'admin/checklist/quality/question?question_id='+id, data, this.options)
       .pipe(shareReplay(1));
   }
   // quality testlibrarylist
@@ -174,6 +180,13 @@ export class SuperadminService {
   Addtestlibrarylist(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_api + 'check/list_or_create', data)
   }
+
+  ///QUALITYCHECKLIST QUESTION UPLOAD EXCEL
+  ExcelQualitylibraryQuesiton(data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/quality/question/excel', data)
+  }
+
+
   alltestlibrarylist(): Observable<any> {
     return this.http.get<any>(GlobalData.url_api + 'check/list_or_create')
       .pipe(shareReplay(1));
@@ -192,6 +205,11 @@ export class SuperadminService {
   Addsaftylibrarylist(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_api + 'admin/checklist/sefty',data)
   }
+  //EXCEL SAFTY CHECKLIST UPLOAD
+  ExcelUploadsaftylibrary(data:any):Observable<any>{
+    return this.http.post<any>(GlobalData.url_api + 'admin/checklist/safty/excel',data)
+
+  }
   allsaftylibrarylist(): Observable<any> {
     return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty')
       .pipe(shareReplay(1));
@@ -205,7 +223,7 @@ export class SuperadminService {
       .pipe(shareReplay(1));
   }
 
-// safety checklist
+// safety checklist question
 
 allsaftychecklist(id:any): Observable<any> {
   return this.http.get<any>(GlobalData.url_api + 'admin/checklist/sefty?question_seftyid='+id)
@@ -214,8 +232,18 @@ allsaftychecklist(id:any): Observable<any> {
 addsaftychecklist(data:any): Observable<any> {
   return this.http.post<any>(GlobalData.url_api + 'admin/checklist/sefty/question',data)
 }
+
+updatesaftycheckquestion(id:any,data:any): Observable<any> {
+  return this.http.put<any>(GlobalData.url_api + 'admin/checklist/sefty/question?question_id=' + id,data)
+}
+//SAFTYCHECKLIST QUESTION UPLOAD EXCEL
+ExcelsaftychecklistQuestion(data:any): Observable<any> {
+  return this.http.post<any>(GlobalData.url_api + 'admin/checklist/safty/question/excel',data)
+}
+
+
 deletesaftychecklist(id: any): Observable<any> {
-  return this.http.delete<any>(GlobalData.url_buildcron + 'question/rud/' + id,this.options)
+  return this.http.delete<any>(GlobalData.url_api + 'admin/checklist/sefty/question?question_id=' + id)
     .pipe(shareReplay(1));
 }
 

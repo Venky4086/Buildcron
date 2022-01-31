@@ -26,6 +26,10 @@ export class VendorsComponent {
   page:any =1;
   count:any = 5;
   client_id: any;
+  ///
+  ClientProject:any[]=[];
+
+  Project =new Set();
   constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
   AddVendor = this.fb.group({
     name:['', Validators.required],
@@ -49,6 +53,7 @@ export class VendorsComponent {
   });
   ngOnInit(){
     this.allvendors();
+    this.allprojects();
   }
   get f(){
     return this.AddVendor.controls
@@ -95,6 +100,28 @@ export class VendorsComponent {
     })
   }
 
+
+//ALL PROJECT
+//ALL PROJECT OF THIS CLIENT
+allprojects(){
+  this.client_id = sessionStorage.getItem('client_id');
+  this.spinner.show();
+  this.adminservice.Projectslist(this.client_id).subscribe((res)=>{
+    if(res){
+
+      console.log(res);
+      this.ClientProject = res;
+      // this.totalRecords = res.length
+      this.spinner.hide();
+    }
+    else{
+      console.warn(res);
+    }
+  },(error)=>{
+    console.error(error);
+    this.spinner.hide();
+  })
+}
   // Add
 
   view(vendor_id:any,name:any,address:any,email:any,contact:any,supervisor_name:any,supervisor_contact:any){
@@ -196,6 +223,59 @@ export class VendorsComponent {
       });
     }
   }
+
+  //GET VENDOR ID
+  AssingProject(vendor:any){
+    console.log(this.vendor_id=vendor)
+  }
+  AddProject(event:any){
+    console.log(event.target.value)
+
+
+  if (this.Project.has(event.target.value))
+    {
+      this.Project.delete(event.target.value)
+      console.log(this.Project)
+      console.log(Array.from( this.Project).join(","))
+      console.log()
+    }
+  else
+    {
+      this.Project.add(event.target.value)
+      console.log(this.Project)
+      console.log(Array.from( this.Project ).join(","))
+    }
+
+
+}
+
+VendorAssingOnProject(){
+
+  this.client_id = sessionStorage.getItem('client_id');
+  console.log(this.client_id)
+  console.log(this.vendor_id)
+  console.log(Array.from( this.Project).join(","))
+  const formData=new FormData();
+  this.adminservice.Assigneed_Project_Vendor(formData,this.client_id,
+                                                this.vendor_id,Array.from( this.Project).join(",")
+
+                                              ).subscribe((res)=>{
+                                                if (res.status)
+                                                {
+                                                  console.log(res)
+                                                  this.toaster.success(this.vendor_id,res.message)
+                                                  this.allvendors();
+                                                }
+                                                else{
+                                                  this.toaster.error(this.vendor_id,res.message)
+                                                }
+
+                                              }
+
+
+                                              )
+
+}
 
 // delete
 

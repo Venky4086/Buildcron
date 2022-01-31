@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { SuperadminService } from 'src/app/services/superadmin.service';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 declare var $: any;
 @Component({
   selector: 'app-librarylist',
@@ -27,7 +28,8 @@ export class LibrarylistComponent  {
   totalRecords:any;
   page:any=1;
   count:any = 5;
-  constructor(private toaster: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private router:Router) { } 
+  excel!:File;
+  constructor(private toaster: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private router:Router) { }
    AddLibrayList = this.fb.group({
       //  date:['', Validators.required],
       //  id:['', Validators.required],
@@ -48,7 +50,7 @@ export class LibrarylistComponent  {
    }
    get f(){
      return this.AddLibrayList.controls
-   }  
+   }
    get u(){
     return this.UpdateLibrayList.controls
   }
@@ -69,7 +71,7 @@ export class LibrarylistComponent  {
       return `with: ${reason}`;
     }
   }
- 
+
   //  types
 
   types(){
@@ -118,12 +120,7 @@ export class LibrarylistComponent  {
       const data = {
         "name":this.AddLibrayList.value.name,
       }
-      // const formDate = new FormData
-      // formDate.append('date',this.AddLibrayList.value.date);
-      // formDate.append('id',this.AddLibrayList.value.id);
-      // formDate.append('name',this.AddLibrayList.value.name);
-      // formDate.append('typee','Quality');
-      // formDate.append('status',this.AddLibrayList.value.status)
+
       this.superadminserivce.Addlibrarylist(data).subscribe((res)=>{
         console.log(res);
           mint.toaster.success('Successfully Quality Done!');
@@ -140,6 +137,19 @@ export class LibrarylistComponent  {
       })
     }
   }
+  //EXCEL QUALITY CHECKLIST UPLOAD
+  excelfile(file:any)
+{
+  this.excel=<File>file.target.files[0];
+  const formData= new FormData();
+  formData.append("file",this.excel,this.excel.name)
+  this.superadminserivce.ExcelUploadQualitylibrary(formData).subscribe(
+    (res)=>{
+      console.log(res)
+      this.toaster.success("Quality checklist created")
+    }
+  )
+}
 
   // update library list
 
@@ -158,7 +168,7 @@ export class LibrarylistComponent  {
       this.quality_id = quality_id;
       this.name  = name;
       // this.status = status
-  } 
+  }
 
   Update(){
     const mint = this
@@ -169,14 +179,11 @@ export class LibrarylistComponent  {
   else{
   const data = {
     "name":this.UpdateLibrayList.value.name,
+    "status":this.UpdateLibrayList.value.name=="Active"?true:false,
   }
-    // const formData = new FormData
-      // formDate.append('date',this.UpdateLibrayList.value.date);
-      // formDate.append('id',this.AddLibrayList.value.id);
-      // formData.append('name',this.UpdateLibrayList.value.name);
-      // formData.append('quality_type',this.UpdateLibrayList.value.type);
-      // formData.append('status',this.UpdateLibrayList.value.status)
-      this.superadminserivce.updatelibrarylist(this.quality_id,data).subscribe((res)=>{
+      console.log(data)
+      console.log(this.library_id)
+      this.superadminserivce.updatelibrarylist(this.library_id,data).subscribe((res)=>{
         console.log(res);
           mint.toaster.success('Successfully Quality Updated!');
           this.alllibrarylist();
@@ -191,23 +198,29 @@ export class LibrarylistComponent  {
 
   // delete
 
-  delete(id:any,quality_id:any){
-   this.library_id = id;
+  delete(quality_id:any){
    this.quality_id = quality_id
   }
 
   Delete(){
     const mint = this;
-    this.superadminserivce.deletelibrarylist(this.library_id).subscribe((res)=>{
+    this.superadminserivce.deletelibrarylist(this.quality_id).subscribe((res)=>{
       console.log(res);
-      mint.toaster.success('Succesfully Quality Deleted!');
-      this.alllibrarylist();
-      $('#DeleteQulaity').hide();
-    },(error)=>{
-      console.error(error.error.message);
-      mint.toaster.error('Somthing went to wrong');
-      $('#DeleteQulaity').hide();
-    })
+      if (res.status)
+      {
+        mint.toaster.success('Succesfully Quality Deleted!');
+        this.alllibrarylist();
+        $('#DeleteQulaity').hide();
+
+      }
+      else{
+        console.error(res.message);
+        mint.toaster.error('Somthing went to wrong');
+        $('#DeleteQulaity').hide();
+
+      }
+
+    },)
   }
 
   quality_view(quality_id:any){

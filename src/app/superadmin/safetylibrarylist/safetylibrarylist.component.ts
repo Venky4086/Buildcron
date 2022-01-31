@@ -28,6 +28,7 @@ export class SafetylibrarylistComponent {
   totalRecords:any;
   page:any = 1;
   count:any =5;
+  excel!:File;
   constructor(private fb:FormBuilder,private modalService: NgbModal,private toaster:ToastrService,private superadminservice:SuperadminService, private spinner:NgxSpinnerService,private router:Router) { }
   AddSafetyLibraryList = this.fb.group({
     // date:['', Validators.required],
@@ -117,12 +118,7 @@ export class SafetylibrarylistComponent {
           "name": this.AddSafetyLibraryList.value.name,
           "typee": "Safety",
         }
-        // const formData = new FormData;
-        // formData.append('date',this.AddSafetyLibraryList.value.date);
-        // formData.append('id',this.AddSafetyLibraryList.value.id);
-        // formData.append('name',this.AddSafetyLibraryList.value.name);
-        // formData.append('quality_type',this.AddSafetyLibraryList.value.type);
-        // formData.append('status',this.AddSafetyLibraryList.value.status);
+
         this.superadminservice.Addsaftylibrarylist(data).subscribe((res)=>{
           console.log(res);
           mint.toaster.success('Successfully Safty done!');
@@ -138,7 +134,21 @@ export class SafetylibrarylistComponent {
           this.submitted = false;
         })
       }
+        }
+
+
+    //UPLOAD EXCEL FILE
+    excelfile(event:any){
+      console.log(event.target.files[0])
+      this.excel=<File>event.target.files[0];
+      const formData=new FormData;
+      formData.append("file",this.excel,this.excel.name)
+      this.superadminservice.ExcelUploadsaftylibrary(formData).subscribe((res)=>{
+        console.log(res.message)
+      })
+
     }
+
 
     view(id:any,quality_id:any,name:any){
       this.safety_id = id;
@@ -146,6 +156,7 @@ export class SafetylibrarylistComponent {
       // this.type = type;
       this.quality_id = quality_id;
       this.name  = name;
+
       // this.status = status
   }
     edit(id:any,quality_id:any,name:any){
@@ -157,7 +168,7 @@ export class SafetylibrarylistComponent {
         this.name  = name;
         // this.status = status;
         // $("#UpdateSafety").modal('show');
-    } 
+    }
 
   // update
 
@@ -170,18 +181,13 @@ export class SafetylibrarylistComponent {
       const mint = this
       const data = {
         "name": this.UpdateSafetyLibraryList.value.name,
-        "typee": "Safety",
+        "status": this.UpdateSafetyLibraryList.value.status==="Active" ? true : false,
       }
-      // const formData = new FormData;
-      // formData.append('date',this.UpdateSafetyLibraryList.value.date);
-      // formData.append('id',this.UpdateSafetyLibraryList.value.id);
-      // formData.append('name',this.UpdateSafetyLibraryList.value.name);
-      // formData.append('quality_type',this.UpdateSafetyLibraryList.value.type);
-      // formData.append('status',this.UpdateSafetyLibraryList.value.status);
+      console.log(this.safety_id)
       this.superadminservice.updatesaftylibrarylist(this.safety_id,data).subscribe((res)=>{
         console.log(res);
         mint.toaster.success('Succefully Update!');
-        this.allsafetylibrarylist();
+        // this.allsafetylibrarylist();
         $("#UpdateSafety").hide();
       },(error)=>{
         console.error(error);
@@ -195,6 +201,7 @@ export class SafetylibrarylistComponent {
 
   delete(id:any){
     this.safety_id = id
+
   }
   Delete(){
     const mint = this;

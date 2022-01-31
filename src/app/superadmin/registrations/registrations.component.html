@@ -5,14 +5,14 @@
                 <div class="col-sm-6 pl-25">
                     <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Client Registrations</h3>
                 </div><!-- /.col -->
-  
+
                 <div class="col-sm-6">
                     <div class="alig_btns">
                         <div class="add_btn p-3">
                             <button class="btn btn-primary mr-2 mright bg2" data-toggle="modal" data-target="#Addcompany">
                                 + Add Client</button>
                         </div>
-  
+
                         <!-- <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file" (change)="onFileSelect($event)" accept="application/pdf, application/vnd.ms-excel">
@@ -27,14 +27,14 @@
                   </div>
                 </div>
             </div><!-- /.row -->
-  
-  
+
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="table-responsive">
                         <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
                         </ngx-table> -->
-  
+
                         <div class="card-body pt-0">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
@@ -52,18 +52,18 @@
                                         <span class="ml-2">Entries</span>
                                     </div>
                                     </div>
-  
-  
+
+
                                     <div class="col-sm-12 col-md-7">
                                       <div class="showhide pt-4 text-right floatright">
                                         <span class='text-right'>Show/Hide:</span>
                                         <span><i class="fa fa-table"></i></span>
                                     </div>
                                     </div>
-  
-  
+
+
                                 </div>
-  
+
                                 <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
                                     <div class="col-sm-12">
                                       <div class="table-responsive">
@@ -108,12 +108,12 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">City
                                                     </th>
-  
+
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">State
                                                     </th>
-  
+
                                                     <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">Pincode
@@ -126,12 +126,12 @@
                                                       rowspan="1" colspan="1"
                                                       aria-label="CSS grade: activate to sort column ascending">End Date
                                                       </th> -->
-  
+
                                                       <th class="sorting" tabindex="0" aria-controls="example1"
                                                       rowspan="1" colspan="1"
                                                       aria-label="CSS grade: activate to sort column ascending">No of License
                                                       </th>
-  
+
                                                     <!-- <th class="sorting" tabindex="0" aria-controls="example1"
                                                     rowspan="1" colspan="1"
                                                     aria-label="CSS grade: activate to sort column ascending">Contact Person
@@ -141,14 +141,14 @@
                                                     aria-label="CSS grade: activate to sort column ascending">Status
                                                     </th>
 
-  
+
                                                     <th rowspan="1" colspan="1">Action
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-  
-                                                <tr class="odd" *ngFor="let crd of companyregistrationdatas 
+
+                                                <tr class="odd" *ngFor="let crd of companyregistrationdatas
                                                 | paginate
                                             :{
                                               id:'listing_pagination',
@@ -174,7 +174,7 @@
                                                     <!-- <td>{{crd.no_licenses}}</td> -->
                                                     <!-- <td>{{crd.contact_person}}</td> -->
                                                     <td *ngIf="crd.status == true">
-                                                      Approved 
+                                                      Approved
                                                     </td>
                                                     <td *ngIf="crd.status == false">
                                                       Pending
@@ -183,7 +183,7 @@
                                                       <a data-toggle="modal" data-target="#Viewcompany" (click)="Details(crd.id,crd.client_id,crd.company_name,crd.phone_number,crd.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
                                                         <i class="fa fa-eye mr-1"></i>
                                                       </a>
-                                                        <a data-toggle="modal" data-target="#Updatecompany" (click)="edit(crd.id,crd.name,crd.user.id,crd.user.username,crd.user.phone_number,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
+                                                        <a data-toggle="modal" data-target="#Updatecompany" (click)="edit(crd.id,crd.company_name,crd.user.id,crd.user.username,crd.user.phone_number,crd.user.email,crd.gstin,crd.addres,crd.city,crd.state,crd.pincode,crd.status,crd.license_purchased)" class="cursor_pointer">
                                                             <i class="fa fa-edit mr-1"></i>
                                                         </a>
                                                         <a data-toggle="modal" data-target="#Deletecompany" class="cursor_pointer" (click)="delete(crd.client_id)">
@@ -193,12 +193,12 @@
                                                 </tr>
 
                                             </tbody>
-  
+
                                         </table>
-  
-  
+
+
                                       </div>
-  
+
                                     </div>
                                     <div class="my-2 text-right">
                                       <pagination-controls  id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
@@ -218,30 +218,7 @@
                                    </div>
                                 </ng-template>
 
-                                <!-- <div class="row">
-                                    <div class="col-md-6 col-md-offset-6">
-  
-  
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                            <ul class="pagination float-rt">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="example1_previous"><a href="#" aria-controls="example1"
-                                                        data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                <li class="paginate_button page-item bg-blue active"><a href="#"
-                                                        aria-controls="example1" data-dt-idx="1" tabindex="0"
-                                                        class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="example1" data-dt-idx="2" tabindex="0"
-                                                        class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="example1_next"><a
-                                                        href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
-                                                        class="page-link">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div> -->
+
                                 <div class="row">
                                      <div class="col-md-12">
                                       <ngx-spinner
@@ -257,13 +234,13 @@
                             </div>
                         </div>
                     </div>
-  
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-  
+
 <!-- view modal -->
 
 <ng-template #view let-modal>
@@ -353,11 +330,11 @@
     <div class="modal-content">
       <div class="modal-header bg-blu">
           <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
-    
+
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
           </button>
-    
+
       </div>
       <div class="modal-body">
 
@@ -371,22 +348,22 @@
                     <label for="dateOfBirth">Company Name:</label>
                     <p class="font-weight-bold">{{company_name}}</p>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Phone:</label>
                     <p class="font-weight-bold">{{phone}}</p>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Email:</label>
                     <p class="font-weight-bold">{{email}}</p>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">GSTN:</label>
                     <p class="font-weight-bold">{{gstn}}</p>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Address:</label>
                     <p class="font-weight-bold">{{address}}</p>
@@ -395,42 +372,42 @@
                   <label for="dateOfBirth">City:</label>
                   <p class="font-weight-bold">{{city}}</p>
               </div>
-  
+
               <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">State:</label>
                 <p class="font-weight-bold">{{state}}</p>
             </div>
-  
+
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Pincode:</label>
               <p class="font-weight-bold">{{pincode}}</p>
           </div>
-  
+
           <div class="form-group col-md-6 mb-3">
             <label for="dateOfBirth">Status:</label>
             <p class="font-weight-bold">{{status}}</p>
         </div>
-  
+
         <!-- <div class="form-group col-md-6 mb-3">
           <label for="dateOfBirth">End date:</label>
           <p class="font-weight-bold">{{end_date}}</p>
       </div> -->
-  
+
       <div class="form-group col-md-6 mb-3">
         <label for="dateOfBirth">No of License:</label>
         <p class="font-weight-bold">{{no_of_license}}</p>
     </div>
-  
+
     <!-- <div class="form-group col-md-6 mb-3">
       <label for="dateOfBirth">Contact Person:</label>
       <p class="font-weight-bold">{{contact_person}}</p>
   </div> -->
-  
-  
-  
+
+
+
             </div>
         </form>
-  
+
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
@@ -445,13 +422,13 @@
 <ng-template #content let-modal>
     <div class="modal-header bg-blu">
         <h4 class="modal-title mb-0" id="modal-basic-title">Add Client</h4>
-  
+
         <span aria-hidden="true" class="close cursor_point" aria-label="Close"
             (click)="modal.dismiss('Cross click')">&times;</span>
-  
+
     </div>
     <div class="modal-body">
-  
+
         <form [formGroup]="CompanyRegistration">
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
@@ -460,7 +437,7 @@
                     <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                       <div *ngIf="f.name.errors.required" class="fs-13 fw-500">Company Name is required</div>                  </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Phone:</label>
                     <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
@@ -469,7 +446,7 @@
                       <div *ngIf="f.phone.errors.pattern" class="fs-13 fw-500">Mobil Number must be at 10 digits required</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Email:</label>
                     <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
@@ -486,7 +463,7 @@
                       <div *ngIf="f.username.errors.required" class="fs-13 fw-500">User Name is required</div>
                     </div>
                 </div> -->
-<!--   
+<!--
                 <div class="form-group col-md-6 mb-3">
                   <label for="">Password:</label>
                   <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
@@ -503,7 +480,7 @@
                       <div *ngIf="f.gstno.errors.pattern" class="fs-13 fw-500">Please provide a valid GST No</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Address:</label>
                     <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
@@ -518,7 +495,7 @@
                       <div *ngIf="f.city.errors.required" class="fs-13 fw-500">City is required</div>
                   </div>
                 </div>
-  
+
               <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">State:</label>
                 <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"/>
@@ -526,7 +503,7 @@
                   <div *ngIf="f.state.errors.required" class="fs-13 fw-500">State is required</div>
                 </div>
             </div>
-  
+
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Pincode:</label>
               <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
@@ -535,7 +512,7 @@
                   <div *ngIf="f.pincode.errors.pattern" class="fs-13 fw-500 text-danger">pincode must be at 6 digits required</div>
               </div>
             </div>
-<!--   
+<!--
           <div class="form-group col-md-6 mb-3">
             <label for="dateOfBirth">Status:</label>
             <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
@@ -543,7 +520,7 @@
               <div *ngIf="f.status.errors.required" class="fs-13 fw-500">Status is required</div>
             </div>
           </div> -->
-  
+
         <!-- <div class="form-group col-md-6 mb-3">
           <label for="dateOfBirth">Start date:</label>
           <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }"/>
@@ -559,7 +536,7 @@
               <div *ngIf="f.enddate.errors.required" class="fs-13 fw-500">End Date is required</div>
           </div>
         </div> -->
-  
+
       <div class="form-group col-md-6 mb-3">
         <label for="dateOfBirth">No of License:</label>
         <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': submitted && f.nooflicense.errors }"/>
@@ -567,7 +544,7 @@
           <div *ngIf="f.nooflicense.errors.required" class="fs-13 fw-500">No OF License is required</div>
         </div>
       </div>
-  
+
         <!-- <div class="form-group col-md-6 mb-3">
           <label for="dateOfBirth">Contact Person:</label>
            <input class="form-control" name="" id="" formControlName="contactperson" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }">
@@ -577,7 +554,7 @@
         </div> -->
         </div>
         </form>
-  
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary bg2" (click)="Submit()">Register</button>
@@ -589,14 +566,14 @@
     <div class="modal-content">
       <div class="modal-header bg-blu">
           <h4 class="modal-title mb-0" id="modal-basic-title">Add Client</h4>
-    
+
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
           </button>
-    
+
       </div>
       <div class="modal-body">
-  
+
         <form [formGroup]="CompanyRegistration">
             <div class="row">
                 <div class="form-group col-md-12 mb-3">
@@ -842,7 +819,7 @@
                       <div *ngIf="f.phone.errors.pattern" class="fs-13 fw-500">Mobil Number must be at 10 digits required</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Email:</label>
                     <input type="text" class="form-control" formControlName="email" placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
@@ -859,7 +836,7 @@
                       <div *ngIf="f.username.errors.required" class="fs-13 fw-500">User Name is required</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                   <label for="">Password:</label>
                   <input type="password" class="form-control" formControlName="password" placeholder="Enter Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
@@ -877,7 +854,7 @@
                       <div *ngIf="f.gstno.errors.pattern" class="fs-13 fw-500">Please provide a valid GST No</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Address:</label>
                     <input type="text" class="form-control" formControlName="address" placeholder="Enter address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"/>
@@ -892,7 +869,7 @@
                       <div *ngIf="f.city.errors.required" class="fs-13 fw-500">City is required</div>
                   </div>
                 </div>
-  
+
               <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">State:</label>
                 <input type="text" class="form-control" formControlName="state" placeholder="Enter State" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"/>
@@ -900,7 +877,7 @@
                   <div *ngIf="f.state.errors.required" class="fs-13 fw-500">State is required</div>
                 </div>
             </div>
-  
+
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Pincode:</label>
               <input type="text" class="form-control"  formControlName="pincode" placeholder="Enter Pincode" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"/>
@@ -909,31 +886,8 @@
                   <div *ngIf="f.pincode.errors.pattern" class="fs-13 fw-500 text-danger">pincode must be at 6 digits required</div>
               </div>
             </div>
-<!--   
-          <div class="form-group col-md-6 mb-3">
-            <label for="dateOfBirth">Status:</label>
-            <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }"/>
-            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-              <div *ngIf="f.status.errors.required" class="fs-13 fw-500">Status is required</div>
-            </div>
-          </div> -->
-  
-        <!-- <div class="form-group col-md-6 mb-3">
-          <label for="dateOfBirth">Start date:</label>
-          <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': submitted && f.startdate.errors }"/>
-          <div *ngIf="submitted && f.startdate.errors" class="invalid-feedback">
-              <div *ngIf="f.startdate.errors.required" class="fs-13 fw-500">Start Date is required</div>
-          </div>
-        </div> -->
 
-        <!-- <div class="form-group col-md-6 mb-3">
-          <label for="dateOfBirth">End date:</label>
-          <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': submitted && f.enddate.errors }" (change)="enddate(date.value)" #date/>
-          <div *ngIf="submitted && f.enddate.errors" class="invalid-feedback">
-              <div *ngIf="f.enddate.errors.required" class="fs-13 fw-500">End Date is required</div>
-          </div>
-        </div> -->
-  
+
       <div class="form-group col-md-6 mb-3">
         <label for="dateOfBirth">No of License:</label>
         <input type="text" class="form-control" formControlName="nooflicense" placeholder="Enter Noof License" [ngClass]="{ 'is-invalid': submitted && f.nooflicense.errors }"/>
@@ -941,17 +895,11 @@
           <div *ngIf="f.nooflicense.errors.required" class="fs-13 fw-500">No of License is required</div>
         </div>
       </div>
-  
-        <!-- <div class="form-group col-md-6 mb-3">
-          <label for="dateOfBirth">Contact Person:</label>
-           <input class="form-control" name="" id="" formControlName="contactperson" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }">
-          <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
-              <div *ngIf="f.contactperson.errors.required" class="fs-13 fw-500">Contact Person is required</div>
-          </div>
-        </div> -->
+
+
         </div>
         </form>
-  
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary bg2" (click)="Submit()">Register</button>
@@ -965,13 +913,13 @@
 <ng-template #updatecontent let-modal>
     <div class="modal-header bg-blu">
         <h4 class="modal-title mb-0" id="modal-basic-title">Edit Project</h4>
-  
+
         <span aria-hidden="true" class="close cursor_point" aria-label="Close"
             (click)="modal.dismiss('Cross click')">&times;</span>
-  
+
     </div>
     <div class="modal-body">
-  
+
         <form [formGroup]="UpdateCompanyRegistration">
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
@@ -980,7 +928,7 @@
                     <div *ngIf="updatesubmitted && u.name.errors" class="invalid-feedback">
                       <div *ngIf="u.name.errors.required" class="fs-13 fw-500">Company Name is required</div>                  </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Phone:</label>
                     <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': updatesubmitted && u.phone.errors }" />
@@ -989,7 +937,7 @@
                       <div *ngIf="u.phone.errors.pattern" class="fs-13 fw-500">Mobile Number must be at 10 digits required</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Email:</label>
                     <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" />
@@ -998,7 +946,7 @@
                       <div *ngIf="u.email.errors.email" class="fs-13 fw-500">Please provide a valid email address</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">GSTN:</label>
                     <input type="text" class="form-control" formControlName="gstno" [ngClass]="{ 'is-invalid': updatesubmitted && u.gstno.errors }" />
@@ -1007,7 +955,7 @@
                       <div *ngIf="u.gstno.errors.pattern" class="fs-13 fw-500">Please provide a valid GST No</div>
                     </div>
                 </div>
-  
+
                 <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Address:</label>
                     <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': updatesubmitted && u.address.errors }"/>
@@ -1022,7 +970,7 @@
                       <div *ngIf="u.city.errors.required" class="fs-13 fw-500">City is required</div>
                   </div>
               </div>
-  
+
               <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">State:</label>
                 <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': updatesubmitted && u.state.errors }"/>
@@ -1030,7 +978,7 @@
                   <div *ngIf="u.state.errors.required" class="fs-13 fw-500">State is required</div>
                 </div>
             </div>
-  
+
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Pincode:</label>
               <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': updatesubmitted && u.pincode.errors }"/>
@@ -1039,7 +987,7 @@
                   <div *ngIf="u.pincode.errors.pattern" class="fs-13 fw-500 text-danger">pincode must be at 6 digits required</div>
               </div>
           </div>
-  
+
           <div class="form-group col-md-6 mb-3">
             <label for="dateOfBirth">Status:</label>
             <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }"/>
@@ -1047,7 +995,7 @@
               <div *ngIf="u.status.errors.required" class="fs-13 fw-500">Status is required</div>
             </div>
           </div>
-  
+
         <div class="form-group col-md-6 mb-3">
           <label for="dateOfBirth">End date:</label>
           <input type="date" class="form-control" formControlName="enddate" [ngClass]="{ 'is-invalid': updatesubmitted && u.enddate.errors }"/>
@@ -1055,15 +1003,9 @@
               <div *ngIf="u.enddate.errors.required" class="fs-13 fw-500">End Date is required</div>
           </div>
           </div>
-  
-      <!-- <div class="form-group col-md-6 mb-3">
-        <label for="dateOfBirth">No of License:</label>
-        <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': updatesubmitted && u.nooflicense.errors }"/>
-        <div *ngIf="updatesubmitted && u.nooflicense.errors" class="invalid-feedback">
-          <div *ngIf="u.nooflicense.errors.required" class="fs-13 fw-500">No OF License is required</div>
-        </div>
-      </div> -->
-  
+
+
+
     <div class="form-group col-md-6 mb-3">
       <label for="dateOfBirth">Contact Person:</label>
       <input type="text" class="form-control" formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }"/>
@@ -1071,12 +1013,12 @@
           <div *ngIf="u.contactperson.errors.required" class="fs-13 fw-500">Contact Person is required</div>
         </div>
     </div>
-  
-  
-  
+
+
+
             </div>
         </form>
-  
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
@@ -1088,14 +1030,14 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Update Client</h4>
-      
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
-      
+
             <form [formGroup]="UpdateCompanyRegistration">
                 <div class="row">
 
@@ -1117,7 +1059,7 @@
                         <div *ngIf="updatesubmitted && u.name.errors" class="invalid-feedback">
                           <div *ngIf="u.name.errors.required" class="fs-13 fw-500">Company Name is required</div>                  </div>
                     </div>
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Phone:</label>
                         <input type="text" class="form-control" formControlName="phone"  [ngClass]="{ 'is-invalid': updatesubmitted && u.phone.errors }" [(ngModel)]="phone"/>
@@ -1126,7 +1068,7 @@
                           <div *ngIf="u.phone.errors.pattern" class="fs-13 fw-500">Mobil Number must be at 10 digits required</div>
                         </div>
                     </div>
-      
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Email:</label>
                         <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" [(ngModel)]="email"/>
@@ -1135,7 +1077,7 @@
                           <div *ngIf="u.email.errors.email" class="fs-13 fw-500">Please provide a valid email address</div>
                         </div>
                     </div> -->
-      
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">GSTN:</label>
                         <input type="text" class="form-control" formControlName="gstno" [ngClass]="{ 'is-invalid': updatesubmitted && u.gstno.errors }" [(ngModel)]="gstn"/>
@@ -1144,7 +1086,7 @@
                           <div *ngIf="u.gstno.errors.pattern" class="fs-13 fw-500">Please provide a valid GST No</div>
                         </div>
                     </div>
-      
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Address:</label>
                         <input type="text" class="form-control" formControlName="address" [ngClass]="{ 'is-invalid': updatesubmitted && u.address.errors }" [(ngModel)]="address"/>
@@ -1159,7 +1101,7 @@
                           <div *ngIf="u.city.errors.required" class="fs-13 fw-500">City is required</div>
                       </div>
                   </div>
-      
+
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">State:</label>
                     <input type="text" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': updatesubmitted && u.state.errors }" [(ngModel)]="state"/>
@@ -1167,7 +1109,7 @@
                       <div *ngIf="u.state.errors.required" class="fs-13 fw-500">State is required</div>
                     </div>
                 </div>
-      
+
                 <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Pincode:</label>
                   <input type="text" class="form-control"  formControlName="pincode" [ngClass]="{ 'is-invalid': updatesubmitted && u.pincode.errors } " [(ngModel)]="pincode"/>
@@ -1176,7 +1118,7 @@
                       <div *ngIf="u.pincode.errors.pattern" class="fs-13 fw-500 text-danger">pincode must be at 6 digits required</div>
                   </div>
               </div>
-      
+
               <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">Status:</label>
                 <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }" [(ngModel)]="status"/>
@@ -1184,7 +1126,7 @@
                   <div *ngIf="u.status.errors.required" class="fs-13 fw-500">Status is required</div>
                 </div>
               </div>
-      
+
               <!-- <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">Start date:</label>
                 <input type="date" class="form-control" formControlName="startdate" [ngClass]="{ 'is-invalid': updatesubmitted && u.startdate.errors }" [(ngModel)]="start_date"/>
@@ -1201,7 +1143,7 @@
                   <div *ngIf="u.enddate.errors.required" class="fs-13 fw-500">End Date is required</div>
               </div>
             </div> -->
-      
+
           <div class="form-group col-md-6 mb-3">
             <label for="dateOfBirth">No of License:</label>
             <input type="text" class="form-control" formControlName="nooflicense" [ngClass]="{ 'is-invalid': updatesubmitted && u.nooflicense.errors }" [(ngModel)]="no_of_license"/>
@@ -1209,7 +1151,7 @@
               <div *ngIf="u.nooflicense.errors.required" class="fs-13 fw-500">No OF License is required</div>
             </div>
           </div>
-      
+
         <!-- <div class="form-group col-md-6 mb-3">
           <label for="dateOfBirth">Contact Person:</label>
           <input type="text" class="form-control" formControlName="contactperson" [ngClass]="{ 'is-invalid': updatesubmitted && u.contactperson.errors }" [(ngModel)]="contact_person"/>
@@ -1231,7 +1173,7 @@
 
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary bg2" (click)="Update()">Update</button>

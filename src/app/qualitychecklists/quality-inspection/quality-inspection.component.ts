@@ -36,6 +36,9 @@ export class QualityInspectionComponent {
   page:any=1;
   count:any = 5;
   client_id: any;
+  quality_checklist=new Set();
+  previewquestionlist:any[]=[];
+  qualityID:any;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -56,7 +59,7 @@ export class QualityInspectionComponent {
   });
   ngOnInit(): void {
     this.QualityInspectionlist();
-    this.allprojects();
+    //this.allprojects();
     this.alllibrarylist();
     this.dropdownSettings = {
       singleSelection: false,
@@ -69,7 +72,10 @@ export class QualityInspectionComponent {
     };
   }
   get f() {
+    console.log("==================")
+
     return this.AddQualityInspection.controls
+
   }
   get u() {
     return this.UpdateQualityInspection.controls
@@ -159,49 +165,29 @@ export class QualityInspectionComponent {
   // Add
 
   Add() {
-    this.submitted = true;
-    if (this.AddQualityInspection.invalid) {
-      return
-    }
-    else {
-      let arr1:any[] = []
-    // console.log(this.selectedItems);
-    for(let i=0; i < this.selectedItems.length; i++) {
-      arr1.push(this.selectedItems[i].item_id);
-    }
-    this.cheklistList = arr1;
-      const mint = this
-      this.project  =+this.AddQualityInspection.value.project_assigned
-      const data = 
+
+
+      const data =
         {
           // "project":this.project,
-          "qualitychecklist":this.cheklistList.toString(),
+          "qualitychecklist":Array.from( this.quality_checklist).join(","),
           'client_id':sessionStorage.getItem('client_id'),
         }
-      // console.log(this.AddQualityInspection.value);
-      // const formData = new FormData;
-      // formData.append('date', this.AddQualityInspection.value.date);
-      // formData.append('name', this.AddQualityInspection.value.name);
-      // formData.append('description', this.AddQualityInspection.value.description);
-      // formData.append('uploaded', this.AddQualityInspection.value.uploaded);
-      // formData.append('project_assigned', this.AddQualityInspection.value.project_assigned);
+
       console.log(data);
       this.adminservice.AddQualityInspection(data).subscribe((res) => {
         console.log(res);
-        mint.toaster.success('Sucessfully Add Inspection Done!');
-        this.AddQualityInspection.reset();
+        this.toaster.success(res.message);
         this.QualityInspectionlist();
-        this.submitted = false;
-        $('#AddQuality').hide();
+        this.alllibrarylist();
+
       }, (error) => {
         console.error(error);
-        mint.toaster.error('Somthing went wrong!');
-        this.AddQualityInspection.reset();
-        this.submitted = false;
-        $('#AddQuality').hide();
+        this.toaster.error('Somthing went wrong!');
+
       })
     }
-  }
+
 
   // Update
 
@@ -223,7 +209,7 @@ export class QualityInspectionComponent {
       }
       this.cheklistList = arr1;
         const mint = this
-        const data = 
+        const data =
           {
             "project":this.UpdateQualityInspection.value.project_assigned,
             "quality":this.cheklistList
@@ -252,25 +238,69 @@ export class QualityInspectionComponent {
 
   }
 
+  //checklist Add
+  Addchecklist(data:any){
+  if(this.quality_checklist.has(data)){
+    this.quality_checklist.delete(data)
+    console.log(this.quality_checklist)
+    console.log(Array.from( this.quality_checklist).join(","))
+    }
+  else
+  {
+    this.quality_checklist.add(data)
+    console.log(this.quality_checklist)
+
+  }
+
+  }
+
+  previewquestion(data:any){
+    this.adminservice.libraryquestionlist(data).subscribe(
+      (resp)=>{
+        if (resp){
+          console.log("=====")
+          console.log(resp)
+          this.previewquestionlist=resp
+          this.toaster.success("")
+        }
+        else{
+          this.toaster.error("somthing missing!")
+        }
+      }
+    )
+  }
+
+
+
+
+
   // Delete
 
-delete(project_id:any){
-this.project_id = project_id
+delete(qualityid:any){
+this.qualityID = qualityid
 }
 
   Delete(){
     const mint = this
     this.client_id = sessionStorage.getItem('client_id');
-    this.adminservice.DeleteProject(this.project_id,this.client_id).subscribe((res) => {
+    this.adminservice.DeleteQualityInspection(this.client_id,this.qualityID).subscribe((res) => {
       console.log(res);
-      mint.toaster.success('Sucessfully Deleted!');
-      $('#DeleteQuality').hide();
-      this.QualityInspectionlist();
-    }, (error) => {
-      console.error(error);
-      mint.toaster.success('Somthing went to wrong!');
-      $('#DeleteQuality').hide();
-    })
+      if (res.status){
+        mint.toaster.success('Sucessfully Deleted!');
+          $('#DeleteQuality').hide();
+          this.QualityInspectionlist();
+          this.alllibrarylist();
+          $('#DeleteQuality').hide();
+
+      }
+      else{
+        console.error(res);
+        this.toaster.error(res.message)
+        $('#DeleteQuality').hide();
+
+      }
+
+    },)
   }
 
 // checklist view

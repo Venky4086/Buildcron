@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { ProjectsComponent } from '../projects/projects.component';
 import { AdminService } from '../services/admin.service';
 declare var $: any;
 @Component({
@@ -38,7 +39,18 @@ export class EmployeesComponent {
   update_name: any;
   update_email: any;
   update_mobile: any;
-  constructor(private adminservice:AdminService,private modalService: NgbModal,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) { }
+  //
+  taken_project= new Set();
+  ClientProject:any[]=[];
+  Project =new Set();
+  constructor(private adminservice:AdminService,
+              private modalService: NgbModal,
+              private fb:FormBuilder,
+              private spinner:NgxSpinnerService,
+              private toaster:ToastrService,
+
+
+              ) { }
   AddEmployee = this.fb.group({
     name:['', Validators.required],
     countrycode:['', Validators.required],
@@ -52,9 +64,12 @@ export class EmployeesComponent {
     license_id:['',Validators.required],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   });
+
   ngOnInit(){
     this.allemploys();
     this.alllicenses();
+    this.allprojects()
+
   }
   get f(){
     return this.AddEmployee.controls
@@ -62,9 +77,9 @@ export class EmployeesComponent {
   get u(){
     return this.UpdateEmployee.controls
   }
-
+  //all
   // all license
- 
+
   alllicenses(){
     this.client_id = sessionStorage.getItem('client_id');
     this.adminservice.ClientLicenselist(this.client_id).subscribe((res)=>{
@@ -95,6 +110,27 @@ export class EmployeesComponent {
       this.spinner.hide();
     })
   }
+//ALL PROJECT OF THIS CLIENT
+  allprojects(){
+    this.client_id = sessionStorage.getItem('client_id');
+    this.spinner.show();
+    this.adminservice.Projectslist(this.client_id).subscribe((res)=>{
+      if(res){
+        console.log(res);
+        this.ClientProject = res;
+        // this.totalRecords = res.length
+        this.spinner.hide();
+      }
+      else{
+        console.warn(res);
+      }
+    },(error)=>{
+      console.error(error);
+      this.spinner.hide();
+    })
+  }
+
+
 
   view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
     this.emid = employe_id,
@@ -172,7 +208,7 @@ export class EmployeesComponent {
           mint.toaster.error(error.error.message);
         }
         else{
-          mint.toaster.error('Somthing went to wrong');  
+          mint.toaster.error('Somthing went to wrong');
         }
         $('#UpdateEmployee').hide();
       });
@@ -181,22 +217,88 @@ export class EmployeesComponent {
 
 // delete
 
-delete(employee_id:any){
-  this.employe_id = employee_id
+  delete(employee_id:any){
+    this.employe_id = employee_id
+  }
+
+  Delete(){
+    const mint = this
+    this.adminservice.DeleteEmploye(this.employe_id).subscribe((res)=>{
+      console.log(res);
+      mint.toaster.success('Successfully Employe Deleted!');
+      $('#DeleteEmployee').hide();
+      this.allemploys();
+    },(error)=>{
+      console.error(error);
+      mint.toaster.error('Somthing went wrong');
+      $('#DeleteEmployee').hide();
+    })
+  }
+
+
+AssingProject(data:any){
+  this.employe_id=data
+
+  for (let emp of this.employelist){
+    if (emp["employeeId"]===data)
+      {
+
+        console.log(emp["assigned_project"])
+        for (let project of emp["assigned_project"]){
+          this.taken_project.add(project)
+        }
+
+        // break
+      }
+
+
+  }
+
+}
+AddProject(event:any){
+    console.log(event.target.value)
+    console.log("============")
+    console.log(this.taken_project)
+
+  if (this.Project.has(event.target.value))
+    {
+      this.Project.delete(event.target.value)
+      console.log(this.Project)
+      console.log(Array.from( this.Project).join(","))
+      console.log()
+    }
+  else
+    {
+      this.Project.add(event.target.value)
+      console.log(this.Project)
+      console.log(Array.from( this.Project ).join(","))
+    }
+
+
 }
 
-Delete(){
-  const mint = this
-  this.adminservice.DeleteEmploye(this.employe_id).subscribe((res)=>{
-    console.log(res);
-    mint.toaster.success('Successfully Employe Deleted!');
-    $('#DeleteEmployee').hide();
-    this.allemploys();
-  },(error)=>{
-    console.error(error);
-    mint.toaster.error('Somthing went wrong');
-    $('#DeleteEmployee').hide();
-  })
+
+EmployeeAssingOnProject(){
+  this.client_id = sessionStorage.getItem('client_id');
+  console.log(this.client_id)
+  console.log(this.employe_id)
+  console.log(Array.from( this.Project).join(","))
+  const formData=new FormData();
+  this.adminservice.Assigneed_Project_Employee(formData,this.client_id,
+                                                this.employe_id,Array.from( this.Project).join(",")
+
+                                              ).subscribe((res)=>{
+                                                console.log(res)
+                                                this.toaster.success(this.employe_id,res.message)
+                                                this.allemploys();
+                                              },
+                                              (errors)=>{
+                                                console.log(errors)
+                                              }
+
+                                              )
+
+
 }
 
 }
