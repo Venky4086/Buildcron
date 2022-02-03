@@ -456,11 +456,17 @@
       <div class="modal-body">
 
 
-          <div class="row">
-            <label for="project" class="form-label">Quality Checklist Quesitions</label><br/>
+
+        <label for="project" class="form-label">Quality Checklist Quesitions</label><br/>
+
+        <div *ngFor="let que of questionlist">
+          <li>
+            <ol><h6> {{que.name}}</h6></ol>
+          </li>
 
 
-          </div>
+        </div>
+
 
 
 

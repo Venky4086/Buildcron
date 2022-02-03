@@ -166,6 +166,10 @@ export class AdminService {
       .pipe(shareReplay(1));
   }
 
+
+  ShowQualityQuestionInspection(client:any,id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/quality/checklist/question?client_id='+client+"&checklistid="+id)
+  }
   AddQualityQuestionInspection(data: any): Observable<any> {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/quality/checklist/question', data)
   }
@@ -227,7 +231,9 @@ export class AdminService {
     return this.http.post<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist/question', data)
   }
 
-
+  ShowSaftyQuestionInspection(client:any,id:any): Observable<any> {
+    return this.http.get<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist/question?client_id='+client+"&checklistid="+id)
+  }
 
 // testdata
 

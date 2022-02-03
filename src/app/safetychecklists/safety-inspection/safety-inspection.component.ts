@@ -45,6 +45,7 @@ export class SafetyInspectionComponent {
   Project =new Set();
   saftychecklistquestion=new Set();
   selected_safty_checklist:any;
+  questionlist:any[]=[];
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -288,6 +289,13 @@ export class SafetyInspectionComponent {
 
   ShowSaftyQuestion(id:any){
     console.log(id)
+      this.client_id = sessionStorage.getItem('client_id');
+      this.adminservice.ShowSaftyQuestionInspection(this.client_id,id).subscribe(
+        res=>{
+          console.log(res)
+          this.questionlist=res
+        }
+      )
   }
 
 
