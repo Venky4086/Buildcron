@@ -39,6 +39,12 @@ export class QualityInspectionComponent {
   quality_checklist=new Set();
   previewquestionlist:any[]=[];
   qualityID:any;
+
+  //
+  qualitychecklistCode:any;
+  Project =new Set()
+  qualityquestion =new Set()
+  qualitychecklistid:any;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -56,11 +62,16 @@ export class QualityInspectionComponent {
     // id:['', Validators.required],
     // uploaded: ['', Validators.required],
     project_assigned: ['', Validators.required],
+
+
   });
+
+
   ngOnInit(): void {
     this.QualityInspectionlist();
     //this.allprojects();
     this.alllibrarylist();
+    this.allprojects();
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -107,6 +118,8 @@ export class QualityInspectionComponent {
       if(res){
         console.log(res);
         this.projectlist = res;
+        console.log("===============================")
+        console.log(res)
         // this.spinner.hide();
       }
       else{
@@ -148,6 +161,7 @@ export class QualityInspectionComponent {
     this.spinner.show();
     this.adminservice.QualityInspectionlist(sessionStorage.getItem('client_id')).subscribe((res) => {
       if (res) {
+
         console.log(res);
         this.Qualitylist = res;
         this.totalRecords = res.length;
@@ -238,30 +252,33 @@ export class QualityInspectionComponent {
 
   }
 
-  //checklist Add
-  Addchecklist(data:any){
-  if(this.quality_checklist.has(data)){
-    this.quality_checklist.delete(data)
-    console.log(this.quality_checklist)
-    console.log(Array.from( this.quality_checklist).join(","))
+  //NEW CHECKLIST ADD
+  AddQualitychecklist(event:any){
+  if(event.target.checked){
+    this.quality_checklist.add(event.target.value)
+    console.log(Array.from(this.quality_checklist).join(","))
     }
   else
   {
-    this.quality_checklist.add(data)
-    console.log(this.quality_checklist)
+    this.quality_checklist.delete(event.target.value)
+    console.log(Array.from( this.quality_checklist).join(","))
 
   }
 
   }
 
-  previewquestion(data:any){
+  previewquestion(data:any,item:any){
+
+    this.qualitychecklistid=item
+
+    console.log(this.qualitychecklistid)
     this.adminservice.libraryquestionlist(data).subscribe(
       (resp)=>{
         if (resp){
-          console.log("=====")
+          console.log("previews question")
           console.log(resp)
           this.previewquestionlist=resp
-          this.toaster.success("")
+
         }
         else{
           this.toaster.error("somthing missing!")
@@ -270,10 +287,78 @@ export class QualityInspectionComponent {
     )
   }
 
+  selectqualityquestion(event:any)
 
+  {
+    console.log(this.qualitychecklistid)
+    if(event.target.checked)
+      {
+        this.qualityquestion.add(event.target.value)
+        console.log(Array.from(this.qualityquestion).join(","))
+      }
+    else
+    {
+      this.qualityquestion.delete(event.target.value)
+      console.log(Array.from( this.qualityquestion).join(","))
 
+    }
 
+  }
 
+  AddQualityChecklistQuetion()
+    {
+      var flag:any;
+
+      if( this.Qualitylist.length>0)
+        {
+          console.log(this.qualitychecklistid)
+          for(let item of this.Qualitylist)
+
+            {
+
+                console.log(item.qualityid)
+                if (item.qualityid===this.qualitychecklistid)
+                  {
+
+                    this.client_id = sessionStorage.getItem('client_id');
+
+                    const formData=new FormData();
+                    formData.append("client_id",this.client_id);
+                    formData.append("qualityquestion",Array.from(this.qualityquestion).join(","))
+                    formData.append("qualitychecklist",this.qualitychecklistid)
+                    this.adminservice.AddQualityQuestionInspection(formData).subscribe(
+                    (res)=>{
+
+                      this.toaster.success(res.message)
+                    },
+                    (error)=>{
+
+                      this.toaster.error(error.message)
+
+                    }
+                    )
+                    flag=false
+                    break
+                  }
+                else
+                  {
+                    flag=true
+                  }
+
+            }
+
+          if(flag)
+            {
+              alert("your have to add quality checklist first")
+            }
+        }
+
+    }
+
+  ShowQualityQuestion(id:any)
+    {
+      console.log(id)
+    }
   // Delete
 
 delete(qualityid:any){
@@ -333,4 +418,68 @@ checklistview(checklist_id:any){
 closechecklist(){
   $('#ChecklistView').modal('hide');
 }
+
+//ASSING PROJECT PART
+AssingProject(data:any){
+  this.qualitychecklistCode=data
+  console.log(this.qualitychecklistCode)
+
+
+
+}
+
+  AddProject(event:any){
+
+    if (event.target.checked)
+      {
+        this.Project.add(event.target.value)
+
+        console.log(this.Project)
+        // console.log(Array.from( this.Project).join(","))
+
+      }
+    else
+      {
+        this.Project.delete(event.target.value)
+        console.log(this.Project)
+        // console.log(Array.from( this.Project ).join(","))
+      }
+
+}
+
+
+qualitycheckAddOnProject()
+{
+  this.client_id = sessionStorage.getItem('client_id');
+  console.log(this.client_id)
+  console.log(this.qualitychecklistCode)
+  console.log(Array.from( this.Project).join(","))
+  const formData=new FormData();
+  this.adminservice.AddQualityInspectionlist(formData,this.client_id,
+                                                this.qualitychecklistCode,Array.from( this.Project).join(",")
+
+                                              ).subscribe((res)=>{
+                                                if (res.status)
+                                                {
+                                                  console.log(res)
+                                                  this.toaster.success(this.qualitychecklistCode,res.message)
+                                                  this.QualityInspectionlist();
+                                                  this.alllibrarylist();
+
+                                                }
+                                                else{
+                                                  console.log(res)
+                                                  this.toaster.error(this.qualitychecklistCode,res.message)
+                                                  this.QualityInspectionlist();
+                                                  this.alllibrarylist();
+
+                                                }
+
+                                              },
+
+
+                                              )
+}
   }
+
+

@@ -86,11 +86,11 @@
                           </td>
                           <td>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#View"
-                              (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">
+                              (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license,emp.assigned_project)">
                               <i class='fa fa-eye mr-1'></i>
                             </a>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateEmployee"
-                              (click)="edit(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license)">
+                              (click)="edit(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license,emp.assigned_project)">
                               <i class="fa fa-edit mr-1"></i>
                             </a>
 
@@ -99,7 +99,7 @@
                               <i class="bi bi-badge-ad"></i>
                             </a>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee"
-                              (click)="delete(emp.user.id)">
+                              (click)="delete(emp.id)">
                               <i class="fa fa-trash mr-1"></i>
                             </a>
                           </td>
@@ -182,6 +182,10 @@
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Assigned License:</label>
               <p class="font-weight-bold">{{assigned_license}}</p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <label for="dateOfBirth">Assigned Project:</label>
+              <p class="font-weight-bold" *ngFor="let project of assignproject">{{project}}</p>
             </div>
           </div>
         </form>
@@ -398,7 +402,7 @@
       <div class="modal-header bg-blu">
         <h4 class="modal-title mb-0" id="modal-basic-title">Assign Project</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  (click)="reset()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
 
@@ -408,13 +412,23 @@
 
           <div class="row">
             <label for="project" class="form-label">Projects</label><br/>
-            <div class="form-group col-md-6 mb-3" *ngFor="let project of ClientProject">
-
-                <input type="checkbox" (click)="AddProject($event)" value="{{project.projectId}}"/>{{project.projectId}}
 
 
 
-            </div>
+            <div class="form-group col-md-6 mb-3" *ngFor="let project of ClientProject" >
+
+              <div *ngIf="taken_project.has(project.projectId);else elseBlock">
+
+                <input type="checkbox" checked (click)="AddProject($event)" value="{{project.projectId}}"/>{{project.projectId}}
+              </div>
+              <ng-template #elseBlock>
+                <input type="checkbox" (click)="AddProject($event)"   value="{{project.projectId}}"/>{{project.projectId}}
+              </ng-template>
+
+
+          </div>
+
+
 
           </div>
 

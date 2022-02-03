@@ -76,8 +76,8 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  DeleteEmploye(id: any): Observable<any> {
-    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/assign?employe_id='+ id,)
+  DeleteEmploye(clientid:any,id: any): Observable<any> {
+    return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/assign?client_id='+clientid+'&employee_id='+ id)
       .pipe(shareReplay(1));
   }
   UpdateEmploye(employe_id: any, data: any): Observable<any> {
@@ -165,6 +165,11 @@ export class AdminService {
     return this.http.get<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id)
       .pipe(shareReplay(1));
   }
+
+  AddQualityQuestionInspection(data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/quality/checklist/question', data)
+  }
+
   DeleteQualityInspection(client_id:any,quality:any): Observable<any> {
     return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id+"&qualitychecklist="+quality)
       .pipe(shareReplay(1));
@@ -173,6 +178,12 @@ export class AdminService {
     return this.http.post<any>(GlobalData.url_buildcron + 'quality/checklist/assign/project/' + id, data, this.options)
       .pipe(shareReplay(1));
   }
+  //ADD QUALITY CHECKLIST IN PROJECT
+  AddQualityInspectionlist(data:any,client_id:any,qualityid:any,project:any): Observable<any> {
+    return this.http.patch<any>(GlobalData.url_account + 'license/holder/license/quality/checklist?client_id='+client_id+"&clientqualitycheklist_id="+qualityid+"&project_id="+project,data)
+      .pipe(shareReplay(1));
+  }
+
 
   // Quality Safety Inspection
 
@@ -196,6 +207,11 @@ export class AdminService {
       .pipe(shareReplay(1));
   }
 
+  //ADD SAFTY CHECKLIST IN PROJECT
+  AddSaftyInspectionlist(data:any,client_id:any,qualityid:any,project:any): Observable<any> {
+    return this.http.patch<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist?client_id='+client_id+"&clientsaftycheklist_id="+qualityid+"&project_id="+project,data)
+      .pipe(shareReplay(1));
+  }
   DeleteSafetyInspection(client_id:any,id:any): Observable<any> {
     return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist?client_id='+client_id +"&seftychecklist="+id,)
       .pipe(shareReplay(1));
@@ -205,6 +221,13 @@ export class AdminService {
     return this.http.put<any>(GlobalData.url_api + 'register/' + id, data, { 'headers': headers })
       .pipe(shareReplay(1));
   }
+  //ADD SAFTY QUESTION IN SAFTY CHECKLIST FOR CLIENT
+
+  AddSafetyQuestionInspection(data: any): Observable<any> {
+    return this.http.post<any>(GlobalData.url_account + 'license/holder/license/sefty/checklist/question', data)
+  }
+
+
 
 // testdata
 

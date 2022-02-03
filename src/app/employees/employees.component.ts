@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Session } from 'inspector';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -36,6 +37,7 @@ export class EmployeesComponent {
   selectedLicense:any;
   LicenseList:any;
   assigned_license: any;
+
   update_name: any;
   update_email: any;
   update_mobile: any;
@@ -43,6 +45,7 @@ export class EmployeesComponent {
   taken_project= new Set();
   ClientProject:any[]=[];
   Project =new Set();
+  assignproject = new Set<string>() ;
   constructor(private adminservice:AdminService,
               private modalService: NgbModal,
               private fb:FormBuilder,
@@ -132,12 +135,13 @@ export class EmployeesComponent {
 
 
 
-  view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
+  view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any,assigned_project:any){
     this.emid = employe_id,
     this.name = name,
     this.email = email,
     this.mobile = mobile,
     this.assigned_license = assigned_license
+
   }
 
   // Add
@@ -176,27 +180,30 @@ export class EmployeesComponent {
 
   // update
 
-  edit(employe_id:any,name:any,email:any,mobile:any,assigned_license:any){
+  edit(employe_id:any,name:any,email:any,mobile:any,assigned_license:any,assigned_project:any){
     this.employe_id = employe_id,
     this.update_name = name,
     this.update_email = email,
     this.update_mobile = mobile,
     this.assigned_license = assigned_license
+
   }
 
   Update(){
     const mint = this
-    this.updatesubmitted = true;
-    if(this.UpdateEmployee.invalid){
-     console.log('invalid');
-      return
-    }
-    else{
+    // this.updatesubmitted = true;
+    // if(this.UpdateEmployee.invalid){
+    //  console.log('invalid');
+    //   return
+    // }
+    // else{
       const data = {
         "employee_name": this.UpdateEmployee.value.name,
         "email": this.UpdateEmployee.value.email,
         "phone_number": this.UpdateEmployee.value.mobile,
       }
+      console.log("====")
+      console.log(data)
       this.adminservice.UpdateEmploye(this.employe_id,data).subscribe((res)=>{
         console.log(res)
         mint.toaster.success('Successfully Employe Updated!');
@@ -212,18 +219,20 @@ export class EmployeesComponent {
         }
         $('#UpdateEmployee').hide();
       });
-    }
+    // }
   }
 
 // delete
 
   delete(employee_id:any){
     this.employe_id = employee_id
+    console.log(this.employe_id)
   }
 
   Delete(){
     const mint = this
-    this.adminservice.DeleteEmploye(this.employe_id).subscribe((res)=>{
+    this.client_id = sessionStorage.getItem('client_id');
+    this.adminservice.DeleteEmploye(this.client_id,this.employe_id).subscribe((res)=>{
       console.log(res);
       mint.toaster.success('Successfully Employe Deleted!');
       $('#DeleteEmployee').hide();
@@ -246,6 +255,8 @@ AssingProject(data:any){
         console.log(emp["assigned_project"])
         for (let project of emp["assigned_project"]){
           this.taken_project.add(project)
+          this.assignproject.add(project)
+
         }
 
         // break
@@ -256,24 +267,18 @@ AssingProject(data:any){
 
 }
 AddProject(event:any){
-    console.log(event.target.value)
-    console.log("============")
-    console.log(this.taken_project)
 
-  if (this.Project.has(event.target.value))
-    {
-      this.Project.delete(event.target.value)
-      console.log(this.Project)
-      console.log(Array.from( this.Project).join(","))
-      console.log()
-    }
-  else
-    {
-      this.Project.add(event.target.value)
-      console.log(this.Project)
-      console.log(Array.from( this.Project ).join(","))
-    }
+  if (event.target.checked){
 
+    this.taken_project.add(event.target.value)
+
+    console.log(Array.from( this.taken_project).join(","))
+  }
+  else{
+    this.taken_project.delete(event.target.value);
+
+    console.log(Array.from( this.taken_project).join(","))
+  }
 
 }
 
@@ -282,10 +287,10 @@ EmployeeAssingOnProject(){
   this.client_id = sessionStorage.getItem('client_id');
   console.log(this.client_id)
   console.log(this.employe_id)
-  console.log(Array.from( this.Project).join(","))
+  console.log(Array.from( this.taken_project).join(","))
   const formData=new FormData();
   this.adminservice.Assigneed_Project_Employee(formData,this.client_id,
-                                                this.employe_id,Array.from( this.Project).join(",")
+                                                this.employe_id,Array.from( this.taken_project).join(",")
 
                                               ).subscribe((res)=>{
                                                 console.log(res)
@@ -298,6 +303,11 @@ EmployeeAssingOnProject(){
 
                                               )
 
+
+}
+
+
+reset(){
 
 }
 

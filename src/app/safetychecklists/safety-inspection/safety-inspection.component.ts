@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AdminService } from 'src/app/services/admin.service';
 import { SuperadminService } from 'src/app/services/superadmin.service';
 import { from } from 'rxjs';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
+import { ConditionalExpr } from '@angular/compiler';
 declare var $:any;
 @Component({
   selector: 'app-safety-inspection',
@@ -38,6 +40,11 @@ export class SafetyInspectionComponent {
   sefty_check_list=new Set();
   previewquestionlist:any[]=[];
   saftyID:any;
+  //
+  saftychecklistid:any;
+  Project =new Set();
+  saftychecklistquestion=new Set();
+  selected_safty_checklist:any;
   constructor(private superadminserivce:SuperadminService,private adminservice: AdminService, private modalService: NgbModal, private fb: FormBuilder, private spinner: NgxSpinnerService, private toaster: ToastrService) { }
 
   AddQualityInspection = this.fb.group({
@@ -233,14 +240,15 @@ export class SafetyInspectionComponent {
 
   }
 
-  Addchecklist(data:any){
-    if (this.sefty_check_list.has(data)){
-      this.sefty_check_list.delete(data)
+  Addchecklist(event:any){
+    console.log(event)
+    if (event.target.checked){
+      this.sefty_check_list.add(event.target.value)
       console.log(this.sefty_check_list)
       console.log(Array.from (this.sefty_check_list).join(","))
     }
     else{
-      this.sefty_check_list.add(data)
+      this.sefty_check_list.delete(event.target.value)
       console.log(this.sefty_check_list)
       console.log(Array.from (this.sefty_check_list).join(","))
 
@@ -263,6 +271,82 @@ export class SafetyInspectionComponent {
             }
           )
   }
+
+  Select_checklist_saftyquestion(event:any,saftychecklistid:any){
+    //this is safty checklist question
+    this.selected_safty_checklist=saftychecklistid//this is geting safty checklistid
+    console.log(this.selected_safty_checklist)
+    if (event.target.checked){
+      this.saftychecklistquestion.add(event.target.value)
+      console.log(this.saftychecklistquestion)
+    }
+    else{
+      this.saftychecklistquestion.delete(event.target.value)
+      console.log(this.saftychecklistquestion)
+    }
+  }
+
+  ShowSaftyQuestion(id:any){
+    console.log(id)
+  }
+
+
+ //ADD QUESTION HERE
+ AddSaftyQuestion(){
+      var saftychecklistcode:any;
+      var flag:any;
+      if(this.Qualitylist.length>0)
+        {
+          for(let item of  this.librarylists)
+            {
+
+              if (item.id===this.selected_safty_checklist)
+              {
+                saftychecklistcode=item.saftychecklistid
+                break
+
+              }
+            }
+          for(let item of this.Qualitylist)
+            {
+              if(item.saftychecklistid===saftychecklistcode)
+              {   flag=false
+
+                  this.client_id = sessionStorage.getItem('client_id');
+
+                  const formData=new FormData();
+                  formData.append("client_id",this.client_id);
+                  formData.append("seftyquestion",Array.from(this.saftychecklistquestion).join(","))
+                  formData.append("seftychecklist",saftychecklistcode)
+                  this.adminservice.AddSafetyQuestionInspection(formData).subscribe(
+                   (res)=>{
+                     console.log(res)
+                      this.toaster.success(res.message)
+                   },
+                   (error)=>{
+                     console.log(error)
+                     this.toaster.error(error.message)
+
+                   }
+                  )
+                  break
+              }
+              else
+                  {
+                    flag=true
+                  }
+
+            }
+          if(flag)
+          {
+            alert("You have to add safty checklist before add safty question")
+          }
+
+        }
+ }
+
+
+
 
   // Delete
 
@@ -322,5 +406,62 @@ checklistview(checklist_id:any){
 closechecklist(){
   $('#ChecklistView').modal('hide');
 }
+
+
+AssingProject(saftyid:any){
+  this.saftychecklistid=saftyid
+  console.log(saftyid)
+}
+
+
+AddProject(event:any){
+
+  if (event.target.checked)
+    {
+      this.Project.add(event.target.value)
+      console.log(this.Project)
+    }
+  else
+    {
+      this.Project.delete(event.target.value)
+      console.log(this.Project)
+    }
+
+}
+
+
+saftycheckAddOnProject()
+  {
+    this.client_id = sessionStorage.getItem('client_id');
+    console.log(this.client_id)
+    console.log(this.saftychecklistid)
+    console.log(Array.from( this.Project).join(","))
+    const formData=new FormData();
+    this.adminservice.AddSaftyInspectionlist(formData,this.client_id,
+      this.saftychecklistid,Array.from( this.Project).join(",")
+
+                                                ).subscribe((res)=>{
+                                                  if (res.status)
+                                                  {
+                                                    console.log(res)
+                                                    this.toaster.success(this.saftychecklistid,res.message)
+                                                    this.QualityInspectionlist();
+                                                    this.alllibrarylist();
+
+                                                  }
+                                                  else{
+                                                    console.log(res)
+                                                    this.toaster.error(this.saftychecklistid,res.message)
+                                                    this.QualityInspectionlist();
+                                                    this.alllibrarylist();
+
+                                                  }
+
+                                                },
+
+
+                                                )
+
+  }
 
 }
