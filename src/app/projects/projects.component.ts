@@ -20,6 +20,7 @@ export class ProjectsComponent {
   project_id:any;
   projectlist:any;
   employelist: any;
+  employee_name:any;
   selectedItems:any[] = [];
   selectedmaterial:any[]=[];
   dropdownSettings:IDropdownSettings = {};
@@ -34,6 +35,8 @@ export class ProjectsComponent {
   projectname: any;
   location: any;
   approver: any;
+  Approverid:any;
+  approver_id:any;
   empseleted: any;
   first_name: any;
   email: any;
@@ -53,17 +56,9 @@ export class ProjectsComponent {
     // id:['', Validators.required],
     location:['', Validators.required],
     // type:['', Validators.required],
-    // approver:['', Validators.required]
+    status:['', Validators.required]
   })
-  UpdateProject = this.fb.group({
-    // date:['', Validators.required],
-    name:['', Validators.required],
-    // phase:['', Validators.required],
-    // id:['', Validators.required],
-    location:['', Validators.required],
-    // type:['', Validators.required],
-    // approver:['',]
-  })
+
   ngOnInit(){
     this.allprojects();
     this.allemploys();
@@ -91,9 +86,9 @@ export class ProjectsComponent {
   get f(){
     return this.AddProject.controls
   }
-  get u(){
-    return this.UpdateProject.controls
-  }
+  // get u(){
+  //   return this.UpdateProject.controls
+  // }
 
 // all empoyess
 
@@ -117,6 +112,21 @@ export class ProjectsComponent {
       // this.spinner.hide();
     })
   }
+
+  emaployee_name(event:any){
+    console.log("====")
+    console.log(event.target.value)
+    for (let emp of this.employelist){
+      if (emp.employeeId===event.target.value)
+      {
+        this.employee_name=emp.employee_name
+        break
+      }
+    }
+  }
+
+
+
 
   allmateriallist(){
     // this.spinner.show();
@@ -182,10 +192,11 @@ export class ProjectsComponent {
     })
   }
 
-  view(name:any,location:any,approver:any){
+  view(name:any,location:any,approver:any,approverid:any ){
     this.projectname = name,
     this.location = location,
-    this.Approver = approver
+    this.Approverid =approverid ,
+    this.Approver=approver
     // console.log(this.Approver);
   }
 
@@ -214,9 +225,9 @@ export class ProjectsComponent {
     const data = {
       "project_name": this.AddProject.value.name,
       "city": this.AddProject.value.location,
-      // "approver": this.Approver,
+      "project_status": this.AddProject.value.status,
       // "assigned_employee":this.EmployeeList,
-      // "assigned_material": this.MaterialList   
+      // "assigned_material": this.MaterialList
     }
       console.log(data);
       this.adminservice.AddProject(this.client_id,data).subscribe((res)=>{
@@ -241,61 +252,47 @@ export class ProjectsComponent {
     }
   }
 
-  edit(project_id:any,name:any,location:any,approver:any){
+  edit(project_id:any,name:any,location:any,approver:any,apid:any){
     this.project_id = project_id
     this.projectname = name,
-    this.location = location
-    // this.empseleted = empId;
+    this.location = location,
+    this.approver = approver,
+    this.approver_id=apid
+    console.log(this.approver_id)
+
     // console.log(this.empseleted)
   }
 
 //  Update
 
-  Update(approver:any){
-    console.log(approver);
-    const mint = this
-    this.updatesubmitted = true;
-    if(this.UpdateProject.invalid){
-      return
+  Update(){
+    const data = {
+      "project_name": this.projectname,
+      "city": this.location,
+      "approver":this.approver,
+      "approverid":this. approver_id,
+
+
     }
-    else{
-      let arr1:any[] = []
-    // console.log(this.selectedItems);
-    for(let i=0; i < this.selectedItems.length; i++) {
-      arr1.push(this.selectedItems[i].item_id);
-    }
-    this.EmployeeList = arr1;
-    let arr2:any[] = []
-    console.log(this.selectedmaterial);
-    for(let i=0; i < this.selectedmaterial.length; i++) {
-      arr2.push(this.selectedmaterial[i].item_id);
-    }
-    this.MaterialList = arr2;
-      const data = {
-        "name": this.UpdateProject.value.name,
-        "location": this.UpdateProject.value.location,
-        "approver": approver,
-        "employee":this.EmployeeList ,
-        "material":this.MaterialList      
-      }
       console.log(data);
-      this.adminservice.UpdateProject(this.project_id,data).subscribe((res)=>{
+      this.client_id = sessionStorage.getItem('client_id');
+      this.adminservice.UpdateProject(this.client_id,this.project_id,data).subscribe((res)=>{
         console.log(res);
-        mint.toaster.success('Sucessfully project updated!');
+        this.toaster.success('Sucessfully project updated!');
         this.allprojects();
         $('#UpdateProject').hide();
       },(error)=>{
         console.error(error);
-        mint.toaster.error('Somthing went wrong!');
+        this.toaster.error('Somthing went wrong!');
         $('#UpdateProject').hide();
       });
-    }
+
   }
- 
+
   // Delete
 
   delete(project_id:any){
-    this.project_id = project_id 
+    this.project_id = project_id
   }
 
   Delete(){

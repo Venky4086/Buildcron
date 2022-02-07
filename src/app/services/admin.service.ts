@@ -52,8 +52,8 @@ export class AdminService {
     return this.http.delete<any>(GlobalData.url_account + 'license/holder/license/project/create?project_id='+project_id+'&'+'client_id='+client_id)
       .pipe(shareReplay(1));
   }
-  UpdateProject(client_id: any, data: any): Observable<any> {
-    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/project/create?client_id='+client_id, data)
+  UpdateProject(client_id: any,project:any, data: any): Observable<any> {
+    return this.http.put<any>(GlobalData.url_account + 'license/holder/license/project/create?client_id='+client_id+"&project_id="+project, data)
       .pipe(shareReplay(1));
   }
 
