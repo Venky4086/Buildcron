@@ -60,6 +60,7 @@ export class EmployeesComponent {
     email:['',[Validators.required,Validators.email]],
     license_id:['',Validators.required],
     mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    status:['',Validators.required]
   });
   UpdateEmployee = this.fb.group({
     name:['', Validators.required],
@@ -158,7 +159,9 @@ export class EmployeesComponent {
       const data = {
           "email": this.AddEmployee.value.email,
           "employee_name": this.AddEmployee.value.name,
-          "phone_number": this.AddEmployee.value.countrycode+this.AddEmployee.value.mobile
+          // "phone_number": this.AddEmployee.value.countrycode+this.AddEmployee.value.mobile,
+          "phone_number": this.AddEmployee.value.mobile,
+          "employee_status":this.AddEmployee.value.status
         }
         console.log(data);
       this.adminservice.AddEmploye(data,this.client_id,this.license_id).subscribe((res)=>{

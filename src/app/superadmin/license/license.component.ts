@@ -39,16 +39,9 @@ export class LicenseComponent {
   totalRecords:any;
   page:any=1;
   count:any = 5;
-  constructor(private router:Router,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }  
+  constructor(private router:Router,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
     AddLicense = this.fb.group({
-      // id:['', Validators.required],
-      // client_id:['', Validators.required],
-      // user_name:['', Validators.required],
-      // start_date:['', Validators.required],
-      // mobile:['', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      // email:['', [Validators.required,Validators.email]],
-      // status:['', Validators.required],
-      // device_id:['', Validators.required],
+      
       user_info:['', Validators.required],
       start_date:['', Validators.required],
       end_date:['', Validators.required],
@@ -76,10 +69,10 @@ export class LicenseComponent {
       }
     get f(){
       return this.AddLicense.controls
-    }    
+    }
     get u(){
       return this.UpdateLicense.controls
-    }  
+    }
     open(content: any) {
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -158,11 +151,11 @@ export class LicenseComponent {
   console.log(startdate);
   this.date1 = new Date(startdate);
   }
-  
+
   enddate(enddate:any){
     console.log(enddate);
-    this.date2 = new Date(enddate); 
-    var Time = this.date2.getTime() - this.date1.getTime(); 
+    this.date2 = new Date(enddate);
+    var Time = this.date2.getTime() - this.date1.getTime();
     this.Days = Time / (1000 * 3600 * 24)+'days';
     console.log(this.Days);
     var months = (this.date2.getTime() - this.date1.getTime()) / 1000
@@ -172,7 +165,7 @@ export class LicenseComponent {
     console.log(this.Years)
   }
 
-// Add license data 
+// Add license data
 
   Add(){
     const mint = this;
@@ -259,7 +252,7 @@ export class LicenseComponent {
   }
 
   // delete license data
-  
+
   delete(id:any){
     this.license_id = id;
   }

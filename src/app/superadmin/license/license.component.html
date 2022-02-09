@@ -42,7 +42,7 @@
                                         <thead class="cls-cream">
                                             <tr role="row">
                                                 <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="2" 
+                                                    rowspan="2"
                                                     aria-label="Rendering engine: activate to sort column ascending">
                                                     S.No</th>
                                                 <th class="sorting sorting_desc" tabindex="0"
@@ -60,12 +60,12 @@
                                                     aria-label="CSS grade: activate to sort column ascending">Username
                                                 </th> -->
                                                 <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="2" 
+                                                    rowspan="2"
                                                     aria-label="CSS grade: activate to sort column ascending">
                                                     Start Date
                                                 </th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1"
-                                                rowspan="2" 
+                                                rowspan="2"
                                                 aria-label="CSS grade: activate to sort column ascending">
                                                 End Date
                                                 </th>
@@ -75,39 +75,10 @@
                                                 License Details
                                                 </th>
                                                 <th  colspan="2" class="sorting text-center" tabindex="0" aria-controls="example1"
-                                                
+
                                                 aria-label="CSS grade: activate to sort column ascending">
                                                 Total Licenses
                                                 </th>
-                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending">
-                                                    Mobile</th> -->
-                                                <!-- <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Email</th> -->
-<!-- 
-                                                    <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Device ID</th> -->
-
-                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Device Name</th> -->
-                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="2" 
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Status</th> -->
-                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending">
-                                                    Designation</th> -->
-
-                                                <!-- <th>Action
-                                                </th> -->
                                             </tr>
                                             <tr>
                                                 <th>Used License</th>
@@ -170,7 +141,7 @@
                                                     </a>
                                                 </td> -->
                                             </tr>
-                                        
+
                                         </tbody>
 
                                     </table>
@@ -225,14 +196,14 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">View Record</h4>
-      
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
-  
+
           <form>
               <div class="row">
                   <div class="form-group col-md-6 mb-3">
@@ -269,13 +240,13 @@
                 </div>
               </div>
           </form>
-    
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary bg2" data-dismiss="modal" aria-label="Close">OK</button>
         </div>
       </div>
-  
+
       </div>
 </div>
 
@@ -286,15 +257,15 @@
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Update License</h4>
-      
-           
+
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-      
+
         </div>
         <div class="modal-body">
-      
+
             <form [formGroup]="UpdateLicense">
                 <div class="row">
                     <!-- <div class="form-group col-md-6 mb-3">
@@ -304,7 +275,7 @@
                           <div *ngIf="f.id.errors.required" class="fs-13 fw-500">Id is required</div>
                         </div>
                     </div> -->
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Client ID:</label>
                         <input type="text" class="form-control" formControlName="client_id" [ngClass]="{ 'is-invalid': updatesubmitted && f.client_id.errors }"/>
@@ -312,7 +283,7 @@
                           <div *ngIf="u.client_id.errors.required" class="fs-13 fw-500">Client ID is required</div>
                         </div>
                     </div> -->
-<!--       
+<!--
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">User Name:</label>
                         <input type="text" class="form-control" formControlName="user_name" [ngClass]="{ 'is-invalid': updatesubmitted && u.user_name.errors }" [(ngModel)]="user_name"/>
@@ -331,12 +302,12 @@
                             <div *ngIf="u.user_info.errors.required" class="fs-13 fw-500">User filed is required</div>
                         </div>
                     </div>
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">ID:</label>
                         <input type="text" class="form-control" />
                     </div> -->
-      
+
                     <div class="form-group col-md-6 mb-3">
                         <label for="dateOfBirth">Start date:</label>
                         <input type="date" class="form-control" formControlName="start_date" [ngClass]="{ 'is-invalid': updatesubmitted && u.start_date.errors }" [(ngModel)]="start_date"/>
@@ -352,7 +323,7 @@
                           <div *ngIf="u.end_date.errors.required" class="fs-13 fw-500">End Date is required</div>
                         </div>
                     </div>
-      
+
                     <!-- <div class="form-group col-md-6 mb-3">
                       <label for="dateOfBirth">Mobile No:</label>
                       <input type="text" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': updatesubmitted && u.mobile.errors }" [(ngModel)]="user_phone"/>
@@ -361,7 +332,7 @@
                           <div *ngIf="u.mobile.errors.pattern" class="fs-13 fw-500">Mobile Number must be at 10 digits required</div>
                       </div>
                    </div>
-      
+
                   <div class="form-group col-md-6 mb-3">
                     <label for="dateOfBirth">Email:</label>
                     <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': updatesubmitted && u.email.errors }" [(ngModel)]="user_email"/>
@@ -370,8 +341,8 @@
                       <div *ngIf="u.email.errors.email" class="fs-13 fw-500">Please provide a valid email address</div>
                     </div>
                   </div> -->
-      
-      
+
+
                 <div class="form-group col-md-6 mb-3">
                   <label for="dateOfBirth">Status:</label>
                   <input type="text" class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': updatesubmitted && u.status.errors }" [(ngModel)]="status"/>
@@ -379,7 +350,7 @@
                       <div *ngIf="u.status.errors.required" class="fs-13 fw-500">Status is required</div>
                   </div>
                 </div>
-      
+
               <!-- <div class="form-group col-md-6 mb-3">
                 <label for="dateOfBirth">Device ID:</label>
                 <input type="text" class="form-control" formControlName="device_id" [ngClass]="{ 'is-invalid': updatesubmitted && u.device_id.errors }" [(ngModel)]="device_id"/>
@@ -387,7 +358,7 @@
                   <div *ngIf="u.device_id.errors.required" class="fs-13 fw-500">Device Id is required</div>
                 </div>
               </div> -->
-      
+
             <div class="form-group col-md-6 mb-3">
               <label for="dateOfBirth">Device Name:</label>
               <input type="text" class="form-control" formControlName="device_name" [ngClass]="{ 'is-invalid': updatesubmitted && u.device_name.errors }" [(ngModel)]="device_name"/>
@@ -395,7 +366,7 @@
                   <div *ngIf="u.device_name.errors.required" class="fs-13 fw-500">Device Name is required</div>
               </div>
             </div>
-      
+
           <div class="form-group col-md-6 mb-3">
             <label for="dateOfBirth">Designation:</label>
             <input type="text" class="form-control" formControlName="designation" [ngClass]="{ 'is-invalid': updatesubmitted && u.designation.errors }" [(ngModel)]="users_designation"/>
@@ -403,11 +374,11 @@
               <div *ngIf="u.designation.errors.required" class="fs-13 fw-500">Designation is required</div>
             </div>
           </div>
-      
-      
+
+
                 </div>
             </form>
-      
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary bg2" (click)="Update()">Update</button>

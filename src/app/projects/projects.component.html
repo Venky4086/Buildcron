@@ -14,7 +14,7 @@
                                 + Add Project</button>
                         </div>
 
-                        <!-- 
+                        <!--
                         <div class="bulk_btn">
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
@@ -64,23 +64,23 @@
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         Project Id</th>
-                                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1"
+                                                   <th class="sorting" tabindex="0" aria-controls="example1"
                                                         rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
-                                                        Employees Details</th>
-                                                    <th ngbDropdown class="sorting" tabindex="0"
+                                                        Status</th>
+                                                     <!-- <th ngbDropdown class="sorting" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         Material Details
 
-                                                    </th>
+                                                    </th>-->
                                                     <th ngbDropdown class="sorting" tabindex="0"
                                                         aria-controls="example1" rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">
                                                         Approver
 
 
-                                                    </th> -->
+                                                    </th>
 
                                                     <th rowspan="1" colspan="1">Action
                                                     </th>
@@ -102,36 +102,24 @@
                                                     <td>{{project.project_name}}</td>
                                                     <td>{{project.city}}</td>
                                                     <td>{{project.projectId}}</td>
-                                                    <!-- <td>
-                                                        <ul>
-                                                            <li *ngFor="let employee of project.employeeId">
-                                                                <a class="cursor_pointer text-decoration-none"
-                                                                    (click)="employedetails(employee.user.id)">
-                                                                    {{employee}}
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td>
-                                                        <ul>
-                                                            <li *ngFor="let material of project.materialId">
-                                                                <a class="cursor_pointer text-decoration-none"
-                                                                    (click)="materialdetails(material.id)">
-                                                                    {{material}}
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td>{{project.approver}}</td> -->
+                                                    <td *ngIf="project.project_status===true,else elseProject">Active</td>
+                                                    <ng-template #elseProject>
+                                                      InActive
+                                                    </ng-template>
+                                                    <td *ngIf="project.approverid===null;else elseBlock">Pending...</td>
+                                                    <ng-template #elseBlock>
+                                                      <td>{{project.approverid}}</td>
+                                                    </ng-template>
+
                                                     <td>
                                                         <a class="cursor_pointer" data-toggle="modal"
                                                             data-target="#View"
-                                                            (click)="view(project.project_name,project.city,project.approver)">
+                                                            (click)="view(project.project_name,project.city,project.approver,project.approverid)">
                                                             <i class='fa fa-eye mr-1'></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal"
                                                             data-target="#UpdateProject"
-                                                            (click)="edit(project.projectId,project.project_name,project.city,project.approver)">
+                                                            (click)="edit(project.projectId,project.project_name,project.city,project.approver,project.approverid)">
                                                             <i class="fa fa-edit mr-1"></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal"
@@ -210,6 +198,10 @@
                             <label for="dateOfBirth">Approver:</label>
                             <p class="font-weight-bold">{{Approver}}</p>
                         </div>
+                        <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Approver id:</label>
+                          <p class="font-weight-bold">{{Approverid}}</p>
+                      </div>
                     </div>
                 </form>
 
@@ -310,15 +302,7 @@
 
                 <form [formGroup]="AddProject">
                     <div class="row">
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':submitted && f.date.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.date.errors.required">
-                                Date is required
-                            </div>
-                        </div>
-                    </div> -->
+
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Name:</label>
@@ -331,25 +315,7 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Phase:</label>
-                        <input type="text" class="form-control" formControlName="phase" [ngClass]="{'is-invalid':submitted && f.phase.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.phase.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.phase.errors.required">
-                                Phase is required
-                            </div>
-                        </div>
-                    </div> -->
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':submitted && f.id.errors}"/>
-                        <div class="invalid-feedback" *ngIf="submitted && f.id.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.id.errors.required">
-                                Id is required
-                            </div>
-                        </div>
-                    </div> -->
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Location City:</label>
@@ -363,70 +329,16 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Type:</label>
-                        <select class="form-control" formControlName="type" [ngClass]="{'is-invalid':submitted && f.type.errors}">
-                            <option>Yes</option>
-                            <option>Nos</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="submitted && f.type.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.type.errors.required">
-                                Type is required
-                            </div>
-                        </div>
-                    </div> -->
+                        <div class="form-group col-md-6 mb-3">
+                          <label for="dateOfBirth">Project Status:</label>
+                          <select class="form-select"  formControlName="status">
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Approver:</label>
-                            <select class="form-select" [(ngModel)]="Approver" [ngModelOptions]="{standalone:true}">
-                                <option value="undefined" selected>-- select the approver --</option>
-                                <option value="{{emp.employee_name}}" *ngFor="let emp of employelist">
-                                    {{emp.employee_name}}</option>
-                            </select>
-                            <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div>
-                        </div> -->
+                              <option value="True" selected>Active</option>
+                              <option value="False">InActive</option>
+                          </select>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Assigned Employee:</label>
-                            <select class="form-select">
-                           <option value="" selected>-- select the employe --</option>
-                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
-                        </select>
-                            <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div>
+                      </div>
 
-                            <ng-multiselect-dropdown [placeholder]="'Assigned employee'" [settings]="dropdownSettings"
-                                [data]="dropdownList" [(ngModel)]="selectedItems" [ngModelOptions]="{standalone:true}">
-                            </ng-multiselect-dropdown>
-
-                        </div> -->
-
-
-                        <!-- <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Assigned Materials:</label>
-                            <select class="form-select">
-                           <option value="" selected>-- select the employe --</option>
-                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
-                        </select>
-                            <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div>
-
-                            <ng-multiselect-dropdown [placeholder]="'Assigned Materials'"
-                                [settings]="MaterialdropdownSettings" [data]="Material_List"
-                                [(ngModel)]="selectedmaterial" [ngModelOptions]="{standalone:true}">
-                            </ng-multiselect-dropdown>
-
-                        </div> -->
 
 
                     </div>
@@ -455,129 +367,54 @@
             </div>
             <div class="modal-body">
 
-                <form [formGroup]="UpdateProject">
+                <form>
                     <div class="row">
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Date:</label>
-                        <input type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid':updatesubmitted && u.date.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.date.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.date.errors.required">
-                                Date is required
-                            </div>
-                        </div>
-                    </div> -->
+
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Name:</label>
-                            <input type="text" class="form-control" [(ngModel)]="projectname" formControlName="name"
-                                [ngClass]="{'is-invalid':updatesubmitted && u.name.errors}" />
-                            <div class="invalid-feedback" *ngIf="updatesubmitted && u.name.errors">
-                                <div class="fs-13 fw-500" *ngIf="u.name.errors.required">
-                                    Name is required
-                                </div>
-                            </div>
+                            <input type="text" class="form-control" name="projectname" [(ngModel)]="projectname"
+                                 />
+
                         </div>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Phase:</label>
-                        <input type="text" class="form-control" formControlName="phase" [ngClass]="{'is-invalid':updatesubmitted && u.phase.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.phase.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.phase.errors.required">
-                                Phase is required
-                            </div>
-                        </div>
-                    </div> -->
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">ID:</label>
-                        <input type="text" class="form-control" formControlName="id" [ngClass]="{'is-invalid':updatesubmitted && u.id.errors}"/>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.id.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.id.errors.required">
-                                Id is required
-                            </div>
-                        </div>
-                    </div> -->
+
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Location:</label>
-                            <input type="text" class="form-control" formControlName="location" [(ngModel)]="location"
-                                [ngClass]="{'is-invalid':updatesubmitted && u.location.errors}" />
-                            <div class="invalid-feedback" *ngIf="updatesubmitted && u.location.errors">
-                                <div class="fs-13 fw-500" *ngIf="u.location.errors.required">
-                                    Location is required
-                                </div>
-                            </div>
+                            <input type="text" class="form-control" name="location"  [(ngModel)]="location"
+                              />
+
                         </div>
 
-                        <!-- <div class="form-group col-md-6 mb-3">
-                        <label for="dateOfBirth">Type:</label>
-                        <select class="form-control" formControlName="type" [ngClass]="{'is-invalid':updatesubmitted && u.type.errors}">
-                            <option>Yes</option>
-                            <option>Nos</option>
-                        </select>
-                        <div class="invalid-feedback" *ngIf="updatesubmitted && u.type.errors">
-                            <div class="fs-13 fw-500" *ngIf="u.type.errors.required">
-                                Type is required
-                            </div>
-                        </div>
-                    </div> -->
+
                         <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Approver:</label>
-                            <select class="form-select" #approver>
-                                <!-- <option value="undefined" selected>-- select the Approver --</option> -->
-                                <option [value]="emp.id" *ngFor="let emp of employelist"
-                                    [selected]="emp.employeeId == empseleted">{{emp.employeeId}}</option>
+                            <label for="dateOfBirth">Approver id:</label>
+                            <select class="form-select" name="approver_id" (change)="emaployee_name($event)"  [(ngModel)]='approver_id' >
+
+                                <option  *ngFor="let emp of employelist"
+                                    value='{{emp.employeeId}}'>{{emp.employeeId}} / {{emp.employee_name}}</option>
                             </select>
-                            <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div> -->
+
                         </div>
+
 
                         <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Assigned Employee:</label>
-                            <!-- <select class="form-select">
-                           <option value="" selected>-- select the employe --</option>
-                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
-                        </select> -->
-                            <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div> -->
+                          <label for="dateOfBirth">Approver Name:</label>
+                          <input type="text" class="form-control" name="approver" [(ngModel)]="employee_name"
+                           readonly    />
 
-                            <ng-multiselect-dropdown [placeholder]="'Assigned employee'" [settings]="dropdownSettings"
-                                [data]="dropdownList" [(ngModel)]="selectedItems" [ngModelOptions]="{standalone:true}">
-                            </ng-multiselect-dropdown>
+                      </div>
 
                         </div>
 
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Assigned Materials:</label>
-                            <!-- <select class="form-select">
-                           <option value="" selected>-- select the employe --</option>
-                           <option value="" *ngFor="let emp of employelist">{{emp.user.first_name}}</option>
-                        </select> -->
-                            <!-- <div class="invalid-feedback" *ngIf="submitted && f.approver.errors">
-                            <div class="fs-13 fw-500" *ngIf="f.approver.errors.required">
-                                Project Address is required
-                            </div>
-                        </div> -->
 
-                            <ng-multiselect-dropdown [placeholder]="'Assigned Materials'"
-                                [settings]="MaterialdropdownSettings" [data]="Material_List"
-                                [(ngModel)]="selectedmaterial" [ngModelOptions]="{standalone:true}">
-                            </ng-multiselect-dropdown>
-
-                        </div>
-
-                    </div>
                 </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="Update(approver.value)">Update</button>
+                <button type="button" class="btn btn-primary" (click)="Update()">Update</button>
             </div>
         </div>
     </div>
