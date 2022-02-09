@@ -8,14 +8,19 @@
 </head>
 <!--Coded with love by Mutiullah Samim-->
 <body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
+	<div class="container">
+		<div class="login-logo my-5">
+			<a class="d-flex align-items-center">
+				<img src="assets/img/logo.png" alt="" class="img-fluid">
+			</a>
+		</div>
+		<div class="d-flex justify-content-center">
 			<div class="user_card">
 
 
 				<div class="d-flex justify-content-center form_container">
 					<form [formGroup]="Login">
-						<div class="input-group mb-3">
+						<div class="input-group">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
@@ -24,7 +29,7 @@
                                 <div *ngIf="f.email.errors.required">Email is required</div>
                             </div>
 						</div>
-						<div class="input-group mb-2">
+						<div class="input-group my-4">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
@@ -47,15 +52,17 @@
 							</div>
 						   </div>
 
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
-							</div>
-						</div>
-					<div class="d-flex justify-content-center mt-3 login_container">
+					<div class="d-flex justify-content-center my-3 login_container">
 				 	<button type="button" name="button" class="btn login_btn" (click)="Submit()">Login</button>
 				   </div>
+				   <div class="form-group text-center fs-15">
+					<!-- <div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="customControlInline">
+						<label class="custom-control-label" for="customControlInline">Remember me</label>
+					</div> -->
+					<span>Forget your</span><a href="" class="text-decoration-none mr-1 ml-1"><span>username</span></a> <span class="mr-1 ml-1">or</span>
+					<a href="" class="text-decoration-none"><span>password</span></a><span class="ml-1">?</span>
+				</div>
 					</form>
 				</div>
 
