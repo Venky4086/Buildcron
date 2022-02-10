@@ -4,7 +4,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        /* background: #010066 !important; */
+        background: #010066 !important;
         overflow: hidden;
     }
     .user_card {
@@ -12,7 +12,7 @@
         width: 350px;
         margin-top: auto;
         margin-bottom: auto;
-        background: #ccc;
+        background: #fff;
         position: relative;
         display: flex;
         justify-content: center;
@@ -87,6 +87,7 @@
 
 input::placeholder{
     color:#ccc!important;
+    font-size: 13px !important;
 }
 .login-logo{
     width: 200px;
