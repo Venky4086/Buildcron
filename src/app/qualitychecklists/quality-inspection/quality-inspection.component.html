@@ -151,7 +151,7 @@
                                                         {{Quality.qualityid}}
                                                     </td>
                                                     <td>
-                                                    <select class="form-control" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
+                                                    <select class="form-control assigned_project" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
                                                       <option  *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
 
                                                     </select>

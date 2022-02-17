@@ -83,7 +83,7 @@
                           </ng-template>
                           <td>{{emp.assigned_license}}</td>
                           <td>
-                            <select class="form-control" aria-label="Default select example" *ngIf="emp.assigned_project.length>0;else elseBlock">
+                            <select class="form-control assigned_project" aria-label="Default select example" *ngIf="emp.assigned_project.length>0;else elseBlock">
                               <option  *ngFor="let project of emp.assigned_project" value="{{project}}" >{{project}}</option>
 
                             </select>

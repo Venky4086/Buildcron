@@ -110,7 +110,7 @@
                                                     <td>{{vendor.supervisor_name}}</td>
                                                     <td>{{vendor.supervisor_contact}}</td>
                                                     <td>
-                                                      <select class="form-control" *ngIf="vendor.assigned_project.length >0;else elseBlock">
+                                                      <select class="form-control assigned_project" *ngIf="vendor.assigned_project.length >0;else elseBlock">
                                                         <option value="{{project}}" *ngFor="let project of vendor.assigned_project">{{project}}</option>
                                                       </select>
                                                       <ng-template #elseBlock>
