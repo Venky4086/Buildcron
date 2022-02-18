@@ -753,3 +753,21 @@
 .mat-sidenav-content{
     overflow: scroll !important;
 }
+.mt-6{
+    margin-top: 6rem !important;
+}
+.mt-8{
+    margin-top: 8rem !important;
+}
+.w-20{
+    width: 20px !important;
+}
+input::placeholder{
+    color: #fff !important;
+    font-size: 12px !important;
+}
+input{
+    background: transparent !important;
+    color: #fff !important;
+    font-size: 12px !important;
+}
