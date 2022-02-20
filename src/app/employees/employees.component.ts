@@ -31,7 +31,7 @@ export class EmployeesComponent {
   emid: any;
   totalRecords:any;
   page:any=1;
-  count: any = 5;
+  count: any = 15;
   license_id: any;
   client_id:any;
   selectedLicense:any;

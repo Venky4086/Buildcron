@@ -31,7 +31,7 @@ export class MaterialsComponent {
   materialId: any;
   totalRecords:any;
   page:any=1;
-  count:any = 5;
+  count:any = 10;
   client_id: any;
   vendor_id: any;
   uom: any;

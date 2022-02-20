@@ -2,17 +2,24 @@
     <div class="card">
         <div class="content-header">
             <div class="row">
-                <div class="col-sm-6 pl-25">
-                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Safety Checklists <i class="fas fa-caret-right px-1"></i>
+                <div class="col-sm-2">
+                    <h3 class="font-weight-bold fnt-clr fs-700 header-bottom w-130">
                         Safety Inspection</h3>
                 </div><!-- /.col -->
 
-                <div class="col-sm-6 mt-3">
+                <div class="col-sm-10">
                     <div class="alig_btns">
                         <div class="add_btn">
                             <button class="btn btn-primary mr-2 mright bg2" data-target="#AddQuality" data-toggle="modal"> + Add
                                 checklist</button>
                         </div>
+                        <div class="bulk_btn">
+                          <span class="btn btn-default btn-file bg1 mtop">
+                              Bulk Upload <input type="file">
+                          </span>
+
+                          <div class="small06">*In CSV File or Excel Format</div>
+                      </div>
 
                     </div>
                 </div>
@@ -25,9 +32,9 @@
                         <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
                         </ngx-table> -->
 
-                        <div class="card-body pt-0">
+                        <div class="card-body p-0">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                              <div class="row">
+                              <!-- <div class="row">
                                 <div class="col-sm-12 col-md-5">
                                   <div class="filter-sect">
                                     <span class="mr-2">Show</span>
@@ -50,10 +57,10 @@
                                     <span><i class="fa fa-table"></i></span>
                                 </div>
                               </div>
-                            </div>
+                              </div> -->
 
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 p-0">
                                         <table id="example1"
                                             class="table mb-0 table-bordered table-striped dataTable dtr-inline"
                                             role="grid" aria-describedby="example1_info">

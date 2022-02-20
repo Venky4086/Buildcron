@@ -24,7 +24,7 @@ export class VendorsComponent {
   supervisor_contact: any;
   totalRecords:any;
   page:any =1;
-  count:any = 5;
+  count:any = 10;
   client_id: any;
   ///
   ClientProject:any[]=[];

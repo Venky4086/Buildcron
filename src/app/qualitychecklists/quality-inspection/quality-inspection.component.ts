@@ -34,7 +34,7 @@ export class QualityInspectionComponent {
   project: any;
   totalRecords:any;
   page:any=1;
-  count:any = 5;
+  count:any = 10;
   client_id: any;
   quality_checklist=new Set();
   previewquestionlist:any[]=[];

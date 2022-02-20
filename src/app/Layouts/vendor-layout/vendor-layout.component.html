@@ -38,6 +38,12 @@
           <i class="fa fa-key fx-31 fs-15 mr-2"></i><span class="fs-14">Change Password</span></a>
         <a class="dropdown-item cursor-pointer" data-toggle="modal" data-target="#Logout">
           <i class='fa fa-sign-out-alt fx-31 fs-15 mr-2'></i>
+          <span class="fs-14">Settings</span></a>
+        <a class="dropdown-item cursor-pointer" data-toggle="modal" data-target="#Logout">
+          <i class='fa fa-sign-out-alt fx-31 fs-15 mr-2'></i>
+          <span class="fs-14">License Count</span></a>
+        <a class="dropdown-item cursor-pointer" data-toggle="modal" data-target="#Logout">
+          <i class='fa fa-sign-out-alt fx-31 fs-15 mr-2'></i>
           <span class="fs-14">Log Out</span></a>
       </div>
     </div>
@@ -87,53 +93,79 @@
         <!-- <mat-label>Favorite food</mat-label> -->
         <input matInput placeholder="Search" type="search" class="form-control">
         <!-- <mat-icon matSuffix>search</mat-icon> -->
-      </mat-form-field>  
+      </mat-form-field>
     </ul>
 
     <ul class="side-menu">
       <li><a routerLink="/ClientAdmin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-        class="text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-    <li><a routerLink="/Projects" routerLinkActive="active" class=" text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Projects</span></a>
-    </li>
-    <li><a routerLink="/Employees" routerLinkActive="active" class=" text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Employees</span></a>
-    </li>
-    <li>
-      <a routerLink="/Vendors" routerLinkActive="active" class=" text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Vendors</span></a>
+          class="text-white text-decoration-none">
+          <!-- <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> -->
+          <div class="side-menu-icons mr-2">
+            <img src="/assets/images/DashBoard.png" alt="" class="img-fluid">
+          </div>
+          <span>Dashboard</span>
+        </a>
       </li>
-    <li><a routerLink="/Materials" routerLinkActive="active" class=" text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Materials</span></a>
-    </li>
-    <!-- <li><a class=" text-white text-decoration-none" (click)="collapse.toggle()">
+      <li>
+        <a routerLink="/Projects" routerLinkActive="active" class=" text-white text-decoration-none">
+          <div class="side-menu-icons mr-2">
+            <img src="/assets/images/project-plan.png" alt="" class="img-fluid">
+          </div>
+          <span>Projects</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/Employees" routerLinkActive="active" class=" text-white text-decoration-none">
+          <div class="side-menu-icons mr-2">
+            <img src="/assets/images/Employees.png" alt="" class="img-fluid">
+          </div>
+          <span>Employees</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/Vendors" routerLinkActive="active" class=" text-white text-decoration-none">
+          <div class="side-menu-icons mr-2">
+            <img src="/assets/images/Vendors.png" alt="" class="img-fluid">
+          </div> 
+          <span>Vendors</span>
+        </a>
+      </li>
+      <li><a routerLink="/Materials" routerLinkActive="active" class=" text-white text-decoration-none">
+        <div class="side-menu-icons mr-2">
+          <img src="/assets/images/Materials.png" alt="" class="img-fluid">
+        </div>
+          <span>Materials</span></a>
+      </li>
+      <!-- <li><a class=" text-white text-decoration-none" (click)="collapse.toggle()">
       <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i>  
       <span class="mr-3">Quality Checklists</span>
        <i class="fa fa-chevron-down text-right"></i>
       </a>
       <ul class="sub_menu_cls" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed1"> -->
-    <li><a routerLink="/QualityInspection" routerLinkActive="active" class="text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Quality Inspection</span></a>
-    </li>
-    <!-- <li><a routerLink="/QualityTestingData" routerLinkActive="active"
+      <li><a routerLink="/QualityInspection" routerLinkActive="active" class="text-white text-decoration-none">
+        <div class="side-menu-icons mr-2">
+          <img src="/assets/images/Quality-Inspections.png" alt="" class="img-fluid">
+        </div>
+          <span>Quality Inspection</span></a>
+      </li>
+      <!-- <li><a routerLink="/QualityTestingData" routerLinkActive="active"
             class="pl-3 text-white text-decoration-none pl3rem">Quality Testing Data</a></li> -->
-    <!-- </ul>
+      <!-- </ul>
     </li> -->
-    <!-- <li><a class="text-white text-decoration-none" (click)="collapse2.toggle()">
+      <!-- <li><a class="text-white text-decoration-none" (click)="collapse2.toggle()">
       <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span class="mr-3">Safety Checklists</span>
         <i class="fa fa-chevron-down text-right"></i>
       </a>
       <ul class="sub_menu_cls" #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2"> -->
-    <li>
-      <a routerLink="/SafetyInspection" routerLinkActive="active" class="text-white text-decoration-none">
-        <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i><span class="mr-3">
-          Safety Inspection
-        </span></a>
-    </li>
+      <li>
+        <a routerLink="/SafetyInspection" routerLinkActive="active" class="text-white text-decoration-none">
+          <div class="side-menu-icons mr-2">
+            <img src="/assets/images/Safety-Inspections.png" alt="" class="img-fluid">
+          </div>
+          <span class="mr-3">
+            Safety Inspection
+          </span></a>
+      </li>
     </ul>
 
     <ul class="side-menu mt-6">
@@ -142,7 +174,10 @@
       <!-- </ul>
       </li> -->
       <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/DailyReport">
-          <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Reports</span>
+        <div class="side-menu-icons mr-2">
+          <img src="/assets/images/Reports.png" alt="" class="img-fluid">
+        </div>
+          <span>Reports</span>
         </a>
         <!-- <ul class="sub_menu_cls" #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
           <li><a routerLink="/DailyReport"
@@ -153,12 +188,12 @@
                 class="pl-3 text-white text-decoration-none pl3rem">Site NC Report</a></li>
         </ul> -->
       </li>
-      <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cbanners">
+      <!-- <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cbanners">
           <i class="fa fa-id-card fs-17 text-white mr-2" aria-hidden="true"></i> <span>Banner</span></a></li>
       <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cfaqs">
           <i class="fa fa-id-card fs-17 text-white mr-2"></i><span>Settings</span></a></li>
       <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cfaqs">
-          <i class="fa fa-id-card fs-17 text-white mr-2"></i><span>FAQs</span></a></li>
+          <i class="fa fa-id-card fs-17 text-white mr-2"></i><span>FAQs</span></a></li> -->
       <li><a class="text-white text-decoration-none" routerLinkActive="active" routerLink="/cfaqs">
           <i class="fa fa-id-card fs-17 text-white mr-2"></i><span>User Manual</span></a></li>
       <li><a routerLinkActive="active" routerLink="/Contactus" class="text-white text-decoration-none"><i
