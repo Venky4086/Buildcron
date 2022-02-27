@@ -97,21 +97,26 @@
                                               totalItems:totalRecords
                                             }
                                                 ;let i = index">
-                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                    <td class="sorting_1">{{project.create_date | date: 'd MMMM y'}}</td>
+                                                    <td class="dtr-control w-45 text-center">{{(page - 1) * count + i + 1}}</td>
+                                                    <td class="sorting_1 w-95 text-center">{{project.create_date | date: 'd-MMM-y'}}</td>
                                                     <td>{{project.project_name}}</td>
                                                     <td>{{project.city}}</td>
-                                                    <td>{{project.projectId}}</td>
-                                                    <td *ngIf="project.project_status===true,else elseProject">Active</td>
+                                                    <td class="w-90">{{project.projectId}}</td>
+                                                    <td *ngIf="project.project_status===true,else elseProject" class="
+                                                    w-90 text-center">Active</td>
                                                     <ng-template #elseProject>
                                                       InActive
                                                     </ng-template>
-                                                    <td *ngIf="project.approverid===null;else elseBlock">Pending...</td>
+                                                    <td *ngIf="project.approverid===null;else elseBlock" class="w-90 text-center">
+                                                        <button class="btn btn-danger">
+                                                            Pending...
+                                                        </button>
+                                                    </td>
                                                     <ng-template #elseBlock>
                                                       <td>{{project.approverid}}</td>
                                                     </ng-template>
 
-                                                    <td>
+                                                    <td class="w-90 text-center">
                                                         <a class="cursor_pointer" data-toggle="modal"
                                                             data-target="#View"
                                                             (click)="view(project.project_name,project.city,project.approver,project.approverid)">

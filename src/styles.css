@@ -34,6 +34,9 @@ body {
     border:none !important;
     font-size: 12px !important;
 }
+.btn-danger{
+  font-size: 12px !important;
+}
 .btn{
   padding: 5px !important;
 }
@@ -880,9 +883,8 @@ tbody tr td
 }
 .fa
 {
-    font-size:10px;
+    font-size:11px;
 }
-
 
 table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, table.dataTable>thead .sorting_desc:after, table.dataTable>thead .sorting_asc_disabled:after, table.dataTable>thead .sorting_desc_disabled:after {
     right: .5em;
@@ -3403,11 +3405,44 @@ textarea::placeholder{
   border-bottom: 2px solid #000;
     margin: 15px 10px !important;
 }
+
+/* width */
+
+.w-45{
+  width: 45px;
+}
+.w-46{
+  width: 46px;
+}
+.w-47{
+  width: 47px;
+}
+.w-48{
+  width: 48px;
+}
+.w-49{
+  width: 49px;
+}
+.w-50{
+  width: 50px;
+}
 .w-60{
   width: 60px;
 }
 .w-70{
   width: 70px;
+}
+.w-80{
+  width: 80px;
+}
+.w-85{
+  width: 85px;
+}
+.w-90{
+  width: 90px;
+}
+.w-95{
+  width: 95px;
 }
 .w-110{
   width: 110px;
