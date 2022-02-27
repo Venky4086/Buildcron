@@ -3492,3 +3492,8 @@ textarea::placeholder{
 .ngx-pagination{
   margin-bottom: 0px !important;
 }
+.pending-text-color{
+  color: #000066 !important;
+  /* color: #004add !important; */
+  /* color: #ff6600 !important; */
+}

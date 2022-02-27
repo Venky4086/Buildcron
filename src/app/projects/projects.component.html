@@ -103,14 +103,15 @@
                                                     <td>{{project.city}}</td>
                                                     <td class="w-90">{{project.projectId}}</td>
                                                     <td *ngIf="project.project_status===true,else elseProject" class="
-                                                    w-90 text-center">Active</td>
+                                                    w-90">Active</td>
                                                     <ng-template #elseProject>
                                                       InActive
                                                     </ng-template>
                                                     <td *ngIf="project.approverid===null;else elseBlock" class="w-90 text-center">
-                                                        <button class="btn btn-danger">
+                                                        <!-- <button class="btn btn-danger">
                                                             Pending...
-                                                        </button>
+                                                        </button> -->
+                                                        <span class="fs-12 fw-600 pending-text-color">PENDING</span>
                                                     </td>
                                                     <ng-template #elseBlock>
                                                       <td>{{project.approverid}}</td>
