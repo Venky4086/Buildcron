@@ -137,8 +137,8 @@
                                               totalItems:totalRecords
                                             }
                                                 ;let i = index">
-                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                    <td class="sorting_1">{{Quality.created_date | date: 'd MMMM y'}}
+                                                    <td class="dtr-control text-center w-45">{{(page - 1) * count + i + 1}}</td>
+                                                    <td class="sorting_1 w-95">{{Quality.created_date | date: 'd-MMM-y'}}
                                                     </td>
                                                     <td (click)="checklistview(Quality.id)">
                                                         <!-- <ul>
@@ -148,7 +148,7 @@
                                                         </ul> -->
                                                         {{Quality.name}}
                                                     </td>
-                                                    <td>
+                                                    <td class="w-95 text-center">
                                                         <!-- <ul>
                                                             <li *ngFor="let checklist of Quality.quality_checklist">
                                                                 <a class="cursor_pointer text-decoration-none">{{checklist.checklist_id}}</a>
@@ -156,18 +156,18 @@
                                                         </ul> -->
                                                         {{Quality.qualityid}}
                                                     </td>
-                                                    <td>
+                                                    <td class="w-120 text-center">
                                                     <select class="form-control assigned_project" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
-                                                      <option  *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
+                                                      <option *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
 
                                                     </select>
                                                     <ng-template #elseBlock>
-                                                      Pending...
+                                                        <span class="fs-12 fw-600 pending-text-color">PENDING</span>
                                                     </ng-template>
                                                   </td>
-                                                    <td>
+                                                    <td class="w-95 text-center">
                                                         <a class="cursor_pointer" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(Quality.id)">
-                                                          <i class="bi bi-badge-ad"></i>
+                                                          <i class="bi bi-badge-ad mr-1"></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal" data-target="#Qualityquestion" (click)="ShowQualityQuestion(Quality.id)">
                                                           <i class='fa fa-eye mr-1'></i>

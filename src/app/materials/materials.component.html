@@ -108,14 +108,13 @@
                                               totalItems:totalRecords
                                             }
                                                 ;let i = index">
-                                                    <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                                                    <td>{{material.create_date | date: 'd MMMM y'}}</td>
+                                                    <td class="dtr-control w-45 text-center">{{(page - 1) * count + i + 1}}</td>
+                                                    <td class="w-95">{{material.create_date | date: 'd-MMM-y'}}</td>
                                                     <td class="sorting_1">{{material.material_name}}</td>
-                                                    <td>{{material.materialId}}</td>
+                                                    <td class="w-95 text-center">{{material.materialId}}</td>
                                                     <td>{{material.description}}</td>
                                                     <td>{{material.BOQ}}</td>
-
-                                                    <td>
+                                                    <td class="text-center">
                                                       <select class="form-control assigned_project" *ngIf="material.assigned_project.length >0;else elseBlock">
                                                         <option value="{{project}}" *ngFor="let project of material.assigned_project">{{project}}</option>
                                                       </select>
@@ -130,14 +129,14 @@
                                                     <td>{{material.Total_Quantity}}</td>
                                                     <td>{{material.UOM}}</td>
                                                     <td>{{material.Baseline_Quantity}}</td>
-                                                    <td>
+                                                    <td class="w-90 text-center">
                                                         <a class="cursor_pointer" (click)="view(material.material_name,material.materialId,material.description,material.BOQ,material.vendor_name,material.Total_Quantity,material.Baseline_Quantity,material.UOM)">
                                                         <i class='fa fa-eye mr-1'></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal" data-target="#UpdateMaterial" (click)="edit(material.id,material.name,material.mid,material.description,material.boq_ref,material.maker.id,material.maker.name,material.total_uom,material.total_qty,material.b_uom,material.b_qty)">
                                                         <i class="fa fa-edit mr-1"></i>
                                                         </a>
-                                                        <a  class="cursor_pointer" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(material.materialId)">
+                                                        <a  class="cursor_pointer mr-1" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(material.materialId)">
                                                           <i class="bi bi-badge-ad"></i>
                                                         </a>
                                                         <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteMaterial" (click)="delete(material.id)">

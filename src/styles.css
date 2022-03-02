@@ -3444,8 +3444,14 @@ textarea::placeholder{
 .w-95{
   width: 95px;
 }
+.w-100px{
+  width: 100px;
+}
 .w-110{
   width: 110px;
+}
+.w-120{
+  width: 120px;
 }
 .w-121{
   width: 121px;
@@ -3493,7 +3499,7 @@ textarea::placeholder{
   margin-bottom: 0px !important;
 }
 .pending-text-color{
-  color: #000066 !important;
+  /* color: #000066 !important; */
   /* color: #004add !important; */
-  /* color: #ff6600 !important; */
+  color: #ff6600 !important;
 }

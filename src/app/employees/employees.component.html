@@ -78,28 +78,29 @@
                                               totalItems:totalRecords
                                             }
                                             ;let i=index">
-                          <td class="dtr-control">{{(page - 1) * count + i + 1}}</td>
-                          <td class="sorting_1">{{emp.create_date | date: 'd MMMM y'}}</td>
+                          <td class="dtr-control w-45 text-center">{{(page - 1) * count + i + 1}}</td>
+                          <td class="sorting_1 w-95">{{emp.create_date | date: 'd-MMM-y'}}</td>
                           <td>{{emp.employee_name}}</td>
-                          <td>{{emp.employeeId}}</td>
+                          <td class="w-90">{{emp.employeeId}}</td>
                           <td>{{emp.email}}</td>
                           <td>{{emp.phone_number}}</td>
-                          <td *ngIf="emp.employee_status==true ; else elseInActive">Active</td>
+                          <td *ngIf="emp.employee_status==true ; else elseInActive" class="
+                          w-90">Active</td>
                           <ng-template #elseInActive>
                             <td>InActive</td>
                           </ng-template>
-                          <td>{{emp.assigned_license}}</td>
-                          <td>
+                          <td class="w-110 text-center">{{emp.assigned_license}}</td>
+                          <td class="text-center">
                             <select class="form-control assigned_project" aria-label="Default select example" *ngIf="emp.assigned_project.length>0;else elseBlock">
                               <option  *ngFor="let project of emp.assigned_project" value="{{project}}" >{{project}}</option>
 
                             </select>
                             <ng-template #elseBlock>
-                              Pending
+                              <span class="fs-12 fw-600 pending-text-color">PENDING</span>
                              </ng-template>
 
                           </td>
-                          <td>
+                          <td class="w-90 text-center">
                             <a class="cursor_pointer" data-toggle="modal" data-target="#View"
                               (click)="view(emp.employeeId,emp.employee_name,emp.email,emp.phone_number,emp.assigned_license,emp.assigned_project)">
                               <i class='fa fa-eye mr-1'></i>
@@ -110,7 +111,7 @@
                             </a>
 
 
-                            <a  class="cursor_pointer" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(emp.employeeId)">
+                            <a  class="cursor_pointer mr-1" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(emp.employeeId)">
                               <i class="bi bi-badge-ad"></i>
                             </a>
                             <a class="cursor_pointer" data-toggle="modal" data-target="#DeleteEmployee"
