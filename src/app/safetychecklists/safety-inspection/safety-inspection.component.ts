@@ -259,12 +259,14 @@ export class SafetyInspectionComponent {
 
   previewquestion(data:any){
     console.log("preview question")
+    $('#AddQuality').hide();
     this.adminservice.saftylibraryQuestionlist(data)
           .subscribe(
             (resp)=>{
               if(resp){
                 this.previewquestionlist=resp;
-                console.log(resp)
+                console.log(resp);
+             $('#AddQuality').hide();
               }
               else{
                 this.toaster.error("somthing went wrong")

@@ -259,8 +259,8 @@
 <!-- Add QualityInspection -->
 
 <div class="modal fade" id="AddQuality" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content w-560">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header bg-blu">
                 <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
 
@@ -315,8 +315,8 @@
 
 <!-- CLICK ON VIEW ICOIN AND OPEN THIS MODEL FOR PRIVIEW QUESTION FOR QUALIFTY -->
 <div class="modal fade" id="qualityview" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content w-700">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header bg-blu">
                 <h4 class="modal-title mb-0" id="modal-basic-title">Quality Checklist Questions View</h4>
 
@@ -383,9 +383,7 @@
                     <div class="form-group col-md-6 mb-3" *ngFor="let project of projectlist">
 
                         <input type="checkbox" (click)="AddProject($event)" value="{{project.projectId}}" />&nbsp;&nbsp;
-                        <span>{{project.projectId}}</span>
-
-
+                        <span>{{project.project_name}}</span>
                     </div>
 
                 </div>

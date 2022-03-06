@@ -237,7 +237,7 @@
 </div>
 
 <div class="modal fade" id="AddQuality" data-backdrop="static">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-blu">
             <h4 class="modal-title mb-0" id="modal-basic-title">Add Safety Inspection Checklist</h4>
@@ -248,9 +248,9 @@
 
         </div>
         <div class="modal-body">
-          <table>
+          <table class="w-100">
             <tr>
-              <th><input type="checkbox"/>Select all</th>
+              <th><input type="checkbox" class="mr-1"/>Select all</th>
               <th>Safty CheckList Name</th>
               <th>Safty CheckList Id</th>
               <th>Preview Question</th>
@@ -285,7 +285,7 @@
 
 <!-- CLICK ON VIEW ICOIN AND OPEN THIS MODEL FOR PRIVIEW QUESTION FOR QUALIFTY -->
 <div class="modal fade" id="seftychecklistquestionview" data-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-blu">
         <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
@@ -351,7 +351,7 @@
                 <div class="form-group col-md-6 mb-3" *ngFor="let project of projectlist">
 
                     <input type="checkbox" (click)="AddProject($event)"  value="{{project.projectId}}"/>&nbsp;&nbsp;
-                    <span>{{project.projectId}}</span>
+                    <span>{{project.project_name}}</span>
 
 
                 </div>
