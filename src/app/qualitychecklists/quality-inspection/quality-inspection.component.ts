@@ -269,17 +269,16 @@ export class QualityInspectionComponent {
   }
 
   previewquestion(data:any,item:any){
-
+    $('#AddQuality').hide();
     this.qualitychecklistid=item
-
     console.log(this.qualitychecklistid)
     this.adminservice.libraryquestionlist(data).subscribe(
       (resp)=>{
         if (resp){
           console.log("previews question")
           console.log(resp)
-          this.previewquestionlist=resp
-
+          this.previewquestionlist=resp;
+          $('#AddQuality').hide();
         }
         else{
           this.toaster.error("somthing missing!")

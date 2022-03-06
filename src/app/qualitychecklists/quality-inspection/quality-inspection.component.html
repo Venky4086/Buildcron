@@ -18,7 +18,7 @@
                             <span class="btn btn-default btn-file bg1 mtop">
                                 Bulk Upload <input type="file">
                             </span>
-  
+
                             <div class="small06">*In CSV File or Excel Format</div>
                         </div>
 
@@ -137,8 +137,10 @@
                                               totalItems:totalRecords
                                             }
                                                 ;let i = index">
-                                                    <td class="dtr-control text-center w-45">{{(page - 1) * count + i + 1}}</td>
-                                                    <td class="sorting_1 w-95">{{Quality.created_date | date: 'd-MMM-y'}}
+                                                    <td class="dtr-control text-center w-45">{{(page - 1) * count + i +
+                                                        1}}</td>
+                                                    <td class="sorting_1 w-95">{{Quality.created_date | date:
+                                                        'd-MMM-y'}}
                                                     </td>
                                                     <td (click)="checklistview(Quality.id)">
                                                         <!-- <ul>
@@ -157,21 +159,28 @@
                                                         {{Quality.qualityid}}
                                                     </td>
                                                     <td class="w-120 text-center">
-                                                    <select class="form-control assigned_project" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
-                                                      <option *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
+                                                        <select class="form-control assigned_project"
+                                                            aria-label="Default select example"
+                                                            *ngIf="Quality.assign_project.length>0;else elseBlock">
+                                                            <option *ngFor="let project of Quality.assign_project"
+                                                                value="{{project}}">{{project}}</option>
 
-                                                    </select>
-                                                    <ng-template #elseBlock>
-                                                        <span class="fs-12 fw-600 pending-text-color">PENDING</span>
-                                                    </ng-template>
-                                                  </td>
+                                                        </select>
+                                                        <ng-template #elseBlock>
+                                                            <span class="fs-12 fw-600 pending-text-color">PENDING</span>
+                                                        </ng-template>
+                                                    </td>
                                                     <td class="w-95 text-center">
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(Quality.id)">
-                                                          <i class="bi bi-badge-ad mr-1"></i>
+                                                        <a class="cursor_pointer" data-toggle="modal"
+                                                            data-target="#AssingProject"
+                                                            (click)="AssingProject(Quality.id)">
+                                                            <i class="bi bi-badge-ad mr-1"></i>
                                                         </a>
-                                                        <a class="cursor_pointer" data-toggle="modal" data-target="#Qualityquestion" (click)="ShowQualityQuestion(Quality.id)">
-                                                          <i class='fa fa-eye mr-1'></i>
-                                                          </a>
+                                                        <a class="cursor_pointer" data-toggle="modal"
+                                                            data-target="#Qualityquestion"
+                                                            (click)="ShowQualityQuestion(Quality.id)">
+                                                            <i class='fa fa-eye mr-1'></i>
+                                                        </a>
                                                         <a class="cursor_pointer" data-toggle="modal"
                                                             data-target="#UpdateQuality"
                                                             (click)="edit(Quality.id,Quality.name)">
@@ -250,142 +259,148 @@
 <!-- Add QualityInspection -->
 
 <div class="modal fade" id="AddQuality" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-blu">
-        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
+    <div class="modal-dialog">
+        <div class="modal-content w-560">
+            <div class="modal-header bg-blu">
+                <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
-      <div class="modal-body">
-
-
-          <div class="row">
-            <label for="project" class="form-label">Quality Checklist</label><br/>
-            <table>
-              <tr>
-                <th><input type="checkbox"/>Select all</th>
-                <th>CheckList Name</th>
-                <th>Preview Question</th>
-              </tr>
-
-              <tr *ngFor="let list of librarylists">
-                <td><input type="checkbox" (click)="AddQualitychecklist($event)" value="{{list.qualityid}}"/></td>
-                <td>{{list.name}}</td>
-                <td>{{list.qualityid}}</td>
-                <td>
-                    <a type="button" (click)="previewquestion(list.id,list.qualityid)" data-toggle="modal" data-target="#qualityview">
-                      <span class="material-icons">
-                        visibility
-                        </span>
-                      </a>
-                </td>
-
-              </tr>
-
-            </table>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary" (click)="Add()" >Add CheckList</button>
-          </div>
+            </div>
+            <div class="modal-body">
 
 
-      </div>
+                <div class="row pd-5">
+                    <label for="project" class="form-label">Quality Checklist</label><br />
+                    <table>
+                        <tr>
+                            <th><input type="checkbox" class="mr-1"/>Select all</th>
+                            <th>CheckList Name</th>
+                            <th>Preview Question</th>
+                        </tr>
 
+                        <tr *ngFor="let list of librarylists">
+                            <td><input type="checkbox" (click)="AddQualitychecklist($event)"
+                                    value="{{list.qualityid}}" /></td>
+                            <td>{{list.name}}</td>
+                            <td>{{list.qualityid}}</td>
+                            <td>
+                                <a type="button" (click)="previewquestion(list.id,list.qualityid)" data-toggle="modal"
+                                    data-target="#qualityview">
+                                    <span class="material-icons">
+                                        visibility
+                                    </span>
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary"
+                        (click)="Add()">Add CheckList</button>
+                </div>
+
+
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- CLICK ON VIEW ICOIN AND OPEN THIS MODEL FOR PRIVIEW QUESTION FOR QUALIFTY -->
 <div class="modal fade" id="qualityview" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-blu">
-        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
+    <div class="modal-dialog">
+        <div class="modal-content w-700">
+            <div class="modal-header bg-blu">
+                <h4 class="modal-title mb-0" id="modal-basic-title">Quality Checklist Questions View</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
-      <div class="modal-body">
-
-
-          <div class="row">
-            <label for="project" class="form-label">Quality Checklist Quesition Previews</label><br/>
-            <table>
-              <tr>
-                <th><input type="checkbox"/>Select all</th>
-                <th>Quality Checklist Quesition </th>
-                <th>Question Id</th>
-              </tr>
-
-              <tr *ngFor="let question of previewquestionlist">
-                <td><input type="checkbox" (click)="selectqualityquestion($event)" value="{{question.questionid}}"/></td>
-                <td>{{question.name}}</td>
-                <td>{{question.questionid}}</td>
-              </tr>
-
-            </table>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button"  aria-label="Close" class="btn btn-primary" (click)="AddQualityChecklistQuetion()">Add Question</button>
-          </div>
+            </div>
+            <div class="modal-body">
 
 
-      </div>
+                <div class="row pd-5">
+                    <label for="project" class="form-label">Quality Checklist Quesition Previews</label><br />
+                    <table>
+                        <tr class="lh-27">
+                            <th class="mr-1"><input type="checkbox" class="mr-1"/>Select all</th>
+                            <th class="text-center">Quality Checklist Quesition </th>
+                            <th>Question Id</th>
+                        </tr>
 
+                        <tr *ngFor="let question of previewquestionlist" class="lh-27">
+                            <td><input type="checkbox" (click)="selectqualityquestion($event)"
+                                    value="{{question.questionid}}" /></td>
+                            <td>{{question.name}}</td>
+                            <td>{{question.questionid}}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" aria-label="Close" class="btn btn-primary"
+                        (click)="AddQualityChecklistQuetion()">Add Question</button>
+                </div>
+
+
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 
 <!-- ASIGN PROJECT  -->
 
 <div class="modal fade" id="AssingProject" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-blu">
-        <h4 class="modal-title mb-0" id="modal-basic-title">Add Project</h4>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blu">
+                <h4 class="modal-title mb-0" id="modal-basic-title">Add Project</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
+            </div>
 
-          <div class="modal-body">
+            <div class="modal-body">
 
 
-              <div class="row">
-                <label for="project" class="form-label">Projects</label><br/>
-                <div class="form-group col-md-6 mb-3" *ngFor="let project of projectlist">
+                <div class="row">
+                    <label for="project" class="form-label">Projects</label><br />
+                    <div class="form-group col-md-6 mb-3" *ngFor="let project of projectlist">
 
-                    <input type="checkbox" (click)="AddProject($event)"  value="{{project.projectId}}"/>&nbsp;&nbsp;
-                    <span>{{project.projectId}}</span>
+                        <input type="checkbox" (click)="AddProject($event)" value="{{project.projectId}}" />&nbsp;&nbsp;
+                        <span>{{project.projectId}}</span>
 
+
+                    </div>
 
                 </div>
 
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary" (click)="qualitycheckAddOnProject()">Assign Project</button>
-              </div>
-
-
-          </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary"
+                        (click)="qualitycheckAddOnProject()">Assign Project</button>
+                </div>
 
 
+            </div>
+
+
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -424,7 +439,7 @@
                         </div>
                     </div>
 
-                      <div class="row">
+                    <div class="row">
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Project Assigned:</label>
                             <select class="form-select" [(ngModel)]="project_id" formControlName="project_assigned"
@@ -438,7 +453,7 @@
                                     Project Assigned is required
                                 </div>
                             </div>
-                      </div>
+                        </div>
 
 
                     </div>
@@ -469,35 +484,33 @@
 
 <!-- SHOW CHECKLIST QUESTION  -->
 <div class="modal fade" id="Qualityquestion" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-blu">
-        <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blu">
+                <h4 class="modal-title mb-0" id="modal-basic-title">Add Quality Checklist Model</h4>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
-      <div class="modal-body">
-
-
-
-            <label for="project" class="form-label">Quality Checklist Quesitions</label><br/>
-            <div *ngFor="let que of questionlist">
-            <li>
-              <ol><h6> {{que.name}}</h6></ol>
-            </li>
+            </div>
+            <div class="modal-body">
 
 
 
+                <label for="project" class="form-label">Quality Checklist Quesitions</label><br />
+                <div *ngFor="let que of questionlist">
+                 <ul>
+                     <li>
+                        {{que.name}}
+                     </li>
+                 </ul>
+                </div>
 
-          </div>
 
 
+            </div>
 
-      </div>
-
+        </div>
     </div>
-  </div>
 </div>
