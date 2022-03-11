@@ -109,8 +109,8 @@
                                                     <td>{{vendor.contact_no}}</td>
                                                     <td>{{vendor.supervisor_name}}</td>
                                                     <td>{{vendor.supervisor_contact}}</td>
-                                                    <td class="text-center">
-                                                      <select class="form-control assigned_project" *ngIf="vendor.assigned_project.length >0;else elseBlock">
+                                                    <td class="text-center w-125">
+                                                      <select class="form-select assigned_project" *ngIf="vendor.assigned_project.length >0;else elseBlock">
                                                         <option value="{{project}}" *ngFor="let project of vendor.assigned_project">{{project}}</option>
                                                       </select>
                                                       <ng-template #elseBlock>
@@ -126,7 +126,7 @@
                                                             <i class="fa fa-edit mr-1"></i>
                                                         </a>
                                                         <a  class="cursor_pointer mr-1" data-toggle="modal" data-target="#AssingProject" (click)="AssingProject(vendor.vendorId)">
-                                                          <i class="bi bi-badge-ad"></i>
+                                                          <i class="fa fa-plus"></i>
                                                         </a>
                                                         <a class="cursor_pointer" (click)="delete(vendor.vendorId)" data-toggle="modal"
                                                             data-target="#DeleteVendor">
@@ -493,7 +493,7 @@
 <div class="modal fade" id="DeleteVendor" data-backdrop="static">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content pd-20 delete-bg">
-            <h1 class="text-white fs-20">Are you sure, you want to delete the vendor</h1>
+            <h1 class="text-white fs-17">Are you sure, you want to delete the vendor ?</h1>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
                 <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>

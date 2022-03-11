@@ -70,6 +70,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthenticationserviceService } from './services/authenticationservice.service';
+import { LicensecountComponent } from './licensecount/licensecount.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { AuthenticationserviceService } from './services/authenticationservice.s
     CbannersComponent,
     UsedlicenseComponent,
     SafetydashboardComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    LicensecountComponent
   ],
   imports: [
     BrowserModule,

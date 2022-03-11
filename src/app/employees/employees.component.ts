@@ -134,8 +134,6 @@ export class EmployeesComponent {
     })
   }
 
-
-
   view(employe_id:any,name:any,email:any,mobile:any,assigned_license:any,assigned_project:any){
     this.emid = employe_id,
     this.name = name,

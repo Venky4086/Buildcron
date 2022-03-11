@@ -105,16 +105,16 @@
                                                     <td *ngIf="project.project_status===true,else elseProject" class="
                                                     w-90">Active</td>
                                                     <ng-template #elseProject>
-                                                      InActive
+                                                      <span class="fs-0-8">InActive</span>
                                                     </ng-template>
-                                                    <td *ngIf="project.approverid===null;else elseBlock" class="w-90 text-center">
+                                                    <td *ngIf="project.approver===null;else elseBlock" class="w-90">
                                                         <!-- <button class="btn btn-danger">
                                                             Pending...
                                                         </button> -->
                                                         <span class="fs-12 fw-600 pending-text-color">PENDING</span>
                                                     </td>
                                                     <ng-template #elseBlock>
-                                                      <td>{{project.approverid}}</td>
+                                                      <td>{{project.approver}}</td>
                                                     </ng-template>
 
                                                     <td class="w-90 text-center">
@@ -202,11 +202,19 @@
                         </div>
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Approver:</label>
-                            <p class="font-weight-bold">{{Approver}}</p>
+                            <p class="font-weight-bold" *ngIf="Approver===null;else elseBlock">No Approver is assigned</p>
+                            <ng-template #elseBlock>
+                                <p class="font-weight-bold">
+                                    {{Approver}}
+                                </p>
+                            </ng-template>
                         </div>
                         <div class="form-group col-md-6 mb-3">
                           <label for="dateOfBirth">Approver id:</label>
-                          <p class="font-weight-bold">{{Approverid}}</p>
+                          <p class="font-weight-bold" *ngIf="Approverid===null;else elseBlock">No ApproverId is assigned</p>
+                            <ng-template #elseBlock>
+                                <p class="font-weight-bold">{{Approverid}}</p>
+                            </ng-template>
                       </div>
                     </div>
                 </form>
@@ -312,7 +320,7 @@
 
                         <div class="form-group col-md-6 mb-3">
                             <label for="dateOfBirth">Name:</label>
-                            <input type="text" class="form-control" placeholder="Entrer Project Name"
+                            <input type="text" class="form-control" placeholder="Enter Project Name"
                                 formControlName="name" [ngClass]="{'is-invalid':submitted && f.name.errors}" />
                             <div class="invalid-feedback" *ngIf="submitted && f.name.errors">
                                 <div class="fs-13 fw-500" *ngIf="f.name.errors.required">
@@ -394,22 +402,19 @@
 
                         </div>
 
-
                         <div class="form-group col-md-6 mb-3">
-                            <label for="dateOfBirth">Approver id:</label>
-                            <select class="form-select" name="approver_id" (change)="emaployee_name($event)"  [(ngModel)]='approver_id' >
+                            <label for="dateOfBirth">Approver Id:</label>
+                            <select class="form-select" name="approver_id" (change)="emaployee_name($event)"  [(ngModel)]='approver_id'>
 
-                                <option  *ngFor="let emp of employelist"
-                                    value='{{emp.employeeId}}'>{{emp.employeeId}} / {{emp.employee_name}}</option>
+                                <option  *ngFor="let emp of employelist" value='{{emp.employeeId}}'  [selected]="emp.employeeId == approver_id">{{emp.employeeId}} / {{emp.employee_name}}</option>
                             </select>
 
                         </div>
 
-
                         <div class="form-group col-md-6 mb-3">
                           <label for="dateOfBirth">Approver Name:</label>
-                          <input type="text" class="form-control" name="approver" [(ngModel)]="employee_name"
-                           readonly    />
+                          <input type="text" class="form-control" name="approver" [(ngModel)]="approver"
+                           readonly/>
 
                       </div>
 
@@ -431,7 +436,7 @@
 <div class="modal fade" id="DeleteProject" data-backdrop="static">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content pd-20 delete-bg">
-            <h1 class="text-white fs-20">Are you sure, you want to delete the Project</h1>
+            <h1 class="text-white fs-17">Are you sure, you want to delete the Project ?</h1>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary bg2 mr-2" data-dismiss="modal" aria-label="Close">No</button>
                 <button class="btn btn-primary bg2" (click)="Delete()">Yes</button>

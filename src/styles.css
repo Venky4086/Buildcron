@@ -647,7 +647,7 @@ body {
 
 /* modal */
 .delete-bg{
-    background-color: #ffd1b2 !important;
+    background-color: #e4dfdb !important;
     height: 130px !important;
 }
 .modal-backdrop.show{
@@ -673,6 +673,9 @@ thead tr
 tbody tr td
 {
   font-size:0.8rem;
+}
+.fs-0-8{
+  font-size:0.8rem !important;
 }
 .fnt-clr
 {
@@ -3453,6 +3456,9 @@ textarea::placeholder{
 .w-120{
   width: 120px;
 }
+.w-125{
+  width: 125px;
+}
 .w-121{
   width: 121px;
 }
@@ -3508,4 +3514,20 @@ textarea::placeholder{
   /* color: #000066 !important; */
   /* color: #004add !important; */
   color: #ff6600 !important;
+}
+
+/* input */
+
+.form-control{
+  font-size: 13px !important;
+}
+.form-select{
+  font-size: 13px !important;
+}
+label{
+  font-size: 13px !important;
+}
+.form-control::placeholder{
+    color: #ced4da !important;
+    font-size: 13px !important;
 }

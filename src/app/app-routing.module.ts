@@ -42,6 +42,7 @@ import { CbannersComponent } from './cbanners/cbanners.component';
 import { UsedlicenseComponent } from './superadmin/usedlicense/usedlicense.component';
 import { SafetydashboardComponent } from './safetydashboard/safetydashboard.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { LicensecountComponent } from './licensecount/licensecount.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Landingpage', pathMatch: 'full' },
@@ -113,6 +114,10 @@ const routes: Routes = [
   {
     path:'changepassword',
     component:ChangepasswordComponent
+  },
+  {
+    path:'license',
+    component:LicensecountComponent
   }
     ]
    },

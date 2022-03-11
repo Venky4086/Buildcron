@@ -119,7 +119,7 @@ export class ProjectsComponent {
     for (let emp of this.employelist){
       if (emp.employeeId===event.target.value)
       {
-        this.employee_name=emp.employee_name
+        this.approver=emp.employee_name
         break
       }
     }
@@ -192,10 +192,11 @@ export class ProjectsComponent {
     })
   }
 
-  view(name:any,location:any,approver:any,approverid:any ){
+  view(name:any,location:any,approver:any,approverid:any){
+    console.log(approverid);
     this.projectname = name,
     this.location = location,
-    this.Approverid =approverid ,
+    this.Approverid =approverid,
     this.Approver=approver
     // console.log(this.Approver);
   }
@@ -257,9 +258,9 @@ export class ProjectsComponent {
     this.projectname = name,
     this.location = location,
     this.approver = approver,
+    console.log(this.approver);
     this.approver_id=apid
     console.log(this.approver_id)
-
     // console.log(this.empseleted)
   }
 
@@ -271,7 +272,6 @@ export class ProjectsComponent {
       "city": this.location,
       "approver":this.approver,
       "approverid":this. approver_id,
-
 
     }
       console.log(data);
