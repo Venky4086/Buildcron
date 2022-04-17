@@ -647,7 +647,7 @@ body {
 
 /* modal */
 .delete-bg{
-    background-color: #e4dfdb !important;
+    background-color: #fff !important;
     height: 130px !important;
 }
 .modal-backdrop.show{

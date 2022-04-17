@@ -41,6 +41,6 @@ export class VendorLayoutComponent implements OnInit {
     this.router.navigate(['/changepassword']);
   }
   license(){
-    this.router.navigate(['/license'])
+    this.router.navigate(['/licensedetails'])
   }
 }

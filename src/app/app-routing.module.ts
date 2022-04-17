@@ -116,7 +116,7 @@ const routes: Routes = [
     component:ChangepasswordComponent
   },
   {
-    path:'license',
+    path:'licensedetails',
     component:LicensecountComponent
   }
     ]
