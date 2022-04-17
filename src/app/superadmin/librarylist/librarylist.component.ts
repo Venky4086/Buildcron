@@ -27,7 +27,7 @@ export class LibrarylistComponent  {
   type: any;
   totalRecords:any;
   page:any=1;
-  count:any = 5;
+  count:any = 10;
   excel!:File;
   constructor(private toaster: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService,private router:Router) { }
    AddLibrayList = this.fb.group({

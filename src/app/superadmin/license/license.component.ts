@@ -38,7 +38,7 @@ export class LicenseComponent {
   devicelists:any;
   totalRecords:any;
   page:any=1;
-  count:any = 5;
+  count:any = 10;
   constructor(private router:Router,private toastr: ToastrService,private spinner: NgxSpinnerService,private modalService: NgbModal,private fb:FormBuilder,private superadminserivce:SuperadminService) { }
     AddLicense = this.fb.group({
       

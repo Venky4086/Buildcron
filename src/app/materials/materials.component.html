@@ -116,7 +116,7 @@
                                                     <td>{{material.BOQ}}</td>
                                                     <td class="text-center">
                                                       <select class="form-control assigned_project" *ngIf="material.assigned_project.length >0;else elseBlock">
-                                                        <option value="{{project}}" *ngFor="let project of material.assigned_project">{{project}}</option>
+                                                        <option value="{{project.project_id}}" *ngFor="let project of material.assigned_project">{{project.project_name}}</option>
                                                       </select>
                                                       <ng-template #elseBlock>
                                                         pendding

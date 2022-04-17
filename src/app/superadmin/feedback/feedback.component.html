@@ -2,8 +2,8 @@
     <div class="card">
         <div class="content-header">
             <div class="row">
-                <div class="col-sm-6 pl-25">
-                    <h3 class="m-0 font-weight-bold fnt-clr fs-700 p-3">Contacts Us Details</h3>
+                <div class="col-sm-6">
+                    <h3 class="font-weight-bold fnt-clr fs-700 header-bottom w-150">Contacts Us Details</h3>
                 </div><!-- /.col -->
   
                 <div class="col-sm-6">
@@ -36,37 +36,11 @@
                         <!-- <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
                         </ngx-table> -->
   
-                        <div class="card-body pt-0">
+                        <div class="card-body p-0">
                             <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-5">
-                                      <div class="filter-sect">
-                                        <span class="mr-2">Show</span>
-                                        <div class="sele-drp">
-                                            <select class="form-control">
-                                                <option>5</option>
-                                                <option>10</option>
-                                                <option>15</option>
-                                                <option>20</option>
-                                            </select>
-                                        </div>
-                                        <span class="ml-2">Entries</span>
-                                    </div>
-                                    </div>
-  
-  
-                                    <div class="col-sm-12 col-md-7">
-                                      <div class="showhide pt-4 text-right floatright">
-                                        <span class='text-right'>Show/Hide:</span>
-                                        <span><i class="fa fa-table"></i></span>
-                                    </div>
-                                    </div>
-  
-  
-                                </div>
-  
+                               
                                 <div class="row" *ngIf="totalRecords !== 0;else elseBlack">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 p-0">
                                       <div class="table-responsive">
                                         <table id="example1" style="overflow: auto !important; width:1400px !important;"
                                             class="table mb-0 table-bordered table-striped dataTable dtr-inline"

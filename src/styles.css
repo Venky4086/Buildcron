@@ -3465,11 +3465,41 @@ textarea::placeholder{
 .w-130{
   width: 130px;
 }
+.w-135{
+  width: 135px;
+}
 .w-124{
   width: 124px;
 }
+.w-140{
+  width: 140px;
+}
+.w-142{
+  width: 142px;
+}
+.w-145{
+  width: 145px;
+}
+.w-150{
+  width: 150px;
+}
+.w-155{
+  width: 155px;
+}
 .w-156{
   width: 156px;
+}
+.w-160{
+  width: 160px;
+}
+.w-165{
+  width: 165px;
+}
+.w-185{
+  width: 185px;
+}
+.w-200{
+  width: 200px;
 }
 .w-560{
   width: 560px !important;

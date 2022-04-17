@@ -117,7 +117,7 @@
                                                     </td>
                                                     <td class="text-center w-130">
                                                       <select class="form-select assigned_project" aria-label="Default select example" *ngIf="Quality.assign_project.length>0;else elseBlock">
-                                                        <option  *ngFor="let project of Quality.assign_project" value="{{project}}" >{{project}}</option>
+                                                        <option  *ngFor="let project of Quality.assign_project" value="{{project.project_id}}" >{{project.project_name}}</option>
 
                                                       </select>
                                                       <ng-template #elseBlock>

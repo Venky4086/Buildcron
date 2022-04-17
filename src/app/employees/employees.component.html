@@ -91,7 +91,7 @@
                           <td class="w-110 text-center">{{emp.assigned_license}}</td>
                           <td class="text-center w-125">
                             <select class="form-select" aria-label="Default select example" *ngIf="emp.assigned_project.length>0;else elseBlock">
-                              <option  *ngFor="let project of emp.assigned_project" value="{{project}}" >{{project}}</option>
+                              <option  *ngFor="let project of emp.assigned_project" value="{{project.project_id}}" >{{project.project_name}}</option>
                             </select>
                             <ng-template #elseBlock>
                               <span class="fs-12 fw-600 pending-text-color">PENDING</span>
